@@ -1,0 +1,19 @@
+assets/*
+build/*
+bin/*
+asm/*
+*.z64
+*.ld
+.splat_cache
+include/ld_addrs.h
+
+# Tools
+tools/n64cksum
+
+# Cache files
+__pycache__/
+.pyc
+
+# Text editor remnants
+.vscode/
+.vs/

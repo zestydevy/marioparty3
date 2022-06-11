@@ -1,0 +1,138 @@
+DecodeNone = 0x8000A230;
+DecodeLZ = 0x8000A2CC;
+DecodeFile = 0x8000B000;
+
+GetRandomByte = 0x8000B16C;
+
+ReadMainFS = 0x80009C10;
+FreeMainFS = 0x80009E6C;
+
+// heap.c
+MakeHeap = 0x800360D0;
+Malloc = 0x800360F0;
+Free = 0x80036188;
+Realloc = 0x80036248;
+GetAllocatedHeapSize = 0x80036310;
+GetUsedMemoryBlockCount = 0x80036344;
+GetMemoryAllocSize = 0x8003636C;
+
+// heap_permanent.c
+MakePermHeap = 0x80035840;
+MallocPerm = 0x80035864;
+FreePerm = 0x80035888;
+ReallocPerm = 0x800358A4;
+GetAllocatedPermHeapSize = 0x800358D0;
+GetUsedMemoryBlockCountPerm = 0x800358F0;
+
+// heap_temporary.c
+MakeTempHeap = 0x80035910;
+MallocTemp = 0x80035934;
+FreeTemp = 0x80035958;
+ReallocTemp = 0x80035974;
+GetAllocatedTempHeapSize = 0x800359A0;
+GetUsedMemoryBlockCountTemp = 0x800359C0;
+
+// 47D60.c
+InitObjSys = 0x80047160;
+InitProcess = 0x80047EA0;
+EndProcess = 0x80048008;
+
+// process.c
+InitProcessSys = 0x8004EB20;
+LinkProcess = 0x8004EB34;
+UnlinkProcess = 0x8004EBC8;
+CreateProcess = 0x8004EC04;
+LinkChildProcess = 0x8004ED30;
+UnlinkChildProcess = 0x8004ED84;
+CreateChildProcess = 0x8004EDD4;
+WaitForChildProcess = 0x8004EE18;
+GetCurrentProcess = 0x8004EE68;
+GetChildProcess = 0x8004EE74;
+SetKillStatusProcess = 0x8004EE94;
+KillProcess = 0x8004EED8;
+KillChildProcess = 0x8004EF0C;
+TerminateProcess = 0x8004EF6C;
+ExitProcess = 0x8004EFD4;
+SleepProcess = 0x8004F010;
+SleepVProcess = 0x8004F074;
+WakeupProcess = 0x8004F090;
+SetProcessDestructor = 0x8004F098;
+SetCurrentProcessDestructor = 0x8004F0A0;
+CallProcess = 0x8004F0D0;
+AllocProcessMemory = 0x8004F23C;
+FreeProcessMemory = 0x8004F26C;
+
+InitFadeIn = 0x80061FE8;
+InitFadeOut = 0x80062050;
+GetFadeStatus = 0x800620BC;
+
+setjmp = 0x80066500;
+longjmp = 0x80066564;
+
+osEepromWrite = 0x80072020;
+__osPackEepWriteData = 0x800721D4;
+__osEepStatus = 0x8007227C;
+
+osVirtualToPhysical = 0x800792D0;
+cosf = 0x80079330;
+sinf = 0x8007B530;
+
+bcopy = 0x8007B970;
+bzero = 0x8007BC90;
+
+osInitRdb = 0x8007B8F0;
+strchr = 0x8007BD30;
+strlen = 0x8007BD70;
+memcpy = 0x8007BD94;
+
+rmonPrintf_func_8007BE50 = 0x8007BE50;
+osSyncPrintf_func_8007BE80 = 0x8007BE80;
+osSyncPrintf_func_8007BEC0 = 0x8007BEC0;
+
+osCreateMesgQueue = 0x8007BF00;
+osJamMesg = 0x8007BF30;
+osRecvMesg = 0x8007C070;
+osSendMesg = 0x8007C1A0;
+osGetThreadPri = 0x8007C9F0;
+osSetThreadPri = 0x8007CA10;
+osStartThread = 0x8007CAE0;
+osGetTime = 0x8007CC90;
+osSetTimer = 0x8007CD20;
+
+__osProbeTLB = 0x8007D210;
+
+__osEnqueueAndYield = 0x8008061C;
+__osPopThread = 0x80080774;
+__osDisableInt = 0x80080940;
+__osRestoreInt = 0x800809B0;
+
+sqrtf = 0x80081240;
+_Printf = 0x80081A40;
+osGetCount = 0x800830A0;
+
+// 824C0.s, some issue with disassembly of this symbol.
+.L800CD1A0 = 0x800CD1A0;
+
+// shared_board/F5070
+PlayerHasEmptyItemSlot = 0x800E49DC; // type:func rom:0xF85FC
+FixUpPlayerItemSlots = 0x800E4A08; // type:func rom:0xF8628
+GetSpaceData = 0x800EB160; // type:func rom:0xFED80
+GetAbsSpaceIndexFromChainSpaceIndex = 0x800EB184; // type:func rom:0xFEDA4
+GetChainLength = 0x800EB1B0; // type:func rom:0xFEDD0
+GetChainSpaceIndexFromAbsSpaceIndex = 0x800EB1CC;
+SetSpaceType = 0x800EB7F0;
+SetCurrentSpaceIndex = 0x800EBCBC; // type:func rom:0xFF8DC
+GetCurrentSpaceIndex = 0x800EBCC8; // type:func rom:0xFF8E8
+
+// shared_board/1006F0
+SetPlayerOntoChain = 0x800ED91C; // type:func rom:0x10153C
+SetNextChainAndSpace = 0x800ED998;
+SetPrevChainAndSpace = 0x800ED9F8;
+
+// shared_board/105D50
+GetCurrentPlayerIndex = 0x800F2130; // type:func rom:0x105D50
+GetPlayerStruct = 0x800F213C; // type:func rom:0x105D5C
+PlayerIsCurrent = 0x800F217C;
+PlayerIsCPU = 0x800F2198; // type:func rom:0x105DB8
+AdjustPlayerCoins = 0x800F21C0; // type:func rom:0x105DE0
+PlayerHasCoins = 0x800F2230; // type:func rom:0x105E50
