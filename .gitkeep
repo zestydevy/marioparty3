@@ -1,0 +1,3 @@
+tools/splat
+tools/mips_to_c
+tools/asm_differ
