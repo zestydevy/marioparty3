@@ -4,6 +4,6 @@
 [submodule "tools/asm-differ"]
 	path = tools/asm-differ
 	url = https://github.com/simonlindholm/asm-differ.git
-[submodule "tools/mips_to_c"]
-	path = tools/mips_to_c
-	url = https://github.com/matt-kempster/mips_to_c.git
+[submodule "tools/mips-to-c"]
+	path = tools/mips-to-c
+	url = https://github.com/matt-kempster/m2c.git
