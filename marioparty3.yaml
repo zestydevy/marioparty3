@@ -9,6 +9,7 @@ options:
   find_file_boundaries: True
   header_encoding: ASCII
   # platform: n64
+  symbol_name_format: $VRAM_$ROM
   undefined_funcs_auto_path: undefined_funcs_auto.txt
   undefined_syms_auto_path: undefined_syms_auto.txt
   ld_script_path: marioparty3.ld
@@ -30,7 +31,8 @@ segments:
     vram: 0x80000400
     subsegments:
     - [0x1000, asm]
-    - [0xBCA0, c]
+    - [0xAE30, asm, "decode"]
+    - [0xBCA0, asm]
     - [0xC1F0, bin]
     - [0x72890, bin] # Should this be 0x7288C? What is this?
     - [0x72C20, asm]
@@ -42,7 +44,7 @@ segments:
     subalign: 16
     subsegments:
     - [0x8FCF0, bin]
-    - [0x96EF0, .data, "BCA0"]
+    - [0x96EF0, data, "BCA0"]
     - [0x98260, bin]
     - [0x98310, bin]
   - type: code
@@ -50,12 +52,13 @@ segments:
     vram: 0x800A6990
     subalign: 8
     subsegments:
-    - [0xA7590, .rodata, "decode"]
+    - [0xA7590, rodata, "decode"]
     - [0xA75A8, bin]
 
   - dir: overlays/overlay130
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0xA96F0
     vram: 0x800D6B70
     subsegments:
@@ -74,6 +77,7 @@ segments:
   - dir: overlays/overlay129
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0xBE940
     vram: 0x800D6B70
     subsegments:
@@ -89,7 +93,7 @@ segments:
       - [0xC9330, asm]
       - [0xC9690, asm]
       - [0xCA640, asm]
-      - [0xCCD20, c]
+      - [0xCCD20, asm]
       - [0xD1190, asm]
       - [0xD28F0, asm]
       - [0xD3450, asm]
@@ -98,7 +102,7 @@ segments:
       - [0xDC0D0, asm]
       - [0xDC4E0, asm]
       - [0xDFD60, asm]
-      - [0xE3CD0, c]
+      - [0xE3CD0, asm]
       - [0xE78B0, asm]
       - [0xE7AE0, asm]
       - [0xE8BE0, bin] # data
@@ -107,35 +111,37 @@ segments:
   - dir: overlays/shared_board
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0xEA790
     vram: 0x800D6B70
     subsegments:
-      - [0xEA790, c]
+      - [0xEA790, asm]
       - [0xEB2F0, asm]
       - [0xEC3B0, asm]
-      - [0xECA50, c]
+      - [0xECA50, asm]
       - [0xEE3B0, asm]
       - [0xEE660, asm]
       - [0xF2910, asm]
-      - [0xF5070, c]
-      - [0xF5B90, c]
+      - [0xF5070, asm]
+      - [0xF5B90, asm]
       # - [0xFE110, asm] suspected based on mp1 spaces.c
-      - [0xFFB10, c]
-      - [0x1006F0, c]
-      - [0x101840, c]
-      - [0x105D50, c]
+      - [0xFFB10, asm]
+      - [0x1006F0, asm]
+      - [0x101840, asm]
+      - [0x105D50, asm]
       - [0x1063F0, asm]
       - [0x106640, asm]
       - [0x106A50, asm]
       - [0x10AD50, asm]
-      - [0x10C230, c]
+      - [0x10C230, asm]
       - [0x113520, asm]
-      - [0x113750, c]
+      - [0x113750, asm]
       - [0x1143C0, bin] # data
 
   - dir: overlays/overlay0
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x116320
     vram: 0x801059A0
     subsegments:
@@ -145,6 +151,7 @@ segments:
   - dir: overlays/overlay1
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x11A480
     vram: 0x801059A0
     subsegments:
@@ -155,6 +162,7 @@ segments:
   - dir: overlays/overlay2
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x120BC0
     vram: 0x801059A0
     subsegments:
@@ -164,6 +172,7 @@ segments:
   - dir: overlays/overlay3
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1263E0
     vram: 0x801059A0
     subsegments:
@@ -173,6 +182,7 @@ segments:
   - dir: overlays/overlay4
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x12DD30
     vram: 0x801059A0
     subsegments:
@@ -182,6 +192,7 @@ segments:
   - dir: overlays/overlay5
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x131C10
     vram: 0x801059A0
     subsegments:
@@ -191,6 +202,7 @@ segments:
   - dir: overlays/overlay6
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x137C00
     vram: 0x801059A0
     subsegments:
@@ -200,6 +212,7 @@ segments:
   - dir: overlays/overlay7
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x13E9C0
     vram: 0x801059A0
     subsegments:
@@ -209,6 +222,7 @@ segments:
   - dir: overlays/overlay8
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x14A810
     vram: 0x801059A0
     subsegments:
@@ -218,6 +232,7 @@ segments:
   - dir: overlays/overlay9
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1542E0
     vram: 0x801059A0
     subsegments:
@@ -227,6 +242,7 @@ segments:
   - dir: overlays/overlay10
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x15C310
     vram: 0x801059A0
     subsegments:
@@ -236,6 +252,7 @@ segments:
   - dir: overlays/overlay11
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x161750
     vram: 0x801059A0
     subsegments:
@@ -245,6 +262,7 @@ segments:
   - dir: overlays/overlay12
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x165010
     vram: 0x801059A0
     subsegments:
@@ -255,6 +273,7 @@ segments:
   - dir: overlays/overlay13
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x16F670
     vram: 0x801059A0
     subsegments:
@@ -264,6 +283,7 @@ segments:
   - dir: overlays/overlay14
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x17B3B0
     vram: 0x801059A0
     subsegments:
@@ -273,6 +293,7 @@ segments:
   - dir: overlays/overlay15
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x181950
     vram: 0x801059A0
     subsegments:
@@ -283,6 +304,7 @@ segments:
   - dir: overlays/overlay16
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x18ABD0
     vram: 0x801059A0
     subsegments:
@@ -293,6 +315,7 @@ segments:
   - dir: overlays/overlay17
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x191240
     vram: 0x801059A0
     subsegments:
@@ -302,6 +325,7 @@ segments:
   - dir: overlays/overlay18
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x19CEF0
     vram: 0x801059A0
     subsegments:
@@ -311,6 +335,7 @@ segments:
   - dir: overlays/overlay19
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1A3D80
     vram: 0x801059A0
     subsegments:
@@ -320,6 +345,7 @@ segments:
   - dir: overlays/overlay20
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1AC970
     vram: 0x801059A0
     subsegments:
@@ -329,6 +355,7 @@ segments:
   - dir: overlays/overlay21
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1B4F10
     vram: 0x801059A0
     subsegments:
@@ -338,6 +365,7 @@ segments:
   - dir: overlays/overlay22
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1BA850
     vram: 0x801059A0
     subsegments:
@@ -347,6 +375,7 @@ segments:
   - dir: overlays/overlay23
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1C4280
     vram: 0x801059A0
     subsegments:
@@ -357,6 +386,7 @@ segments:
   - dir: overlays/overlay24
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1CC730
     vram: 0x801059A0
     subsegments:
@@ -367,6 +397,7 @@ segments:
   - dir: overlays/overlay25
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1D1C40
     vram: 0x801059A0
     subsegments:
@@ -376,6 +407,7 @@ segments:
   - dir: overlays/overlay26
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1D4970
     vram: 0x801059A0
     subsegments:
@@ -385,6 +417,7 @@ segments:
   - dir: overlays/overlay27
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1D9550
     vram: 0x801059A0
     subsegments:
@@ -395,6 +428,7 @@ segments:
   - dir: overlays/overlay28
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1DE610
     vram: 0x801059A0
     subsegments:
@@ -404,6 +438,7 @@ segments:
   - dir: overlays/overlay29
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1E37C0
     vram: 0x801059A0
     subsegments:
@@ -413,6 +448,7 @@ segments:
   - dir: overlays/overlay30
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1EF420
     vram: 0x801059A0
     subsegments:
@@ -422,6 +458,7 @@ segments:
   - dir: overlays/overlay31
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1F3B90
     vram: 0x801059A0
     subsegments:
@@ -432,6 +469,7 @@ segments:
   - dir: overlays/overlay32
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x1FE4D0
     vram: 0x801059A0
     subsegments:
@@ -441,6 +479,7 @@ segments:
   - dir: overlays/overlay33
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x204F90
     vram: 0x801059A0
     subsegments:
@@ -450,6 +489,7 @@ segments:
   - dir: overlays/overlay34
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x20BFA0
     vram: 0x801059A0
     subsegments:
@@ -459,6 +499,7 @@ segments:
   - dir: overlays/overlay35
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x211AB0
     vram: 0x801059A0
     subsegments:
@@ -468,6 +509,7 @@ segments:
   - dir: overlays/overlay36
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x216670
     vram: 0x801059A0
     subsegments:
@@ -478,6 +520,7 @@ segments:
   - dir: overlays/overlay37
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x21E010
     vram: 0x801059A0
     subsegments:
@@ -487,6 +530,7 @@ segments:
   - dir: overlays/overlay38
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x225740
     vram: 0x801059A0
     subsegments:
@@ -496,6 +540,7 @@ segments:
   - dir: overlays/overlay39
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x22E100
     vram: 0x801059A0
     subsegments:
@@ -505,6 +550,7 @@ segments:
   - dir: overlays/overlay40
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x232A10
     vram: 0x801059A0
     subsegments:
@@ -514,6 +560,7 @@ segments:
   - dir: overlays/overlay41
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x23C8F0
     vram: 0x801059A0
     subsegments:
@@ -523,6 +570,7 @@ segments:
   - dir: overlays/overlay42
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x240A10
     vram: 0x801059A0
     subsegments:
@@ -532,6 +580,7 @@ segments:
   - dir: overlays/overlay43
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x24A760
     vram: 0x801059A0
     subsegments:
@@ -541,6 +590,7 @@ segments:
   - dir: overlays/overlay44
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x251FF0
     vram: 0x801059A0
     subsegments:
@@ -550,6 +600,7 @@ segments:
   - dir: overlays/overlay45
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x25E110
     vram: 0x801059A0
     subsegments:
@@ -559,6 +610,7 @@ segments:
   - dir: overlays/overlay46
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x264B80
     vram: 0x801059A0
     subsegments:
@@ -568,6 +620,7 @@ segments:
   - dir: overlays/overlay47
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x269BF0
     vram: 0x801059A0
     subsegments:
@@ -577,6 +630,7 @@ segments:
   - dir: overlays/overlay48
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x270EF0
     vram: 0x801059A0
     subsegments:
@@ -586,6 +640,7 @@ segments:
   - dir: overlays/overlay49
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x276470
     vram: 0x801059A0
     subsegments:
@@ -595,6 +650,7 @@ segments:
   - dir: overlays/overlay50
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x283060
     vram: 0x801059A0
     subsegments:
@@ -604,6 +660,7 @@ segments:
   - dir: overlays/overlay51
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x28A290
     vram: 0x801059A0
     subsegments:
@@ -614,6 +671,7 @@ segments:
   - dir: overlays/overlay52
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x291020
     vram: 0x801059A0
     subsegments:
@@ -623,6 +681,7 @@ segments:
   - dir: overlays/overlay53
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x29B1D0
     vram: 0x801059A0
     subsegments:
@@ -632,6 +691,7 @@ segments:
   - dir: overlays/overlay54
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2A1430
     vram: 0x801059A0
     subsegments:
@@ -642,6 +702,7 @@ segments:
   - dir: overlays/overlay55
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2AF250
     vram: 0x801059A0
     subsegments:
@@ -652,6 +713,7 @@ segments:
   - dir: overlays/overlay56
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2B5830
     vram: 0x801059A0
     subsegments:
@@ -661,6 +723,7 @@ segments:
   - dir: overlays/overlay57
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2BCE10
     vram: 0x801059A0
     subsegments:
@@ -671,6 +734,7 @@ segments:
   - dir: overlays/overlay58
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2C5B50
     vram: 0x801059A0
     subsegments:
@@ -680,6 +744,7 @@ segments:
   - dir: overlays/overlay59
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2CF3B0
     vram: 0x801059A0
     subsegments:
@@ -689,6 +754,7 @@ segments:
   - dir: overlays/overlay60
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2D3E70
     vram: 0x801059A0
     subsegments:
@@ -698,6 +764,7 @@ segments:
   - dir: overlays/overlay61
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2D8370
     vram: 0x801059A0
     subsegments:
@@ -707,6 +774,7 @@ segments:
   - dir: overlays/overlay62
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2DC4D0
     vram: 0x801059A0
     subsegments:
@@ -717,15 +785,17 @@ segments:
   - dir: overlays/minigames/swinging_with_sharks
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2E0D20
     vram: 0x801059A0
     subsegments:
-      - [0x2E0D20, c, "swinging_with_sharks"]
+      - [0x2E0D20, asm,"swinging_with_sharks"]
       - [0x2E6060, bin] # data
 
   - dir: overlays/overlay64
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2E6BE0
     vram: 0x801059A0
     subsegments:
@@ -735,6 +805,7 @@ segments:
   - dir: overlays/overlay65
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2ED2D0
     vram: 0x801059A0
     subsegments:
@@ -744,6 +815,7 @@ segments:
   - dir: overlays/overlay66
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x2FC270
     vram: 0x801059A0
     subsegments:
@@ -754,6 +826,7 @@ segments:
   - dir: overlays/overlay67
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3010E0
     vram: 0x801059A0
     subsegments:
@@ -764,6 +837,7 @@ segments:
   - dir: overlays/overlay68
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x308D10
     vram: 0x801059A0
     subsegments:
@@ -774,6 +848,7 @@ segments:
   - dir: overlays/overlay69
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x30F940
     vram: 0x801059A0
     subsegments:
@@ -784,6 +859,7 @@ segments:
   - dir: overlays/overlay70
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x316DF0
     vram: 0x801059A0
     subsegments:
@@ -793,24 +869,26 @@ segments:
   - dir: overlays/overlay71
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x31B3B0
     vram: 0x801059A0
     subsegments:
-      - [0x31B3B0, c, "overlay71_main"]
-      - [0x31B3E0, c, "overlay71"]
-      - [0x31B4F0, .data, "overlay71_main"]
+      - [0x31B3B0, asm,"overlay71_main"]
+      - [0x31B3E0, asm,"overlay71"]
+      - [0x31B4F0, data, "overlay71_main"]
 
   # Chilly Waters
   - dir: overlays/board_chillywaters
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x31B510
     vram: 0x801059A0
     subsegments:
-      - [0x31B510, c, "chillywaters_main"]
-      - [0x31B540, c, "chillywaters"]
-      - [0x31B9F0, c, "chillywaters2"]
-      - [0x332DC0, .data, "chillywaters_main"]
+      - [0x31B510, asm,"chillywaters_main"]
+      - [0x31B540, asm,"chillywaters"]
+      - [0x31B9F0, asm,"chillywaters2"]
+      - [0x332DC0, data, "chillywaters_main"]
       - [0x332DF0, data, "chillywaters2"]
       - [0x335440, rodata, "chillywaters2"]
 
@@ -818,6 +896,7 @@ segments:
   - dir: overlays/board_deepbloobersea
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3355E0
     vram: 0x801059A0
     subsegments:
@@ -829,19 +908,21 @@ segments:
   - dir: overlays/board_spinydesert
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x34E810
     vram: 0x801059A0
     subsegments:
-      - [0x34E810, c, "spinydesert_main"]
-      - [0x34E840, c, "spinydesert"]
+      - [0x34E810, asm,"spinydesert_main"]
+      - [0x34E840, asm,"spinydesert"]
       # Possible split at 0x34EB90 if similar to Chilly Waters.
-      - [0x364F50, .data, "spinydesert_main"]
+      - [0x364F50, data, "spinydesert_main"]
       - [0x364F80, bin] # data
 
   # Woody Woods
   - dir: overlays/board_woodywoods
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x367930
     vram: 0x801059A0
     subsegments:
@@ -853,6 +934,7 @@ segments:
   - dir: overlays/board_creepycavern
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x37FF80
     vram: 0x801059A0
     subsegments:
@@ -864,6 +946,7 @@ segments:
   - dir: overlays/board_waluigisisland
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x39AD20
     vram: 0x801059A0
     subsegments:
@@ -874,6 +957,7 @@ segments:
   - dir: overlays/overlay78
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3B35F0
     vram: 0x801059A0
     subsegments:
@@ -884,34 +968,38 @@ segments:
   - dir: overlays/overlay79
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3B9670
     vram: 0x801059A0
     subsegments:
-      - [0x3B9670, c]
+      - [0x3B9670, asm]
       - [0x3BFA00, asm]
       - [0x3C20B0, bin] # data
 
   - dir: overlays/overlay80
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3C27C0
     vram: 0x801059A0
     subsegments:
-      - [0x3C27C0, c]
+      - [0x3C27C0, asm]
       - [0x3C6170, bin] # data
 
   - dir: overlays/overlay81
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3C6310
     vram: 0x801059A0
     subsegments:
-      - [0x3C6310, c]
+      - [0x3C6310, asm]
       - [0x3C7DF0, bin] # data
 
   - dir: overlays/overlay82
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3C7EC0
     vram: 0x801059A0
     subsegments:
@@ -921,24 +1009,27 @@ segments:
   - dir: overlays/overlay83
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3CA800
     vram: 0x801059A0
     subsegments:
-      - [0x3CA800, c]
+      - [0x3CA800, asm]
       - [0x3CDBD0, bin] # data
 
   - dir: overlays/overlay84
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3CDEC0
     vram: 0x801059A0
     subsegments:
-      - [0x3CDEC0, c]
+      - [0x3CDEC0, asm]
       - [0x3CFAE0, bin] # data
 
   - dir: overlays/overlay85
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3CFC80
     vram: 0x801059A0
     subsegments:
@@ -949,6 +1040,7 @@ segments:
   - dir: overlays/overlay86
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D3C80
     vram: 0x801059A0
     subsegments:
@@ -958,6 +1050,7 @@ segments:
   - dir: overlays/overlay87
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D5C30
     vram: 0x801059A0
     subsegments:
@@ -968,18 +1061,21 @@ segments:
   - dir: overlays/intro
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D7150
     vram: 0x801059A0
     subsegments:
-      - [0x3D7150, c, "intro_main"]
-      - [0x3D7180, c, "intro"]
-      - [0x3D7690, .data, "intro_main"]
-      - [0x3D76B0, .data, "intro"]
+      - [0x3D7150, asm,"intro_main"]
+      - [0x3D7180, asm,"intro"]
+      - [0x3D7690, data, "intro_main"]
+      - [0x3D76B0, bin, "intro"]
+      - [0xDEADBEEF]
       - [auto, all_bss]
 
   - dir: overlays/overlay89
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D76C0
     vram: 0x801059A0
     subsegments:
@@ -989,6 +1085,7 @@ segments:
   - dir: overlays/overlay90
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D8930
     vram: 0x801059A0
     subsegments:
@@ -999,6 +1096,7 @@ segments:
   - dir: overlays/overlay91
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3D8A90
     vram: 0x801059A0
     subsegments:
@@ -1009,6 +1107,7 @@ segments:
   - dir: overlays/overlay92
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3EC560
     vram: 0x801059A0
     subsegments:
@@ -1019,6 +1118,7 @@ segments:
   - dir: overlays/overlay93
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x3FE1C0
     vram: 0x801059A0
     subsegments:
@@ -1029,6 +1129,7 @@ segments:
   - dir: overlays/overlay94
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4108E0
     vram: 0x801059A0
     subsegments:
@@ -1039,6 +1140,7 @@ segments:
   - dir: overlays/overlay95
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x426420
     vram: 0x801059A0
     subsegments:
@@ -1049,6 +1151,7 @@ segments:
   - dir: overlays/overlay96
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x436E20
     vram: 0x801059A0
     subsegments:
@@ -1059,6 +1162,7 @@ segments:
   - dir: overlays/overlay97
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4461B0
     vram: 0x801059A0
     subsegments:
@@ -1069,16 +1173,18 @@ segments:
   - dir: overlays/overlay98
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4554C0
     vram: 0x801059A0
     subsegments:
-      - [0x4554C0, c]
+      - [0x4554C0, asm]
       - [0x45A700, asm]
       - [0x45CDB0, bin] # data
 
   - dir: overlays/overlay99
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x45D380
     vram: 0x801059A0
     subsegments:
@@ -1088,24 +1194,27 @@ segments:
   - dir: overlays/overlay100
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x460790
     vram: 0x801059A0
     subsegments:
-      - [0x460790, c]
+      - [0x460790, asm]
       - [0x463FF0, bin] # data
 
   - dir: overlays/overlay101
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x464360
     vram: 0x801059A0
     subsegments:
-      - [0x464360, c]
+      - [0x464360, asm]
       - [0x4672F0, bin] # data
 
   - dir: overlays/overlay102
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4675D0
     vram: 0x801059A0
     subsegments:
@@ -1116,6 +1225,7 @@ segments:
   - dir: overlays/overlay103
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4684F0
     vram: 0x801059A0
     subsegments:
@@ -1126,6 +1236,7 @@ segments:
   - dir: overlays/overlay104
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x468A90
     vram: 0x801059A0
     subsegments:
@@ -1137,6 +1248,7 @@ segments:
   - dir: overlays/overlay105
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x46CC10
     vram: 0x801059A0
     subsegments:
@@ -1150,6 +1262,7 @@ segments:
   - dir: overlays/overlay106
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x481970
     vram: 0x801059A0
     subsegments:
@@ -1162,6 +1275,7 @@ segments:
   - dir: overlays/overlay107
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x48BE30
     vram: 0x801059A0
     subsegments:
@@ -1174,6 +1288,7 @@ segments:
   - dir: overlays/overlay108
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x49BD40
     vram: 0x801059A0
     subsegments:
@@ -1187,6 +1302,7 @@ segments:
   - dir: overlays/overlay109
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4B29E0
     vram: 0x801059A0
     subsegments:
@@ -1198,17 +1314,19 @@ segments:
   - dir: overlays/overlay110
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4C2BD0
     vram: 0x801059A0
     subsegments:
       - [0x4C2BD0, asm]
       - [0x4C47E0, asm]
-      - [0x4C8050, c]
+      - [0x4C8050, asm]
       - [0x4CECF0, bin] # data
 
   - dir: overlays/overlay111
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4CF350
     vram: 0x801059A0
     subsegments:
@@ -1220,6 +1338,7 @@ segments:
   - dir: overlays/overlay112
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4DEB60
     vram: 0x801059A0
     subsegments:
@@ -1237,10 +1356,11 @@ segments:
   - dir: overlays/minigame_results
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4E6DC0
     vram: 0x801059A0
     subsegments:
-      - [0x4E6DC0, c]
+      - [0x4E6DC0, asm]
       - [0x4E8F60, asm]
       - [0x4E9120, asm]
       - [0x4EB420, asm]
@@ -1250,6 +1370,7 @@ segments:
   - dir: overlays/overlay114
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4EC1B0
     vram: 0x801059A0
     subsegments:
@@ -1261,20 +1382,22 @@ segments:
   - dir: overlays/overlay115
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4F01F0
     vram: 0x801059A0
     subsegments:
-      - [0x4F01F0, c]
+      - [0x4F01F0, asm]
       - [0x4F1180, asm]
       - [0x4F36C0, bin] # data
 
   - dir: overlays/overlay116
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4F3780
     vram: 0x801059A0
     subsegments:
-      - [0x4F3780, c]
+      - [0x4F3780, asm]
       - [0x4F4980, asm]
       - [0x4F5AF0, asm]
       - [0x4F66B0, bin] # data
@@ -1282,6 +1405,7 @@ segments:
   - dir: overlays/overlay117
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4F6810
     vram: 0x801059A0
     subsegments:
@@ -1292,16 +1416,18 @@ segments:
   - dir: overlays/debug_message_check
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4F69F0
     vram: 0x801059A0
     subsegments:
-      - [0x4F69F0, c]
+      - [0x4F69F0, asm]
       - [0x4F7550, bin] # data
 
   # Castle Grounds
   - dir: overlays/overlay119
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x4F7E90
     vram: 0x801059A0
     subsegments:
@@ -1314,6 +1440,7 @@ segments:
   - dir: overlays/overlay120
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x501C00
     vram: 0x801059A0
     subsegments:
@@ -1329,6 +1456,7 @@ segments:
   - dir: overlays/overlay121
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x516AE0
     vram: 0x801059A0
     subsegments:
@@ -1341,18 +1469,20 @@ segments:
   - dir: overlays/start_screen
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x523FD0
     vram: 0x801059A0
     subsegments:
       - [0x523FD0, asm]
       - [0x524000, asm]
       - [0x5242B0, asm]
-      - [0x524820, c]
+      - [0x524820, asm]
       - [0x533180, bin] # data
 
   - dir: overlays/overlay123
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x5334D0
     vram: 0x801059A0
     subsegments:
@@ -1365,6 +1495,7 @@ segments:
   - dir: overlays/overlay124
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x542220
     vram: 0x801059A0
     subsegments:
@@ -1372,17 +1503,18 @@ segments:
       - [0x5436A0, asm]
       - [0x543FC0, asm]
       - [0x544E70, asm]
-      - [0x5486A0, c]
+      - [0x5486A0, asm]
       - [0x54CDB0, bin] # data
 
   - dir: overlays/overlay125
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x54DD10
     vram: 0x801059A0
     subsegments:
       - [0x54DD10, asm]
-      - [0x54F360, c]
+      - [0x54F360, asm]
       - [0x552C80, bin] # data
 
   # - dir: overlays/overlay126
@@ -1397,6 +1529,7 @@ segments:
   - dir: overlays/overlay127
     type: code
     overlay: True
+    exclusive_ram_id: minigame
     start: 0x552F50
     vram: 0x801059A0
     subsegments:

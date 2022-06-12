@@ -4,6 +4,7 @@ bin/*
 asm/*
 *.z64
 *.ld
+*.Identifier
 .splat_cache
 include/ld_addrs.h
 
