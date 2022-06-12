@@ -1,0 +1,1422 @@
+name: Mario Party 3 (North America)
+sha1: 6beb80ff822b96bcf85dcdb512e8b2b7969d8259
+
+options:
+  basename: marioparty3
+  target_path: baserom.us.z64
+  base_path: .
+  compiler: GCC
+  find_file_boundaries: True
+  header_encoding: ASCII
+  # platform: n64
+  undefined_funcs_auto_path: undefined_funcs_auto.txt
+  undefined_syms_auto_path: undefined_syms_auto.txt
+  ld_script_path: marioparty3.ld
+  symbol_addrs_path: symbol_addrs.txt
+  # undefined_syms_path: undefined_syms.txt
+  # c_path: c
+  asm_path: asm
+  src_path: src
+  build_path: build
+  # extensions_path: tools/splat_ext
+  # auto_all_sections: True
+  asm_inc_header: "\t.set noat\n\t.set noreorder\n"
+
+segments:
+  - [0x000000, bin, "header"]
+  - [0x000040, bin, "boot"]
+  - type: code
+    start: 0x1000
+    vram: 0x80000400
+    subsegments:
+    - [0x1000, asm]
+    - [0xBCA0, c]
+    - [0xC1F0, bin]
+    - [0x72890, bin] # Should this be 0x7288C? What is this?
+    - [0x72C20, asm]
+    # Separating out the data/rodata into another segment since it
+  # seems to be subaligned by 8 in some cases.
+  - type: code
+    start: 0x8FCF0
+    vram: 0x8008F0F0
+    subalign: 16
+    subsegments:
+    - [0x8FCF0, bin]
+    - [0x96EF0, .data, "BCA0"]
+    - [0x98260, bin]
+    - [0x98310, bin]
+  - type: code
+    start: 0xA7590
+    vram: 0x800A6990
+    subalign: 8
+    subsegments:
+    - [0xA7590, .rodata, "decode"]
+    - [0xA75A8, bin]
+
+  - dir: overlays/overlay130
+    type: code
+    overlay: True
+    start: 0xA96F0
+    vram: 0x800D6B70
+    subsegments:
+      - [0xA96F0, asm]
+      - [0xAB1C0, asm]
+      - [0xB3CE0, asm]
+      - [0xB63A0, asm]
+      - [0xB7600, asm]
+      - [0xB88C0, asm]
+      - [0xB8A20, asm]
+      - [0xBA4B0, asm]
+      - [0xBC7A0, asm]
+      - [0xBD210, asm]
+      - [0xBE2A0, bin] # data
+
+  - dir: overlays/overlay129
+    type: code
+    overlay: True
+    start: 0xBE940
+    vram: 0x800D6B70
+    subsegments:
+      - [0xBE940, asm]
+      - [0xBF4A0, asm]
+      - [0xBFB40, asm]
+      - [0xC1580, asm]
+      - [0xC1BA0, asm]
+      - [0xC1D60, asm]
+      - [0xC4430, asm]
+      - [0xC45D0, asm]
+      - [0xC5770, asm]
+      - [0xC9330, asm]
+      - [0xC9690, asm]
+      - [0xCA640, asm]
+      - [0xCCD20, c]
+      - [0xD1190, asm]
+      - [0xD28F0, asm]
+      - [0xD3450, asm]
+      - [0xD5B20, asm]
+      - [0xDBE50, asm]
+      - [0xDC0D0, asm]
+      - [0xDC4E0, asm]
+      - [0xDFD60, asm]
+      - [0xE3CD0, c]
+      - [0xE78B0, asm]
+      - [0xE7AE0, asm]
+      - [0xE8BE0, bin] # data
+
+  # Board play overlay
+  - dir: overlays/shared_board
+    type: code
+    overlay: True
+    start: 0xEA790
+    vram: 0x800D6B70
+    subsegments:
+      - [0xEA790, c]
+      - [0xEB2F0, asm]
+      - [0xEC3B0, asm]
+      - [0xECA50, c]
+      - [0xEE3B0, asm]
+      - [0xEE660, asm]
+      - [0xF2910, asm]
+      - [0xF5070, c]
+      - [0xF5B90, c]
+      # - [0xFE110, asm] suspected based on mp1 spaces.c
+      - [0xFFB10, c]
+      - [0x1006F0, c]
+      - [0x101840, c]
+      - [0x105D50, c]
+      - [0x1063F0, asm]
+      - [0x106640, asm]
+      - [0x106A50, asm]
+      - [0x10AD50, asm]
+      - [0x10C230, c]
+      - [0x113520, asm]
+      - [0x113750, c]
+      - [0x1143C0, bin] # data
+
+  - dir: overlays/overlay0
+    type: code
+    overlay: True
+    start: 0x116320
+    vram: 0x801059A0
+    subsegments:
+      - [0x116320, asm]
+      - [0x119560, bin] # data
+
+  - dir: overlays/overlay1
+    type: code
+    overlay: True
+    start: 0x11A480
+    vram: 0x801059A0
+    subsegments:
+      - [0x11A480, asm]
+      - [0x120090, asm]
+      - [0x1209E0, bin] # data
+
+  - dir: overlays/overlay2
+    type: code
+    overlay: True
+    start: 0x120BC0
+    vram: 0x801059A0
+    subsegments:
+      - [0x120BC0, asm]
+      - [0x126180, bin] # data
+
+  - dir: overlays/overlay3
+    type: code
+    overlay: True
+    start: 0x1263E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x1263E0, asm]
+      - [0x12D700, bin] # data
+
+  - dir: overlays/overlay4
+    type: code
+    overlay: True
+    start: 0x12DD30
+    vram: 0x801059A0
+    subsegments:
+      - [0x12DD30, asm]
+      - [0x131A90, bin] # data
+
+  - dir: overlays/overlay5
+    type: code
+    overlay: True
+    start: 0x131C10
+    vram: 0x801059A0
+    subsegments:
+      - [0x131C10, asm]
+      - [0x137A80, bin] # data
+
+  - dir: overlays/overlay6
+    type: code
+    overlay: True
+    start: 0x137C00
+    vram: 0x801059A0
+    subsegments:
+      - [0x137C00, asm]
+      - [0x13E5D0, bin] # data
+
+  - dir: overlays/overlay7
+    type: code
+    overlay: True
+    start: 0x13E9C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x13E9C0, asm]
+      - [0x149CD0, bin] # data
+
+  - dir: overlays/overlay8
+    type: code
+    overlay: True
+    start: 0x14A810
+    vram: 0x801059A0
+    subsegments:
+      - [0x14A810, asm]
+      - [0x153BD0, bin] # data
+
+  - dir: overlays/overlay9
+    type: code
+    overlay: True
+    start: 0x1542E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x1542E0, asm]
+      - [0x15BCF0, bin] # data
+
+  - dir: overlays/overlay10
+    type: code
+    overlay: True
+    start: 0x15C310
+    vram: 0x801059A0
+    subsegments:
+      - [0x15C310, asm]
+      - [0x1613E0, bin] # data
+
+  - dir: overlays/overlay11
+    type: code
+    overlay: True
+    start: 0x161750
+    vram: 0x801059A0
+    subsegments:
+      - [0x161750, asm]
+      - [0x164EB0, bin] # data
+
+  - dir: overlays/overlay12
+    type: code
+    overlay: True
+    start: 0x165010
+    vram: 0x801059A0
+    subsegments:
+      - [0x165010, asm]
+      - [0x169540, asm]
+      - [0x16F3D0, bin] # data
+
+  - dir: overlays/overlay13
+    type: code
+    overlay: True
+    start: 0x16F670
+    vram: 0x801059A0
+    subsegments:
+      - [0x16F670, asm]
+      - [0x17AB40, bin] # data
+
+  - dir: overlays/overlay14
+    type: code
+    overlay: True
+    start: 0x17B3B0
+    vram: 0x801059A0
+    subsegments:
+      - [0x17B3B0, asm]
+      - [0x1817F0, bin] # data
+
+  - dir: overlays/overlay15
+    type: code
+    overlay: True
+    start: 0x181950
+    vram: 0x801059A0
+    subsegments:
+      - [0x181950, asm]
+      - [0x18A560, bin] # data
+
+  # Toadstool Titan
+  - dir: overlays/overlay16
+    type: code
+    overlay: True
+    start: 0x18ABD0
+    vram: 0x801059A0
+    subsegments:
+      - [0x18ABD0, asm]
+      - [0x18EB30, asm]
+      - [0x190D60, bin] # data
+
+  - dir: overlays/overlay17
+    type: code
+    overlay: True
+    start: 0x191240
+    vram: 0x801059A0
+    subsegments:
+      - [0x191240, asm]
+      - [0x19CAC0, bin] # data
+
+  - dir: overlays/overlay18
+    type: code
+    overlay: True
+    start: 0x19CEF0
+    vram: 0x801059A0
+    subsegments:
+      - [0x19CEF0, asm]
+      - [0x1A3BF0, bin] # data
+
+  - dir: overlays/overlay19
+    type: code
+    overlay: True
+    start: 0x1A3D80
+    vram: 0x801059A0
+    subsegments:
+      - [0x1A3D80, asm]
+      - [0x1AC270, bin] # data
+
+  - dir: overlays/overlay20
+    type: code
+    overlay: True
+    start: 0x1AC970
+    vram: 0x801059A0
+    subsegments:
+      - [0x1AC970, asm]
+      - [0x1B47C0, bin] # data
+
+  - dir: overlays/overlay21
+    type: code
+    overlay: True
+    start: 0x1B4F10
+    vram: 0x801059A0
+    subsegments:
+      - [0x1B4F10, asm]
+      - [0x1BA4F0, bin] # data
+
+  - dir: overlays/overlay22
+    type: code
+    overlay: True
+    start: 0x1BA850
+    vram: 0x801059A0
+    subsegments:
+      - [0x1BA850, asm]
+      - [0x1C3C50, bin] # data
+
+  - dir: overlays/overlay23
+    type: code
+    overlay: True
+    start: 0x1C4280
+    vram: 0x801059A0
+    subsegments:
+      - [0x1C4280, asm]
+      - [0x1CC400, asm]
+      - [0x1CC420, bin] # data
+
+  - dir: overlays/overlay24
+    type: code
+    overlay: True
+    start: 0x1CC730
+    vram: 0x801059A0
+    subsegments:
+      - [0x1CC730, asm]
+      - [0x1D1920, asm]
+      - [0x1D1940, bin] # data
+
+  - dir: overlays/overlay25
+    type: code
+    overlay: True
+    start: 0x1D1C40
+    vram: 0x801059A0
+    subsegments:
+      - [0x1D1C40, asm]
+      - [0x1D47F0, bin] # data
+
+  - dir: overlays/overlay26
+    type: code
+    overlay: True
+    start: 0x1D4970
+    vram: 0x801059A0
+    subsegments:
+      - [0x1D4970, asm]
+      - [0x1D90E0, bin] # data
+
+  - dir: overlays/overlay27
+    type: code
+    overlay: True
+    start: 0x1D9550
+    vram: 0x801059A0
+    subsegments:
+      - [0x1D9550, asm]
+      - [0x1DE3D0, bin] # data
+
+  # Snowball Summit
+  - dir: overlays/overlay28
+    type: code
+    overlay: True
+    start: 0x1DE610
+    vram: 0x801059A0
+    subsegments:
+      - [0x1DE610, asm]
+      - [0x1E3510, bin] # data
+
+  - dir: overlays/overlay29
+    type: code
+    overlay: True
+    start: 0x1E37C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x1E37C0, asm]
+      - [0x1EEDE0, bin] # data
+
+  - dir: overlays/overlay30
+    type: code
+    overlay: True
+    start: 0x1EF420
+    vram: 0x801059A0
+    subsegments:
+      - [0x1EF420, asm]
+      - [0x1F3A60, bin] # data
+
+  - dir: overlays/overlay31
+    type: code
+    overlay: True
+    start: 0x1F3B90
+    vram: 0x801059A0
+    subsegments:
+      - [0x1F3B90, asm]
+      - [0x1FD760, asm]
+      - [0x1FE270, bin] # data
+
+  - dir: overlays/overlay32
+    type: code
+    overlay: True
+    start: 0x1FE4D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x1FE4D0, asm]
+      - [0x204DB0, bin] # data
+
+  - dir: overlays/overlay33
+    type: code
+    overlay: True
+    start: 0x204F90
+    vram: 0x801059A0
+    subsegments:
+      - [0x204F90, asm]
+      - [0x20BC70, bin] # data
+
+  - dir: overlays/overlay34
+    type: code
+    overlay: True
+    start: 0x20BFA0
+    vram: 0x801059A0
+    subsegments:
+      - [0x20BFA0, asm]
+      - [0x2116C0, bin] # data
+
+  - dir: overlays/overlay35
+    type: code
+    overlay: True
+    start: 0x211AB0
+    vram: 0x801059A0
+    subsegments:
+      - [0x211AB0, asm]
+      - [0x216270, bin] # data
+
+  - dir: overlays/overlay36
+    type: code
+    overlay: True
+    start: 0x216670
+    vram: 0x801059A0
+    subsegments:
+      - [0x216670, asm]
+      - [0x21CAC0, asm]
+      - [0x21DBF0, bin] # data
+
+  - dir: overlays/overlay37
+    type: code
+    overlay: True
+    start: 0x21E010
+    vram: 0x801059A0
+    subsegments:
+      - [0x21E010, asm]
+      - [0x2251D0, bin] # data
+
+  - dir: overlays/overlay38
+    type: code
+    overlay: True
+    start: 0x225740
+    vram: 0x801059A0
+    subsegments:
+      - [0x225740, asm]
+      - [0x22DDB0, bin] # data
+
+  - dir: overlays/overlay39
+    type: code
+    overlay: True
+    start: 0x22E100
+    vram: 0x801059A0
+    subsegments:
+      - [0x22E100, asm]
+      - [0x232620, bin] # data
+
+  - dir: overlays/overlay40
+    type: code
+    overlay: True
+    start: 0x232A10
+    vram: 0x801059A0
+    subsegments:
+      - [0x232A10, asm]
+      - [0x23C5C0, bin] # data
+
+  - dir: overlays/overlay41
+    type: code
+    overlay: True
+    start: 0x23C8F0
+    vram: 0x801059A0
+    subsegments:
+      - [0x23C8F0, asm]
+      - [0x240880, bin] # data
+
+  - dir: overlays/overlay42
+    type: code
+    overlay: True
+    start: 0x240A10
+    vram: 0x801059A0
+    subsegments:
+      - [0x240A10, asm]
+      - [0x24A300, bin] # data
+
+  - dir: overlays/overlay43
+    type: code
+    overlay: True
+    start: 0x24A760
+    vram: 0x801059A0
+    subsegments:
+      - [0x24A760, asm]
+      - [0x251AD0, bin] # data
+
+  - dir: overlays/overlay44
+    type: code
+    overlay: True
+    start: 0x251FF0
+    vram: 0x801059A0
+    subsegments:
+      - [0x251FF0, asm]
+      - [0x25D530, bin] # data
+
+  - dir: overlays/overlay45
+    type: code
+    overlay: True
+    start: 0x25E110
+    vram: 0x801059A0
+    subsegments:
+      - [0x25E110, asm]
+      - [0x2648B0, bin] # data
+
+  - dir: overlays/overlay46
+    type: code
+    overlay: True
+    start: 0x264B80
+    vram: 0x801059A0
+    subsegments:
+      - [0x264B80, asm]
+      - [0x269880, bin] # data
+
+  - dir: overlays/overlay47
+    type: code
+    overlay: True
+    start: 0x269BF0
+    vram: 0x801059A0
+    subsegments:
+      - [0x269BF0, asm]
+      - [0x270B00, bin] # data
+
+  - dir: overlays/overlay48
+    type: code
+    overlay: True
+    start: 0x270EF0
+    vram: 0x801059A0
+    subsegments:
+      - [0x270EF0, asm]
+      - [0x276160, bin] # data
+
+  - dir: overlays/overlay49
+    type: code
+    overlay: True
+    start: 0x276470
+    vram: 0x801059A0
+    subsegments:
+      - [0x276470, asm]
+      - [0x282620, bin] # data
+
+  - dir: overlays/overlay50
+    type: code
+    overlay: True
+    start: 0x283060
+    vram: 0x801059A0
+    subsegments:
+      - [0x283060, asm]
+      - [0x289C50, bin] # data
+
+  - dir: overlays/overlay51
+    type: code
+    overlay: True
+    start: 0x28A290
+    vram: 0x801059A0
+    subsegments:
+      - [0x28A290, asm]
+      - [0x290E70, asm]
+      - [0x290E90, bin] # data
+
+  - dir: overlays/overlay52
+    type: code
+    overlay: True
+    start: 0x291020
+    vram: 0x801059A0
+    subsegments:
+      - [0x291020, asm]
+      - [0x29A7D0, bin] # data
+
+  - dir: overlays/overlay53
+    type: code
+    overlay: True
+    start: 0x29B1D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x29B1D0, asm]
+      - [0x2A0C30, bin] # data
+
+  - dir: overlays/overlay54
+    type: code
+    overlay: True
+    start: 0x2A1430
+    vram: 0x801059A0
+    subsegments:
+      - [0x2A1430, asm]
+      - [0x2A9850, asm]
+      - [0x2ACFE0, bin] # data
+
+  - dir: overlays/overlay55
+    type: code
+    overlay: True
+    start: 0x2AF250
+    vram: 0x801059A0
+    subsegments:
+      - [0x2AF250, asm]
+      - [0x2B4B20, asm]
+      - [0x2B56D0, bin] # data
+
+  - dir: overlays/overlay56
+    type: code
+    overlay: True
+    start: 0x2B5830
+    vram: 0x801059A0
+    subsegments:
+      - [0x2B5830, asm]
+      - [0x2BC550, bin] # data
+
+  - dir: overlays/overlay57
+    type: code
+    overlay: True
+    start: 0x2BCE10
+    vram: 0x801059A0
+    subsegments:
+      - [0x2BCE10, asm]
+      - [0x2C0E70, asm]
+      - [0x2C5910, bin] # data
+
+  - dir: overlays/overlay58
+    type: code
+    overlay: True
+    start: 0x2C5B50
+    vram: 0x801059A0
+    subsegments:
+      - [0x2C5B50, asm]
+      - [0x2CE950, bin] # data
+
+  - dir: overlays/overlay59
+    type: code
+    overlay: True
+    start: 0x2CF3B0
+    vram: 0x801059A0
+    subsegments:
+      - [0x2CF3B0, asm]
+      - [0x2D3C70, bin] # data
+
+  - dir: overlays/overlay60
+    type: code
+    overlay: True
+    start: 0x2D3E70
+    vram: 0x801059A0
+    subsegments:
+      - [0x2D3E70, asm]
+      - [0x2D8030, bin] # data
+
+  - dir: overlays/overlay61
+    type: code
+    overlay: True
+    start: 0x2D8370
+    vram: 0x801059A0
+    subsegments:
+      - [0x2D8370, asm]
+      - [0x2DC0F0, bin] # data
+
+  - dir: overlays/overlay62
+    type: code
+    overlay: True
+    start: 0x2DC4D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x2DC4D0, asm]
+      - [0x2E0B70, bin] # data
+
+  # Swinging With Sharks
+  - dir: overlays/minigames/swinging_with_sharks
+    type: code
+    overlay: True
+    start: 0x2E0D20
+    vram: 0x801059A0
+    subsegments:
+      - [0x2E0D20, c, "swinging_with_sharks"]
+      - [0x2E6060, bin] # data
+
+  - dir: overlays/overlay64
+    type: code
+    overlay: True
+    start: 0x2E6BE0
+    vram: 0x801059A0
+    subsegments:
+      - [0x2E6BE0, asm]
+      - [0x2ECF70, bin] # data
+
+  - dir: overlays/overlay65
+    type: code
+    overlay: True
+    start: 0x2ED2D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x2ED2D0, asm]
+      - [0x2FB5E0, bin] # data
+
+  - dir: overlays/overlay66
+    type: code
+    overlay: True
+    start: 0x2FC270
+    vram: 0x801059A0
+    subsegments:
+      - [0x2FC270, asm]
+      - [0x2FF5F0, asm]
+      - [0x300F10, bin] # data
+
+  - dir: overlays/overlay67
+    type: code
+    overlay: True
+    start: 0x3010E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3010E0, asm]
+      - [0x306F70, asm]
+      - [0x308890, bin] # data
+
+  - dir: overlays/overlay68
+    type: code
+    overlay: True
+    start: 0x308D10
+    vram: 0x801059A0
+    subsegments:
+      - [0x308D10, asm]
+      - [0x30DC30, asm]
+      - [0x30F550, bin] # data
+
+  - dir: overlays/overlay69
+    type: code
+    overlay: True
+    start: 0x30F940
+    vram: 0x801059A0
+    subsegments:
+      - [0x30F940, asm]
+      - [0x3151F0, asm]
+      - [0x316B10, bin] # data
+
+  - dir: overlays/overlay70
+    type: code
+    overlay: True
+    start: 0x316DF0
+    vram: 0x801059A0
+    subsegments:
+      - [0x316DF0, asm]
+      - [0x31AB90, bin] # data
+
+  - dir: overlays/overlay71
+    type: code
+    overlay: True
+    start: 0x31B3B0
+    vram: 0x801059A0
+    subsegments:
+      - [0x31B3B0, c, "overlay71_main"]
+      - [0x31B3E0, c, "overlay71"]
+      - [0x31B4F0, .data, "overlay71_main"]
+
+  # Chilly Waters
+  - dir: overlays/board_chillywaters
+    type: code
+    overlay: True
+    start: 0x31B510
+    vram: 0x801059A0
+    subsegments:
+      - [0x31B510, c, "chillywaters_main"]
+      - [0x31B540, c, "chillywaters"]
+      - [0x31B9F0, c, "chillywaters2"]
+      - [0x332DC0, .data, "chillywaters_main"]
+      - [0x332DF0, data, "chillywaters2"]
+      - [0x335440, rodata, "chillywaters2"]
+
+  # Deep Bloober Sea
+  - dir: overlays/board_deepbloobersea
+    type: code
+    overlay: True
+    start: 0x3355E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3355E0, asm]
+      - [0x335610, asm]
+      - [0x34C270, bin] # data
+
+  # Spiny Desert
+  - dir: overlays/board_spinydesert
+    type: code
+    overlay: True
+    start: 0x34E810
+    vram: 0x801059A0
+    subsegments:
+      - [0x34E810, c, "spinydesert_main"]
+      - [0x34E840, c, "spinydesert"]
+      # Possible split at 0x34EB90 if similar to Chilly Waters.
+      - [0x364F50, .data, "spinydesert_main"]
+      - [0x364F80, bin] # data
+
+  # Woody Woods
+  - dir: overlays/board_woodywoods
+    type: code
+    overlay: True
+    start: 0x367930
+    vram: 0x801059A0
+    subsegments:
+      - [0x367930, asm]
+      - [0x367960, asm]
+      - [0x37D6A0, bin] # data
+
+  # Creepy Cavern
+  - dir: overlays/board_creepycavern
+    type: code
+    overlay: True
+    start: 0x37FF80
+    vram: 0x801059A0
+    subsegments:
+      - [0x37FF80, asm]
+      - [0x37FFB0, asm]
+      - [0x3975F0, bin] # data
+
+  # Waluigi's Island
+  - dir: overlays/board_waluigisisland
+    type: code
+    overlay: True
+    start: 0x39AD20
+    vram: 0x801059A0
+    subsegments:
+      - [0x39AD20, asm]
+      - [0x39AD50, asm]
+      - [0x3B08D0, bin] # data
+
+  - dir: overlays/overlay78
+    type: code
+    overlay: True
+    start: 0x3B35F0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3B35F0, asm]
+      - [0x3B3620, asm]
+      - [0x3B9420, bin] # data
+
+  - dir: overlays/overlay79
+    type: code
+    overlay: True
+    start: 0x3B9670
+    vram: 0x801059A0
+    subsegments:
+      - [0x3B9670, c]
+      - [0x3BFA00, asm]
+      - [0x3C20B0, bin] # data
+
+  - dir: overlays/overlay80
+    type: code
+    overlay: True
+    start: 0x3C27C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3C27C0, c]
+      - [0x3C6170, bin] # data
+
+  - dir: overlays/overlay81
+    type: code
+    overlay: True
+    start: 0x3C6310
+    vram: 0x801059A0
+    subsegments:
+      - [0x3C6310, c]
+      - [0x3C7DF0, bin] # data
+
+  - dir: overlays/overlay82
+    type: code
+    overlay: True
+    start: 0x3C7EC0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3C7EC0, asm]
+      - [0x3CA5F0, bin] # data
+
+  - dir: overlays/overlay83
+    type: code
+    overlay: True
+    start: 0x3CA800
+    vram: 0x801059A0
+    subsegments:
+      - [0x3CA800, c]
+      - [0x3CDBD0, bin] # data
+
+  - dir: overlays/overlay84
+    type: code
+    overlay: True
+    start: 0x3CDEC0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3CDEC0, c]
+      - [0x3CFAE0, bin] # data
+
+  - dir: overlays/overlay85
+    type: code
+    overlay: True
+    start: 0x3CFC80
+    vram: 0x801059A0
+    subsegments:
+      - [0x3CFC80, asm]
+      - [0x3D3A90, bin] # data
+
+  # Character Animation Test
+  - dir: overlays/overlay86
+    type: code
+    overlay: True
+    start: 0x3D3C80
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D3C80, asm]
+      - [0x3D5160, bin] # data
+
+  - dir: overlays/overlay87
+    type: code
+    overlay: True
+    start: 0x3D5C30
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D5C30, asm]
+      - [0x3D7040, bin] # data
+
+  # Intro Screens
+  - dir: overlays/intro
+    type: code
+    overlay: True
+    start: 0x3D7150
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D7150, c, "intro_main"]
+      - [0x3D7180, c, "intro"]
+      - [0x3D7690, .data, "intro_main"]
+      - [0x3D76B0, .data, "intro"]
+      - [auto, all_bss]
+
+  - dir: overlays/overlay89
+    type: code
+    overlay: True
+    start: 0x3D76C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D76C0, asm]
+      - [0x3D8680, bin] # data
+
+  - dir: overlays/overlay90
+    type: code
+    overlay: True
+    start: 0x3D8930
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D8930, asm]
+      - [0x3D8960, asm]
+      - [0x3D8A70, bin] # data
+
+  - dir: overlays/overlay91
+    type: code
+    overlay: True
+    start: 0x3D8A90
+    vram: 0x801059A0
+    subsegments:
+      - [0x3D8A90, asm]
+      - [0x3D8AC0, asm]
+      - [0x3EB7D0, bin] # data
+
+  - dir: overlays/overlay92
+    type: code
+    overlay: True
+    start: 0x3EC560
+    vram: 0x801059A0
+    subsegments:
+      - [0x3EC560, asm]
+      - [0x3EC590, asm]
+      - [0x3FD130, bin] # data
+
+  - dir: overlays/overlay93
+    type: code
+    overlay: True
+    start: 0x3FE1C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x3FE1C0, asm]
+      - [0x3FE1F0, asm]
+      - [0x40FC20, bin] # data
+
+  - dir: overlays/overlay94
+    type: code
+    overlay: True
+    start: 0x4108E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4108E0, asm]
+      - [0x410910, asm]
+      - [0x424BB0, bin] # data
+
+  - dir: overlays/overlay95
+    type: code
+    overlay: True
+    start: 0x426420
+    vram: 0x801059A0
+    subsegments:
+      - [0x426420, asm]
+      - [0x426450, asm]
+      - [0x436100, bin] # data
+
+  - dir: overlays/overlay96
+    type: code
+    overlay: True
+    start: 0x436E20
+    vram: 0x801059A0
+    subsegments:
+      - [0x436E20, asm]
+      - [0x436E50, asm]
+      - [0x445900, bin] # data
+
+  - dir: overlays/overlay97
+    type: code
+    overlay: True
+    start: 0x4461B0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4461B0, asm]
+      - [0x4461E0, asm]
+      - [0x4551C0, bin] # data
+
+  - dir: overlays/overlay98
+    type: code
+    overlay: True
+    start: 0x4554C0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4554C0, c]
+      - [0x45A700, asm]
+      - [0x45CDB0, bin] # data
+
+  - dir: overlays/overlay99
+    type: code
+    overlay: True
+    start: 0x45D380
+    vram: 0x801059A0
+    subsegments:
+      - [0x45D380, asm]
+      - [0x460610, bin] # data
+
+  - dir: overlays/overlay100
+    type: code
+    overlay: True
+    start: 0x460790
+    vram: 0x801059A0
+    subsegments:
+      - [0x460790, c]
+      - [0x463FF0, bin] # data
+
+  - dir: overlays/overlay101
+    type: code
+    overlay: True
+    start: 0x464360
+    vram: 0x801059A0
+    subsegments:
+      - [0x464360, c]
+      - [0x4672F0, bin] # data
+
+  - dir: overlays/overlay102
+    type: code
+    overlay: True
+    start: 0x4675D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4675D0, asm]
+      - [0x467600, asm]
+      - [0x468310, bin] # data
+
+  - dir: overlays/overlay103
+    type: code
+    overlay: True
+    start: 0x4684F0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4684F0, asm]
+      - [0x468520, asm]
+      - [0x468A70, bin] # data
+
+  - dir: overlays/overlay104
+    type: code
+    overlay: True
+    start: 0x468A90
+    vram: 0x801059A0
+    subsegments:
+      - [0x468A90, asm]
+      - [0x468AC0, asm]
+      - [0x46BB50, asm]
+      - [0x46CB70, bin] # data
+
+  - dir: overlays/overlay105
+    type: code
+    overlay: True
+    start: 0x46CC10
+    vram: 0x801059A0
+    subsegments:
+      - [0x46CC10, asm]
+      - [0x473130, asm]
+      - [0x479470, asm]
+      - [0x47D880, asm]
+      - [0x47DD90, asm]
+      - [0x480120, bin] # data
+
+  - dir: overlays/overlay106
+    type: code
+    overlay: True
+    start: 0x481970
+    vram: 0x801059A0
+    subsegments:
+      - [0x481970, asm]
+      - [0x4822F0, asm]
+      - [0x4832D0, asm]
+      - [0x487F50, asm]
+      - [0x48BAB0, bin] # data
+
+  - dir: overlays/overlay107
+    type: code
+    overlay: True
+    start: 0x48BE30
+    vram: 0x801059A0
+    subsegments:
+      - [0x48BE30, asm]
+      - [0x48D950, asm]
+      - [0x492250, asm]
+      - [0x496990, asm]
+      - [0x49AF10, bin] # data
+
+  - dir: overlays/overlay108
+    type: code
+    overlay: True
+    start: 0x49BD40
+    vram: 0x801059A0
+    subsegments:
+      - [0x49BD40, asm]
+      - [0x49DF30, asm]
+      - [0x4A7540, asm]
+      - [0x4AC200, asm]
+      - [0x4B0E80, asm]
+      - [0x4B1CC0, bin] # data
+
+  - dir: overlays/overlay109
+    type: code
+    overlay: True
+    start: 0x4B29E0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4B29E0, asm]
+      - [0x4B4DC0, asm]
+      - [0x4B9A30, asm]
+      - [0x4C22A0, bin] # data
+
+  - dir: overlays/overlay110
+    type: code
+    overlay: True
+    start: 0x4C2BD0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4C2BD0, asm]
+      - [0x4C47E0, asm]
+      - [0x4C8050, c]
+      - [0x4CECF0, bin] # data
+
+  - dir: overlays/overlay111
+    type: code
+    overlay: True
+    start: 0x4CF350
+    vram: 0x801059A0
+    subsegments:
+      - [0x4CF350, asm]
+      - [0x4D8E80, asm]
+      - [0x4DE0E0, bin] # data
+
+  # Mini-Game Instructions Screen
+  - dir: overlays/overlay112
+    type: code
+    overlay: True
+    start: 0x4DEB60
+    vram: 0x801059A0
+    subsegments:
+      - [0x4DEB60, asm]
+      - [0x4E0630, asm]
+      - [0x4E1510, asm]
+      - [0x4E1CB0, asm]
+      - [0x4E2670, asm]
+      - [0x4E2C50, asm]
+      - [0x4E3390, asm]
+      - [0x4E4B50, asm]
+      - [0x4E65C0, bin] # data
+
+  # Mini-Game Results Screen
+  - dir: overlays/minigame_results
+    type: code
+    overlay: True
+    start: 0x4E6DC0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4E6DC0, c]
+      - [0x4E8F60, asm]
+      - [0x4E9120, asm]
+      - [0x4EB420, asm]
+      - [0x4EBD50, asm]
+      - [0x4EBF10, bin] # data
+
+  - dir: overlays/overlay114
+    type: code
+    overlay: True
+    start: 0x4EC1B0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4EC1B0, asm]
+      - [0x4ECDE0, asm]
+      - [0x4EDCB0, asm]
+      - [0x4F00D0, bin] # data
+
+  - dir: overlays/overlay115
+    type: code
+    overlay: True
+    start: 0x4F01F0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4F01F0, c]
+      - [0x4F1180, asm]
+      - [0x4F36C0, bin] # data
+
+  - dir: overlays/overlay116
+    type: code
+    overlay: True
+    start: 0x4F3780
+    vram: 0x801059A0
+    subsegments:
+      - [0x4F3780, c]
+      - [0x4F4980, asm]
+      - [0x4F5AF0, asm]
+      - [0x4F66B0, bin] # data
+
+  - dir: overlays/overlay117
+    type: code
+    overlay: True
+    start: 0x4F6810
+    vram: 0x801059A0
+    subsegments:
+      - [0x4F6810, asm]
+      - [0x4F69B0, bin] # data
+
+  # Message Check
+  - dir: overlays/debug_message_check
+    type: code
+    overlay: True
+    start: 0x4F69F0
+    vram: 0x801059A0
+    subsegments:
+      - [0x4F69F0, c]
+      - [0x4F7550, bin] # data
+
+  # Castle Grounds
+  - dir: overlays/overlay119
+    type: code
+    overlay: True
+    start: 0x4F7E90
+    vram: 0x801059A0
+    subsegments:
+      - [0x4F7E90, asm]
+      - [0x4F7EC0, asm]
+      - [0x4F8140, asm]
+      - [0x501760, bin] # data
+
+  # Configuring gameplay ("warp pipe" in MP1 terminology)
+  - dir: overlays/overlay120
+    type: code
+    overlay: True
+    start: 0x501C00
+    vram: 0x801059A0
+    subsegments:
+      - [0x501C00, asm]
+      - [0x506F20, asm]
+      - [0x508D50, asm]
+      - [0x5092C0, asm]
+      - [0x50B740, asm]
+      - [0x513B70, asm]
+      - [0x515670, bin] # data
+
+  # Select save game screen
+  - dir: overlays/overlay121
+    type: code
+    overlay: True
+    start: 0x516AE0
+    vram: 0x801059A0
+    subsegments:
+      - [0x516AE0, asm]
+      - [0x516B10, asm]
+      - [0x516D30, asm]
+      - [0x5238E0, bin] # data
+
+  # Start Screen
+  - dir: overlays/start_screen
+    type: code
+    overlay: True
+    start: 0x523FD0
+    vram: 0x801059A0
+    subsegments:
+      - [0x523FD0, asm]
+      - [0x524000, asm]
+      - [0x5242B0, asm]
+      - [0x524820, c]
+      - [0x533180, bin] # data
+
+  - dir: overlays/overlay123
+    type: code
+    overlay: True
+    start: 0x5334D0
+    vram: 0x801059A0
+    subsegments:
+      - [0x5334D0, asm]
+      - [0x533500, asm]
+      - [0x535A80, asm]
+      - [0x53DCA0, asm]
+      - [0x540FE0, bin] # data
+
+  - dir: overlays/overlay124
+    type: code
+    overlay: True
+    start: 0x542220
+    vram: 0x801059A0
+    subsegments:
+      - [0x542220, asm]
+      - [0x5436A0, asm]
+      - [0x543FC0, asm]
+      - [0x544E70, asm]
+      - [0x5486A0, c]
+      - [0x54CDB0, bin] # data
+
+  - dir: overlays/overlay125
+    type: code
+    overlay: True
+    start: 0x54DD10
+    vram: 0x801059A0
+    subsegments:
+      - [0x54DD10, asm]
+      - [0x54F360, c]
+      - [0x552C80, bin] # data
+
+  # - dir: overlays/overlay126
+  #   type: code
+  #   overlay: True
+  #   start: 0x552F50
+  #   vram: 0x801059A0
+  #   subsegments:
+  #     - [0x552F50, asm]
+  #     - [0x552F50, bin] # data
+
+  - dir: overlays/overlay127
+    type: code
+    overlay: True
+    start: 0x552F50
+    vram: 0x801059A0
+    subsegments:
+      - [0x552F50, asm]
+      - [0x556240, bin] # data
+
+  - [0x00557620, bin, "bin_557620"]
+
+  - [0x00557E20, bin, "bin_mainfs"]
+
+  - [0x01209850, bin, "bin_strings_jp"]
+  - [0x0121CAA0, bin, "bin_strings_en"]
+  - [0x012355C0, bin, "bin_strings_de"]
+  - [0x0124D440, bin, "bin_strings_fr"]
+  - [0x01261F90, bin, "bin_strings_it"]
+  - [0x012765F0, bin, "bin_strings_es"]
+
+  - [0x0128CC60, bin, "bin_hvq"]
+
+  - [0x01881C40, bin, "bin_audio_mbf0"]
+  - [0x01A56870, bin, "bin_audio_sbf0"]
+  - [0x01EFD040, bin, "bin_audio_fxd0"]
+  - [0x02000000]
