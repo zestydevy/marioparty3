@@ -30,12 +30,299 @@ segments:
     start: 0x1000
     vram: 0x80000400
     subsegments:
-    - [0x1000, asm]
+    - [0x1000, hasm]
+    - [0x1060, asm]
+    - [0x8F20, asm]
+    - [0x99D0, asm]
+    - [0xA480, asm, "mainfs"]
+    # - [0xA6C0, hasm] mainfs likely split
     - [0xAE30, asm, "decode"]
     - [0xBCA0, asm]
-    - [0xC1F0, bin]
+    - [0xC1F0, asm]
+    - [0xCE10, asm]
+    - [0xD7A0, asm]
+    - [0xE560, asm]
+    - [0xEFB0, asm]
+    - [0xEFC0, asm]
+    - [0xF610, asm, graphics]
+    - [0xFCA0, asm, model]
+    - [0x12E20, asm]
+    - [0x13F90, asm]
+    - [0x14EA0, asm]
+    - [0x19C30, asm]
+    - [0x1A580, asm]
+    - [0x20A20, asm]
+    - [0x22EB0, asm]
+    - [0x30C40, asm]
+    - [0x32160, asm]
+    - [0x34DD0, asm]
+    - [0x360A0, asm, "main"]
+    - [0x36440, asm, "heap_permanent"]
+    - [0x36510, asm, "heap_temporary"]
+    - [0x365E0, asm]
+    - [0x36650, asm]
+    - [0x36CD0, asm, "heap"]
+    - [0x36F80, asm]
+    - [0x37210, asm]
+    - [0x45F50, asm]
+    - [0x471D0, asm]
+    - [0x47D60, asm]
+    - [0x4B120, asm]
+    - [0x4BF40, asm]
+    - [0x4E5A0, asm]
+    - [0x4E800, asm]
+    - [0x4F720, asm, "process"]
+    - [0x4FE90, asm]
+    - [0x508F0, asm]
+    - [0x51B50, asm, nnsched]
+    - [0x52350, asm]
+    - [0x527E0, asm]
+    - [0x52F30, asm]
+    - [0x58000, asm]
+    - [0x5ACF0, asm]
+    - [0x62750, asm]
+    - [0x66E70, asm]
+    - [0x67000, asm]
+    - [0x67100, hasm, "setjmp"]
+    - [0x671E0, asm, "lib/hvq"]
+    - [0x6B050, asm]
+    - [0x6BA20, asm]
+    - [0x6C140, asm]
+    - [0x6C320, asm]
+    - [0x6C3A0, asm]
+    - [0x6C3C0, asm]
+    - [0x6C9F0, asm]
+    - [0x6DBD0, asm]
+    - [0x6DBF0, asm]
+    - [0x6DC10, asm]
+    - [0x6DC30, asm]
+    - [0x6DC50, asm]
+    - [0x6DCD0, asm]
+    - [0x6DCE0, asm]
+    - [0x6DD10, asm]
+    - [0x6DF20, asm]
+    - [0x6DFA0, asm]
+    - [0x6E6B0, asm]
+    - [0x6E780, asm]
+    - [0x6E7E0, asm]
+    - [0x6E840, asm]
+    - [0x6E880, asm]
+    - [0x6E8E0, asm]
+    - [0x6E940, asm]
+    - [0x6F470, asm]
+    - [0x70420, asm]
+    - [0x707B0, asm]
+    - [0x70850, asm]
+    - [0x70940, asm]
+    - [0x709E0, asm]
+    - [0x70A70, asm]
+    - [0x70B20, asm]
+    - [0x70BB0, asm]
+    - [0x70C30, asm]
+    - [0x72740, asm]
+    - [0x72750, asm]
     - [0x72890, bin] # Should this be 0x7288C? What is this?
     - [0x72C20, asm]
+    - [0x73020, asm]
+    - [0x730A0, asm]
+    - [0x73190, asm, "libultra/io/conteeplongread"]
+    - [0x73200, hasm, "libultra/os/setintmask"]
+    - [0x732A0, asm, "libultra/io/pimgr"]
+    - [0x73550, asm, "libultra/io/epirawdma"]
+    - [0x73740, asm, "libultra/io/epidma"]
+    - [0x737E0, asm, "libultra/io/cartrominit"]
+    - [0x73960, asm, "libultra/io/devmgr"]
+    - [0x73D20, asm]
+    - [0x73E10, asm]
+    - [0x73F40, asm]
+    - [0x73FE0, asm]
+    - [0x75320, asm]
+    - [0x76700, asm]
+    - [0x776E0, asm]
+    - [0x77DA0, asm]
+    - [0x77E50, asm]
+    - [0x77E90, asm]
+    - [0x77EE0, asm]
+    - [0x77F20, asm]
+    - [0x79030, asm]
+    - [0x79420, asm]
+    - [0x79570, asm]
+    - [0x79740, asm]
+    - [0x797A0, hasm]
+    - [0x798D0, hasm]
+    - [0x79950, hasm, "libultra/os/writebackdcacheall"]
+    - [0x79980, asm, "libultra/io/contreaddata"]
+    - [0x79B60, asm, "libultra/io/controller"]
+    - [0x79E70, asm, "libultra/io/contsetch"]
+    - [0x79ED0, asm, "libultra/os/osVirtualToPhysical"]
+    - [0x79F30, asm, "libultra/gu/cosf"]
+    - [0x7A080, asm, "libultra/gu/lookat"]
+    - [0x7A790, asm, "libultra/gu/lookathil"]
+    - [0x7B1F0, asm, "libultra/gu/lookatref"]
+    - [0x7B7E0, asm, "libultra/gu/ortho"]
+    - [0x7BA60, asm, "libultra/gu/perspective"]
+    - [0x7BDE0, asm, "libultra/gu/random"]
+    - [0x7BE10, asm, "libultra/gu/rotaterpy"]
+    - [0x7C130, asm, "libultra/gu/sinf"]
+    - [0x7C2D0, asm, "libultra/os/rdbsend"]
+    - [0x7C4F0, asm, "libultra/os/osInitRdb"]
+    - [0x7C570, hasm, "libultra/libc/bcopy"]
+    - [0x7C930, asm, "libultra/libc/string"]
+    - [0x7C9C0, asm, "libultra/libc/sprintf"]
+    - [0x7CA50, asm, "libultra/libc/syncprintf"]
+    - [0x7CB00, asm, "libultra/os/osCreateMesgQueue"]
+    - [0x7CB30, asm, "libultra/os/osJamMesg"]
+    - [0x7CC70, asm, "libultra/os/osRecvMesg"]
+    - [0x7CDA0, asm, "libultra/os/osSendMesg"]
+    - [0x7CED0, asm, "libultra/os/seteventmesg"]
+    - [0x7CF80, hasm, "libultra/os/setcause"]
+    - [0x7CF90, hasm, "libultra/os/setcompare"]
+    - [0x7CFA0, hasm, "libultra/os/setcount"]
+    - [0x7CFB0, hasm, "libultra/os/setsr"]
+    - [0x7CFC0, asm, "libultra/io/sptask"]
+    - [0x7D200, asm, "libultra/io/sptaskyield"]
+    - [0x7D220, asm, "libultra/io/sptaskyielded"]
+    - [0x7D270, asm, "libultra/io/sirawdma"]
+    - [0x7D320, asm, "libultra/io/siacs"]
+    - [0x7D410, asm, "libultra/os/createthread"]
+    - [0x7D510, asm, "libultra/os/destroythread"]
+    - [0x7D5F0, asm, "libultra/os/getthreadpri"]
+    - [0x7D610, asm, "libultra/os/setthreadpri"]
+    - [0x7D6E0, asm, "libultra/os/startthread"]
+    - [0x7D800, hasm, "__osDequeueThread"]
+    - [0x7D840, asm, "libultra/os/yieldthread"]
+    - [0x7D890, asm, "libultra/os/osGetTime"]
+    - [0x7D920, asm, "libultra/os/osSetTimer"]
+    - [0x7DA50, asm, "libultra/os/timerintr"]
+    - [0x7DE10, hasm, "libultra/os/probetlb"]
+    - [0x7DED0, asm, "libultra/io/vigetcurrframebuf"]
+    - [0x7DF10, asm, "libultra/io/vigetnextframebuf"]
+    - [0x7DF50, asm, "libultra/io/vimgr"]
+    - [0x7E290, asm, "libultra/io/visetevent"]
+    - [0x7E2F0, asm, "libultra/io/visetmode"]
+    - [0x7E340, asm, "libultra/io/visetspecial"]
+    - [0x7E4B0, asm, "libultra/io/visetyscale"]
+    - [0x7E500, asm, "libultra/io/viswapbuf"]
+    - [0x7E550, asm, "libultra/io/viswapcontext"]
+    - [0x7E860, asm, "libultra/io/viblack"]
+    - [0x7E8C0, hasm, "libultra/gu/mtxidenf"]
+    - [0x7E920, hasm, "libultra/gu/mtxf2l"]
+    - [0x7E9A0, hasm, "libultra/gu/mtxl2f"]
+    - [0x7EA20, hasm, "libultra/gu/mtxcatf"]
+    - [0x7EB20, hasm, "libultra/gu/scale"]
+    - [0x7EBE0, hasm, "libultra/gu/translatef"]
+    - [0x7EC40, asm, "libultra/gu/mtxcatl"]
+    - [0x7ECC0, asm, "libultra/gu/rotate"]
+    - [0x7EFA0, asm, "libultra/io/motor"]
+    - [0x7F330, asm, "libultra/io/pfsselectbank"]
+    - [0x7F3A0, asm, "libultra/io/contramread"]
+    - [0x7F590, asm, "libultra/io/contramwrite"]
+    - [0x7F800, asm, "libultra/os/afterprenmi"]
+    - [0x7F820, asm, "libultra/os/getmemsize"]
+    - [0x7F8C0, asm, "libultra/os/initialize"]
+    - [0x7FCD0, asm, "libultra/os/initialize_kmc"]
+    - [0x800A0, asm, "libultra/os/initialize_msp"]
+    - [0x80460, asm, "libultra/os/initialize_emu"]
+    - [0x804E0, asm, "libultra/io/conteepread"]
+    - [0x80710, hasm, "libultra/os/exceptasm"]
+    - [0x815D0, asm]
+    - [0x81660, asm]
+    - [0x818C0, asm]
+    - [0x81A30, asm]
+    - [0x81A80, asm]
+    - [0x81AD0, asm]
+    - [0x81AF0, asm]
+    - [0x81DB0, asm]
+    - [0x81E40, hasm, "sqrtf"]
+    - [0x81E50, asm]
+    - [0x81F20, asm]
+    - [0x824C0, asm]
+    - [0x82640, asm, "_Printf"]
+    - [0x830A0, asm, "osGetCount"]
+    - [0x830B0, asm]
+    - [0x830C0, asm]
+    - [0x83290, asm]
+    - [0x832B0, asm]
+    - [0x83390, asm]
+    - [0x833E0, asm]
+    - [0x83430, asm]
+    - [0x83520, asm]
+    - [0x83580, asm]
+    - [0x835D0, asm]
+    - [0x836E0, asm]
+    - [0x83700, asm]
+    - [0x83760, asm]
+    - [0x83A40, asm]
+    - [0x83C50, asm]
+    - [0x846E0, asm]
+    - [0x84780, asm]
+    - [0x847E0, asm]
+    - [0x84840, asm]
+    - [0x85630, asm]
+    - [0x856C0, asm]
+    - [0x87310, asm]
+    - [0x87750, asm]
+    - [0x87770, hasm, "osStopThread"]
+    - [0x87830, asm]
+    - [0x87A00, asm]
+    - [0x88440, asm]
+    - [0x88460, asm]
+    - [0x88710, asm]
+    - [0x88830, asm]
+    - [0x88CE0, asm]
+    - [0x88D50, asm]
+    - [0x890B0, asm]
+    - [0x89120, asm]
+    - [0x89510, asm]
+    - [0x89FB0, asm]
+    - [0x8A350, asm]
+    - [0x8A3D0, asm]
+    - [0x8A420, asm]
+    - [0x8A460, asm]
+    - [0x8A4A0, asm]
+    - [0x8A4D0, asm]
+    - [0x8A580, asm]
+    - [0x8A610, asm]
+    - [0x8A640, asm]
+    - [0x8A670, asm]
+    - [0x8A6B0, asm]
+    - [0x8A6F0, asm]
+    - [0x8A770, asm]
+    - [0x8A830, asm]
+    - [0x8A860, asm]
+    - [0x8A890, asm]
+    - [0x8AA90, asm]
+    - [0x8AC30, asm]
+    - [0x8AC70, asm]
+    - [0x8ACD0, asm]
+    - [0x8AD20, asm]
+    - [0x8ADB0, asm]
+    - [0x8AEA0, asm]
+    - [0x8AF30, asm]
+    - [0x8B030, asm]
+    - [0x8B0C0, asm]
+    - [0x8B1C0, asm]
+    - [0x8B3F0, asm]
+    - [0x8B560, asm]
+    - [0x8B960, asm]
+    - [0x8D730, asm]
+    - [0x8D790, asm]
+    - [0x8D7F0, asm]
+    - [0x8D860, asm]
+    - [0x8D8C0, asm]
+    - [0x8E050, asm]
+    - [0x8E4A0, asm]
+    - [0x8E6B0, asm]
+    - [0x8EA10, asm]
+    - [0x8EFF0, asm]
+    - [0x8F320, asm]
+    - [0x8F480, asm]
+    - [0x8F620, asm]
+    - [0x8F760, asm]
+    - [0x8F7D0, asm]
+    - [0x8F830, asm]
+    - [0x8FB20, asm]
+
     # Separating out the data/rodata into another segment since it
   # seems to be subaligned by 8 in some cases.
   - type: code
@@ -55,7 +342,7 @@ segments:
     - [0xA7590, rodata, "decode"]
     - [0xA75A8, bin]
 
-  - dir: overlays/overlay130
+  - dir: overlays/shared_overlay130
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -74,7 +361,7 @@ segments:
       - [0xBD210, asm]
       - [0xBE2A0, bin] # data
 
-  - dir: overlays/overlay129
+  - dir: overlays/shared_overlay129
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -138,7 +425,7 @@ segments:
       - [0x113750, asm]
       - [0x1143C0, bin] # data
 
-  - dir: overlays/overlay0
+  - dir: overlays/test_menu1
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -148,7 +435,7 @@ segments:
       - [0x116320, asm]
       - [0x119560, bin] # data
 
-  - dir: overlays/overlay1
+  - dir: overlays/minigames/hand_line_sinker
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -159,7 +446,7 @@ segments:
       - [0x120090, asm]
       - [0x1209E0, bin] # data
 
-  - dir: overlays/overlay2
+  - dir: overlays/minigames/coconut_conk
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -169,7 +456,7 @@ segments:
       - [0x120BC0, asm]
       - [0x126180, bin] # data
 
-  - dir: overlays/overlay3
+  - dir: overlays/minigames/spotlight_swim
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -179,7 +466,7 @@ segments:
       - [0x1263E0, asm]
       - [0x12D700, bin] # data
 
-  - dir: overlays/overlay4
+  - dir: overlays/minigames/boulder_ball
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -189,7 +476,7 @@ segments:
       - [0x12DD30, asm]
       - [0x131A90, bin] # data
 
-  - dir: overlays/overlay5
+  - dir: overlays/minigames/crazy_cogs
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -199,7 +486,7 @@ segments:
       - [0x131C10, asm]
       - [0x137A80, bin] # data
 
-  - dir: overlays/overlay6
+  - dir: overlays/minigames/hide_and_sneak
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -209,7 +496,7 @@ segments:
       - [0x137C00, asm]
       - [0x13E5D0, bin] # data
 
-  - dir: overlays/overlay7
+  - dir: overlays/minigames/ridiculous_relay
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -219,7 +506,7 @@ segments:
       - [0x13E9C0, asm]
       - [0x149CD0, bin] # data
 
-  - dir: overlays/overlay8
+  - dir: overlays/minigames/thwomp_pull
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -229,7 +516,7 @@ segments:
       - [0x14A810, asm]
       - [0x153BD0, bin] # data
 
-  - dir: overlays/overlay9
+  - dir: overlays/minigames/river_raiders
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -239,7 +526,7 @@ segments:
       - [0x1542E0, asm]
       - [0x15BCF0, bin] # data
 
-  - dir: overlays/overlay10
+  - dir: overlays/minigames/tidal_toss
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -249,7 +536,7 @@ segments:
       - [0x15C310, asm]
       - [0x1613E0, bin] # data
 
-  - dir: overlays/overlay11
+  - dir: overlays/minigames/eatsa_pizza
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -259,7 +546,7 @@ segments:
       - [0x161750, asm]
       - [0x164EB0, bin] # data
 
-  - dir: overlays/overlay12
+  - dir: overlays/minigames/baby_bowser_broadside
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -270,7 +557,7 @@ segments:
       - [0x169540, asm]
       - [0x16F3D0, bin] # data
 
-  - dir: overlays/overlay13
+  - dir: overlays/minigames/pump_pump_away
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -280,7 +567,7 @@ segments:
       - [0x16F670, asm]
       - [0x17AB40, bin] # data
 
-  - dir: overlays/overlay14
+  - dir: overlays/minigames/hyper_hydrants
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -290,7 +577,7 @@ segments:
       - [0x17B3B0, asm]
       - [0x1817F0, bin] # data
 
-  - dir: overlays/overlay15
+  - dir: overlays/minigames/picking_panic
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -301,7 +588,7 @@ segments:
       - [0x18A560, bin] # data
 
   # Toadstool Titan
-  - dir: overlays/overlay16
+  - dir: overlays/minigames/cosmic_coaster
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -312,7 +599,7 @@ segments:
       - [0x18EB30, asm]
       - [0x190D60, bin] # data
 
-  - dir: overlays/overlay17
+  - dir: overlays/minigames/puddle_paddle
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -322,7 +609,7 @@ segments:
       - [0x191240, asm]
       - [0x19CAC0, bin] # data
 
-  - dir: overlays/overlay18
+  - dir: overlays/minigames/etch_n_catch
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -332,7 +619,7 @@ segments:
       - [0x19CEF0, asm]
       - [0x1A3BF0, bin] # data
 
-  - dir: overlays/overlay19
+  - dir: overlays/minigames/log_jam
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -342,7 +629,7 @@ segments:
       - [0x1A3D80, asm]
       - [0x1AC270, bin] # data
 
-  - dir: overlays/overlay20
+  - dir: overlays/minigames/slot_synch
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -352,7 +639,7 @@ segments:
       - [0x1AC970, asm]
       - [0x1B47C0, bin] # data
 
-  - dir: overlays/overlay21
+  - dir: overlays/minigames/treadmill_grill
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -362,7 +649,7 @@ segments:
       - [0x1B4F10, asm]
       - [0x1BA4F0, bin] # data
 
-  - dir: overlays/overlay22
+  - dir: overlays/minigames/toadstool_titan
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -372,7 +659,7 @@ segments:
       - [0x1BA850, asm]
       - [0x1C3C50, bin] # data
 
-  - dir: overlays/overlay23
+  - dir: overlays/minigames/aces_high
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -383,7 +670,7 @@ segments:
       - [0x1CC400, asm]
       - [0x1CC420, bin] # data
 
-  - dir: overlays/overlay24
+  - dir: overlays/minigames/bounce_n_trounce
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -394,7 +681,7 @@ segments:
       - [0x1D1920, asm]
       - [0x1D1940, bin] # data
 
-  - dir: overlays/overlay25
+  - dir: overlays/minigames/ice_rink_risk
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -404,7 +691,7 @@ segments:
       - [0x1D1C40, asm]
       - [0x1D47F0, bin] # data
 
-  - dir: overlays/overlay26
+  - dir: overlays/minigames/locked_out
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -414,7 +701,7 @@ segments:
       - [0x1D4970, asm]
       - [0x1D90E0, bin] # data
 
-  - dir: overlays/overlay27
+  - dir: overlays/minigames/chip_shot_challenge
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -425,7 +712,7 @@ segments:
       - [0x1DE3D0, bin] # data
 
   # Snowball Summit
-  - dir: overlays/overlay28
+  - dir: overlays/minigames/parasol_plummet
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -435,7 +722,7 @@ segments:
       - [0x1DE610, asm]
       - [0x1E3510, bin] # data
 
-  - dir: overlays/overlay29
+  - dir: overlays/minigames/messy_memory
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -445,7 +732,7 @@ segments:
       - [0x1E37C0, asm]
       - [0x1EEDE0, bin] # data
 
-  - dir: overlays/overlay30
+  - dir: overlays/minigames/picture_imperfect
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -455,7 +742,7 @@ segments:
       - [0x1EF420, asm]
       - [0x1F3A60, bin] # data
 
-  - dir: overlays/overlay31
+  - dir: overlays/minigames/marios_puzzle_party
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -466,7 +753,7 @@ segments:
       - [0x1FD760, asm]
       - [0x1FE270, bin] # data
 
-  - dir: overlays/overlay32
+  - dir: overlays/minigames/the_beat_goes_on
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -476,7 +763,7 @@ segments:
       - [0x1FE4D0, asm]
       - [0x204DB0, bin] # data
 
-  - dir: overlays/overlay33
+  - dir: overlays/minigames/mpiq
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -486,7 +773,7 @@ segments:
       - [0x204F90, asm]
       - [0x20BC70, bin] # data
 
-  - dir: overlays/overlay34
+  - dir: overlays/minigames/curtain_call
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -496,7 +783,7 @@ segments:
       - [0x20BFA0, asm]
       - [0x2116C0, bin] # data
 
-  - dir: overlays/overlay35
+  - dir: overlays/minigames/water_whirled
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -506,7 +793,7 @@ segments:
       - [0x211AB0, asm]
       - [0x216270, bin] # data
 
-  - dir: overlays/overlay36
+  - dir: overlays/minigames/fridged_bridges
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -517,7 +804,7 @@ segments:
       - [0x21CAC0, asm]
       - [0x21DBF0, bin] # data
 
-  - dir: overlays/overlay37
+  - dir: overlays/minigames/awful_tower
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -527,7 +814,7 @@ segments:
       - [0x21E010, asm]
       - [0x2251D0, bin] # data
 
-  - dir: overlays/overlay38
+  - dir: overlays/minigames/cheep_cheep_chase
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -537,7 +824,7 @@ segments:
       - [0x225740, asm]
       - [0x22DDB0, bin] # data
 
-  - dir: overlays/overlay39
+  - dir: overlays/minigames/pipe_cleaners
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -547,7 +834,7 @@ segments:
       - [0x22E100, asm]
       - [0x232620, bin] # data
 
-  - dir: overlays/overlay40
+  - dir: overlays/minigames/snowball_summit
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -557,7 +844,7 @@ segments:
       - [0x232A10, asm]
       - [0x23C5C0, bin] # data
 
-  - dir: overlays/overlay41
+  - dir: overlays/minigames/all_fired_up
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -567,7 +854,7 @@ segments:
       - [0x23C8F0, asm]
       - [0x240880, bin] # data
 
-  - dir: overlays/overlay42
+  - dir: overlays/minigames/stacked_deck
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -577,7 +864,7 @@ segments:
       - [0x240A10, asm]
       - [0x24A300, bin] # data
 
-  - dir: overlays/overlay43
+  - dir: overlays/minigames/three_door_monty
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -587,7 +874,7 @@ segments:
       - [0x24A760, asm]
       - [0x251AD0, bin] # data
 
-  - dir: overlays/overlay44
+  - dir: overlays/minigames/rockin_raceway
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -597,7 +884,7 @@ segments:
       - [0x251FF0, asm]
       - [0x25D530, bin] # data
 
-  - dir: overlays/overlay45
+  - dir: overlays/minigames/merry_go_chomp
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -607,7 +894,7 @@ segments:
       - [0x25E110, asm]
       - [0x2648B0, bin] # data
 
-  - dir: overlays/overlay46
+  - dir: overlays/minigames/slapdown
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -617,7 +904,7 @@ segments:
       - [0x264B80, asm]
       - [0x269880, bin] # data
 
-  - dir: overlays/overlay47
+  - dir: overlays/minigames/storm_chasers
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -627,7 +914,7 @@ segments:
       - [0x269BF0, asm]
       - [0x270B00, bin] # data
 
-  - dir: overlays/overlay48
+  - dir: overlays/minigames/eye_sore
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -637,7 +924,7 @@ segments:
       - [0x270EF0, asm]
       - [0x276160, bin] # data
 
-  - dir: overlays/overlay49
+  - dir: overlays/minigames/vine_with_me
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -647,7 +934,7 @@ segments:
       - [0x276470, asm]
       - [0x282620, bin] # data
 
-  - dir: overlays/overlay50
+  - dir: overlays/minigames/popgun_pickoff
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -657,7 +944,7 @@ segments:
       - [0x283060, asm]
       - [0x289C50, bin] # data
 
-  - dir: overlays/overlay51
+  - dir: overlays/minigames/end_of_the_line
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -668,7 +955,7 @@ segments:
       - [0x290E70, asm]
       - [0x290E90, bin] # data
 
-  - dir: overlays/overlay52
+  - dir: overlays/minigames/bowser_toss
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -678,7 +965,7 @@ segments:
       - [0x291020, asm]
       - [0x29A7D0, bin] # data
 
-  - dir: overlays/overlay53
+  - dir: overlays/minigames/baby_bowser_bonkers
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -688,7 +975,7 @@ segments:
       - [0x29B1D0, asm]
       - [0x2A0C30, bin] # data
 
-  - dir: overlays/overlay54
+  - dir: overlays/minigames/motor_rooter
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -699,7 +986,7 @@ segments:
       - [0x2A9850, asm]
       - [0x2ACFE0, bin] # data
 
-  - dir: overlays/overlay55
+  - dir: overlays/minigames/silly_screws
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -710,7 +997,7 @@ segments:
       - [0x2B4B20, asm]
       - [0x2B56D0, bin] # data
 
-  - dir: overlays/overlay56
+  - dir: overlays/minigames/crowd_cover
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -720,7 +1007,7 @@ segments:
       - [0x2B5830, asm]
       - [0x2BC550, bin] # data
 
-  - dir: overlays/overlay57
+  - dir: overlays/minigames/tick_tock_hop
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -731,7 +1018,7 @@ segments:
       - [0x2C0E70, asm]
       - [0x2C5910, bin] # data
 
-  - dir: overlays/overlay58
+  - dir: overlays/minigames/fowl_play
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -741,7 +1028,7 @@ segments:
       - [0x2C5B50, asm]
       - [0x2CE950, bin] # data
 
-  - dir: overlays/overlay59
+  - dir: overlays/minigames/winners_wheel
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -751,7 +1038,7 @@ segments:
       - [0x2CF3B0, asm]
       - [0x2D3C70, bin] # data
 
-  - dir: overlays/overlay60
+  - dir: overlays/minigames/hey_batter_batter
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -761,7 +1048,7 @@ segments:
       - [0x2D3E70, asm]
       - [0x2D8030, bin] # data
 
-  - dir: overlays/overlay61
+  - dir: overlays/minigames/bobbing_bow_loons
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -771,7 +1058,7 @@ segments:
       - [0x2D8370, asm]
       - [0x2DC0F0, bin] # data
 
-  - dir: overlays/overlay62
+  - dir: overlays/minigames/dorrie_dip
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -792,7 +1079,7 @@ segments:
       - [0x2E0D20, asm,"swinging_with_sharks"]
       - [0x2E6060, bin] # data
 
-  - dir: overlays/overlay64
+  - dir: overlays/minigames/swing_n_swipe
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -802,7 +1089,7 @@ segments:
       - [0x2E6BE0, asm]
       - [0x2ECF70, bin] # data
 
-  - dir: overlays/overlay65
+  - dir: overlays/minigames/stardust_battle
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -812,7 +1099,7 @@ segments:
       - [0x2ED2D0, asm]
       - [0x2FB5E0, bin] # data
 
-  - dir: overlays/overlay66
+  - dir: overlays/minigames/game_guys_roulette
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -823,7 +1110,7 @@ segments:
       - [0x2FF5F0, asm]
       - [0x300F10, bin] # data
 
-  - dir: overlays/overlay67
+  - dir: overlays/minigames/game_guys_lucky_7
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -834,7 +1121,7 @@ segments:
       - [0x306F70, asm]
       - [0x308890, bin] # data
 
-  - dir: overlays/overlay68
+  - dir: overlays/minigames/game_guys_magic_boxes
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -845,7 +1132,7 @@ segments:
       - [0x30DC30, asm]
       - [0x30F550, bin] # data
 
-  - dir: overlays/overlay69
+  - dir: overlays/minigames/game_guys_sweet_surprise
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -856,7 +1143,7 @@ segments:
       - [0x3151F0, asm]
       - [0x316B10, bin] # data
 
-  - dir: overlays/overlay70
+  - dir: overlays/minigames/dizzy_dinghies
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -866,7 +1153,7 @@ segments:
       - [0x316DF0, asm]
       - [0x31AB90, bin] # data
 
-  - dir: overlays/overlay71
+  - dir: overlays/wrapper1
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -954,7 +1241,7 @@ segments:
       - [0x39AD50, asm]
       - [0x3B08D0, bin] # data
 
-  - dir: overlays/overlay78
+  - dir: overlays/board_rulesmap
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -965,7 +1252,7 @@ segments:
       - [0x3B3620, asm]
       - [0x3B9420, bin] # data
 
-  - dir: overlays/overlay79
+  - dir: overlays/results_cutscene
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -976,7 +1263,7 @@ segments:
       - [0x3BFA00, asm]
       - [0x3C20B0, bin] # data
 
-  - dir: overlays/overlay80
+  - dir: overlays/bowser_event
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -986,7 +1273,7 @@ segments:
       - [0x3C27C0, asm]
       - [0x3C6170, bin] # data
 
-  - dir: overlays/overlay81
+  - dir: overlays/last_5_turns
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -996,7 +1283,7 @@ segments:
       - [0x3C6310, asm]
       - [0x3C7DF0, bin] # data
 
-  - dir: overlays/overlay82
+  - dir: overlays/mushroom_genie
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1006,7 +1293,7 @@ segments:
       - [0x3C7EC0, asm]
       - [0x3CA5F0, bin] # data
 
-  - dir: overlays/overlay83
+  - dir: overlays/chilly_waters_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1016,7 +1303,7 @@ segments:
       - [0x3CA800, asm]
       - [0x3CDBD0, bin] # data
 
-  - dir: overlays/overlay84
+  - dir: overlays/rule_map_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1026,7 +1313,7 @@ segments:
       - [0x3CDEC0, asm]
       - [0x3CFAE0, bin] # data
 
-  - dir: overlays/overlay85
+  - dir: overlays/detailed_results_main
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1037,7 +1324,7 @@ segments:
       - [0x3D3A90, bin] # data
 
   # Character Animation Test
-  - dir: overlays/overlay86
+  - dir: overlays/test_anim1
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1047,7 +1334,7 @@ segments:
       - [0x3D3C80, asm]
       - [0x3D5160, bin] # data
 
-  - dir: overlays/overlay87
+  - dir: overlays/test_anim2
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1072,7 +1359,7 @@ segments:
       - [0xDEADBEEF]
       - [auto, all_bss]
 
-  - dir: overlays/overlay89
+  - dir: overlays/test_save1
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1082,7 +1369,7 @@ segments:
       - [0x3D76C0, asm]
       - [0x3D8680, bin] # data
 
-  - dir: overlays/overlay90
+  - dir: overlays/gate_guy_intro1
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1093,7 +1380,7 @@ segments:
       - [0x3D8960, asm]
       - [0x3D8A70, bin] # data
 
-  - dir: overlays/overlay91
+  - dir: overlays/board_gate_guy
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1104,7 +1391,7 @@ segments:
       - [0x3D8AC0, asm]
       - [0x3EB7D0, bin] # data
 
-  - dir: overlays/overlay92
+  - dir: overlays/board_arrowhead_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1115,7 +1402,7 @@ segments:
       - [0x3EC590, asm]
       - [0x3FD130, bin] # data
 
-  - dir: overlays/overlay93
+  - dir: overlays/board_pipesqueak_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1126,7 +1413,7 @@ segments:
       - [0x3FE1F0, asm]
       - [0x40FC20, bin] # data
 
-  - dir: overlays/overlay94
+  - dir: overlays/board_blowhard_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1137,7 +1424,7 @@ segments:
       - [0x410910, asm]
       - [0x424BB0, bin] # data
 
-  - dir: overlays/overlay95
+  - dir: overlays/board_mr_mover_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1148,7 +1435,7 @@ segments:
       - [0x426450, asm]
       - [0x436100, bin] # data
 
-  - dir: overlays/overlay96
+  - dir: overlays/board_backtrack_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1159,7 +1446,7 @@ segments:
       - [0x436E50, asm]
       - [0x445900, bin] # data
 
-  - dir: overlays/overlay97
+  - dir: overlays/battle_rules_map_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1170,7 +1457,7 @@ segments:
       - [0x4461E0, asm]
       - [0x4551C0, bin] # data
 
-  - dir: overlays/overlay98
+  - dir: overlays/results
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1181,7 +1468,7 @@ segments:
       - [0x45A700, asm]
       - [0x45CDB0, bin] # data
 
-  - dir: overlays/overlay99
+  - dir: overlays/detailed_results_battle
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1191,7 +1478,7 @@ segments:
       - [0x45D380, asm]
       - [0x460610, bin] # data
 
-  - dir: overlays/overlay100
+  - dir: overlays/gate_guy_intro2
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1201,7 +1488,7 @@ segments:
       - [0x460790, asm]
       - [0x463FF0, bin] # data
 
-  - dir: overlays/overlay101
+  - dir: overlays/rules_map_intro
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1211,7 +1498,7 @@ segments:
       - [0x464360, asm]
       - [0x4672F0, bin] # data
 
-  - dir: overlays/overlay102
+  - dir: overlays/test_save2
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1245,7 +1532,7 @@ segments:
       - [0x46BB50, asm]
       - [0x46CB70, bin] # data
 
-  - dir: overlays/overlay105
+  - dir: overlays/battle_room
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1259,7 +1546,7 @@ segments:
       - [0x47DD90, asm]
       - [0x480120, bin] # data
 
-  - dir: overlays/overlay106
+  - dir: overlays/chance_time
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1272,7 +1559,7 @@ segments:
       - [0x487F50, asm]
       - [0x48BAB0, bin] # data
 
-  - dir: overlays/overlay107
+  - dir: overlays/story_results_strength
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1285,7 +1572,7 @@ segments:
       - [0x496990, asm]
       - [0x49AF10, bin] # data
 
-  - dir: overlays/overlay108
+  - dir: overlays/story_results_peach
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1299,7 +1586,7 @@ segments:
       - [0x4B0E80, asm]
       - [0x4B1CC0, bin] # data
 
-  - dir: overlays/overlay109
+  - dir: overlays/story_results_luigi
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1311,7 +1598,7 @@ segments:
       - [0x4B9A30, asm]
       - [0x4C22A0, bin] # data
 
-  - dir: overlays/overlay110
+  - dir: overlays/story_results_110
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1323,7 +1610,7 @@ segments:
       - [0x4C8050, asm]
       - [0x4CECF0, bin] # data
 
-  - dir: overlays/overlay111
+  - dir: overlays/story_results_111
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1335,7 +1622,7 @@ segments:
       - [0x4DE0E0, bin] # data
 
   # Mini-Game Instructions Screen
-  - dir: overlays/overlay112
+  - dir: overlays/minigame_instructions
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1367,7 +1654,7 @@ segments:
       - [0x4EBD50, asm]
       - [0x4EBF10, bin] # data
 
-  - dir: overlays/overlay114
+  - dir: overlays/game_guy_results
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1379,7 +1666,7 @@ segments:
       - [0x4EDCB0, asm]
       - [0x4F00D0, bin] # data
 
-  - dir: overlays/overlay115
+  - dir: overlays/battle_minigame_results
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1390,7 +1677,7 @@ segments:
       - [0x4F1180, asm]
       - [0x4F36C0, bin] # data
 
-  - dir: overlays/overlay116
+  - dir: overlays/battle_results
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1402,7 +1689,7 @@ segments:
       - [0x4F5AF0, asm]
       - [0x4F66B0, bin] # data
 
-  - dir: overlays/overlay117
+  - dir: overlays/wrapper2
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1424,7 +1711,7 @@ segments:
       - [0x4F7550, bin] # data
 
   # Castle Grounds
-  - dir: overlays/overlay119
+  - dir: overlays/castle_grounds
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1437,7 +1724,7 @@ segments:
       - [0x501760, bin] # data
 
   # Configuring gameplay ("warp pipe" in MP1 terminology)
-  - dir: overlays/overlay120
+  - dir: overlays/star_lift
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1453,7 +1740,7 @@ segments:
       - [0x515670, bin] # data
 
   # Select save game screen
-  - dir: overlays/overlay121
+  - dir: overlays/file_select
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1479,7 +1766,7 @@ segments:
       - [0x524820, asm]
       - [0x533180, bin] # data
 
-  - dir: overlays/overlay123
+  - dir: overlays/inside_castle
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1492,7 +1779,7 @@ segments:
       - [0x53DCA0, asm]
       - [0x540FE0, bin] # data
 
-  - dir: overlays/overlay124
+  - dir: overlays/credits
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1506,7 +1793,7 @@ segments:
       - [0x5486A0, asm]
       - [0x54CDB0, bin] # data
 
-  - dir: overlays/overlay125
+  - dir: overlays/stamps
     type: code
     overlay: True
     exclusive_ram_id: minigame
@@ -1526,7 +1813,7 @@ segments:
   #     - [0x552F50, asm]
   #     - [0x552F50, bin] # data
 
-  - dir: overlays/overlay127
+  - dir: overlays/test_menu2
     type: code
     overlay: True
     exclusive_ram_id: minigame
