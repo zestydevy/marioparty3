@@ -122,8 +122,8 @@ segments:
     - [0x72740, asm]
     - [0x72750, asm]
     - [0x72890, bin] # Should this be 0x7288C? What is this?
-    - [0x72C20, asm]
-    - [0x73020, asm]
+    - [0x72C20, asm, "libultra/io/conteepwrite"]
+    - [0x73020, asm, "libultra/io/conteepprobe"]
     - [0x730A0, asm]
     - [0x73190, asm, "libultra/io/conteeplongread"]
     - [0x73200, hasm, "libultra/os/setintmask"]
@@ -132,16 +132,24 @@ segments:
     - [0x73740, asm, "libultra/io/epidma"]
     - [0x737E0, asm, "libultra/io/cartrominit"]
     - [0x73960, asm, "libultra/io/devmgr"]
-    - [0x73D20, asm]
-    - [0x73E10, asm]
-    - [0x73F40, asm]
-    - [0x73FE0, asm]
-    - [0x75320, asm]
-    - [0x76700, asm]
-    - [0x776E0, asm]
-    - [0x77DA0, asm]
-    - [0x77E50, asm]
-    - [0x77E90, asm]
+    - [0x73D20, asm, "libultra/io/piacs"] # double check
+    - [0x73E10, asm, "lubultra/audio/aisetfreq"]
+    - [0x73F40, asm, "libultra/audio/aisetnextbuf"]
+    - [0x73FE0, asm, "libultra/audio/drvrnew"]
+    - [0x74810, asm, "libultra/audio/load"]
+    - [0x75320, asm, "libultra/audio/auxbus"]
+    - [0x75430, asm, "libultra/audio/bnkf"]
+    - [0x75700, asm, "libultra/audio/env"]
+    - [0x763B0, asm, "libultra/audio/event"]
+    - [0x76700, asm, "libultra/audio/filter"]
+    - [0x76720, asm, "libultra/audio/mainbus"]
+    - [0x76890, asm, "libultra/audio/resample"]
+    - [0x76B40, asm, "libultra/audio/reverb"]
+    - [0x776E0, asm, "libultra/audio/save"]
+    - [0x777B0, asm, "libultra/audio/seq"]
+    - [0x77DA0, asm, "libultra/audio/sl"]
+    - [0x77E50, asm, "libultra/audio/heapinit"]
+    - [0x77E90, asm, "libultra/audio/heapalloc"]
     - [0x77EE0, asm, "libultra/audio/copy"]
     - [0x77F20, asm, "libultra/audio/cseq"]
     - [0x789E0, asm, "libultra/audio/synthesizer"]
@@ -236,7 +244,9 @@ segments:
     - [0x80710, hasm, "libultra/os/exceptasm"]
     - [0x815D0, asm, "libultra/os/setglobalintmask"]
     - [0x81610, asm, "libultra/os/resetglobalintmask"]
-    - [0x81660, asm]
+    - [0x81660, asm, "libultra/io/pirawdma"]
+    - [0x81730, asm, "libultra/io/pigetcmdq"]
+    - [0x81750, asm, "libultra/io/epirawread"] # double check
     - [0x818C0, asm]
     - [0x81A30, asm]
     - [0x81A80, asm]
@@ -1341,8 +1351,8 @@ segments:
     start: 0x3D3C80
     vram: 0x801059A0
     subsegments:
-      - [0x3D3C80, asm]
-      - [0x3D5160, bin] # data
+      - [0x3D3C80, c, test_anim1]
+      - [0x3D5160, bin, test_anim1] # data
 
   - dir: overlays/test_anim2
     type: code

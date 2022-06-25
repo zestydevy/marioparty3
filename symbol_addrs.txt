@@ -1,0 +1,24 @@
+HuPrcCreate = 0x80047EA0;
+HuPrcKill = 0x80048008;
+HuPrcSleep = 0x8004F010;
+HuPrcVSleep = 0x8004F074;
+InitEspriteSlot = 0x8000BFEC;
+HuAudSeqPlay = 0x8004A520;
+HuAudFXPlay = 0x8004AA88;
+HuDrawTextDbg = 0x8004DD7C;
+HuWipeFadeIn = 0x80061FE8;
+HuWipeFadeOut = 0x80062050;
+HuWipeStatGet = 0x800620BC;
+Hu3DCamInit = 0x80012220;
+Hu3DAnimInit = 0x8001FE20;
+HuObjInit = 0x80047160;
+
+HuMemHeapInit = 0x800360D0;
+HuMemMemoryAlloc = 0x800360F0;
+HuMemMemoryFree = 0x80036188;
+HuMemMemoryRealloc = 0x80036248;
+HuMemHeapAllocSizeGet = 0x80036310;
+HuMemUsedMemoryBlockGet = 0x80036344;
+HuMemMemoryAllocSizeGet = 0x8003636C;
+
+sprintf = 0x8007BDC0;
