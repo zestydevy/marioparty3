@@ -1,8 +1,50 @@
 #include "common.h"
+#include "malloc.h"
 
-INCLUDE_ASM(s32, "data", func_80009880_A480);
+extern s16 D_800C9520[];
+extern s16 D_800D0590[];
+extern s16 D_800D10F8[];
+extern s16 D_800D1350[];
+extern s16 D_800D5546[];
+
+void func_80009880_A480(void)
+{
+    s16 i;
+
+    for (i = 0; i < 4; ++i) {
+        D_800D5546[i] = 
+        D_800D1350[i] = 
+        D_800C9520[i] = 
+        D_800D0590[i] = 
+        D_800D10F8[i] = 0;
+    }
+}
 
 INCLUDE_ASM(s32, "data", func_800098FC_A4FC);
+
+// TODO: this is a file break for data.c
+
+// 16 byte portion of a directory or file table, which is initially read from ROM.
+struct mainfs_table_header {
+    s32 count;
+    s32 offsets[3]; // Enough to pad to size 16
+};
+
+struct mainfs_entry_info {
+    u8 * file_bytes;
+    s32 size;
+    s32 compression_type;
+};
+
+extern void *D_800ABFC0; // FS ROM location
+extern u32 D_800ABFC4; // Directory count
+extern s32 *D_800ABFC8; // Directory offset table pointer.
+
+extern void *D_800ABFCC; // FS ROM location (copy)
+extern u32 D_800ABFD0; // Directory count (copy)
+extern s32 *D_800ABFD4; // Directory offset table pointer (copy)
+
+extern struct mainfs_table_header D_800ABFE0;
 
 INCLUDE_ASM(s32, "data", func_80009AC0_A6C0);
 

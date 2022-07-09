@@ -35,5 +35,127 @@ HuMemMemoryReallocTemp = 0x80035974;
 HuMemHeapAllocTempSizeGet = 0x800359A0;
 HuMemUsedMemoryBlockGetTemp = 0x800359C0;
 
+HuStartDma = 0x8004D9F8;
+HuRomDmaRead = 0x8004DA40;
+HuRomDmaCodeRead = 0x8004DB14;
+
 sprintf = 0x8007BDC0;
+
+__osTimerServicesInit = 0x8007CE50;
+osCreateThread = 0x8007C810;
+__osViInit = 0x800829D0;
+
+
+osEepromLongRead = 0x80072590;
+
+
+osSetIntMask = 0x80072600;
+
+
+osCreatePiManager = 0x800726A0;
+ramromMain = 0x8007286C;
+
+
+__osEPiRawStartDma = 0x80072950;
+
+
+osEPiStartDma = 0x80072B40;
+
+osCartRomInit = 0x80072BE0;
+
+
+__osDevMgrMain = 0x80072D60;
+
+
+osSetEventMesg = 0x8007C2D0;
+__osEventStateTab = 0x800D5440;
+_osShutdown = 0x800A2D90;
+_osPreNMI = 0x800A3FAC;
+
+
+osViSetMode = 0x8007D6F0;
+__osViNext = 0x800A4104;
+
+
+osCreateViManager = 0x8007D350;
+__osViDevMgr = 0x800A2DE0;
+viThread = 0x800C39A8;
+viEventQueue = 0x800C4B60;
+viEventBuf = 0x800C4B78;
+viRetraceMsg = 0x800C4B90;
+viCounterMsg = 0x800C4BA8;
+__additional_scanline = 0x800A2DFC;
+
+
+osViSetYScale = 0x8007D8B0;
+
+
+osViBlack = 0x8007DC60;
+
+
+osViSetEvent = 0x8007D690;
+
+
+D_800BBED0 = 0x800BBED0;
+
+
+osEepromRead = 0x8007F8E0;
+osEepromWrite = 0x80072020;
+
+osWritebackDCacheAll = 0x80078D50;
+
+
+osSpTaskLoad = 0x8007C3C0;
+osSpTaskStartGo = 0x8007C5CC;
+
+
+osSpTaskYield = 0x8007C600;
+
+
+osSpTaskYielded = 0x8007C620;
+
+
+osViGetCurrentFramebuffer = 0x8007D2D0;
+
+osViGetNextFramebuffer = 0x8007D310;
+
+__osPackEepWriteData = 0x800721D4;
+__osEepStatus = 0x8007227C;
+
+osVirtualToPhysical = 0x800792D0;
+osInvalDCache = 0x80078BA0;
+osInvalICache = 0x80078C50;
+osWritebackDCache = 0x80078CD0;
+osWritebackDCacheAll = 0x80078D50;
+
+cosf = 0x80079330;
+sinf = 0x8007B530;
+
 bcopy = 0x8007B970;
+bzero = 0x8007BC90;
+
+osInitRdb = 0x8007B8F0;
+strchr = 0x8007BD30;
+strlen = 0x8007BD70;
+memcpy = 0x8007BD94;
+
+rmonPrintf_func_8007BE50 = 0x8007BE50;
+osSyncPrintf = 0x8007BE80;
+osSyncPrintf_func_8007BEC0 = 0x8007BEC0;
+
+osCreateMesgQueue = 0x8007BF00;
+osJamMesg = 0x8007BF30;
+osRecvMesg = 0x8007C070;
+osSendMesg = 0x8007C1A0;
+osGetThreadPri = 0x8007C9F0;
+osSetThreadPri = 0x8007CA10;
+osStartThread = 0x8007CAE0;
+osGetTime = 0x8007CC90;
+osSetTimer = 0x8007CD20;
+
+__osProbeTLB = 0x8007D210;
+
+__osEnqueueAndYield = 0x8008061C;
+__osPopThread = 0x80080774;
+__osDisableInt = 0x80080940;
+__osRestoreInt = 0x800809B0;

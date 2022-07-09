@@ -2,6 +2,7 @@ assets/*
 build/*
 bin/*
 asm/*
+expected/*
 *.z64
 *.ld
 *.Identifier

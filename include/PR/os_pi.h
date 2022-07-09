@@ -82,4 +82,14 @@ OSMesgQueue *osPiGetCmdQueue(void);
 s32 osPiWriteIo(u32 devAddr, u32 data);
 s32 osPiReadIo(u32 devAddr, u32 *data);
 
+
+extern s32 osEPiDeviceType(OSPiHandle *, OSPiInfo *);
+extern s32 osEPiRawWriteIo(OSPiHandle *, u32 , u32);
+extern s32 osEPiRawReadIo(OSPiHandle *, u32 , u32 *);
+extern s32 osEPiRawStartDma(OSPiHandle *, s32 , u32 , void *, u32 );
+extern s32 osEPiWriteIo(OSPiHandle *, u32 , u32 );
+extern s32 osEPiReadIo(OSPiHandle *, u32 , u32 *);
+extern s32 osEPiStartDma(OSPiHandle *, OSIoMesg *, s32);
+extern s32 osEPiLinkHandle(OSPiHandle *);
+
 #endif
