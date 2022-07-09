@@ -1,0 +1,2 @@
+perm_heap_addr = 0x800B1A10;
+temp_heap_addr = 0x800B1A20;

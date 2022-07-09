@@ -21,4 +21,19 @@ HuMemHeapAllocSizeGet = 0x80036310;
 HuMemUsedMemoryBlockGet = 0x80036344;
 HuMemMemoryAllocSizeGet = 0x8003636C;
 
+HuMemHeapInitPerm = 0x80035840;
+HuMemMemoryAllocPerm = 0x80035864;
+HuMemMemoryFreePerm = 0x80035888;
+HuMemMemoryReallocPerm = 0x800358A4;
+HuMemHeapAllocPermSizeGet = 0x800358D0;
+HuMemUsedMemoryBlockGetPerm = 0x800358F0;
+
+HuMemHeapInitTemp = 0x80035910;
+HuMemMemoryAllocTemp = 0x80035934;
+HuMemMemoryFreeTemp = 0x80035958;
+HuMemMemoryReallocTemp = 0x80035974;
+HuMemHeapAllocTempSizeGet = 0x800359A0;
+HuMemUsedMemoryBlockGetTemp = 0x800359C0;
+
 sprintf = 0x8007BDC0;
+bcopy = 0x8007B970;
