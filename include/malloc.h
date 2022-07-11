@@ -27,4 +27,11 @@ void * HuMemMemoryReallocPerm(void *mem, u32 new_size);
 u32 HuMemHeapAllocPermSizeGet(void);
 u32 HuMemUsedMemoryBlockGetPerm(void);
 
+struct heap_node * HuMemHeapInitTemp(void *ptr, u32 size);
+void * HuMemMemoryAllocTemp(u32 size);
+void HuMemMemoryFreeTemp(void *ptr);
+void * HuMemMemoryReallocTemp(void *mem, u32 new_size);
+u32 HuMemHeapAllocTempSizeGet(void);
+u32 HuMemUsedMemoryBlockGetTemp(void);
+
 #endif

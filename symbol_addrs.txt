@@ -1,5 +1,3 @@
-HuPrcCreate = 0x80047EA0;
-HuPrcKill = 0x80048008;
 HuPrcSleep = 0x8004F010;
 HuPrcVSleep = 0x8004F074;
 InitEspriteSlot = 0x8000BFEC;
@@ -38,6 +36,37 @@ HuMemUsedMemoryBlockGetTemp = 0x800359C0;
 HuStartDma = 0x8004D9F8;
 HuRomDmaRead = 0x8004DA40;
 HuRomDmaCodeRead = 0x8004DB14;
+
+HuReadFile = 0x80009C10;
+HuDecodeFilePerm = 0x80009D4C;
+HuDecodeFileTemp = 0x80009DA8;
+
+HuDecode = 0x8000B000;
+
+HuPrcSysInit = 0x8004EB20;
+HuPrcLink = 0x8004EB34;
+HuPrcUnlink = 0x8004EBC8;
+HuPrcCreate = 0x8004EC04;
+HuPrcChildLink = 0x8004ED30;
+HuPrcChildUnlink = 0x8004ED84;
+HuPrcCreateChild = 0x8004EDD4;
+HuPrcChildWait = 0x8004EE18;
+HuPrcGetCurrent = 0x8004EE68;
+HuPrcChildGet = 0x8004EE74;
+HuPrcStatKill = 0x8004EE94;
+HuPrcKill = 0x8004EED8;
+HuPrcChildKill = 0x8004EF0C;
+HuPrcTerminate = 0x8004EF6C;
+HuPrcExit = 0x8004EFD4;
+HuPrcAwake = 0x8004F090;
+HuPrcDtor = 0x8004F098;
+HuPrcCurrentDtor = 0x8004F0A0;
+HuPrcCall = 0x8004F0D0;
+HuPrcAllocMem = 0x8004F23C;
+HuPrcFreeMem = 0x8004F26C;
+
+setjmp = 0x80066500;
+longjmp = 0x80066564;
 
 sprintf = 0x8007BDC0;
 
