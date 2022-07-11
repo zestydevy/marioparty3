@@ -8,6 +8,9 @@ extern struct process *top_process;
 extern struct process *current_process;
 extern s16 process_count;
 
+// pointer to where HuPrcVSleep was called
+extern s32 * sPrcSleepLoc;
+
 void HuPrcSysInit()
 {
     process_count = 0;
@@ -263,89 +266,75 @@ void HuPrcCurrentDtor(process_func destructor)
     HuPrcDtor(process, destructor);
 }
 
-#ifdef NONMATCHING
-
-extern s32* D_800D20A8;
-void _HuPrcCall(s32 time)
+void HuPrcCall(s32 time)
  {
-     struct process *cur_proc_local;
-     s32 ret;
-     s32 t;
+    struct process *cur_proc_local;
+    s32 ret;
 
-     current_process = top_process;
-     ret = setjmp(&process_jmp_buf);
-     while (1)
-     {
-         switch (ret)
-         {
-             case 2:
-                 HuMemMemoryFreePerm(current_process->heap);
+    current_process = top_process;
+    ret = setjmp(&process_jmp_buf);
+    while (1)
+    {
+        switch (ret)
+        {
+            case 2:
+                HuMemMemoryFreePerm(current_process->heap);
+                current_process = current_process->next;
+                break;
+            case 1:
+                current_process = current_process->next;
+                break;
+        }
 
-             case 1:
-                 current_process = current_process->next;
-                 break;
-         }
+        cur_proc_local = current_process;
+        if (cur_proc_local == 0)
+        {
+            break;
+        }
 
-         cur_proc_local = current_process;
-         if (cur_proc_local == 0)
-         {
-             break;
-         }
-
-         //D_800D20A8 = cur_proc_local->prc_jump.sp[10];
+        sPrcSleepLoc = current_process->prc_jump.sp[10];
          
-         if ((cur_proc_local->stat & 0x1))
-         {
-             if (cur_proc_local->exec_mode != 1)
-             {
-                 ret = 1;
-                 continue;
-             }
-         }
+        if ((cur_proc_local->stat & 0x1))
+        {
+            if (cur_proc_local->exec_mode != 3)
+            {
+                ret = 1;
+                continue;
+            }
+        }
 
-         switch (cur_proc_local->exec_mode)
-         {
-             case EXEC_PROCESS_SLEEPING:
-                 ret = 1;
-                 if (cur_proc_local->sleep_time <= 0)
-                 {
-                     continue;
-                 }
-                 if ((cur_proc_local->sleep_time -= time) > 0)
-                 {
-                     continue;
-                 }
-                 else
-                 {
-                     cur_proc_local->sleep_time = 0;
-                     cur_proc_local->exec_mode = EXEC_PROCESS_DEFAULT;
-                 }
-                 break;
+        switch (cur_proc_local->exec_mode)
+        {
+            case EXEC_PROCESS_SLEEPING:
+                if (cur_proc_local->sleep_time > 0 && (cur_proc_local->sleep_time -= time) <= 0)
+                {
+                    cur_proc_local->sleep_time = 0;
+                    cur_proc_local->exec_mode = EXEC_PROCESS_DEFAULT;
+                }
+                ret = 1;
+                break;
 
-             case EXEC_PROCESS_WATCH:
-                 if (cur_proc_local->oldest_child != 0)
-                 {
-                     ret = 1;
-                 }
-                 else
-                 {
-                     cur_proc_local->exec_mode = EXEC_PROCESS_DEFAULT;
-                     ret = 1;
-                 }
-                 break;
+            case EXEC_PROCESS_WATCH:
+                if (cur_proc_local->oldest_child != 0)
+                {
+                    ret = 1;
+                }
+                else
+                {
+                    cur_proc_local->exec_mode = EXEC_PROCESS_DEFAULT;
+                    ret = 0;
+                }
+                break;
 
-             case EXEC_PROCESS_DEAD:
-                 cur_proc_local->prc_jump.func = HuPrcExit;
+            case EXEC_PROCESS_DEAD:
+                cur_proc_local->prc_jump.func = HuPrcExit;
 
-             case 0:
-                 longjmp(&cur_proc_local->prc_jump, 1);
-                 break;
-         }
-     }
- }
-#else
-INCLUDE_ASM(s32, "process", HuPrcCall);
-#endif
+            case 0:
+                longjmp(&cur_proc_local->prc_jump, 1);
+                break;
+        }
+    }
+}
 
 void * HuPrcAllocMem(s32 size)
 {

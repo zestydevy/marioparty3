@@ -5,3 +5,5 @@ process_jmp_buf = 0x800BBA30;
 top_process = 0x800BBA8C;
 current_process = 0x800BBA90;
 process_count = 0x800BBA94;
+
+sPrcSleepLoc = 0x800D20A8;

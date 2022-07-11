@@ -5,7 +5,7 @@
 
 typedef struct jump_buf
 {
-    void *sp;
+    u32 * sp;
     void *func;
     u32 regs[21];
 } jmp_buf;
