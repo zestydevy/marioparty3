@@ -7,7 +7,8 @@
 typedef enum
 {
     DIR_COMMON = 0,
-    DIR_MARIO = 2,
+    DIR_ACT_TEST,
+    DIR_MARIO,
     DIR_LUIGI,
     DIR_YOSHI,
     DIR_WARIO,
