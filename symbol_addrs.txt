@@ -41,6 +41,11 @@ HuReadFile = 0x80009C10;
 HuDecodeFilePerm = 0x80009D4C;
 HuDecodeFileTemp = 0x80009DA8;
 
+HuDecodeNone = 0x8000A230;
+HuDecodeLZ = 0x8000A2CC;
+HuDecodeSlide = 0x8000A53C;
+HuDecodeFslide = 0x8000A9E8;
+HuDecodeRLE = 0x8000AE64;
 HuDecode = 0x8000B000;
 
 HuPrcSysInit = 0x8004EB20;
