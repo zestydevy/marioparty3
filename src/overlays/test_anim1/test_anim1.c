@@ -14,8 +14,8 @@ s32 func_80047620_48220(s32, s32, s32, s32, s32*);            /* extern */
 void func_80047B38_48738(s32, s32);                      /* extern */
 void func_8004DEC8_4EAC8(s16);                         /* extern */
 void func_80106D7C_3D505C();                           /* extern */
-extern u16 D_800A1760;
-extern s16 D_800A1786;
+extern u16 D_800A1760_A2360;
+extern s16 D_800A1786_A2386;
 extern s8 D_800CD280;
 extern void func_8004B340_4BF40;
 extern void func_80105B38_3D3E18;
@@ -30,10 +30,10 @@ void func_801059A0_3D3C80(void)
     HuObjInit(0x33, 0);
     func_80047B38_48738(func_80047620_48220(0x7FDA, 0, 0, -1, &func_8004B340_4BF40), 0xA0);
     
-    if (D_800A1760 != 0) {
-        D_800A1760 = 0;
-        func_8004DEC8_4EAC8(D_800A1786);
-        D_800A1786 = -1;
+    if (D_800A1760_A2360 != 0) {
+        D_800A1760_A2360 = 0;
+        func_8004DEC8_4EAC8(D_800A1786_A2386);
+        D_800A1786_A2386 = -1;
     }
     func_80047620_48220(0x2710, 0, 0, -1, &func_80106DF8_3D50D8);
     func_80019490_1A090(3);

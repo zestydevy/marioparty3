@@ -2,6 +2,9 @@
 #include "rom.h"
 #include "decode.h"
 
+u8 D_800ABFF0[1024]; // src copy
+u8 D_800AC3F0[1024]; // window
+
 void HuDecodeNone(struct decode_struct * decode)
 {
     s32 copyLen;
@@ -22,7 +25,75 @@ void HuDecodeNone(struct decode_struct * decode)
     }
 }
 
-INCLUDE_ASM(void, "decode", HuDecodeLZ, struct decode_struct * decode);
+ void HuDecodeLZ(struct decode_struct * decode)
+ {
+    u16 flag = 0;
+    u16 windowPos = 958;
+    s32 winTemp;
+    s32 i;
+    s32 byte1;
+    s32 byte2;
+    s32 copyPos;
+    s32 len;
+    s32 copyVal;
+    u8 temp;
+
+    bzero(&D_800AC3F0, 1024);
+
+    while (decode->len) {
+        flag = flag >> 1;
+        if ((flag & 0x100) == 0) {
+            if (decode->chunkLen >= 1024) {
+                HuRomDmaRead(decode->src, &D_800ABFF0, 1024);
+                decode->src += 1024;
+                decode->chunkLen = 0;
+            }
+            byte1 = D_800ABFF0[decode->chunkLen++];
+
+            flag = 0xFF00 | (byte1 & 0xFF);
+        }
+        if ((flag & 0x1)) {
+            u32 read_val;
+            if (decode->chunkLen >= 1024) {
+                HuRomDmaRead(decode->src, &D_800ABFF0, 1024);
+                decode->src += 1024;
+                decode->chunkLen = 0;
+            }
+            read_val = D_800ABFF0[decode->chunkLen++];
+            D_800AC3F0[windowPos++] = *(decode->dest++) = read_val;
+            windowPos &= 0x3FF;
+            decode->len--;
+        }
+        else {
+            if (decode->chunkLen >= 1024) {
+                HuRomDmaRead(decode->src, &D_800ABFF0, 1024);
+                decode->src += 1024;
+                decode->chunkLen = 0;
+            }
+            byte1 = D_800ABFF0[decode->chunkLen++];
+
+            if (decode->chunkLen >= 1024) {
+                HuRomDmaRead(decode->src, &D_800ABFF0, 1024);
+                decode->src += 1024;
+                decode->chunkLen = 0;
+            }
+            len = D_800ABFF0[decode->chunkLen++];
+
+            byte1 = byte1 | ((len & 0xC0) << 2);
+            len = 3 + (len & 0x3F);
+
+            for (i = 0; i < len; i++) {
+                {
+                    winTemp = windowPos++;
+                    *(decode->dest++) = (copyVal = D_800AC3F0[(byte1 + i) & 0x3FF]);
+                    D_800AC3F0[winTemp] = copyVal;
+                    windowPos &= 0x3FF;
+                }
+            }
+            decode->len -= i;
+        }
+    }
+}
 
 void HuDecodeSlide(struct decode_struct * decode)
 {
@@ -118,6 +189,7 @@ void HuDecodeSlide(struct decode_struct * decode)
         else {
             {
                 u32 back, back2, count;
+                u16 back3;
                 u8 *ptr;
 
                 // Interpret the next two bytes as a distance to travel backwards and a
@@ -136,10 +208,10 @@ void HuDecodeSlide(struct decode_struct * decode)
                 }
                 back2 = D_800ABFF0[decode->chunkLen++];
 
-                back2 = (back << 8) + (back2 & 0xFFFFFFFFFFFFFFFF); // Unlikely, but matching.
+                back3 = (back << 8) + back2;
                 count = (back << 8) >> 12;
-                back2 &= 0xFFF;
-                ptr = decode->dest - back2;
+                back3 &= 0xFFF;
+                ptr = decode->dest - back3;
                 if (count == 0) {
                     if (decode->chunkLen >= 1024) {
                         HuRomDmaRead(decode->src, &D_800ABFF0, 1024);
@@ -268,6 +340,7 @@ void HuDecodeFslide(struct decode_struct *decode)
         else {
             {
                 u32 back, back2, count;
+                u16 back3;
                 u8 *ptr;
 
                 // Interpret the next two bytes as a distance to travel backwards and a
@@ -286,10 +359,10 @@ void HuDecodeFslide(struct decode_struct *decode)
                 }
                 back2 = D_800ABFF0[decode->chunkLen++];
 
-                back2 = (back << 8) + (back2 & 0xFFFFFFFFFFFFFFFF); // Unlikely, but matching.
+                back3 = (back << 8) + back2;
                 count = (back << 8) >> 12;
-                back2 &= 0xFFF;
-                ptr = decode->dest - back2;
+                back3 &= 0xFFF;
+                ptr = decode->dest - back3;
                 if (count == 0) {
                     if (decode->chunkLen >= 1024) {
                         HuRomDmaRead(decode->src, &D_800ABFF0, 1024);

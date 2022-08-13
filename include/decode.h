@@ -21,8 +21,8 @@ struct decode_struct {
     u32 len;
 };
 
-extern u8 D_800ABFF0[1024]; // src copy
-extern u8 D_800AC3F0[1024]; // window
+extern u8 sSrcCopy[1024]; // src copy
+extern u8 sWindow[1024]; // window
 
 void HuDecodeNone(struct decode_struct * decode);
 void HuDecodeLZ(struct decode_struct * decode);
