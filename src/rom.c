@@ -24,7 +24,7 @@ s32 HuStartDma(OSIoMesg * msg, u8 pri, s32 direction, u32 src, void * dest, u32 
     return osEPiStartDma(D_800CDD50, msg, direction);
 }
 
-s32 HuRomDmaRead(u32 src, void * dest, s32 size)
+s32 HuRomDmaRead(void * src, void * dest, s32 size)
 {
     OSIoMesg msg;
     s32 var_s1;
@@ -54,7 +54,7 @@ s32 HuRomDmaRead(u32 src, void * dest, s32 size)
     return err;
 }
 
-s32 HuRomDmaCodeRead(u32 src, void * dest, s32 size)
+s32 HuRomDmaCodeRead(void * src, void * dest, s32 size)
 {
     OSIoMesg msg;
     s32 var_s1;

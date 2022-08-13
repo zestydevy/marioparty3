@@ -346,12 +346,12 @@ segments:
     - [0x8F830, asm]
     - [0x8FB20, asm]
 
-    # Separating out the data/rodata into another segment since it
+  # Separating out the data/rodata into another segment since it
   # seems to be subaligned by 8 in some cases.
   - type: code
     start: 0x8FCF0
     vram: 0x8008F0F0
-    subalign: 16
+    subalign: 8
     subsegments:
     - [0x8FCF0, bin]
     - [0x96EF0, data, "BCA0"]
@@ -362,7 +362,7 @@ segments:
     vram: 0x800A6990
     subalign: 8
     subsegments:
-    - [0xA7590, bin, "decode"] # rodata
+    - [0xA7590, .rodata, "decode"] # rodata
     - [0xA75A8, bin]
 
   - dir: overlays/shared_overlay130
@@ -1379,8 +1379,7 @@ segments:
       - [0x3D7180, asm,"intro"]
       - [0x3D7690, data, "intro_main"]
       - [0x3D76B0, bin, "intro"]
-      - [0xDEADBEEF]
-      - [auto, all_bss]
+      #- [auto, all_bss]
 
   - dir: overlays/test_save1
     type: code

@@ -21,7 +21,6 @@ struct decode_struct {
     u32 len;
 };
 
-
 void HuDecodeNone(struct decode_struct * decode);
 void HuDecodeLZ(struct decode_struct * decode);
 void HuDecodeSlide(struct decode_struct * decode);
