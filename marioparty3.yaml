@@ -29,6 +29,7 @@ segments:
   - type: code
     start: 0x1000
     vram: 0x80000400
+    subalign: 8
     subsegments:
     - [0x1000, hasm]
     - [0x1060, asm]
@@ -345,23 +346,10 @@ segments:
     - [0x8F7D0, asm]
     - [0x8F830, asm]
     - [0x8FB20, asm]
-
-  # Separating out the data/rodata into another segment since it
-  # seems to be subaligned by 8 in some cases.
-  - type: code
-    start: 0x8FCF0
-    vram: 0x8008F0F0
-    subalign: 8
-    subsegments:
     - [0x8FCF0, bin]
     - [0x96EF0, data, "BCA0"]
     - [0x98260, bin]
     - [0x98310, bin]
-  - type: code
-    start: 0xA7590
-    vram: 0x800A6990
-    subalign: 8
-    subsegments:
     - [0xA7590, .rodata, "decode"] # rodata
     - [0xA75A8, bin]
 
