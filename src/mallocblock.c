@@ -217,7 +217,6 @@ void func_80019E40_1AA40(void * arg0, s16 arg1)
     var_v1->unk6 = arg1;
 }
 
-extern s8 D_800A6BB8_A77B8[];
 s32 func_80019E84_1AA84(void)
 {
     HuMallocHeader * var_a0;
