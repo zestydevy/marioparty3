@@ -29,7 +29,7 @@ segments:
   - type: code
     start: 0x1000
     vram: 0x80000400
-    subalign: 8
+    subalign: 4
     subsegments:
     - [0x1000, hasm]
     - [0x1060, asm]
@@ -53,7 +53,7 @@ segments:
     - [0x14EA0, asm]
     - [0x19C30, asm]
     - [0x1A580, c, mallocblock]
-    - [0x1AD50, asm, hmfman]
+    - [0x1AC70, asm, hmfman]
     - [0x20A20, asm]
     - [0x22EB0, asm]
     - [0x30C40, asm]
@@ -352,6 +352,8 @@ segments:
     - [0x98310, bin]
     - [0xA7590, .rodata, decode] # rodata
     - [0xA75A8, bin]
+    - [0xA77B8, .rodata, mallocblock]
+    - [0xA77BC, bin]
 
   - dir: overlays/shared_overlay130
     type: code

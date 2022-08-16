@@ -5,11 +5,11 @@
 
 struct heap_node
 {
-    s32 size;
-    u8 heap_constant;
-    u8 used; // bool
-    struct heap_node *prev;
-    struct heap_node *next;
+    s32 size;                   // 0000
+    u8 heap_constant;           // 0004
+    u8 used; // bool            // 0005
+    struct heap_node *prev;     // 0008
+    struct heap_node *next;     // 000C
 };
 
 void * HuMemHeapInit(void *ptr, u32 size);
