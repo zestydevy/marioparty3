@@ -1,101 +1,102 @@
 #include "common.h"
 #include "mallocblock.h"
 
-void func_80019980_1A580(HuAllocFunc malloc, HuFreeFunc free)
+void HuMemInit(HuAllocFunc malloc, HuFreeFunc free)
 {
-    HuMallocHeader * temp_v0;
+    HuMallocHeader * newBlock;
 
-    D_800D556C = malloc;
-    D_800D135C = free;
+    gMallocFunc = malloc;
+    gFreeFunc = free;
     
-    if (D_800A08A0_A14A0 != 0) {
-        func_80019CEC_1A8EC();
+    if (gHuMemIsDirty) {
+        HuMemFreeAll();
     }
     
-    temp_v0 = D_800D556C(sizeof(HuMallocHeader));
-    D_800D03F4 = temp_v0;
-    D_800D6B68 = temp_v0;
+    newBlock = gMallocFunc(sizeof(HuMallocHeader));
+    gLastMallocBlock = newBlock;
+    gFirstMallocBlock = newBlock;
     
-    temp_v0->data = NULL;
-    temp_v0->unk6 = -1;
-    temp_v0->prev = temp_v0;
-    temp_v0->next = temp_v0;
+    newBlock->data = NULL;
+    newBlock->tag = -1;
+    newBlock->prev = newBlock;
+    newBlock->next = newBlock;
     
     D_800C993C = 0;
 }
 
-void func_800199F8_1A5F8(s32 arg0) {
-    func_80019A14_1A614(arg0, 0);
+void HuMemAlloc(s32 size) {
+    HuMemAllocTag(size, 0);
 }
 
-void * func_80019A14_1A614(s32 size, s16 arg1)
+void * HuMemAllocTag(s32 size, s16 tag)
 {
-    s32 temp_s0;
-    HuMallocHeader * temp_a1;
-    HuMallocHeader * temp_v0;
-    HuMallocHeader * temp_v1;
+    s32 alignedSize;
+    void * data;
+    HuMallocHeader * firstBlk;
+    HuMallocHeader * newBlk;
 
-    temp_s0 = (size + 7) & ~7;
-    temp_v0 = D_800D556C(temp_s0 + (s32)sizeof(HuMallocHeader));
-    temp_v1 = (HuMallocHeader *)((s32)temp_v0 + temp_s0);
+    alignedSize = (size + 7) & ~7;
+    data = gMallocFunc(alignedSize + sizeof(HuMallocHeader));
+    newBlk = (HuMallocHeader *)((s32)data + alignedSize);
     
-    temp_a1 = D_800D6B68;
+    firstBlk = gFirstMallocBlock;
     
-    temp_v1->prev = temp_a1;
-    temp_v1->next = temp_a1->next;
-    temp_a1->next->prev = temp_v1;
-    temp_a1->next = temp_v1;
+    newBlk->prev = firstBlk;
+    newBlk->next = firstBlk->next;
+    firstBlk->next->prev = newBlk;
+    firstBlk->next = newBlk;
     
-    temp_v1->unk6 = arg1;
-    temp_v1->size = temp_s0;
-    temp_v1->data = temp_v0;
-    temp_v1->unkC = D_800D20AC;
+    newBlk->tag = tag;
+    newBlk->size = alignedSize;
+    newBlk->data = data;
+    newBlk->unkC = D_800D20AC;
     
-    return temp_v1->data;
+    return newBlk->data;
 }
 
-void func_80019A98_1A698(void * arg0)
+void HuMemFree(void * data)
 {
-    HuMallocHeader * var_a0 = D_800D6B68->next;
-    while (arg0 != var_a0->data)
+    HuMallocHeader * block = gFirstMallocBlock->next;
+    while (data != block->data)
     {
-        var_a0 = var_a0->next;
-        if (var_a0 == D_800D03F4) {
+        block = block->next;
+        if (block == gLastMallocBlock) {
             return;
         } 
     }
-    func_80019AF0_1A6F0(var_a0);
+    HuMemBlockFree(block);
 }
 
-void func_80019AF0_1A6F0(HuMallocHeader * block)
+void HuMemBlockFree(HuMallocHeader * block)
 {
-    D_800D1238 = block;
+    gLastFreedBlock = block;
 
     block->next->prev = block->prev;
     block->prev->next = block->next;
 
-    D_800D135C(block->data);
+    gFreeFunc(block->data);
 }
 
-void func_80019B34_1A734(s16 arg0)
+void HuMemFreeAllWithTag(s16 tag)
 {
-    s16 temp_v0;
-    HuMallocHeader * temp_s0;
-    HuMallocHeader * temp_s0_2;
-    HuMallocHeader * var_a0;
+    HuMallocHeader * prevBlk;
+    HuMallocHeader * block;
 
-    for (var_a0 = D_800D6B68->next; var_a0 != D_800D03F4; var_a0 = var_a0->next) {
-        temp_v0 = var_a0->unk6;
-        if (temp_v0 == arg0) {
-            if (temp_v0 != -1) {
-                temp_s0 = var_a0->prev;
-                func_80019AF0_1A6F0(var_a0);
-                var_a0 = temp_s0;
+    for (block = gFirstMallocBlock->next; block != gLastMallocBlock; block = block->next)
+    {
+        if (block->tag == tag)
+        {
+            if (block->tag != -1) {
+                prevBlk = block->prev;
+                HuMemBlockFree(block);
+                block = prevBlk;
             } else {
-                if (--var_a0->unk4 == 0) {
-                    temp_s0_2 = var_a0->prev;
-                    func_80019AF0_1A6F0(var_a0);
-                    var_a0 = temp_s0_2;
+                if (--block->unk4 == 0) 
+                {
+                    prevBlk = block->prev;
+                    HuMemBlockFree(block);
+                    block = prevBlk;
+                    
                     if (--D_800C993C <= 0) {
                         break;
                     }
@@ -105,155 +106,154 @@ void func_80019B34_1A734(s16 arg0)
     }
 }
 
-void func_80019C00_1A800(void * arg0)
+void func_80019C00_1A800(void * data)
 {
-    HuMallocHeader * var_v1;
+    HuMallocHeader * block;
 
-    var_v1 = D_800D6B68->next;
-    while (arg0 != var_v1->data) {
-        var_v1 = var_v1->next;
-         if (var_v1 == D_800D03F4) { 
+    block = gFirstMallocBlock->next;
+    while (data != block->data) {
+        block = block->next;
+         if (block == gLastMallocBlock) { 
             return;    
         }
     }
 
-    var_v1->unk6 = -1;
-    var_v1->unk4 = D_800D1FF0 + 1;
+    block->tag = -1;
+    block->unk4 = D_800D1FF0 + 1;
     
     ++D_800C993C;
 }
 
 void func_80019C68_1A868(s16 arg0)
 {
-    HuMallocHeader * var_v1;
+    HuMallocHeader * block;
 
-    var_v1 = D_800D6B68->next;
-    while (var_v1 != D_800D03F4) {
-        if (var_v1->unk6 == arg0) {
-            var_v1->unk6 = -1;
-            var_v1->unk4 = D_800D1FF0 + 1;
+    block = gFirstMallocBlock->next;
+    while (block != gLastMallocBlock) 
+    {
+        if (block->tag == arg0) {
+            block->tag = -1;
+            block->unk4 = D_800D1FF0 + 1;
             ++D_800C993C;
         }
-        var_v1 = var_v1->next;
+        block = block->next;
     }
 }
 
-void func_80019CDC_1A8DC(void) {
-    D_800A08A0_A14A0 = 1;
+void HuMemSetDirty(void) {
+    gHuMemIsDirty = TRUE;
 }
 
-void func_80019CEC_1A8EC(void)
+void HuMemFreeAll(void)
 {
-    HuMallocHeader * temp_s0;
-    HuMallocHeader * var_a0;
+    HuMallocHeader * prevBlk;
+    HuMallocHeader * block;
 
-    var_a0 = D_800D6B68->next;
-    while (var_a0 != D_800D03F4)
+    block = gFirstMallocBlock->next;
+    while (block != gLastMallocBlock)
     {
-        temp_s0 = var_a0->prev;
-        func_80019AF0_1A6F0(var_a0);
-        var_a0 = temp_s0->next;
+        prevBlk = block->prev;
+        HuMemBlockFree(block);
+        block = prevBlk->next;
     }
     
-    D_800D135C((void *)D_800D03F4);
+    gFreeFunc((void *)gLastMallocBlock);
     
     D_800C993C = 0;
-    D_800A08A0_A14A0 = 0;
+    gHuMemIsDirty = FALSE;
 }
 
-void func_80019D64_1A964(void)
+void HuMemCleanUp(void)
 {
-    if (D_800A08A0_A14A0 != 0) {
-        func_80019CEC_1A8EC();
+    if (gHuMemIsDirty) {
+        HuMemFreeAll();
     }
     else if (D_800C993C != 0) {
-        func_80019B34_1A734(-1);
+        HuMemFreeAllWithTag(-1);
     }
 }
 
-s32 func_80019DB0_1A9B0(s16 arg0)
+s32 HuMemGetSizeTag(s16 tag)
 {
-    HuMallocHeader * var_v1;
-    s32 var_a1;
+    HuMallocHeader * block;
+    s32 size;
 
-    var_v1 = D_800D6B68->next;
-    var_a1 = 0;
-    while (var_v1 != D_800D03F4) {
-        if (var_v1->unk6 == arg0) {
-            var_a1 += var_v1->size;
+    block = gFirstMallocBlock->next;
+    size = 0;
+    while (block != gLastMallocBlock) {
+        if (block->tag == tag) {
+            size += block->size;
         }
-        var_v1 = var_v1->next;
+        block = block->next;
     }
-    return var_a1;
+    return size;
 }
 
-s32 func_80019E04_1AA04(void)
+s32 HuMemGetSize(void)
 {
-    HuMallocHeader * var_v1;
-    s32 temp_v0;
-    s32 var_a0;
+    HuMallocHeader * block;
+    s32 size;
 
-    var_v1 = D_800D6B68->next;
-    var_a0 = 0;
-    while (var_v1 != D_800D03F4) {
-        temp_v0 = var_v1->size;
-        var_v1 = var_v1->next;
-        var_a0 += temp_v0;
+    block = gFirstMallocBlock->next;
+    size = 0;
+    while (block != gLastMallocBlock) {
+        size += block->size;
+        block = block->next;
     }
-    return var_a0;
+    return size;
 }
 
-void func_80019E40_1AA40(void * arg0, s16 arg1)
+void HuMemSetTag(void * data, s16 tag)
 {
-    HuMallocHeader * var_v1;
+    HuMallocHeader * block;
 
-    var_v1 = D_800D6B68->next;
-    while (arg0 != var_v1->data) {
-        var_v1 = var_v1->next;
-        if (var_v1 == D_800D03F4) {
+    block = gFirstMallocBlock->next;
+    while (data != block->data) {
+        block = block->next;
+        if (block == gLastMallocBlock) {
             return;
         }
     }
-    var_v1->unk6 = arg1;
+    block->tag = tag;
 }
 
-s32 func_80019E84_1AA84(void)
+s32 HuMemDebugCheck(void)
 {
-    HuMallocHeader * var_a0;
-    s16 var_s0;
-    s16 var_s1;
+    HuMallocHeader * block;
+    s16 i;
+    s16 count;
     s16 var_v1;
-    s32 var_s2;
+    s32 size;
 
-    var_a0 = D_800D6B68->next;
-    var_s2 = 0;
-    var_s1 = 0;
-    while (var_a0 != D_800D03F4)
+    block = gFirstMallocBlock->next;
+    size = 0;
+    count = 0;
+    while (block != gLastMallocBlock)
     {
-        D_800C9950[var_s1] = var_a0->data;
-        var_s2 += var_a0->size;
-        var_a0 = var_a0->next;
-        var_s1++;
+        D_800C9950[count] = block->data;
+        size += block->size;
+        block = block->next;
+        count++;
     }
 
-    if ((D_800A08A2_A14A2 != 0) && (D_800A08A2_A14A2 != var_s1)) {
-        for (var_s0 = 0; var_s0 < var_s1; var_s0++) 
+    if ((D_800A08A2_A14A2 != 0) && (D_800A08A2_A14A2 != count)) {
+        for (i = 0; i < count; i++) 
         {
             for (var_v1 = 0; var_v1 < D_800A08A2_A14A2; var_v1++) 
             {
-                if (D_800D2140[var_v1] == D_800C9950[var_s0]) 
+                if (D_800D2140[var_v1] == D_800C9950[i]) 
                     break;
             }
             if (var_v1 == D_800A08A2_A14A2) {
-                osSyncPrintf("%x\n", D_800C9950[var_s0]);
+                osSyncPrintf("%x\n", D_800C9950[i]);
             }
         }
     }
 
-    D_800A08A2_A14A2 = var_s1;
-    for (var_s0 = 0; var_s0 < var_s1; var_s0++) 
+    D_800A08A2_A14A2 = count;
+    for (i = 0; i < count; i++) 
     {
-        D_800D2140[var_s0] = D_800C9950[var_s0];
+        D_800D2140[i] = D_800C9950[i];
     }
-    return var_s2;
+    return size;
 }

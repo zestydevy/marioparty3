@@ -143,7 +143,7 @@ void * func_80009E04_AA04(s32 type, s32 index, s16 arg2) {
     void * temp_v0;
 
     func_80009B64_A764(type, index, &sp10);
-    temp_v0 = func_80019A14_1A614((sp10.size + 1) & ~1, arg2);
+    temp_v0 = HuMemAllocTag((sp10.size + 1) & ~1, arg2);
     if (temp_v0 != 0) {
         HuDecode(sp10.file_bytes, temp_v0, sp10.size, sp10.compression_type);
     }

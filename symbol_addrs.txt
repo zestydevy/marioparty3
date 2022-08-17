@@ -1,3 +1,17 @@
+HuMemInit = 0x80019980;
+HuMemAlloc = 0x800199F8;
+HuMemAllocTag = 0x80019A14;
+HuMemFree = 0x80019A98;
+HuMemBlockFree = 0x80019AF0;
+HuMemFreeAllWithTag = 0x80019B34;
+HuMemSetDirty = 0x80019CDC;
+HuMemFreeAll = 0x80019CEC;
+HuMemCleanUp = 0x80019D64;
+HuMemGetSizeTag = 0x80019DB0;
+HuMemGetSize = 0x80019E04;
+HuMemSetTag = 0x80019E40;
+HuMemDebugCheck = 0x80019E84;
+
 HuPrcSleep = 0x8004F010;
 HuPrcVSleep = 0x8004F074;
 InitEspriteSlot = 0x8000BFEC;
@@ -193,3 +207,11 @@ __osEnqueueAndYield = 0x8008061C;
 __osPopThread = 0x80080774;
 __osDisableInt = 0x80080940;
 __osRestoreInt = 0x800809B0;
+
+gHuMemIsDirty = 0x800A08A0;
+
+gLastMallocBlock = 0x800D03F4;
+gFreeFunc = 0x800D135C;
+gLastFreedBlock = 0x800D1238;
+gMallocFunc = 0x800D556C;
+gFirstMallocBlock = 0x800D6B68;
