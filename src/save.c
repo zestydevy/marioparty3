@@ -1,0 +1,49 @@
+#include "common.h"
+
+INCLUDE_ASM(s32, "save", func_80035A50_36650);
+
+INCLUDE_ASM(s32, "save", func_80035AA8_366A8);
+
+INCLUDE_ASM(s32, "save", func_80035AB4_366B4);
+
+INCLUDE_ASM(s32, "save", func_80035B2C_3672C);
+
+INCLUDE_ASM(s32, "save", func_80035B80_36780);
+
+INCLUDE_ASM(s32, "save", func_80035BD8_367D8);
+
+INCLUDE_ASM(s32, "save", func_80035C20_36820);
+
+INCLUDE_ASM(s32, "save", func_80035C6C_3686C);
+
+INCLUDE_ASM(s32, "save", func_80035C84_36884);
+
+INCLUDE_ASM(s32, "save", func_80035C90_36890);
+
+INCLUDE_ASM(s32, "save", func_80035CF8_368F8);
+
+INCLUDE_ASM(s32, "save", func_80035D1C_3691C);
+
+INCLUDE_ASM(s32, "save", func_80035DA4_369A4);
+
+INCLUDE_ASM(s32, "save", func_80035E3C_36A3C);
+
+INCLUDE_ASM(s32, "save", func_80035E60_36A60);
+
+INCLUDE_ASM(s32, "save", func_80035E88_36A88);
+
+INCLUDE_ASM(s32, "save", func_80035EB0_36AB0);
+
+INCLUDE_ASM(s32, "save", func_80035EF4_36AF4);
+
+INCLUDE_ASM(s32, "save", func_80035F44_36B44);
+
+INCLUDE_ASM(s32, "save", func_80035F98_36B98);
+
+INCLUDE_ASM(s32, "save", func_80035FDC_36BDC);
+
+INCLUDE_ASM(s32, "save", func_8003602C_36C2C);
+
+INCLUDE_ASM(s32, "save", func_80036080_36C80);
+
+INCLUDE_ASM(s32, "save", func_800360B8_36CB8);
