@@ -1,0 +1,5 @@
+#include "common.h"
+
+INCLUDE_ASM(s32, "8EFF0", func_8008E3F0_8EFF0);
+
+INCLUDE_ASM(s32, "8EFF0", func_8008E5A0_8F1A0);

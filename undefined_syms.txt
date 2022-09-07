@@ -7,3 +7,5 @@ current_process = 0x800BBA90;
 process_count = 0x800BBA94;
 
 sPrcSleepLoc = 0x800D20A8;
+
+guLookAtF = 0x80088210;
