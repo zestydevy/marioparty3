@@ -59,7 +59,7 @@ void func_80009AC0_A6C0(u32 fsRomPtr)
     D_800ABFD4 = D_800ABFC8;
 }
 
-void func_80009B64_A764(s32 type, s32 index, struct mainfs_entry_info * info)
+void func_80009B64_A764(s32 type, s32 index, HuFileInfo * info)
 {
     struct mainfs_table_header * mainfs_table_header;
 
@@ -104,15 +104,49 @@ void * HuReadFile(s32 dirAndFile)
     return NULL;
 }
 
-INCLUDE_ASM(s32, "data", func_80009C74_A874);
+void * func_80009C74_A874(s32 dirAndFile)
+{
+    u32 dir;
+    u32 file;
 
-INCLUDE_ASM(s32, "data", func_80009CD8_A8D8);
+    dir = dirAndFile >> 16;
+    file = dirAndFile & 0xFFFF;
+
+    if (dir < D_800ABFC4) {
+        func_80009EAC_AAAC(0x2F, dir);
+
+        if (file < D_800ABFD0) {
+            return HuDecodeFileTemp(0x2E, file);
+        }
+    }
+
+    return NULL;
+}
+
+void * func_80009CD8_A8D8(s32 dirAndFile, s32 tag)
+{
+    s32 dir;
+    u32 file;
+
+    dir = dirAndFile >> 16;
+    file = dirAndFile & 0xFFFF;
+
+    if ((u32)dir < (u32)D_800ABFC4) {
+        func_80009EAC_AAAC(0x2F, dir);
+
+        if (file < (u32)D_800ABFD0) {
+            return func_80009E04_AA04(0x2E, file, tag);
+        }
+    }
+
+    return NULL;
+}
 
 /**
  * Read file, allocate space in perm heap, decode it.
  */
 void * HuDecodeFilePerm(s32 type, s32 index) {
-    struct mainfs_entry_info info;
+    HuFileInfo info;
     void * ret;
 
     func_80009B64_A764(type, index, &info);
@@ -127,7 +161,7 @@ void * HuDecodeFilePerm(s32 type, s32 index) {
  * Read file, allocate space in temp heap, decode it.
  */
 void * HuDecodeFileTemp(s32 type, s32 index) {
-    struct mainfs_entry_info info;
+    HuFileInfo info;
     void * ret;
 
     func_80009B64_A764(type, index, &info);
@@ -138,21 +172,31 @@ void * HuDecodeFileTemp(s32 type, s32 index) {
     return ret;
 }
 
-void * func_80009E04_AA04(s32 type, s32 index, s16 arg2) {
-    struct mainfs_entry_info sp10;
+void * func_80009E04_AA04(s32 type, s32 index, s32 tag) {
+    HuFileInfo sp10;
     void * temp_v0;
 
     func_80009B64_A764(type, index, &sp10);
-    temp_v0 = HuMemAllocTag((sp10.size + 1) & ~1, arg2);
+    temp_v0 = HuMemAllocTag((sp10.size + 1) & ~1, tag);
     if (temp_v0 != 0) {
         HuDecode(sp10.file_bytes, temp_v0, sp10.size, sp10.compression_type);
     }
     return temp_v0;
 }
 
-INCLUDE_ASM(s32, "data", func_80009E6C_AA6C);
+void func_80009E6C_AA6C(void * arg0)
+{
+    if (arg0 != NULL) {
+        HuMemMemoryFreePerm(arg0);
+    }
+}
 
-INCLUDE_ASM(s32, "data", func_80009E8C_AA8C);
+void func_80009E8C_AA8C(void * arg0)
+{
+    if (arg0 != NULL) {
+        HuMemMemoryFreePerm(arg0);
+    }
+}
 
 typedef struct
 {
@@ -187,12 +231,80 @@ void func_80009EAC_AAAC(s32 arg1, s32 arg2)
     }
 }
 
-INCLUDE_ASM(s32, "data", func_80009F64_AB64);
+HuFileInfoD * func_80009F64_AB64(s32 type, s32 index)
+{
+    HuFileInfo info;
+    HuFileInfoD * dataInfo; // ! - deprecated
 
-INCLUDE_ASM(s32, "data", func_80009FF8_ABF8);
+    dataInfo = HuMemMemoryAllocPerm(sizeof(HuFileInfoD));
+    if (dataInfo == NULL) return NULL;
 
-INCLUDE_ASM(s32, "data", func_8000A028_AC28);
+    func_80009B64_A764(type, index, &info);
+    
+    dataInfo->size      = info.size;
+    dataInfo->compType  = info.compression_type;
+    dataInfo->block     = HuMemMemoryAllocPerm(0x400);
+    dataInfo->unkC      = 1;
+    dataInfo->unkE      = 0;
+    dataInfo->bytes     =
+    dataInfo->bytesCopy = info.file_bytes;
 
-INCLUDE_ASM(s32, "data", func_8000A0D4_ACD4);
+    return dataInfo;
+}
+
+void func_80009FF8_ABF8(HuFileInfoD * info)
+{
+    HuMemMemoryFreePerm(info->block);
+    HuMemMemoryFreePerm(info);
+}
+
+s32 func_8000A028_AC28(HuFileInfoD * info)
+{   
+    if (((info->bytesCopy - info->bytes) + info->unkE) >= info->size) {
+        return -1;
+    }
+
+    if (info->unkE >= 0x400) {
+        info->unkC = 1;
+        info->bytesCopy = (void* ) (info->unkE + info->bytesCopy);
+        info->unkE = 0;
+    }
+    
+    if (info->unkC != 0) {
+        info->unkC = 0;
+        HuRomDmaRead(info->bytesCopy, info->block, 0x400);
+    }
+    
+    return info->block[info->unkE++];
+}
+
+s32 func_8000A0D4_ACD4(s8 * arg0, s32 arg1, s32 arg2, HuFileInfoD * arg3)
+{
+    s32 temp_v0;
+    s8 * var_s1;
+
+    s32 i = 0;
+    s32 b = arg1 * arg2;
+    var_s1 = arg0;
+    
+    while (TRUE)
+    {
+        s32 temp_v0 = func_8000A028_AC28(arg3);
+
+        if (temp_v0 == -1) {
+            break;
+        }
+
+        *var_s1 = temp_v0;
+        ++i;
+
+        if (i >= b) {
+            break;
+        }
+
+        var_s1++;     
+    }
+    return i;
+}
 
 INCLUDE_ASM(s32, "data", func_8000A150_AD50);

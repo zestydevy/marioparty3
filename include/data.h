@@ -31,17 +31,30 @@ struct mainfs_table_header {
     s32 offsets[3]; // Enough to pad to size 16
 };
 
-struct mainfs_entry_info {
+typedef struct {
     u8 * file_bytes;
     s32 size;
     EDecodeType compression_type;
-};
+} HuFileInfo;
+
+// deprecated!!
+typedef struct
+{
+    s16 compType;
+    u32 size;
+    u8 * block;
+    s16 unkC;
+    s16 unkE;
+    void * bytes;
+    void * bytesCopy;
+} HuFileInfoD;
 
 void func_80009AC0_A6C0(u32 fsRomPtr);
-void func_80009B64_A764(s32 type, s32 index, struct mainfs_entry_info * info);
+void func_80009B64_A764(s32 type, s32 index, HuFileInfo * info);
 void * HuReadFile(s32 dirAndFile);
 void * HuDecodeFilePerm(s32 type, s32 index);
 void * HuDecodeFileTemp(s32 type, s32 index);
+void * func_80009E04_AA04(s32 type, s32 index, s32 tag);
 void func_80009EAC_AAAC(s32 arg1, s32 arg2);
 
 #endif
