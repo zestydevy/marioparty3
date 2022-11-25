@@ -5,64 +5,59 @@
 #include "data.h"
 #include "decode.h"
 
-extern u32 D_800ABFC0; // FS ROM location
-extern u32 D_800ABFC4; // Directory count
-extern s32 *D_800ABFC8; // Directory offset table pointer.
+// -----------------------------------------------------------------
 
-extern u32 D_800ABFCC; // FS ROM location (copy)
-extern u32 D_800ABFD0; // Directory count (copy)
-extern s32 *D_800ABFD4; // Directory offset table pointer (copy)
-
-extern struct mainfs_table_header D_800ABFE0;
-
-void func_80009AC0_A6C0(u32 fsRomPtr)
+void HuInitArchive(u32 fsRomPtr)
 {
     s32 dirTblSize;
-    struct mainfs_table_header *mainfs_table_header;
+    HuArchive * archiveHeader;
 
-    D_800ABFC0 = fsRomPtr;
-    mainfs_table_header = &D_800ABFE0;
+    gArchiveRomAddr = fsRomPtr;
+    archiveHeader = &gArchive;
 
-    HuRomDmaRead(fsRomPtr, mainfs_table_header, 16);
+    HuRomDmaRead(fsRomPtr, archiveHeader, 16);
 
-    D_800ABFC4 = mainfs_table_header->count;
-    dirTblSize = mainfs_table_header->count * 4;
-    D_800ABFC8 = (s32 *)HuMemMemoryAllocPerm(dirTblSize);
+    gArchiveDirCount = archiveHeader->count;
+    dirTblSize = archiveHeader->count * 4;
+    gArchiveTblAddr = (s32 *)HuMemMemoryAllocPerm(dirTblSize);
 
-    HuRomDmaRead(fsRomPtr + 4, D_800ABFC8, dirTblSize);
+    HuRomDmaRead(fsRomPtr + 4, gArchiveTblAddr, dirTblSize);
 
-    D_800ABFCC = D_800ABFC0;
-    D_800ABFD0 = D_800ABFC4;
-    D_800ABFD4 = D_800ABFC8;
+    gArchiveRomAddrCopy = gArchiveRomAddr;
+    gArchiveDirCountCopy = gArchiveDirCount;
+    gArchiveTblAddrCopy = gArchiveTblAddr;
 }
 
-void func_80009B64_A764(s32 type, s32 index, HuFileInfo * info)
-{
-    struct mainfs_table_header * mainfs_table_header;
+// -----------------------------------------------------------------
 
-    mainfs_table_header = &D_800ABFE0;
+void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info)
+{
+    HuArchive * archiveHeader;
+    archiveHeader = &gArchive;
 
     switch (type) {
-        case 0x2F:
-            info->file_bytes = (u8 *)D_800ABFC0 + D_800ABFC8[index];
+        case ARCHIVE_DIRECT:
+            info->bytes = (u8 *)gArchiveRomAddr + gArchiveTblAddr[index];
             break;
-        case 0x2E:
-            info->file_bytes = (u8 *)D_800ABFCC + D_800ABFD4[index];
+        case ARCHIVE_CACHED:
+            info->bytes = (u8 *)gArchiveRomAddrCopy + gArchiveTblAddrCopy[index];
             break;
     }
 
-    HuRomDmaRead(info->file_bytes, mainfs_table_header, 16);
+    HuRomDmaRead(info->bytes, archiveHeader, 16);
 
-    info->file_bytes += 8;
-    info->size = mainfs_table_header->count;
-    info->compression_type = mainfs_table_header->offsets[0];
+    info->bytes += 8;
+    info->size = archiveHeader->count;
+    info->compType = archiveHeader->offsets[0];
 }
+
+// -----------------------------------------------------------------
 
 /**
  * Reads a file from the main filesystem and decodes it.
  * File is in the permanent heap.
  */
-void * HuReadFile(s32 dirAndFile)
+void * HuReadFilePerm(s32 dirAndFile)
 {
     u32 dir;
     u32 file;
@@ -70,18 +65,20 @@ void * HuReadFile(s32 dirAndFile)
     dir = dirAndFile >> 16;
     file = dirAndFile & 0xFFFF;
 
-    if (dir < D_800ABFC4) {
-        func_80009EAC_AAAC(0x2F, dir);
+    if (dir < gArchiveDirCount) {
+        HuInitDirectory(ARCHIVE_DIRECT, dir);
 
-        if (file < D_800ABFD0) {
-            return HuDecodeFilePerm(0x2E, file);
+        if (file < gArchiveDirCountCopy) {
+            return HuDecodeFilePerm(ARCHIVE_CACHED, file);
         }
     }
 
     return NULL;
 }
 
-void * func_80009C74_A874(s32 dirAndFile)
+// -----------------------------------------------------------------
+
+void * HuReadFileTemp(s32 dirAndFile)
 {
     u32 dir;
     u32 file;
@@ -89,18 +86,20 @@ void * func_80009C74_A874(s32 dirAndFile)
     dir = dirAndFile >> 16;
     file = dirAndFile & 0xFFFF;
 
-    if (dir < D_800ABFC4) {
-        func_80009EAC_AAAC(0x2F, dir);
+    if (dir < gArchiveDirCount) {
+        HuInitDirectory(ARCHIVE_DIRECT, dir);
 
-        if (file < D_800ABFD0) {
-            return HuDecodeFileTemp(0x2E, file);
+        if (file < gArchiveDirCountCopy) {
+            return HuDecodeFileTemp(ARCHIVE_CACHED, file);
         }
     }
 
     return NULL;
 }
 
-void * func_80009CD8_A8D8(s32 dirAndFile, s32 tag)
+// -----------------------------------------------------------------
+
+void * HuReadFileTag(s32 dirAndFile, s32 tag)
 {
     s32 dir;
     u32 file;
@@ -108,72 +107,84 @@ void * func_80009CD8_A8D8(s32 dirAndFile, s32 tag)
     dir = dirAndFile >> 16;
     file = dirAndFile & 0xFFFF;
 
-    if ((u32)dir < (u32)D_800ABFC4) {
-        func_80009EAC_AAAC(0x2F, dir);
+    if (dir < gArchiveDirCount) {
+        HuInitDirectory(ARCHIVE_DIRECT, dir);
 
-        if (file < (u32)D_800ABFD0) {
-            return func_80009E04_AA04(0x2E, file, tag);
+        if (file < gArchiveDirCountCopy) {
+            return HuDecodeFileTag(ARCHIVE_CACHED, file, tag);
         }
     }
 
     return NULL;
 }
 
+// -----------------------------------------------------------------
+
 /**
  * Read file, allocate space in perm heap, decode it.
  */
-void * HuDecodeFilePerm(s32 type, s32 index) {
+void * HuDecodeFilePerm(EArchiveType type, s32 index) {
     HuFileInfo info;
     void * ret;
 
-    func_80009B64_A764(type, index, &info);
+    HuInitFileInfo(type, index, &info);
     ret = HuMemMemoryAllocPerm((info.size + 1) & -2);
     if (ret != NULL) {
-        HuDecode(info.file_bytes, ret, info.size, info.compression_type);
+        HuDecode(info.bytes, ret, info.size, info.compType);
     }
     return ret;
 }
+
+// -----------------------------------------------------------------
 
 /**
  * Read file, allocate space in temp heap, decode it.
  */
-void * HuDecodeFileTemp(s32 type, s32 index) {
+void * HuDecodeFileTemp(EArchiveType type, s32 index) {
     HuFileInfo info;
     void * ret;
 
-    func_80009B64_A764(type, index, &info);
+    HuInitFileInfo(type, index, &info);
     ret = HuMemMemoryAllocTemp((info.size + 1) & -2);
     if (ret != NULL) {
-        HuDecode(info.file_bytes, ret, info.size, info.compression_type);
+        HuDecode(info.bytes, ret, info.size, info.compType);
     }
     return ret;
 }
 
-void * func_80009E04_AA04(s32 type, s32 index, s32 tag) {
-    HuFileInfo sp10;
-    void * temp_v0;
+// -----------------------------------------------------------------
 
-    func_80009B64_A764(type, index, &sp10);
-    temp_v0 = HuMemAllocTag((sp10.size + 1) & ~1, tag);
-    if (temp_v0 != 0) {
-        HuDecode(sp10.file_bytes, temp_v0, sp10.size, sp10.compression_type);
+void * HuDecodeFileTag(EArchiveType type, s32 index, s32 tag) {
+    HuFileInfo info;
+    void * block;
+
+    HuInitFileInfo(type, index, &info);
+    block = HuMemAllocTag((info.size + 1) & ~1, tag);
+    if (block != NULL) {
+        HuDecode(info.bytes, block, info.size, info.compType);
     }
-    return temp_v0;
+    return block;
 }
 
-void func_80009E6C_AA6C(void * arg0)
+// -----------------------------------------------------------------
+
+void HuFreeFilePerm(void * data)
 {
-    if (arg0 != NULL) {
-        HuMemMemoryFreePerm(arg0);
+    if (data != NULL) {
+        HuMemMemoryFreePerm(data);
     }
 }
 
-void func_80009E8C_AA8C(void * arg0)
+// -----------------------------------------------------------------
+
+void HuFreeFileTemp(void * data)
 {
-    if (arg0 != NULL) {
-        HuMemMemoryFreePerm(arg0);
+    if (data != NULL) {
+        HuMemMemoryFreePerm(data);
     }
 }
+
+// -----------------------------------------------------------------
 
 typedef struct
 {
@@ -183,32 +194,39 @@ typedef struct
     s32 unk000C;    // not used
 } HuDataInfo;
 
-void func_80009EAC_AAAC(s32 arg1, s32 arg2)
+void HuInitDirectory(EArchiveType type, s32 dir)
 {
-    u32 temp_s0_2;
-    struct mainfs_table_header * fsHeader;
+    s32 dirCount;
+    HuArchive * fsHeader;
     HuDataInfo info;
 
-    info.tablePtr = D_800ABFC0 + D_800ABFC8[arg2];
+    info.tablePtr = gArchiveRomAddr + gArchiveTblAddr[dir];
     
-    if (D_800ABFCC != info.tablePtr) {
-        if (D_800ABFCC != D_800ABFC0) {
-            HuMemMemoryFreePerm(D_800ABFD4);
+    if (gArchiveRomAddrCopy != info.tablePtr) {
+        if (gArchiveRomAddrCopy != gArchiveRomAddr) {
+            HuMemMemoryFreePerm(gArchiveTblAddrCopy);
         }
         
-        D_800ABFCC = info.tablePtr;
+        gArchiveRomAddrCopy = info.tablePtr;
         
-        fsHeader = &D_800ABFE0;
-        HuRomDmaRead((s32) D_800ABFCC, fsHeader, 16);
+        fsHeader = &gArchive;
+        HuRomDmaRead(gArchiveRomAddrCopy, fsHeader, 16);
         
-        D_800ABFD0 = D_800ABFE0.count;
-        temp_s0_2 = D_800ABFD0 * 4;
-        D_800ABFD4 = HuMemMemoryAllocPerm(temp_s0_2);
-        HuRomDmaRead((u32) (info.tablePtr + 4), D_800ABFD4, (s32) temp_s0_2);
+        gArchiveDirCountCopy = gArchive.count;
+        dirCount = gArchiveDirCountCopy * 4;
+        gArchiveTblAddrCopy = HuMemMemoryAllocPerm(dirCount);
+
+        HuRomDmaRead((u32)(info.tablePtr + 4), gArchiveTblAddrCopy, dirCount);
     }
 }
 
-HuFileInfoD * func_80009F64_AB64(s32 type, s32 index)
+// -----------------------------------------------------------------
+
+// STARTING HERE ARE DEPRECATED FUNCTIONS THAT ARE NOT UTILIZED
+
+// -----------------------------------------------------------------
+
+HuFileInfoD * func_80009F64_AB64(EArchiveType type, s32 index)
 {
     HuFileInfo info;
     HuFileInfoD * dataInfo; // ! - deprecated
@@ -216,24 +234,28 @@ HuFileInfoD * func_80009F64_AB64(s32 type, s32 index)
     dataInfo = HuMemMemoryAllocPerm(sizeof(HuFileInfoD));
     if (dataInfo == NULL) return NULL;
 
-    func_80009B64_A764(type, index, &info);
+    HuInitFileInfo(type, index, &info);
     
     dataInfo->size      = info.size;
-    dataInfo->compType  = info.compression_type;
+    dataInfo->compType  = info.compType;
     dataInfo->block     = HuMemMemoryAllocPerm(0x400);
     dataInfo->unkC      = 1;
     dataInfo->unkE      = 0;
     dataInfo->bytes     =
-    dataInfo->bytesCopy = info.file_bytes;
+    dataInfo->bytesCopy = info.bytes;
 
     return dataInfo;
 }
+
+// -----------------------------------------------------------------
 
 void func_80009FF8_ABF8(HuFileInfoD * info)
 {
     HuMemMemoryFreePerm(info->block);
     HuMemMemoryFreePerm(info);
 }
+
+// -----------------------------------------------------------------
 
 s32 func_8000A028_AC28(HuFileInfoD * info)
 {   
@@ -254,6 +276,8 @@ s32 func_8000A028_AC28(HuFileInfoD * info)
     
     return info->block[info->unkE++];
 }
+
+// -----------------------------------------------------------------
 
 s32 func_8000A0D4_ACD4(s8 * arg0, s32 arg1, s32 arg2, HuFileInfoD * arg3)
 {
@@ -283,6 +307,9 @@ s32 func_8000A0D4_ACD4(s8 * arg0, s32 arg1, s32 arg2, HuFileInfoD * arg3)
     }
     return i;
 }
+
+// -----------------------------------------------------------------
+
 void func_8000A150_AD50(HuFileInfoD * info, s32 arg1, s32 arg2)
 {
     switch (arg2) {
@@ -309,3 +336,5 @@ void func_8000A150_AD50(HuFileInfoD * info, s32 arg1, s32 arg2)
         info->unkE = arg2 - (u32)info->bytesCopy;
     }
 }
+
+// -----------------------------------------------------------------
