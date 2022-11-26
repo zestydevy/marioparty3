@@ -13,9 +13,9 @@ typedef struct functionListEntryt {
 
 typedef struct {
     s32 (*pFunc) (functionListEntry*);
-    functionListEntry *pFuncListEntry; // sp2C
-    s32 ret; // sp30
-    OSMesgQueue *recvQueue; // sp34
+    functionListEntry *pFuncListEntry;
+    s32 ret;
+    OSMesgQueue *recvQueue;
 } unkMesg;
 
 typedef struct {
