@@ -1,4 +1,5 @@
 #include "common.h"
+#include "malloc.h"
 
 /*
  * Temporary heap. Reset occasionally during gameplay.

@@ -51,9 +51,17 @@ HuStartDma = 0x8004D9F8;
 HuRomDmaRead = 0x8004DA40;
 HuRomDmaCodeRead = 0x8004DB14;
 
-HuReadFile = 0x80009C10;
+HuInitArchive = 0x80009AC0;
+HuInitFileInfo = 0x80009B64;
+HuReadFilePerm = 0x80009C10;
+HuReadFileTemp = 0x80009C74;
+HuReadFileTag = 0x80009CD8;
 HuDecodeFilePerm = 0x80009D4C;
 HuDecodeFileTemp = 0x80009DA8;
+HuDecodeFileTag = 0x80009E04;
+HuFreeFilePerm = 0x80009E6C;
+HuFreeFileTemp = 0x80009E8C;
+HuInitDirectory = 0x80009EAC;
 
 HuDecodeNone = 0x8000A230;
 HuDecodeLZ = 0x8000A2CC;
@@ -209,6 +217,14 @@ __osDisableInt = 0x80080940;
 __osRestoreInt = 0x800809B0;
 
 gHuMemIsDirty = 0x800A08A0;
+
+gArchiveRomAddr = 0x800ABFC0;
+gArchiveDirCount = 0x800ABFC4;
+gArchiveTblAddr = 0x800ABFC8;
+gArchiveRomAddrCopy = 0x800ABFCC;
+gArchiveDirCountCopy = 0x800ABFD0;
+gArchiveTblAddrCopy = 0x800ABFD4;
+gArchive = 0x800ABFE0;
 
 gLastMallocBlock = 0x800D03F4;
 gFreeFunc = 0x800D135C;
