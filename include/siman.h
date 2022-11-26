@@ -5,20 +5,36 @@
 
 #define HOS_PRIORITY_SIMGR 0x5A
 
-typedef struct
-{
-    s32 unk0;
-    s32 unk4;
-    s16 unk8;
-} Hu523F4_0;
+typedef struct functionListEntryt {
+    struct functionListEntryt *child;
+    void (*pFunc) ();
+    s16 type;
+} functionListEntry;
 
-void func_80051A44_52644(void * arg0);                   /* extern */
-s32 * func_800517F4_523F4(Hu523F4_0 * arg0);
+typedef struct {
+    s32 (*pFunc) (functionListEntry*);
+    functionListEntry *pFuncListEntry; // sp2C
+    s32 ret; // sp30
+    OSMesgQueue *recvQueue; // sp34
+} unkMesg;
+
+typedef struct {
+    s32 unk0[4];
+    unkMesg* unkMsg;
+} unkMesgWrapper;
+
+void func_800511C4_51DC4(unkMesgWrapper*, OSMesgQueue*, s32);
+void func_80051A44_52644(void * arg0);
+
+void HuPrcVSleep(); 
+
 extern void *D_800BCD00;
 extern void *D_800BCD80;
 extern OSThread D_800BCE00;
-extern s32 D_800BD7B0;
-extern s32 D_800BD7B4;
+
+extern functionListEntry *D_800BD7B0;
+extern functionListEntry *D_800BD7B4;
+
 extern OSMesgQueue D_800CE1A0;
 extern OSMesgQueue D_800D1220;
 
