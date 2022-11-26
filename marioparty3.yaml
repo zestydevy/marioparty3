@@ -35,8 +35,8 @@ segments:
     - [0x1060, asm]
     - [0x8F20, asm]
     - [0x99D0, asm, pad]
-    - [0xA480, c, "data"]
-    # - [0xA6C0, hasm] mainfs likely split
+    - [0xA480, c, input]
+    - [0xA6C0, c, data]
     - [0xAE30, c, "decode"]
     - [0xBCA0, c, ovlman]
     - [0xC1F0, asm]
