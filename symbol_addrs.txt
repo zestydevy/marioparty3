@@ -99,11 +99,12 @@ sprintf = 0x8007BDC0;
 
 __osTimerServicesInit = 0x8007CE50;
 osCreateThread = 0x8007C810;
+osDestroyThread = 0x8007C910;
 __osViInit = 0x800829D0;
 
 
 osEepromLongRead = 0x80072590;
-
+osEepromLongWrite = 0x800724A0;
 
 osSetIntMask = 0x80072600;
 
@@ -195,9 +196,9 @@ strchr = 0x8007BD30;
 strlen = 0x8007BD70;
 memcpy = 0x8007BD94;
 
-rmonPrintf_func_8007BE50 = 0x8007BE50;
+__osSyncVPrintf = 0x8007BE50;
 osSyncPrintf = 0x8007BE80;
-osSyncPrintf_func_8007BEC0 = 0x8007BEC0;
+rmonPrintf = 0x8007BEC0;
 
 osCreateMesgQueue = 0x8007BF00;
 osJamMesg = 0x8007BF30;
@@ -211,10 +212,51 @@ osSetTimer = 0x8007CD20;
 
 __osProbeTLB = 0x8007D210;
 
+__osExceptionPreamble = 0x8007FB10;
+send_mesg = 0x8008052C;
 __osEnqueueAndYield = 0x8008061C;
+__osEnqueueThread = 0x8008072C;
 __osPopThread = 0x80080774;
+__osNop = 0x80080784;
+__osDispatchThread = 0x8008078C;
 __osDisableInt = 0x80080940;
 __osRestoreInt = 0x800809B0;
+__osSetFpcCsr = 0x800824C0;
+osGetCount = 0x800824A0;
+__osSetWatchLo = 0x800824D0;
+osMapTLBRdb = 0x80082920;
+osUnmapTLBAll = 0x80082980;
+__osSetCause = 0x8007C380;
+__osSetCompare = 0x8007C390;
+__osSetCount = 0x8007C3A0;
+__osSetSR = 0x8007C3B0;
+__osGetSR = 0x800824B0;
+__osGetCause = 0x80082490;
+
+__createSpeedParam = 0x8007ECC0;
+__osInitialize_common = 0x8007ED78;
+__checkHardware_msp = 0x8007F82C;
+__osInitialize_msp = 0x8007F6EC;
+__checkHardware_kmc = 0x8007F45C;
+__osInitialize_kmc = 0x8007F31C;
+__checkHardware_isv = 0x80081580;
+__osInitialize_isv = 0x80081768;
+__isExpJP = 0x800818C0;
+__isExp = 0x800818DC;
+
+__osInitialize_autodetect = 0x8007F048;
+__osInitialize_emu = 0x8007F860;
+proutSyncPrintf = 0x8007F874;
+__printfunc = 0x800A3FB4;
+__osRdbSend = 0x8007B6D0;
+
+__muldi3 = 0x80087D00;
+div64_64 = 0x80087D38;
+div64_32 = 0x80087E34;
+__divdi3 = 0x80087F00;
+__udivdi3 = 0x80088070;
+__umoddi3 = 0x80088090;
+sqrt = 0x800880D0;
 
 gHuMemIsDirty = 0x800A08A0;
 
