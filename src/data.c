@@ -180,6 +180,9 @@ void HuFreeFilePerm(void * data)
 void HuFreeFileTemp(void * data)
 {
     if (data != NULL) {
+        /* ! - should be HuMemMemoryFreeTemp, but is fine
+            because Free is heap-independant and does not need
+            a source heap */
         HuMemMemoryFreePerm(data);
     }
 }
