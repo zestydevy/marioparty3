@@ -98,6 +98,9 @@ longjmp = 0x80066564;
 sprintf = 0x8007BDC0;
 
 __osTimerServicesInit = 0x8007CE50;
+__osTimerInterrupt = 0x8007CEA4;
+__osSetTimerIntr = 0x8007D088;
+__osInsertTimer = 0x8007D108;
 osCreateThread = 0x8007C810;
 osDestroyThread = 0x8007C910;
 osYieldThread = 0x8007CC40;
@@ -137,6 +140,7 @@ __osViNext = 0x800A4104;
 
 
 osCreateViManager = 0x8007D350;
+viMgrMain = 0x8007D4F0;
 __osViDevMgr = 0x800A2DE0;
 viThread = 0x800C39A8;
 viEventQueue = 0x800C4B60;
@@ -245,6 +249,8 @@ __checkHardware_isv = 0x80081580;
 __osInitialize_isv = 0x80081768;
 __isExpJP = 0x800818C0;
 __isExp = 0x800818DC;
+kdebugserver = 0x80081098;
+send = 0x80080EF0;
 
 __osInitialize_autodetect = 0x8007F048;
 __osInitialize_emu = 0x8007F860;
