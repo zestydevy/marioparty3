@@ -101,6 +101,7 @@ __osTimerServicesInit = 0x8007CE50;
 __osTimerInterrupt = 0x8007CEA4;
 __osSetTimerIntr = 0x8007D088;
 __osInsertTimer = 0x8007D108;
+__osRunningThread = 0x800A2DC0;
 osCreateThread = 0x8007C810;
 osDestroyThread = 0x8007C910;
 osYieldThread = 0x8007CC40;
@@ -117,11 +118,21 @@ osSetIntMask = 0x80072600;
 osCreatePiManager = 0x800726A0;
 ramromMain = 0x8007286C;
 
+__osPiCrateAccessQueue = 0x80073120;
+__osPiGetAccess = 0x80073174;
+__osPiRelAccess = 0x800731E0;
 
+__osPiRawReadIo = 0x80083AE0;
+__osPiRawWriteIo = 0x80083B30;
 __osEPiRawStartDma = 0x80072950;
-
+__osEPiRawReadIo = 0x80080B50;
+__osEPiRawWriteIo = 0x80080CC0;
 
 osEPiStartDma = 0x80072B40;
+osEPiReadIo = 0x80083BE0;
+osEPiWriteIo = 0x80083B80;
+osPiWriteIo = 0x80080E30;
+osPiReadIo = 0x80080E80;
 
 osCartRomInit = 0x80072BE0;
 
@@ -136,6 +147,7 @@ _osPreNMI = 0x800A3FAC;
 
 
 osViSetMode = 0x8007D6F0;
+__osViGetCurrentContext = 0x80082AE0;
 __osViNext = 0x800A4104;
 
 
@@ -168,6 +180,13 @@ osEepromWrite = 0x80072020;
 osWritebackDCacheAll = 0x80078D50;
 
 
+__osSpDeviceBusy = 0x80082690;
+__osSpGetStatus = 0x800826B0;
+__osSpSetStatus = 0x800826C0;
+__osSpSetPc = 0x800826D0;
+__osSpRawStartDma = 0x80082700;
+__osSpRawReadIo = 0x80086AB0;
+__osSpRawWriteIo = 0x80086B00;
 osSpTaskLoad = 0x8007C3C0;
 osSpTaskStartGo = 0x8007C5CC;
 
@@ -196,6 +215,7 @@ sinf = 0x8007B530;
 
 bcopy = 0x8007B970;
 bzero = 0x8007BC90;
+bcmp = 0x80083C40;
 
 osInitRdb = 0x8007B8F0;
 strchr = 0x8007BD30;
@@ -251,6 +271,71 @@ __isExpJP = 0x800818C0;
 __isExp = 0x800818DC;
 kdebugserver = 0x80081098;
 send = 0x80080EF0;
+isPrintfInit = 0x80081320;
+is_proutSyncPrintf = 0x80081394;
+__checkHardware_isv = 0x80081580;
+osThreadProfileCallback = 0x800811B0;
+__osThprofLastTimer = 0x800D1F24;
+__osThprofCount = 0x800CD2F0;
+osReadHost = 0x80081250;
+__rmonSendFault = 0x800824E0;
+__rmonIOflush = 0x8008253C;
+__rmonIOputw = 0x80082578;
+__rmonIOhandler = 0x800825D4;
+__rmonExecute = 0x80084A30;
+NotImplemented = 0x80084AB0;
+__rmonWriteWordTo = 0x80084AC0;
+__rmonReadWordAt = 0x80084B00;
+__rmonMemcpy = 0x80084B40;
+__rmonCopyWords = 0x80084B70;
+__rmonReadMem = 0x80084BA0;
+__rmonWriteMem = 0x80084D10;
+__rmonListProcesses = 0x80084F34;
+__rmonLoadProgram = 0x80084F8C;
+__rmonGetExeName = 0x80084F94;
+__rmonGetRegionCount = 0x80085050;
+__rmonGetRegions = 0x800850A4;
+__rmonSetFault = 0x80085230;
+__rmonInit = 0x8008526C;
+__rmonPanic = 0x8008533C;
+__rmonSetComm = 0x80085344;
+__rmonGetGRegisters = 0x80085380;
+__rmonSetGRegisters = 0x80085458;
+__rmonGetFRegisters = 0x80085548;
+__rmonSetFRegisters = 0x800855D4;
+rmonGetRcpRegister = 0x80085660;
+__rmonGetSRegs = 0x80085734;
+__rmonSetSRegs = 0x800858CC;
+__rmonGetVRegs = 0x80085A38;
+__rmonSetVRegs = 0x80085C10;
+__rmonGetRegisterContents = 0x80085DC4;
+__rmonMaskIdleThreadInts = 0x80085E40;
+__rmonGetTCB = 0x80085EA8;
+__rmonStopUserThreads = 0x80085F0C;
+__rmonListThreads = 0x80085FF4;
+__rmonGetThreadStatus = 0x800860F0;
+__rmonThreadStatus = 0x800862C8;
+__rmonStopThread = 0x80086320;
+__rmonRunThread = 0x800864D4;
+__rmonSendHeader = 0x80086710;
+__rmonSendReply = 0x80086778;
+__rmonSendData = 0x80086830;
+rmonMain = 0x80086920;
+__rmonRCPrunning = 0x80086E00;
+__rmonIdleRCP = 0x80086E24;
+__rmonStepRCP = 0x80086E68;
+__rmonRunRCP = 0x80086E7C;
+__rmonSetBreak = 0x80086EA0;
+__rmonListBreak = 0x80087018;
+__rmonClearBreak = 0x80087020;
+__rmonGetBranchTarget = 0x8008713C;
+__rmonSetSingleStep = 0x800872BC;
+__rmonGetExceptionStatus = 0x80087468;
+__rmonHitBreak = 0x800874A4;
+__rmonHitSpBreak = 0x80087580;
+__rmonHitCpuFault = 0x8008760C;
+rmonFindFaultedThreads = 0x80087638;
+
 
 __osInitialize_autodetect = 0x8007F048;
 __osInitialize_emu = 0x8007F860;
@@ -265,6 +350,8 @@ __divdi3 = 0x80087F00;
 __udivdi3 = 0x80088070;
 __umoddi3 = 0x80088090;
 sqrt = 0x800880D0;
+ldiv = 0x80086C40;
+lldiv = 0x80086CC4;
 
 gHuMemIsDirty = 0x800A08A0;
 
@@ -281,3 +368,53 @@ gFreeFunc = 0x800D135C;
 gLastFreedBlock = 0x800D1238;
 gMallocFunc = 0x800D556C;
 gFirstMallocBlock = 0x800D6B68;
+
+
+osContStartReadData = 0x80078D80;
+osContGetReadData = 0x80078E08;
+__osPackReadData = 0x80078EA4;
+
+osContInit = 0x80078F60;
+__osContGetInitData = 0x800790FC;
+__osPackRequestData = 0x800791B0;
+
+osContSetCh = 0x80079270;
+__osSiRawStartDma = 0x8007C670;
+__osSiGetAccess = 0x8007C774;
+__osSiRelAccess = 0x8007C7E0;
+__osContRamWrite = 0x8007E990;
+__osPfsSelectBank = 0x8007E730;
+__osMotorAccess = 0x8007E3A0;
+osMotorInit = 0x8007E4E4;
+__osSiRawReadIo = 0x80082790;
+__osSiRawWriteIo = 0x800827E0;
+__osSiDeviceBusy = 0x80086B50;
+
+__osSumcalc = 0x80083050;
+__osIdCheckSum = 0x80083084;
+__osRepairPackId = 0x800830C8;
+__osCheckPackId = 0x800833B4;
+__osGetId = 0x80083518;
+__osCheckId = 0x800836E4;
+__osPfsRWInode = 0x8008379C;
+__osContRamRead = 0x8007E7A0;
+osPfsIsPlug = 0x80082B60;
+__osPfsRequestData = 0x80082CDC;
+__osPfsGetInitData = 0x80082D80;
+__osPfsPifRam = 0x800D55A0;
+
+__osPfsGetStatus = 0x80082E40;
+__osPfsRequestOneChannel = 0x80082F30;
+__osPfsGetOneChannelData = 0x80082FC4;
+
+__osContAddressCrc = 0x80082830;
+__osContDataCrc = 0x8008289C;
+
+__osAiDeviceBusy = 0x80080ED0;
+
+_Litob = 0x80083D50;
+_Ldtob = 0x80083FA0;
+_Ldunscale = 0x800843EC;
+_Genld = 0x80084484;
+
+guNormalize = 0x80082B00;
