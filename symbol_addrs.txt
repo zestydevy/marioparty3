@@ -100,9 +100,11 @@ sprintf = 0x8007BDC0;
 __osTimerServicesInit = 0x8007CE50;
 osCreateThread = 0x8007C810;
 osDestroyThread = 0x8007C910;
+osYieldThread = 0x8007CC40;
+osStopThread = 0x80086B70;
 __osViInit = 0x800829D0;
 
-
+osEepromProbe = 0x80072420;
 osEepromLongRead = 0x80072590;
 osEepromLongWrite = 0x800724A0;
 
