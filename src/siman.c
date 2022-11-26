@@ -1,5 +1,8 @@
 #include "common.h"
+#include "process.h"
+
 #include "siman.h"
+
 
 // TODO: find SI thread stack size
 void func_80051750_52350(void) {

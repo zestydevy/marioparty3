@@ -26,8 +26,6 @@ typedef struct {
 void func_800511C4_51DC4(unkMesgWrapper*, OSMesgQueue*, s32);
 void func_80051A44_52644(void * arg0);
 
-void HuPrcVSleep(); 
-
 extern void *D_800BCD00;
 extern void *D_800BCD80;
 extern OSThread D_800BCE00;
