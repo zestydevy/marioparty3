@@ -261,19 +261,25 @@ __osGetCause = 0x80082490;
 
 __createSpeedParam = 0x8007ECC0;
 __osInitialize_common = 0x8007ED78;
-__checkHardware_msp = 0x8007F82C;
-__osInitialize_msp = 0x8007F6EC;
-__checkHardware_kmc = 0x8007F45C;
+
+kmc_proutSyncPrintf = 0x8007F0D0;
 __osInitialize_kmc = 0x8007F31C;
-__checkHardware_isv = 0x80081580;
-__osInitialize_isv = 0x80081768;
-__isExpJP = 0x800818C0;
-__isExp = 0x800818DC;
-kdebugserver = 0x80081098;
+__checkHardware_kmc = 0x8007F45C;
+
+msp_proutSyncPrintf = 0x8007F4A0;
+__osInitialize_msp = 0x8007F6EC;
+__checkHardware_msp = 0x8007F82C;
+
 send = 0x80080EF0;
+kdebugserver = 0x80081098;
+
 isPrintfInit = 0x80081320;
 is_proutSyncPrintf = 0x80081394;
 __checkHardware_isv = 0x80081580;
+__osInitialize_isv = 0x80081768;
+
+__isExpJP = 0x800818C0;
+__isExp = 0x800818DC;
 osThreadProfileCallback = 0x800811B0;
 __osThprofLastTimer = 0x800D1F24;
 __osThprofCount = 0x800CD2F0;
@@ -410,6 +416,9 @@ __osPfsGetOneChannelData = 0x80082FC4;
 __osContAddressCrc = 0x80082830;
 __osContDataCrc = 0x8008289C;
 
+osAiSetNextBuffer = 0x80073340;
+osAiGetLength = 0x80073210;
+osAiSetFrequency = 0x80073220;
 __osAiDeviceBusy = 0x80080ED0;
 
 _Litob = 0x80083D50;

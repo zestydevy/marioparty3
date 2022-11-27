@@ -136,8 +136,9 @@ segments:
     - [0x737E0, asm, "libultra/io/cartrominit"]
     - [0x73960, asm, "libultra/io/devmgr"]
     - [0x73D20, asm, "libultra/io/piacs"] # double check
-    - [0x73E10, asm, "lubultra/audio/aisetfreq"]
-    - [0x73F40, asm, "libultra/audio/aisetnextbuf"]
+    - [0x73E10, asm, "lubultra/io/aigetlen"]
+    - [0x73E20, asm, "lubultra/io/aisetfreq"]
+    - [0x73F40, asm, "libultra/io/aisetnextbuf"]
     - [0x73FE0, asm, "libultra/audio/drvrnew"]
     - [0x74810, asm, "libultra/audio/load"]
     - [0x75320, asm, "libultra/audio/auxbus"]
