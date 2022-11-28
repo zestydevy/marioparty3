@@ -55,10 +55,10 @@ void func_8005188C_5248C(functionListEntry * entry, s16 type, void * func) {
     OSMesgQueue mq;
     unkMesg msgOut;
 
-    msgOut.pFunc = &func_8005182C_5242C;
-    msgOut.pFuncListEntry = entry;
+    msgOut.func = (HuSiFunc)&func_8005182C_5242C;
+    msgOut.arg = entry;
     msgOut.recvQueue = &mq;
-    entry->pFunc = func;
+    entry->func = func;
     entry->type = type;
 
     osCreateMesgQueue(&mq, &msgBuffer, OS_MESG_BLOCK);
@@ -96,13 +96,13 @@ s32 func_800518FC_524FC(functionListEntry* arg0) {
 }
 
 
-void func_80051968_52568(functionListEntry *entry) {
+void func_80051968_52568(void *entry) {
     OSMesg msgBuffer;
     OSMesgQueue mq;
     unkMesg msgOut;
 
-    msgOut.pFunc = &func_800518FC_524FC;
-    msgOut.pFuncListEntry = entry;
+    msgOut.func = (HuSiFunc)&func_800518FC_524FC;
+    msgOut.arg = entry;
     msgOut.recvQueue = &mq;
     
     osCreateMesgQueue(&mq, &msgBuffer, 1);
@@ -115,7 +115,7 @@ void func_80051968_52568(functionListEntry *entry) {
 void func_800519D0_525D0(s16 type) {
     functionListEntry* funcList;
 
-    funcList = 0;
+    funcList = NULL;
     switch (type) {
     case 0:
         funcList = D_800BD7B0;
@@ -124,9 +124,9 @@ void func_800519D0_525D0(s16 type) {
         funcList = D_800BD7B4;
         break;
     }
-    if (funcList != 0) {
+    if (funcList != NULL) {
         do {
-            funcList->pFunc();
+            funcList->func();
             funcList = funcList->child;
         } while (funcList != 0);
     }
@@ -141,7 +141,7 @@ void func_80051A44_52644(void* arg0) {
 
     func_800511C4_51DC4(&msgWrapper, &D_800D1220, 3);
 
-    while (1) {
+    while (TRUE) {
         osRecvMesg(&D_800D1220, (OSMesg*) &msgWrapper.unkMsg, OS_MESG_BLOCK);       
         switch ((s32) msgWrapper.unkMsg) {
             case 1:
@@ -154,7 +154,7 @@ void func_80051A44_52644(void* arg0) {
             {
                 unkMesg* recvdMsg;
                 recvdMsg = msgWrapper.unkMsg;
-                recvdMsg->ret = recvdMsg->pFunc(recvdMsg->pFuncListEntry);
+                recvdMsg->ret = recvdMsg->func(recvdMsg->arg);
                 if (recvdMsg->recvQueue != NULL) {
                     osSendMesg(recvdMsg->recvQueue, NULL, OS_MESG_BLOCK);
                 }
@@ -164,18 +164,19 @@ void func_80051A44_52644(void* arg0) {
 }
 
 
-s32 func_80051B0C_5270C(unkMesg* pUnkMsg, void* func, functionListEntry* entry, s32 type) {
+s32 func_80051B0C_5270C(unkMesg * siMessg, HuSiFunc func, void * arg, s32 type) 
+{
     OSMesgQueue msgQueue;
     OSMesg tmpMsg;
 
-    pUnkMsg->pFunc = func;
-    pUnkMsg->pFuncListEntry = entry;
-    pUnkMsg->recvQueue = &msgQueue;
+    siMessg->func = func;
+    siMessg->arg = arg;
+    siMessg->recvQueue = &msgQueue;
     osCreateMesgQueue(&msgQueue, &tmpMsg, 1);
-    osSendMesg(&D_800D1220, pUnkMsg, OS_MESG_BLOCK);
+    osSendMesg(&D_800D1220, siMessg, OS_MESG_BLOCK);
     switch (type) {
     case 0:
-        pUnkMsg->ret = 0;
+        siMessg->ret = 0;
         break;
     case 1:
         osRecvMesg(&msgQueue, NULL, OS_MESG_BLOCK);
@@ -186,5 +187,5 @@ s32 func_80051B0C_5270C(unkMesg* pUnkMsg, void* func, functionListEntry* entry, 
         }
         break;
     }
-    return pUnkMsg->ret;
+    return siMessg->ret;
 }

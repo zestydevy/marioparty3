@@ -70,6 +70,8 @@ HuDecodeFslide = 0x8000A9E8;
 HuDecodeRLE = 0x8000AE64;
 HuDecode = 0x8000B000;
 
+HuPadInit = 0x80008DD0;
+
 HuPrcSysInit = 0x8004EB20;
 HuPrcLink = 0x8004EB34;
 HuPrcUnlink = 0x8004EBC8;
@@ -374,6 +376,8 @@ gFreeFunc = 0x800D135C;
 gLastFreedBlock = 0x800D1238;
 gMallocFunc = 0x800D556C;
 gFirstMallocBlock = 0x800D6B68;
+
+gNumOfControllers = 0x800D1FA2;
 
 
 osContStartReadData = 0x80078D80;
