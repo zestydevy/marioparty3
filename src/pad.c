@@ -69,7 +69,7 @@ s32 func_80008FD4_9BD4(s32 arg0)
         osSendMesg(&D_800ABFA0, 0, 1);
         osContStartReadData(&D_800CE1A0);
         osRecvMesg(&D_800CE1A0, 0, 1);
-        osContGetReadData(&D_800ABE40[D_800ABF84].pad);
+        osContGetReadData(&D_800ABE40[D_800ABF84 * 4]);
         osRecvMesg(&D_800ABFA0, 0, 1);
         
         ++D_800ABF80;
@@ -90,7 +90,71 @@ void func_8000914C_9D4C(s8 arg0, s8 arg1) {
     D_800ABF8F = arg1;
 }
 
-INCLUDE_ASM(s32, "pad", func_80009160_9D60);
+s16 func_80009160_9D60(void)
+{
+    s16 i;
+    s16 temp_s0;
+    u16 temp_v0_3;
+    OSContPad * pads;
+
+    osRecvMesg(&D_800ABFA0, 0, 1);
+    temp_s0 = D_800ABF80;
+
+    if (temp_s0 != 0)
+    {
+        --D_800ABF80;
+    
+        pads = &D_800ABE40[D_800ABF82 * 4];
+        ++D_800ABF82;
+        if (D_800ABF82 >= 8) {
+            D_800ABF82 = 0;
+        }
+
+        for (i = 0; i < 4; ++i)
+        {
+            D_800ABF8A[i] = pads[i].errno != 8;
+            temp_v0_3 = 
+            D_800CDA7C[i] = pads[i].button;
+            D_800D056A[i] =
+            D_800CBB6E[i] = pads[i].stick_x;
+            D_800D1382[i] =
+            D_800D20A1[i] = pads[i].stick_y;
+            D_800D5558[i] = temp_v0_3 & (temp_v0_3 ^ D_800CBB66[i]);
+            if (D_800CBB66[i] == temp_v0_3) {
+                    if (!(--D_800ABF86[i] & 0xFF)) {
+                        D_800D1244[i] = temp_v0_3;
+                        D_800ABF86[i] = 0xA;
+                    } else {
+                        D_800D1244[i] = 0;
+                    }
+            } 
+            else {
+                D_800D1244[i] = D_800D5558[i];
+                D_800ABF86[i] = 0x1E;
+            }
+
+            if ((((u8)D_800CBB6E[i] + 9) & 0xFF) < 0x13U) {
+                D_800CBB6E[i] = 0;
+            } else if (D_800CBB6E[i] > D_800ABF8E) {
+                D_800CBB6E[i] = D_800ABF8E;
+            } else if (D_800CBB6E[i] < -D_800ABF8E) {
+                D_800CBB6E[i] = -D_800ABF8E;
+            }
+            if ((((u8) D_800D20A1[i] + 9) & 0xFF) < 0x13U) {
+                D_800D20A1[i] = 0;
+            } else if (D_800D20A1[i] > D_800ABF8F) {
+                D_800D20A1[i] = D_800ABF8F;
+            } else {
+                if (D_800D20A1[i] < -D_800ABF8F) {
+                    D_800D20A1[i] = -D_800ABF8F;
+                }
+            }
+            D_800CBB66[i] = temp_v0_3;
+        }
+    }
+    osSendMesg(&D_800ABFA0, 0, 1);
+    return temp_s0;
+}
 
 INCLUDE_ASM(s32, "pad", func_800094E4_A0E4);
 
