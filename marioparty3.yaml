@@ -46,7 +46,7 @@ segments:
     - [0xE560, asm]
     - [0xEFB0, c, stubbed]
     - [0xEFC0, asm, gameman]
-    - [0xF610, asm, graphics]
+    - [0xF610, c, graphics]
     - [0xFCA0, asm, hmfload]
     - [0x12E20, asm]
     - [0x13F90, asm]
