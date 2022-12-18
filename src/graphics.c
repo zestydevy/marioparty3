@@ -39,8 +39,7 @@ extern void* gMesgQueueInitMesg;
 extern u32 D_800D2094; // Unk
 extern OSMesgQueue D_800CC3C0; // Another system's message queue
 
-
-// INCLUDE_ASM(s32, "graphics", func_8000EA10_F610);
+/* Initialize Graphics SwapChain */
 void func_8000EA10_F610(void **arg1, s32 arg2, s32 arg3, u64 **arg4, s32 *arg5) {
     func_8000F024_FC24(arg1, arg2, arg3);
     func_8000F04C_FC4C(arg4);
@@ -70,7 +69,6 @@ void func_8000EA10_F610(void **arg1, s32 arg2, s32 arg3, u64 **arg4, s32 *arg5) 
     osStartThread(&swapChainThread);
 }
 
-// INCLUDE_ASM(s32, "graphics", func_8000EB60_F760);
 /* Retrieve available frame buffer (triple buffering?) */
 void *func_8000EB60_F760(void) {
     void *current;
