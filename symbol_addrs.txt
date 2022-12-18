@@ -166,6 +166,7 @@ viCounterMsg = 0x800C4BA8;
 __additional_scanline = 0x800A2DFC;
 
 
+osViSwapBuffer = 0x8007D900;
 osViSetYScale = 0x8007D8B0;
 
 

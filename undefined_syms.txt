@@ -9,3 +9,35 @@ process_count = 0x800BBA94;
 sPrcSleepLoc = 0x800D20A8;
 
 gPlayers = 0x800D1108;
+
+frameBufferPool = 0x800B1998;
+frameBufferCount = 0x800B199C;
+frameBufferSegmentID = 0x800B199E;
+
+swapChainTask = 0x800B1800;
+swapChainThread = 0x800CC4E8;
+swapChainStack = 0x800AE000;
+gMesgRingBuffer = 0x800CBB80;
+ringBufferIndex = 0x800CB8AE;
+
+gThread3Stack = 0x800D0300;
+gThreadOutStack = 0x800D0548;
+gThreadOutStackSize = 0x800CB8B8;
+gThreadYieldStack = 0x8800CE1FC;
+
+gUCodeAddresses = 0x800D0A34;
+
+rspBootAddressStart = 0x8008F0F0;
+rspBootAddressEnd = 0x8008F1C0;
+gTaskDataPointers = 0x800CC390;
+
+gSwapChainMesgTotal = 0x800CC3BC;
+
+nextFrameBuffer = 0x800D2090;
+currFrameBuffer = 0x800CB89C;
+
+gSwapChainMesgQueue = 0x800B1848;
+gSwapChainInitMesg = 0x800B1860;
+
+gMesgQueue = 0x800B1960;
+gMesgQueueInitMesg = 0x800B1978;
