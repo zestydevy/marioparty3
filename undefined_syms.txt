@@ -8,7 +8,6 @@ process_count = 0x800BBA94;
 
 sPrcSleepLoc = 0x800D20A8;
 
-
 frameBufferPool = 0x800B1998;
 frameBufferCount = 0x800B199C;
 frameBufferSegmentID = 0x800B199E;
@@ -40,3 +39,5 @@ gSwapChainInitMesg = 0x800B1860;
 
 gMesgQueue = 0x800B1960;
 gMesgQueueInitMesg = 0x800B1978;
+
+gPlayers = 0x800D1108;

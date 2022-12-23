@@ -35,10 +35,10 @@ if args.make:
     check_call(["make", "build/marioparty.z64"])
 
 baseimg = f"baserom.us.z64"
-basemap = f"expected/build/marioparty.map"
+basemap = f"expected/build/marioparty3.map"
 
-myimg = f"build/marioparty.z64"
-mymap = f"build/marioparty.map"
+myimg = f"build/marioparty3.z64"
+mymap = f"build/marioparty3.map"
 
 if not os.path.isfile(baseimg):
     print(f"{baseimg} must exist.")
