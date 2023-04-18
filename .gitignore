@@ -10,6 +10,7 @@ expected/*
 include/ld_addrs.h
 undefined_funcs_auto.txt
 undefined_syms_auto.txt
+ctx.c
 
 # Tools
 tools/n64cksum
