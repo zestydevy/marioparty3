@@ -8,7 +8,7 @@ options:
   compiler: GCC
   find_file_boundaries: True
   header_encoding: ASCII
-  # platform: n64
+  platform: n64
   symbol_name_format: $VRAM_$ROM
   undefined_funcs_auto_path: undefined_funcs_auto.txt
   undefined_syms_auto_path: undefined_syms_auto.txt
