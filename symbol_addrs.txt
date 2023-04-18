@@ -434,3 +434,5 @@ _Ldunscale = 0x800843EC;
 _Genld = 0x80084484;
 
 guNormalize = 0x80082B00;
+gCurrentPlayerIndex = 0x800CD067;
+guLookAtF = 0x80088210;

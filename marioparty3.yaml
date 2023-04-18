@@ -48,7 +48,7 @@ segments:
     - [0xEFC0, c, gameman]
     - [0xF610, asm, graphics]
     - [0xFCA0, asm, hmfload]
-    - [0x12E20, asm]
+    - [0x12E20, c]
     - [0x13F90, asm]
     - [0x14EA0, asm]
     - [0x19C30, asm]
@@ -82,7 +82,7 @@ segments:
     - [0x527E0, asm]
     - [0x52F30, asm, "sprman"]
     - [0x58000, asm, "sprput"]
-    - [0x5ACF0, asm]
+    - [0x5ACF0, c]
     - [0x62750, asm]
     - [0x66E70, asm]
     - [0x67000, asm]
@@ -1407,7 +1407,7 @@ segments:
     start: 0x3D8930
     vram: 0x801059A0
     subsegments:
-      - [0x3D8930, asm]
+      - [0x3D8930, c]
       - [0x3D8960, asm]
       - [0x3D8A70, bin] # data
 
@@ -1418,8 +1418,8 @@ segments:
     start: 0x3D8A90
     vram: 0x801059A0
     subsegments:
-      - [0x3D8A90, asm]
-      - [0x3D8AC0, asm]
+      - [0x3D8A90, c]
+      - [0x3D8AC0, c]
       - [0x3EB7D0, bin] # data
 
   - dir: overlays/board_arrowhead_intro
