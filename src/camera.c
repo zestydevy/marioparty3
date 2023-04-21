@@ -28,29 +28,29 @@ f32 func_8008EF20_8FB20(f32);
 
 void guLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
 
-INCLUDE_ASM(s32, "12E20", Hu3DCamInit);
+INCLUDE_ASM(s32, "camera", Hu3DCamInit);
 
-INCLUDE_ASM(s32, "12E20", func_800123F4_12FF4);
+INCLUDE_ASM(s32, "camera", func_800123F4_12FF4);
 
-INCLUDE_ASM(s32, "12E20", func_80012408_13008);
+INCLUDE_ASM(s32, "camera", func_80012408_13008);
 
-INCLUDE_ASM(s32, "12E20", func_8001247C_1307C);
+INCLUDE_ASM(s32, "camera", func_8001247C_1307C);
 
-INCLUDE_ASM(s32, "12E20", func_800124BC_130BC);
+INCLUDE_ASM(s32, "camera", func_800124BC_130BC);
 
-INCLUDE_ASM(s32, "12E20", func_80012508_13108);
+INCLUDE_ASM(s32, "camera", func_80012508_13108);
 
-INCLUDE_ASM(s32, "12E20", func_80012564_13164);
+INCLUDE_ASM(s32, "camera", func_80012564_13164);
 
-INCLUDE_ASM(s32, "12E20", func_80012640_13240);
+INCLUDE_ASM(s32, "camera", func_80012640_13240);
 
-INCLUDE_ASM(s32, "12E20", func_800127C4_133C4);
+INCLUDE_ASM(s32, "camera", func_800127C4_133C4);
 
-INCLUDE_ASM(s32, "12E20", func_80012888_13488);
+INCLUDE_ASM(s32, "camera", func_80012888_13488);
 
-INCLUDE_ASM(s32, "12E20", func_800128BC_134BC);
+INCLUDE_ASM(s32, "camera", func_800128BC_134BC);
 
-INCLUDE_ASM(s32, "12E20", func_800128EC_134EC);
+INCLUDE_ASM(s32, "camera", func_800128EC_134EC);
 
 void func_8001291C_1351C(s16 index, vec3f *arg1, vec3f *arg2) { //Convert3Dto2D
     Matrix4f sp28;
@@ -79,12 +79,12 @@ void func_8001291C_1351C(s16 index, vec3f *arg1, vec3f *arg2) { //Convert3Dto2D
     arg2->y = ((temp_f22 * (120.0f / temp_f28)) + 120.0f);
 }
 
-INCLUDE_ASM(s32, "12E20", func_80012B14_13714);
+INCLUDE_ASM(s32, "camera", func_80012B14_13714);
 
-INCLUDE_ASM(s32, "12E20", func_80012D0C_1390C);
+INCLUDE_ASM(s32, "camera", func_80012D0C_1390C);
 
-INCLUDE_ASM(s32, "12E20", func_80012E54_13A54);
+INCLUDE_ASM(s32, "camera", func_80012E54_13A54);
 
-INCLUDE_ASM(s32, "12E20", func_80013320_13F20);
+INCLUDE_ASM(s32, "camera", func_80013320_13F20);
 
-INCLUDE_ASM(s32, "12E20", func_80013350_13F50);
+INCLUDE_ASM(s32, "camera", func_80013350_13F50);
