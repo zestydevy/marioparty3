@@ -4,6 +4,8 @@
 #include "common.h"
 #include "process.h"
 
+#define MAX_PLAYERS 4
+
 typedef struct {
     f32 x;
     f32 y;
@@ -142,6 +144,6 @@ typedef struct {
     s8 unk35;
 
     // s8 pad2[3];
-} player; // sizeof 0x38 | 56 
+} Player; // sizeof 0x38 | 56 
 
 #endif

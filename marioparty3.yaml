@@ -63,7 +63,7 @@ segments:
     - [0x36440, c, "mallocperm"]
     - [0x36510, c, "malloctemp"]
     - [0x365E0, asm]
-    - [0x36650, asm, save]
+    - [0x36650, c, save]
     - [0x36CD0, c, "malloc"]
     - [0x36F80, asm]
     - [0x37210, asm]
