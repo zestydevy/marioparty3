@@ -177,4 +177,6 @@ void func_80009824_A424(void) {
     D_800ABF9C = 0;
 }
 
-INCLUDE_ASM(s32, "pad", func_8000985C_A45C);
+s32 HuGetPadInserted(s16 padNum) {
+    return D_800ABF8A[padNum];
+}

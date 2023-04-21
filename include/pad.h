@@ -4,6 +4,8 @@
 #include "common.h"
 #include "siman.h"
 
+#define PAD_NOT_INSERTED 0
+
 typedef struct {
  OSContPad pad;
  s32 unk[4];
@@ -12,7 +14,7 @@ typedef struct {
 extern s16 D_800ABF80;
 extern s16 D_800ABF82;
 extern s16 D_800ABF84;
-extern s8 D_800ABF8A[];
+extern u8 D_800ABF8A[];
 extern u16 D_800CBB66[];
 extern s8 D_800CBB6E[];
 extern s16 D_800CDA7C[];
@@ -44,5 +46,6 @@ s16 func_80009160_9D60(void);
 void func_800097B8_A3B8(void);
 void func_800097D4_A3D4(void);
 void func_80009824_A424(void);
+s32 HuGetPadInserted(s16 padNum);
 
 #endif

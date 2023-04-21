@@ -17,7 +17,7 @@ void HuMemInit(HuAllocFunc malloc, HuFreeFunc free)
     gFirstMallocBlock = newBlock;
     
     newBlock->data = NULL;
-    newBlock->tag = -1;
+    newBlock->tag = TAG_DELAYED_FREE;
     newBlock->prev = newBlock;
     newBlock->next = newBlock;
     
@@ -49,7 +49,7 @@ void * HuMemAllocTag(s32 size, s16 tag)
     newBlk->tag = tag;
     newBlk->size = alignedSize;
     newBlk->data = data;
-    newBlk->unkC = D_800D20AC;
+    newBlk->creationFrame = D_800D20AC;
     
     return newBlk->data;
 }
@@ -86,12 +86,12 @@ void HuMemFreeAllWithTag(s16 tag)
     {
         if (block->tag == tag)
         {
-            if (block->tag != -1) {
+            if (block->tag != TAG_DELAYED_FREE) {
                 prevBlk = block->prev;
                 HuMemBlockFree(block);
                 block = prevBlk;
             } else {
-                if (--block->unk4 == 0) 
+                if (--block->framesLeft == 0) 
                 {
                     prevBlk = block->prev;
                     HuMemBlockFree(block);
@@ -118,8 +118,8 @@ void func_80019C00_1A800(void * data)
         }
     }
 
-    block->tag = -1;
-    block->unk4 = D_800D1FF0 + 1;
+    block->tag = TAG_DELAYED_FREE;
+    block->framesLeft = D_800D1FF0 + 1;
     
     ++D_800C993C;
 }
@@ -132,8 +132,8 @@ void func_80019C68_1A868(s16 arg0)
     while (block != gLastMallocBlock) 
     {
         if (block->tag == arg0) {
-            block->tag = -1;
-            block->unk4 = D_800D1FF0 + 1;
+            block->tag = TAG_DELAYED_FREE;
+            block->framesLeft = D_800D1FF0 + 1;
             ++D_800C993C;
         }
         block = block->next;
@@ -169,7 +169,7 @@ void HuMemCleanUp(void)
         HuMemFreeAll();
     }
     else if (D_800C993C != 0) {
-        HuMemFreeAllWithTag(-1);
+        HuMemFreeAllWithTag(TAG_DELAYED_FREE);
     }
 }
 

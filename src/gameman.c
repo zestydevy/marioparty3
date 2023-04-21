@@ -2,6 +2,7 @@
 #include "common_structs.h"
 #include "gameman.h"
 #include "malloc.h"
+#include "pad.h"
 #include "process.h"
 
 /* Hardcoded symbols */
@@ -32,7 +33,7 @@ struct str800D5298 {
 extern struct str800D5298 D_800D5298;
 
 
-extern player gPlayers[4];
+extern Player gPlayers[4];
 
 extern void *D_800CCF38;
 extern u8 D_800CCF78[];
@@ -63,7 +64,6 @@ extern u16 D_800A190E_A250E;
 extern void func_800007FC_13FC(struct str800D5298 *arg0);
 extern void func_80000EA8_1AA8(struct str800D5298 *arg0);
 extern void func_80000F30_1B30(u32 arg0);
-extern s32  func_8000985C_A45C(s16); // pad.h
 extern u8   HuGetRandomByte(); //ovlman.h
 extern void func_8000BA30_C630(); // esprite.h
 extern void func_800143F0_14FF0();
@@ -84,7 +84,7 @@ extern s32  func_8004FDC0_509C0();
 extern void func_80050800_51400();
 extern void func_80050E78_51A78(u32 arg0);
 extern void func_80061B50_62750();
-extern void func_80087A40_88640(player *arg0, u32 arg1, u32 arg2);
+extern void func_80087A40_88640(Player *arg0, u32 arg1, u32 arg2);
 
 extern void Hu3DCamInit(u32 arg0);
 
@@ -130,7 +130,7 @@ void func_8000E3C0_EFC0() {
     D_800D1F36 = 0;
 
     do {
-        if (func_8000985C_A45C(D_800D1F36) != 0) {
+        if (HuGetPadInserted(D_800D1F36) != 0) {
             break;
         }
     } while (++D_800D1F36 < 4);
@@ -224,9 +224,9 @@ void func_8000E7B8_F3B8() {
 void func_8000E804_F404() {
     s32 i;
 
-    for (i = 0; i < 4; i++) {
-        func_80087A40_88640(&gPlayers[i], 0, sizeof(player));
-        if (func_8000985C_A45C(i) != 0) {
+    for (i = 0; i < MAX_PLAYERS; i++) {
+        func_80087A40_88640(&gPlayers[i], 0, sizeof(Player));
+        if (HuGetPadInserted(i) != PAD_NOT_INSERTED) {
             D_800CCF78[i] = 0;
             gPlayers[i].flags &= 0xFE;
         }

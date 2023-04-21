@@ -3,13 +3,18 @@
 
 #include "libultra.h"
 
+typedef enum
+{
+    TAG_DELAYED_FREE = -1,
+} EHuMemTag;
+
 typedef struct HuMallocHeader
 {
     void * data;                    // 0000
-    u8 unk4;                        // 0004
+    u8 framesLeft;                  // 0004
     s16 tag;                        // 0006
     s32 size;                       // 0008
-    s32 unkC;                       // 000C
+    s32 creationFrame;              // 000C
     struct HuMallocHeader * prev;   // 0010
     struct HuMallocHeader * next;   // 0014
 } HuMallocHeader;

@@ -96,6 +96,8 @@ HuPrcCall = 0x8004F0D0;
 HuPrcAllocMem = 0x8004F23C;
 HuPrcFreeMem = 0x8004F26C;
 
+HuGetPadInserted = 0x8000985C;
+
 setjmp = 0x80066500;
 longjmp = 0x80066564;
 
