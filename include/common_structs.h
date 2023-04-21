@@ -111,8 +111,8 @@ typedef struct {
     /* 16 (0x10) 800D1118 */ u8 curSpaceIndex;
     /* 17 (0x11) 800D1119 */ u8 nextChainIndex;
     /* 18 (0x12) 800D111A */ u8 nextSpaceIndex;
-    /* 19 (0x13) 800D111B */ u8 unk1ChainIndex;
-    /* 20 (0x14) 800D111C */ u8 unk1SpaceIndex;
+    /* 19 (0x13) 800D111B */ s8 unk1ChainIndex;
+    /* 20 (0x14) 800D111C */ s8 unk1SpaceIndex;
     /* 21 (0x15) 800D111D */ s8 reverseChainIndex;
     /* 22 (0x16) 800D111E */ s8 reverseSpaceIndex;
 
