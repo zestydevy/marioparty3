@@ -14,7 +14,7 @@ typedef struct unkStruct01 {
 } unkStruct01;
 
 typedef struct unkStruct02 {
-vec3f unk_00;
+HuVec3F unk_00;
 char unk_0C[4];
 } unkStruct02;
 
@@ -36,7 +36,7 @@ unkStruct02* unk_8C;
 
 typedef struct unkStruct04 {
 char unk_00[0x0C];
-vec3f unk_0C;
+HuVec3F unk_0C;
 } unkStruct04;
 
 typedef struct unkStruct05 {
@@ -90,8 +90,8 @@ void func_800E9D9C(void);
 void func_800E9F4C(s32, s8*, s8*);
 void func_800EA760(void);
 void func_800ECD0C(s32, s8, s8);
-f32 func_8008E3F0_8EFF0(f32);
-f32 func_8008EF20_8FB20(f32);
+f32 HuMathCos(f32);
+f32 HuMathSin(f32);
 f32 func_800D76D0(void*);
 void func_800EB708(s32, s32, unkStruct01*);
 void * HuMemMemoryAlloc(struct heap_node * heap, s32 size);
@@ -111,7 +111,7 @@ void func_8001C8E4_1D4E4(s16, s32);
 void* func_800D8010(s32, s32);
 void func_800D8944(void*);
 void func_800D8F0C(void*);
-void func_80089A20_8A620(vec3f*, s32);
+void func_80089A20_8A620(HuVec3F*, s32);
 void func_800D8E88(void);
 s16 func_800F3750(void);
 void* func_800F375C(s32);

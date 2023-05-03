@@ -67,8 +67,8 @@ void func_80105C64_3D8D54(s32 arg0, s32 arg1, unkStruct01* arg2) {
 
     func_800EB708(arg0, arg1, arg2);
     temp_f20 = func_800D76D0(arg2) + 15.0f;
-    arg2->unk_00 = func_8008EF20_8FB20(temp_f20);
-    arg2->unk_08 = func_8008E3F0_8EFF0(temp_f20);
+    arg2->unk_00 = HuMathSin(temp_f20);
+    arg2->unk_08 = HuMathCos(temp_f20);
 }
 
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_80105CC0_3D8DB0);

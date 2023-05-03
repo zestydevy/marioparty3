@@ -22,7 +22,6 @@ void func_800098FC_A4FC(void)
     s16 i;
     s32 temp_v0_3;
     s32 temp_v0_5;
-    s32 temp_v0_7;
     u16 var_a2;
     s8 temp_v0_2;
     s8 temp_v0_4;

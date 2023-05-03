@@ -22,6 +22,10 @@ HuWipeFadeIn = 0x80061FE8;
 HuWipeFadeOut = 0x80062050;
 HuWipeStatGet = 0x800620BC;
 Hu3DCamInit = 0x80012220;
+Hu3DCamSetPositionOrientation = 0x80012408;
+Hu3DCamSetPerspective = 0x8001247C;
+Hu3DCamUpdateMtx = 0x80012564;
+Hu3DCam3DToScreen = 0x8001291C;
 Hu3DAnimInit = 0x8001FE20;
 HuObjInit = 0x80047160;
 
@@ -97,6 +101,9 @@ HuPrcAllocMem = 0x8004F23C;
 HuPrcFreeMem = 0x8004F26C;
 
 HuGetPadInserted = 0x8000985C;
+
+HuMathCos = 0x8008E3F0;
+HuMathSin = 0x8008EF20;
 
 setjmp = 0x80066500;
 longjmp = 0x80066564;
@@ -366,6 +373,8 @@ sqrt = 0x800880D0;
 ldiv = 0x80086C40;
 lldiv = 0x80086CC4;
 
+gCameraList = 0x800A0550;
+
 gHuMemIsDirty = 0x800A08A0;
 
 gArchiveRomAddr = 0x800ABFC0;
@@ -375,6 +384,7 @@ gArchiveRomAddrCopy = 0x800ABFCC;
 gArchiveDirCountCopy = 0x800ABFD0;
 gArchiveTblAddrCopy = 0x800ABFD4;
 gArchive = 0x800ABFE0;
+
 
 gLastMallocBlock = 0x800D03F4;
 gFreeFunc = 0x800D135C;
@@ -435,6 +445,9 @@ _Ldtob = 0x80083FA0;
 _Ldunscale = 0x800843EC;
 _Genld = 0x80084484;
 
+guPerspectiveF = 0x8007AE60;
+guPerspective = 0x8007B010;
 guNormalize = 0x80082B00;
 gCurrentPlayerIndex = 0x800CD067;
 guLookAtF = 0x80088210;
+guLookAt = 0x80079800;

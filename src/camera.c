@@ -1,85 +1,251 @@
 #include "common.h"
 #include "common_structs.h"
+#include <PR/gbi.h>
 
-typedef struct unk_struct {
-f32 unk0;
-f32 unk4;
-f32 unk8;
-f32 unkC;
-f32 unk10;
-f32 unk14;
-f32 unk18;
-f32 unk1C;
-f32 unk20;
-f32 unk24;
-f32 unk28;
-f32 unk2C;
-f32 unk30;
-char unk_34[0x1C];
-f32 unk_50;
-char unk_44[0x1DC];
-} unk_struct;
+#define ASPECT_RATIO (4.0f / 3.0f)
+#define SCREEN_WIDTH 320.0f
+#define SCREEN_HEIGHT 240.0f
+#define SCREEN_WIDTH_CENTER SCREEN_WIDTH / 2.0f
+#define SCREEN_HEIGHT_CENTER SCREEN_HEIGHT / 2.0f
 
-extern unk_struct* D_800A0550_A1150;
-typedef f32 Matrix4f[4][4];
+void guLookAt(Mtx *m,
+   float xEye, float yEye, float zEye,
+   float xAt,  float yAt,  float zAt,
+   float xUp,  float yUp,  float zUp );
 
-f32 func_8008E3F0_8EFF0(f32);
-f32 func_8008EF20_8FB20(f32);
+typedef struct
+{
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} HuVec4F;
+
+typedef struct
+{
+    Mtx perspMtx;
+    Mtx lookAtMtx;
+} HuCamMtxs;
+
+typedef struct {
+    /* 0x000 */ u16 perspNorm;
+    /* 0x002 */ char pad2[2];
+    /* 0x004 */ f32 unk4;
+    /* 0x008 */ f32 unk8;
+    /* 0x00C */ f32 unkC;
+    /* 0x010 */ HuVec3F pos;
+    /* 0x01C */ HuVec3F at;
+    /* 0x028 */ HuVec3F up;
+    /* 0x034 */ HuVec3F screenScale;
+    /* 0x040 */ HuVec3F screenPos;
+    /* 0x04C */ s32 unk4C;
+    /* 0x050 */ f32 fov;
+    /* 0x054 */ f32 near;
+    /* 0x058 */ f32 far;
+    /* 0x05C */ f32 unk5C;
+    /* 0x060 */ Vp viewports[3];
+    /* 0x090 */ f32 screenLeft;
+    /* 0x094 */ f32 screenTop;
+    /* 0x098 */ f32 screenRight;
+    /* 0x09C */ f32 screenBottom;
+    /* 0x0A0 */ s32 unkA0;
+    /* 0x0A4 */ s32 unkA4;
+    /* 0x0A8 */ s32 unkA8;
+    /* 0x0AC */ s32 unkAC;
+    /* 0x0B0 */ HuCamMtxs mtxs[3];
+} HuCamera;              
+
+extern HuCamera* gCameraList;
+typedef f32 HuMtx4F[4][4];
+
+f32 HuMathCos(f32);
+f32 HuMathSin(f32);
 
 void guLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
 
 INCLUDE_ASM(s32, "camera", Hu3DCamInit);
 
-INCLUDE_ASM(s32, "camera", func_800123F4_12FF4);
+extern u8 D_800D2008;
+extern s16 D_800D418E;
 
-INCLUDE_ASM(s32, "camera", func_80012408_13008);
-
-INCLUDE_ASM(s32, "camera", func_8001247C_1307C);
-
-INCLUDE_ASM(s32, "camera", func_800124BC_130BC);
-
-INCLUDE_ASM(s32, "camera", func_80012508_13108);
-
-INCLUDE_ASM(s32, "camera", func_80012564_13164);
-
-INCLUDE_ASM(s32, "camera", func_80012640_13240);
-
-INCLUDE_ASM(s32, "camera", func_800127C4_133C4);
-
-INCLUDE_ASM(s32, "camera", func_80012888_13488);
-
-INCLUDE_ASM(s32, "camera", func_800128BC_134BC);
-
-INCLUDE_ASM(s32, "camera", func_800128EC_134EC);
-
-void func_8001291C_1351C(s16 index, vec3f *arg1, vec3f *arg2) { //Convert3Dto2D
-    Matrix4f sp28;
-    f32 temp_f20;
-    f32 temp_f22;
-    f32 temp_f24;
-    f32 temp_f28;
-    f32 temp_f2;
-    f32 temp_f30;
-    unk_struct *temp_s0;
-    
-    temp_s0 = &D_800A0550_A1150[index];
-    guLookAtF(sp28, temp_s0->unk10, temp_s0->unk14, temp_s0->unk18, temp_s0->unk1C, temp_s0->unk20, temp_s0->unk24, temp_s0->unk28, temp_s0->unk2C, temp_s0->unk30);
-    temp_f30 = arg1->x;
-    temp_f28 = arg1->y;
-    temp_f2 = arg1->z;
-    temp_f30 -= temp_s0->unk10;
-    temp_f28 -= temp_s0->unk14;
-    temp_f2 -= temp_s0->unk18;
-    temp_f24 = ((temp_f30 * sp28[0][0]) + (temp_f28 * sp28[1][0])) + (temp_f2 * sp28[2][0]);
-    temp_f22 = ((temp_f30 * sp28[0][1]) + (temp_f28 * sp28[1][1])) + (temp_f2 * sp28[2][1]);
-    temp_f20 = ((temp_f30 * sp28[0][2]) + (temp_f28 * sp28[1][2])) + (temp_f2 * sp28[2][2]);
-    temp_f30 = func_8008EF20_8FB20(temp_s0->unk_50 / 2.0f) / func_8008E3F0_8EFF0(temp_s0->unk_50 / 2.0f) * temp_f20 * (4.0f / 3.0f);
-    temp_f28 =  (func_8008EF20_8FB20(temp_s0->unk_50 / 2.0f) / func_8008E3F0_8EFF0(temp_s0->unk_50 / 2.0f)) * temp_f20;
-    arg2->x = (temp_f24 * (160.0f / (-temp_f30))) + 160.0f;
-    arg2->y = ((temp_f22 * (120.0f / temp_f28)) + 120.0f);
+void func_800123F4_12FF4(void)
+{
+    D_800D418E = D_800D2008;
 }
 
-INCLUDE_ASM(s32, "camera", func_80012B14_13714);
+
+void Hu3DCamSetPositionOrientation(s16 camIndex, HuVec3F * pos, HuVec3F * at, HuVec3F * up)
+{
+    HuCamera * camera = &gCameraList[camIndex];
+    camera->pos = *pos;
+    camera->at  = *at;
+    camera->up  = *up;
+}
+
+void Hu3DCamSetPerspective(s16 camIndex, f32 fov, f32 near, f32 far)
+{
+    HuCamera * camera = &gCameraList[camIndex];
+    camera->fov = fov;
+    camera->near = near;
+    camera->far = far;
+    camera->perspNorm = 1;
+}
+
+void func_800124BC_130BC(s16 camIndex, HuVec4F * arg1)
+{
+    HuCamera * camera = &gCameraList[camIndex];
+    camera->screenLeft = arg1->x;
+    camera->screenTop = arg1->y;
+    camera->screenRight = arg1->z;
+    camera->screenBottom = arg1->w;
+}
+
+void func_80012508_13108(s16 camIndex, HuVec3F * arg1, HuVec3F * arg2)
+{
+    HuCamera * camera = &gCameraList[camIndex];
+    camera->screenScale = *arg1;
+    camera->screenPos = *arg2;
+}
+
+void Hu3DCamUpdateMtx(s16 camIndex)
+{
+    HuCamera * camera;
+    HuCamMtxs * mtxs;
+
+    camera = &gCameraList[camIndex];
+    mtxs = &camera->mtxs[D_800D418E];
+
+    guPerspective(&mtxs->perspMtx, &camera->perspNorm, camera->fov, (SCREEN_WIDTH / SCREEN_HEIGHT), camera->near, camera->far, 1.0f);
+    guLookAt(&mtxs->lookAtMtx, camera->pos.x, camera->pos.y, camera->pos.z, camera->at.x, camera->at.y, camera->at.z, camera->up.x, camera->up.y, camera->up.z);
+}
+
+void func_80012640_13240(s16 camIndex, Gfx ** dispList)
+{
+    HuCamMtxs * camMtx;
+    HuCamera * camera;
+
+    camera = &gCameraList[camIndex];
+    camMtx = &camera->mtxs[D_800D418E];
+    camera->viewports[D_800D418E].vp.vscale[0] = (s16) camera->screenScale.x;
+    camera->viewports[D_800D418E].vp.vscale[1] = (s16) camera->screenScale.y;
+    camera->viewports[D_800D418E].vp.vscale[2] = (s16) camera->screenScale.z;
+    camera->viewports[D_800D418E].vp.vtrans[0] = (s16) camera->screenPos.x;
+    camera->viewports[D_800D418E].vp.vtrans[1] = (s16) camera->screenPos.y;
+    camera->viewports[D_800D418E].vp.vtrans[2] = (s16) camera->screenPos.z;
+
+    gSPViewport((*dispList)++, &camera->viewports[D_800D418E].vp);
+    gSPPerspNormalize((*dispList)++, camera->perspNorm);
+    gSPMatrix((*dispList)++, osVirtualToPhysical(&camMtx->perspMtx), G_MTX_PROJECTION | G_MTX_LOAD);
+    gSPMatrix((*dispList)++, OS_PHYSICAL_TO_K0(&camMtx->lookAtMtx), G_MTX_LOAD);
+}
+
+void func_800127C4_133C4(s16 camIndex, Gfx ** dispList) {
+    HuCamera * camera = &gCameraList[camIndex];
+    gDPSetScissor((*dispList)++, G_SC_NON_INTERLACE, camera->screenLeft, camera->screenTop, camera->screenRight, camera->screenBottom);
+}
+
+void func_80012888_13488(s16 camIndex, s32 arg1, s32 arg2)
+{
+    HuCamera * camera = &gCameraList[camIndex];
+    camera->unkA0 = arg1;
+    camera->unkA4 = arg2;
+}
+
+void func_800128BC_134BC(s16 camIndex, s32 arg1)
+{
+    gCameraList[camIndex].unkA8 = arg1;
+}
+
+
+void func_800128EC_134EC(s16 camIndex, s32 arg1)
+{
+    gCameraList[camIndex].unkAC = arg1;
+}
+
+
+void Hu3DCam3DToScreen(s16 camIndex, HuVec3F * worldPos, HuVec3F * outPos) 
+{
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 projectedX;
+    f32 projectedY;
+    f32 projectedZ;
+    HuCamera * camera;
+    HuMtx4F viewMtx;
+    
+    camera = &gCameraList[camIndex];
+    guLookAtF(
+        viewMtx, 
+        camera->pos.x, 
+        camera->pos.y, 
+        camera->pos.z, 
+        camera->at.x, 
+        camera->at.y, 
+        camera->at.z, 
+        camera->up.x, 
+        camera->up.y, 
+        camera->up.z
+    );
+
+    x = worldPos->x;
+    y = worldPos->y;
+    z = worldPos->z;
+    x -= camera->pos.x;
+    y -= camera->pos.y;
+    z -= camera->pos.z;
+    projectedX = ((x * viewMtx[0][0]) + (y * viewMtx[1][0])) + (z * viewMtx[2][0]);
+    projectedY = ((x * viewMtx[0][1]) + (y * viewMtx[1][1])) + (z * viewMtx[2][1]);
+    projectedZ = ((x * viewMtx[0][2]) + (y * viewMtx[1][2])) + (z * viewMtx[2][2]);
+    x = HuMathSin(camera->fov / 2.0f) / HuMathCos(camera->fov / 2.0f) * projectedZ * ASPECT_RATIO;
+    y =  (HuMathSin(camera->fov / 2.0f) / HuMathCos(camera->fov / 2.0f)) * projectedZ;
+    outPos->x = (projectedX * (SCREEN_WIDTH_CENTER / (-x))) + SCREEN_WIDTH_CENTER;
+    outPos->y = ((projectedY * (SCREEN_HEIGHT_CENTER / y)) + SCREEN_HEIGHT_CENTER);
+}
+
+void func_80012B14_13714(s16 camIndex, HuVec3F * worldPos, HuVec3F * outPos) 
+{
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 projectedX;
+    f32 projectedY;
+    f32 projectedZ;
+    HuCamera * camera;
+    HuMtx4F viewMtx;
+    f32 f2;
+    f32 f4;
+    
+    camera = &gCameraList[camIndex];
+    guLookAtF(
+        viewMtx, 
+        camera->pos.x, 
+        camera->pos.y, 
+        camera->pos.z, 
+        camera->at.x, 
+        camera->at.y, 
+        camera->at.z, 
+        camera->up.x, 
+        camera->up.y, 
+        camera->up.z
+    );
+
+    x = worldPos->x;
+    y = worldPos->y;
+    z = worldPos->z;
+    x -= camera->pos.x;
+    y -= camera->pos.y;
+    z -= camera->pos.z;
+    projectedX = ((x * viewMtx[0][0]) + (y * viewMtx[1][0])) + (z * viewMtx[2][0]);
+    projectedY = ((x * viewMtx[0][1]) + (y * viewMtx[1][1])) + (z * viewMtx[2][1]);
+    projectedZ = ((x * viewMtx[0][2]) + (y * viewMtx[1][2])) + (z * viewMtx[2][2]);
+    x = HuMathSin(camera->fov / 2.0f) / HuMathCos(camera->fov / 2.0f) * projectedZ * (camera->screenScale.x / camera->screenScale.y);
+    y =  (HuMathSin(camera->fov / 2.0f) / HuMathCos(camera->fov / 2.0f)) * projectedZ;
+    f2 = camera->screenPos.x / 4.0f;
+    outPos->x = (projectedX * (f2 / (-x))) + f2;
+    f4 = camera->screenPos.y / 4.0f;
+    outPos->y = ((projectedY * (f4 / y)) + f4);
+}
 
 INCLUDE_ASM(s32, "camera", func_80012D0C_1390C);
 

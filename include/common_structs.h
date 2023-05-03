@@ -6,11 +6,14 @@
 
 #define MAX_PLAYERS 4
 
+#define    OS_K0_TO_PHYSICAL(x)    (u32)(((char *)(x)-0x80000000))
+#define    OS_PHYSICAL_TO_K0(x)    (void *)(((u32)(x)+0x80000000))
+
 typedef struct {
     f32 x;
     f32 y;
     f32 z;
-} vec3f;
+} HuVec3F;
 
 typedef struct objectt {
     /*0x00*/ struct objectt *prev;
@@ -19,9 +22,9 @@ typedef struct objectt {
     /*0x09*/ s8 unk9;
     /*0x0A*/ u16 unkA;
 
-    /*0x0C*/ vec3f coords;
+    /*0x0C*/ HuVec3F coords;
 
-    // Three vec3f groups (Scale?, Rotation?, Position?)
+    // Three HuVec3F groups (Scale?, Rotation?, Position?)
     f32 unk18; // Rotation?
     f32 unk1C;
     f32 unk20;
@@ -53,7 +56,7 @@ struct objectIndirectt {
 
     void *unk14;
 
-    // Three vec3f groups (Scale?, Rotation?, Position?)
+    // Three HuVec3F groups (Scale?, Rotation?, Position?)
     f32 unk18;
     f32 unk1C;
     f32 unk20;
