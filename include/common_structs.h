@@ -3,17 +3,12 @@
 
 #include "common.h"
 #include "process.h"
+#include "math.h"
 
 #define MAX_PLAYERS 4
 
 #define    OS_K0_TO_PHYSICAL(x)    (u32)(((char *)(x)-0x80000000))
 #define    OS_PHYSICAL_TO_K0(x)    (void *)(((u32)(x)+0x80000000))
-
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} HuVec3F;
 
 typedef struct objectt {
     /*0x00*/ struct objectt *prev;

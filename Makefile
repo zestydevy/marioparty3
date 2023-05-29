@@ -68,7 +68,7 @@ ENDLINE := \n'
 ### Compiler Options ###
 
 ASFLAGS      := -G 0 -I include -mips3 -mabi=32
-CFLAGS       := -O1 -G0 -mips3 -mgp32 -mfp32
+CFLAGS       := -O1 -G0 -mips3 -mgp32 -mfp32 -Wa,--vr4300mul-off
 CPPFLAGS     := -I include -I $(BUILD_DIR)/include -I src -DF3DEX_GBI_2
 LDFLAGS      := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CFLAGS_CHECK := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK\
@@ -86,9 +86,7 @@ DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
 
-#build/src/libultra/os/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
-#build/src/libultra/libc/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
-#build/src/lib/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
+build/src/libhmath/%.o: CFLAGS := -O2 -G0 -mips3 -mgp32 -mfp32 -ffast-math
 
 all: $(ROM)
 
@@ -112,8 +110,6 @@ split:
 
 test: $(ROM)
 	$(V)$(EMULATOR) $<
-	
-export VR4300MUL := OFF
 # Compile .c files with kmc gcc (use strip to fix objects so that they can be linked with modern gnu ld) 
 $(BUILD_DIR)/src/%.c.o: src/%.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)

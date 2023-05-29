@@ -1,4 +1,5 @@
 #include "GateGuy.h"
+#include "math.h"
 
 void func_801059D0_3D8AC0(void) {
     D_800CDD58 = 1;
@@ -142,10 +143,10 @@ void* func_80106740_3D9830(s32 arg0) {
     return temp_v0;
 }
 
-void func_801067D4_3D98C4(object* arg0, s32 arg1) {
+void func_801067D4_3D98C4(object* arg0, HuVec3F * arg1) {
     func_800D8E88();
     func_8001C814_1D414(*arg0->unk3C->unk40, 3, 0);
-    func_80089A20_8A620(&arg0->coords, arg1);
+    HuVecCopy3F(&arg0->coords, arg1);
 }
 
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_80106828_3D9918);
