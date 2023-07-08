@@ -95,17 +95,41 @@ def get_core_func_sizes(elf_path: Path) -> "tuple[dict[str, int], int]":
     sizes = {}
     total = 0
 
+    for line in [l for l in lines if "OBJECT" in l]:
+        components = line.split()
+        size = int(components[2])
+        name = components[7]
+        # Include asm functions (which have a size of 0), 
+        # but exclude branch labels (which also count as funcs and have a size of 0)
+        if not name.startswith("L8"):
+            total += size
+            sizes[name] = size
+
+    return sizes, total
+
+def get_matching(elf_path: Path) -> "tuple[dict[str, int], int]":
+    # Get functions and their sizes from the given .elf
+    try:
+        result = subprocess.run(['mips-linux-gnu-readelf', '--symbols', elf_path], stdout=subprocess.PIPE)
+        lines = result.stdout.decode().split("\n")
+    except:
+        print(f"Error: Could not run mips-linux-gnu-readelf on {elf_path} - make sure that the project is built")
+        sys.exit(1)
+
+    sizes = {}
+    total = 0
+
     for line in [l for l in lines if "FUNC" in l]:
         components = line.split()
         size = int(components[2])
         name = components[7]
         # Include asm functions (which have a size of 0), 
         # but exclude branch labels (which also count as funcs and have a size of 0)
-        if size > 0 or not name.startswith("L8"):
+        if not name.startswith("L8"):
             total += size
             sizes[name] = size
 
-    return sizes, total
+    return sizes
 
 def get_core_nonmatching_funcs() -> "set[str]":
     nonmatching_path = ASM_PATH.joinpath("nonmatchings")
@@ -126,6 +150,8 @@ def get_core_progress() -> CoreProgress:
     dino_elf_path = BUILD_PATH.joinpath("marioparty3.elf")
     func_sizes, total_bytes = get_core_func_sizes(dino_elf_path)
     all_funcs = set(func_sizes.keys())
+    matching_funcs2 = get_matching(dino_elf_path)
+    all_matching_funcs = set(matching_funcs2.keys())
 
     # Get nonmatching functions
     nonmatching_funcs = get_core_nonmatching_funcs()
@@ -139,9 +165,9 @@ def get_core_progress() -> CoreProgress:
     # Done
     return CoreProgress(
         total_bytes=total_bytes,
-        total_funcs=len(all_funcs),
+        total_funcs=len(nonmatching_funcs) + len(all_matching_funcs),
         matching_bytes=matching_bytes,
-        matching_funcs=len(matching_funcs)
+        matching_funcs=len(all_matching_funcs)
     )
 
 def read_dll_symbols_txt(path: Path) -> "dict[int, str]":

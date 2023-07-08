@@ -372,7 +372,7 @@ segments:
     - [0x8F760, asm]
     - [0x8F7D0, asm]
     - [0x8F830, asm]
-    - [0x8FB20, asm]
+    - [0x8FB20, c, libhmath/sin]
     - [0x8FCF0, bin]
     - [0x96EF0, data, BCA0]
     - [0x98260, bin]
