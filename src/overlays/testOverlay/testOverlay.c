@@ -30,12 +30,6 @@ extern void func_8000BB54_C754(s32);
 extern void func_8000BCC8_C8C8(s32, s32);
 extern void func_800EC9DC(s32, char *, s32, s32, s32, s32, s32);
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} HuVec3F;
-
 typedef struct HuObj {
     /*0x00*/ struct HuObj * prev;
     /*0x04*/ struct HuObj * next;

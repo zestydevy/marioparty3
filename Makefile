@@ -8,7 +8,7 @@ CHECK        ?= 1
 VERBOSE      ?= 0
 
 # Patches
-# PATCHES_ASFLAGS := --defsym MP_SAVETYPE_PATCH=1
+PATCHES_ASFLAGS := --defsym MP_SAVETYPE_PATCH=1
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)

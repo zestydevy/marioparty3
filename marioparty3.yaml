@@ -2,6 +2,7 @@ name: Mario Party 3 (North America)
 sha1: 6beb80ff822b96bcf85dcdb512e8b2b7969d8259
 
 options:
+  shiftable: True
   basename: marioparty3
   target_path: baserom.us.z64
   base_path: .
