@@ -1,4 +1,5 @@
 #include "common.h"
+#include "pad.h"
 
 typedef struct
 {
@@ -18,6 +19,8 @@ extern s8 D_800CD068;
 extern u8 D_800CC0DE[];
 extern u8 D_800CC153[];
 extern u16 D_800CC0CA[];
+
+extern s32 D_800B1A30;
 
 void func_80035A50_36650(void)
 {
@@ -124,6 +127,14 @@ INCLUDE_ASM(s32, "save", func_80035FDC_36BDC);
 
 INCLUDE_ASM(s32, "save", func_8003602C_36C2C);
 
-INCLUDE_ASM(s32, "save", func_80036080_36C80);
+void HuSaveSetPadIsInserted(void)
+{
+    if (HuGetPadInserted(0) != FALSE)
+    {
+        D_800B1A30 = TRUE;
+        return;
+    }
+    D_800B1A30 = FALSE;
+}
 
 INCLUDE_ASM(s32, "save", func_800360B8_36CB8);

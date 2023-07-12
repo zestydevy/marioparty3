@@ -1,5 +1,6 @@
 #include "GateGuy.h"
 #include "math.h"
+#include "process.h"
 
 void func_801059D0_3D8AC0(void) {
     D_800CDD58 = 1;
@@ -78,7 +79,7 @@ void* func_80105EB0_3D8FA0(unkStruct04* arg0) {
     unkStruct03* temp_v0;
     unkStruct02* temp_v0_2;
 
-    temp_v0 = func_80047EA0_48AA0(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
+    temp_v0 = HuObjPrcCreate(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
     temp_v0_2 = HuMemMemoryAlloc(temp_v0->unk_18, sizeof(unkStruct02));
     temp_v0->unk_8C = temp_v0_2;
     temp_v0_2->unk_00.x = arg0->unk_0C.x;
@@ -120,7 +121,7 @@ unkStruct03* func_8010645C_3D954C(s32 arg0, s32 arg1) {
     unkStruct03* temp_v0;
     unkStruct06* temp_v0_2;
 
-    temp_v0 = func_80047EA0_48AA0(&func_80106308_3D93F8, 0xA, 0, 0x40);
+    temp_v0 = HuObjPrcCreate(&func_80106308_3D93F8, 0xA, 0, 0x40);
     temp_v0_2 = HuMemMemoryAlloc(temp_v0->unk_18, sizeof(unkStruct06));
     temp_v0->unk_8C = temp_v0_2;
     temp_v0_2->unk_00 = arg0;

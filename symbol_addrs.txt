@@ -28,6 +28,11 @@ Hu3DCamUpdateMtx = 0x80012564;
 Hu3DCam3DToScreen = 0x8001291C;
 Hu3DAnimInit = 0x8001FE20;
 HuObjInit = 0x80047160;
+HuObjCreate = 0x80047620;
+HuObjRegister = 0x80047898;
+HuObjPrcCreate = 0x80047EA0;
+
+HuSaveSetPadIsInserted = 0x80036080;
 
 HuMemHeapInit = 0x800360D0;
 HuMemMemoryAlloc = 0x800360F0;
@@ -54,6 +59,7 @@ HuMemUsedMemoryBlockGetTemp = 0x800359C0;
 HuStartDma = 0x8004D9F8;
 HuRomDmaRead = 0x8004DA40;
 HuRomDmaCodeRead = 0x8004DB14;
+
 
 HuInitArchive = 0x80009AC0;
 HuInitFileInfo = 0x80009B64;
