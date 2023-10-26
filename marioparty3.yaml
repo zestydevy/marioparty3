@@ -32,302 +32,302 @@ segments:
     subalign: 4
     subsegments:
     - [0x1000, hasm]
-    - [0x1060, asm]
-    - [0x8F20, asm]
+    - [0x1060, c, unknown/1060]
+    - [0x8F20, c, unknown/8F20]
     - [0x99D0, c, pad]
     - [0xA480, c, input]
     - [0xA6C0, c, data]
     - [0xAE30, c, "decode"]
-    - [0xBCA0, asm, ovlman]
-    - [0xC1F0, asm]
-    - [0xC3A0, asm, esprite]
-    - [0xCE10, asm, eeprom]
-    - [0xD7A0, asm]
-    - [0xE560, asm]
+    - [0xBCA0, c, ovlman]
+    - [0xC1F0, c, unknown/C1F0]
+    - [0xC3A0, c, esprite]
+    - [0xCE10, c, eeprom]
+    - [0xD7A0, c, unknown/D7A0]
+    - [0xE560, c, unknown/E560]
     - [0xEFB0, c, stubbed]
     - [0xEFC0, c, gameman]
-    - [0xF610, asm, graphics]
-    - [0xFCA0, asm, hmfload]
+    - [0xF610, c, graphics]
+    - [0xFCA0, c, hmfload]
     - [0x12E20, c, camera]
-    - [0x13F90, asm]
-    - [0x14EA0, asm]
-    - [0x19C30, asm]
+    - [0x13F90, c, unknown/13F90]
+    - [0x14EA0, c, unknown/14EA0]
+    - [0x19C30, c, unknown/19C30]
     - [0x1A580, c, mallocblock]
-    - [0x1AC70, asm, hmfman]
-    - [0x20A20, asm]
-    - [0x22EB0, asm]
-    - [0x30C40, asm]
-    - [0x32160, asm]
-    - [0x34DD0, asm]
+    - [0x1AC70, c, hmfman]
+    - [0x20A20, c, unknown/20A20]
+    - [0x22EB0, c, unknown/22EB0]
+    - [0x30C40, c, unknown/30C40]
+    - [0x32160, c, unknown/32160]
+    - [0x34DD0, c, unknown/34DD0]
     - [0x360A0, c, "main"]
     - [0x36440, c, "mallocperm"]
     - [0x36510, c, "malloctemp"]
-    - [0x365E0, asm]
+    - [0x365E0, c, unknown/365E0]
     - [0x36650, c, save]
     - [0x36CD0, c, "malloc"]
-    - [0x36F80, asm]
-    - [0x37210, asm]
-    - [0x45F50, asm]
-    - [0x471D0, asm]
-    - [0x47D60, c, unknown/47d60]
-    - [0x4B120, asm]
-    - [0x4BF40, asm]
-    - [0x4E010, asm, profiler]
+    - [0x36F80, c, unknown/36F80]
+    - [0x37210, c, unknown/37210]
+    - [0x45F50, c, unknown/45F50]
+    - [0x471D0, c, unknown/471D0]
+    - [0x47D60, c, unknown/47D60]
+    - [0x4B120, c, unknown/4B120]
+    - [0x4BF40, c, unknown/4BF40]
+    - [0x4E010, c, profiler]
     - [0x4E5A0, c, rom]
-    - [0x4E800, asm]
+    - [0x4E800, c, unknown/4E800]
     - [0x4F720, c, "process"]
-    - [0x4FE90, asm]
-    - [0x508F0, asm]
+    - [0x4FE90, c, unknown/4FE90]
+    - [0x508F0, c, unknown/508F0]
     - [0x51B50, c, nnsched]
     - [0x52350, c, siman]
-    - [0x527E0, asm]
-    - [0x52F30, asm, "sprman"]
-    - [0x58000, asm, "sprput"]
+    - [0x527E0, c, unknown/527E0]
+    - [0x52F30, c, "sprman"]
+    - [0x58000, c, "sprput"]
     - [0x5ACF0, c, window]
-    - [0x62750, asm]
-    - [0x66E70, asm]
-    - [0x67000, asm]
+    - [0x62750, c, unknown/62750]
+    - [0x66E70, c, unknown/66E70]
+    - [0x67000, c, unknown/67000]
     - [0x67100, hasm, "setjmp"]
-    - [0x671E0, asm, "lib/hvq"]
-    - [0x6B050, asm]
-    - [0x6BA20, asm]
-    - [0x6C140, asm]
-    - [0x6C320, asm]
-    - [0x6C3A0, asm]
-    - [0x6C3C0, asm]
-    - [0x6C9F0, asm]
-    - [0x6DBD0, asm]
-    - [0x6DBF0, asm]
-    - [0x6DC10, asm]
-    - [0x6DC30, asm]
-    - [0x6DC50, asm]
-    - [0x6DCD0, asm]
-    - [0x6DCE0, asm]
-    - [0x6DD10, asm]
-    - [0x6DF20, asm]
-    - [0x6DFA0, asm]
-    - [0x6E6B0, asm]
-    - [0x6E780, asm]
-    - [0x6E7E0, asm]
-    - [0x6E840, asm]
-    - [0x6E880, asm]
-    - [0x6E8E0, asm]
-    - [0x6E940, asm]
-    - [0x6F470, asm]
-    - [0x70420, asm]
-    - [0x707B0, asm]
-    - [0x70850, asm]
-    - [0x70940, asm]
-    - [0x709E0, asm]
-    - [0x70A70, asm]
-    - [0x70B20, asm]
-    - [0x70BB0, asm]
-    - [0x70C30, asm]
-    - [0x72740, asm]
-    - [0x72750, asm]
+    - [0x671E0, c, "lib/hvq"]
+    - [0x6B050, c, unknown/6B050]
+    - [0x6BA20, c, unknown/6BA20]
+    - [0x6C140, c, unknown/6C140]
+    - [0x6C320, c, unknown/6C320]
+    - [0x6C3A0, c, unknown/6C3A0]
+    - [0x6C3C0, c, unknown/6C3C0]
+    - [0x6C9F0, c, unknown/6C9F0]
+    - [0x6DBD0, c, unknown/6DBD0]
+    - [0x6DBF0, c, unknown/6DBF0]
+    - [0x6DC10, c, unknown/6DC10]
+    - [0x6DC30, c, unknown/6DC30]
+    - [0x6DC50, c, unknown/6DC50]
+    - [0x6DCD0, c, unknown/6DCD0]
+    - [0x6DCE0, c, unknown/6DCE0]
+    - [0x6DD10, c, unknown/6DD10]
+    - [0x6DF20, c, unknown/6DF20]
+    - [0x6DFA0, c, unknown/6DFA0]
+    - [0x6E6B0, c, unknown/6E6B0]
+    - [0x6E780, c, unknown/6E780]
+    - [0x6E7E0, c, unknown/6E7E0]
+    - [0x6E840, c, unknown/6E840]
+    - [0x6E880, c, unknown/6E880]
+    - [0x6E8E0, c, unknown/6E8E0]
+    - [0x6E940, c, unknown/6E940]
+    - [0x6F470, c, unknown/6F470]
+    - [0x70420, c, unknown/70420]
+    - [0x707B0, c, unknown/707B0]
+    - [0x70850, c, unknown/70850]
+    - [0x70940, c, unknown/70940]
+    - [0x709E0, c, unknown/709E0]
+    - [0x70A70, c, unknown/70A70]
+    - [0x70B20, c, unknown/70B20]
+    - [0x70BB0, c, unknown/70BB0]
+    - [0x70C30, c, unknown/70C30]
+    - [0x72740, c, unknown/72740]
+    - [0x72750, c, unknown/72750]
     - [0x72890, bin] # Should this be 0x7288C? What is this?
-    - [0x72C20, asm, "libultra/io/conteepwrite"]
-    - [0x73020, asm, "libultra/io/conteepprobe"]
-    - [0x730A0, asm, "libultra/io/conteeplongwrite"]
-    - [0x73190, asm, "libultra/io/conteeplongread"]
+    - [0x72C20, c, "libultra/io/conteepwrite"]
+    - [0x73020, c, "libultra/io/conteepprobe"]
+    - [0x730A0, c, "libultra/io/conteeplongwrite"]
+    - [0x73190, c, "libultra/io/conteeplongread"]
     - [0x73200, hasm, "libultra/os/setintmask"]
-    - [0x732A0, asm, "libultra/io/pimgr"]
-    - [0x73550, asm, "libultra/io/epirawdma"]
-    - [0x73740, asm, "libultra/io/epidma"]
-    - [0x737E0, asm, "libultra/io/cartrominit"]
-    - [0x73960, asm, "libultra/io/devmgr"]
-    - [0x73D20, asm, "libultra/io/piacs"] # double check
-    - [0x73E10, asm, "lubultra/io/aigetlen"]
-    - [0x73E20, asm, "lubultra/io/aisetfreq"]
-    - [0x73F40, asm, "libultra/io/aisetnextbuf"]
-    - [0x73FE0, asm, "libultra/audio/drvrnew"]
-    - [0x74810, asm, "libultra/audio/load"]
-    - [0x75320, asm, "libultra/audio/auxbus"]
-    - [0x75430, asm, "libultra/audio/bnkf"]
-    - [0x75700, asm, "libultra/audio/env"]
-    - [0x763B0, asm, "libultra/audio/event"]
-    - [0x76700, asm, "libultra/audio/filter"]
-    - [0x76720, asm, "libultra/audio/mainbus"]
-    - [0x76890, asm, "libultra/audio/resample"]
-    - [0x76B40, asm, "libultra/audio/reverb"]
-    - [0x776E0, asm, "libultra/audio/save"]
-    - [0x777B0, asm, "libultra/audio/seq"]
-    - [0x77DA0, asm, "libultra/audio/sl"]
-    - [0x77E50, asm, "libultra/audio/heapinit"]
-    - [0x77E90, asm, "libultra/audio/heapalloc"]
-    - [0x77EE0, asm, "libultra/audio/copy"]
-    - [0x77F20, asm, "libultra/audio/cseq"]
-    - [0x789E0, asm, "libultra/audio/synthesizer"]
-    - [0x79020, asm, "libultra/audio/syndelete"]
-    - [0x79030, asm, "libultra/audio/synaddplayer"]
-    - [0x79080, asm, "libultra/audio/synfreevoice"]
-    - [0x79120, asm, "libultra/audio/synallocvoice"]
-    - [0x79300, asm, "libultra/audio/synstopvoice"]
-    - [0x79380, asm, "libultra/audio/synstartvoice"]
-    - [0x79420, asm, "libultra/audio/synsetpitch"]
-    - [0x794B0, asm, "libultra/audio/synsetvol"]
-    - [0x79570, asm, "libultra/audio/synsetfxmix"]
-    - [0x79610, asm, "libultra/audio/synsetpan"]
-    - [0x796A0, asm, "libultra/audio/synallocfx"]
-    - [0x79740, asm, "libultra/audio/cents2ratio"]
-    - [0x797A0, asm, "libultra/os/invaldcache"]
-    - [0x79850, asm, "libultra/os/invalicache"]
-    - [0x798D0, asm, "libultra/os/writebackdcache"]
-    - [0x79950, asm, "libultra/os/writebackdcacheall"]
-    - [0x79980, asm, "libultra/io/contreaddata"]
-    - [0x79B60, asm, "libultra/io/controller"]
-    - [0x79E70, asm, "libultra/io/contsetch"]
-    - [0x79ED0, asm, "libultra/os/virtualtophysical"]
-    - [0x79F30, asm, "libultra/gu/cosf"]
-    - [0x7A080, asm, "libultra/gu/lookat"]
-    - [0x7A790, asm, "libultra/gu/lookathil"]
-    - [0x7B1F0, asm, "libultra/gu/lookatref"]
-    - [0x7B7E0, asm, "libultra/gu/ortho"]
-    - [0x7BA60, asm, "libultra/gu/perspective"]
-    - [0x7BDE0, asm, "libultra/gu/random"]
-    - [0x7BE10, asm, "libultra/gu/rotaterpy"]
-    - [0x7C130, asm, "libultra/gu/sinf"]
-    - [0x7C2D0, asm, "libultra/os/rdbsend"]
-    - [0x7C4F0, asm, "libultra/os/osInitRdb"]
+    - [0x732A0, c, "libultra/io/pimgr"]
+    - [0x73550, c, "libultra/io/epirawdma"]
+    - [0x73740, c, "libultra/io/epidma"]
+    - [0x737E0, c, "libultra/io/cartrominit"]
+    - [0x73960, c, "libultra/io/devmgr"]
+    - [0x73D20, c, "libultra/io/piacs"] # double check
+    - [0x73E10, c, "libultra/io/aigetlen"]
+    - [0x73E20, c, "libultra/io/aisetfreq"]
+    - [0x73F40, c, "libultra/io/aisetnextbuf"]
+    - [0x73FE0, c, "libultra/audio/drvrnew"]
+    - [0x74810, c, "libultra/audio/load"]
+    - [0x75320, c, "libultra/audio/auxbus"]
+    - [0x75430, c, "libultra/audio/bnkf"]
+    - [0x75700, c, "libultra/audio/env"]
+    - [0x763B0, c, "libultra/audio/event"]
+    - [0x76700, c, "libultra/audio/filter"]
+    - [0x76720, c, "libultra/audio/mainbus"]
+    - [0x76890, c, "libultra/audio/resample"]
+    - [0x76B40, c, "libultra/audio/reverb"]
+    - [0x776E0, c, "libultra/audio/save"]
+    - [0x777B0, c, "libultra/audio/seq"]
+    - [0x77DA0, c, "libultra/audio/sl"]
+    - [0x77E50, c, "libultra/audio/heapinit"]
+    - [0x77E90, c, "libultra/audio/heapalloc"]
+    - [0x77EE0, c, "libultra/audio/copy"]
+    - [0x77F20, c, "libultra/audio/cseq"]
+    - [0x789E0, c, "libultra/audio/synthesizer"]
+    - [0x79020, c, "libultra/audio/syndelete"]
+    - [0x79030, c, "libultra/audio/synaddplayer"]
+    - [0x79080, c, "libultra/audio/synfreevoice"]
+    - [0x79120, c, "libultra/audio/synallocvoice"]
+    - [0x79300, c, "libultra/audio/synstopvoice"]
+    - [0x79380, c, "libultra/audio/synstartvoice"]
+    - [0x79420, c, "libultra/audio/synsetpitch"]
+    - [0x794B0, c, "libultra/audio/synsetvol"]
+    - [0x79570, c, "libultra/audio/synsetfxmix"]
+    - [0x79610, c, "libultra/audio/synsetpan"]
+    - [0x796A0, c, "libultra/audio/synallocfx"]
+    - [0x79740, c, "libultra/audio/cents2ratio"]
+    - [0x797A0, c, "libultra/os/invaldcache"]
+    - [0x79850, c, "libultra/os/invalicache"]
+    - [0x798D0, c, "libultra/os/writebackdcache"]
+    - [0x79950, c, "libultra/os/writebackdcacheall"]
+    - [0x79980, c, "libultra/io/contreaddata"]
+    - [0x79B60, c, "libultra/io/controller"]
+    - [0x79E70, c, "libultra/io/contsetch"]
+    - [0x79ED0, c, "libultra/os/virtualtophysical"]
+    - [0x79F30, c, "libultra/gu/cosf"]
+    - [0x7A080, c, "libultra/gu/lookat"]
+    - [0x7A790, c, "libultra/gu/lookathil"]
+    - [0x7B1F0, c, "libultra/gu/lookatref"]
+    - [0x7B7E0, c, "libultra/gu/ortho"]
+    - [0x7BA60, c, "libultra/gu/perspective"]
+    - [0x7BDE0, c, "libultra/gu/random"]
+    - [0x7BE10, c, "libultra/gu/rotaterpy"]
+    - [0x7C130, c, "libultra/gu/sinf"]
+    - [0x7C2D0, c, "libultra/os/rdbsend"]
+    - [0x7C4F0, c, "libultra/os/osInitRdb"]
     - [0x7C570, hasm, "libultra/libc/bcopy"]
-    - [0x7C930, asm, "libultra/libc/string"]
-    - [0x7C9C0, asm, "libultra/libc/sprintf"]
-    - [0x7CA50, asm, "libultra/libc/syncprintf"]
-    - [0x7CB00, asm, "libultra/os/osCreateMesgQueue"]
-    - [0x7CB30, asm, "libultra/os/osJamMesg"]
-    - [0x7CC70, asm, "libultra/os/osRecvMesg"]
-    - [0x7CDA0, asm, "libultra/os/osSendMesg"]
-    - [0x7CED0, asm, "libultra/os/seteventmesg"]
+    - [0x7C930, c, "libultra/libc/string"]
+    - [0x7C9C0, c, "libultra/libc/sprintf"]
+    - [0x7CA50, c, "libultra/libc/syncprintf"]
+    - [0x7CB00, c, "libultra/os/osCreateMesgQueue"]
+    - [0x7CB30, c, "libultra/os/osJamMesg"]
+    - [0x7CC70, c, "libultra/os/osRecvMesg"]
+    - [0x7CDA0, c, "libultra/os/osSendMesg"]
+    - [0x7CED0, c, "libultra/os/seteventmesg"]
     - [0x7CF80, hasm, "libultra/os/setcause"]
     - [0x7CF90, hasm, "libultra/os/setcompare"]
     - [0x7CFA0, hasm, "libultra/os/setcount"]
     - [0x7CFB0, hasm, "libultra/os/setsr"]
-    - [0x7CFC0, asm, "libultra/io/sptask"]
-    - [0x7D200, asm, "libultra/io/sptaskyield"]
-    - [0x7D220, asm, "libultra/io/sptaskyielded"]
-    - [0x7D270, asm, "libultra/io/sirawdma"]
-    - [0x7D320, asm, "libultra/io/siacs"]
-    - [0x7D410, asm, "libultra/os/createthread"]
-    - [0x7D510, asm, "libultra/os/destroythread"]
-    - [0x7D5F0, asm, "libultra/os/getthreadpri"]
-    - [0x7D610, asm, "libultra/os/setthreadpri"]
-    - [0x7D6E0, asm, "libultra/os/startthread"]
+    - [0x7CFC0, c, "libultra/io/sptask"]
+    - [0x7D200, c, "libultra/io/sptaskyield"]
+    - [0x7D220, c, "libultra/io/sptaskyielded"]
+    - [0x7D270, c, "libultra/io/sirawdma"]
+    - [0x7D320, c, "libultra/io/siacs"]
+    - [0x7D410, c, "libultra/os/createthread"]
+    - [0x7D510, c, "libultra/os/destroythread"]
+    - [0x7D5F0, c, "libultra/os/getthreadpri"]
+    - [0x7D610, c, "libultra/os/setthreadpri"]
+    - [0x7D6E0, c, "libultra/os/startthread"]
     - [0x7D800, hasm, "__osDequeueThread"]
-    - [0x7D840, asm, "libultra/os/yieldthread"]
-    - [0x7D890, asm, "libultra/os/osGetTime"]
-    - [0x7D920, asm, "libultra/os/osSetTimer"]
-    - [0x7DA50, asm, "libultra/os/timerintr"]
+    - [0x7D840, c, "libultra/os/yieldthread"]
+    - [0x7D890, c, "libultra/os/osGetTime"]
+    - [0x7D920, c, "libultra/os/osSetTimer"]
+    - [0x7DA50, c, "libultra/os/timerintr"]
     - [0x7DE10, hasm, "libultra/os/probetlb"]
-    - [0x7DED0, asm, "libultra/io/vigetcurrframebuf"]
-    - [0x7DF10, asm, "libultra/io/vigetnextframebuf"]
-    - [0x7DF50, asm, "libultra/io/vimgr"]
-    - [0x7E290, asm, "libultra/io/visetevent"]
-    - [0x7E2F0, asm, "libultra/io/visetmode"]
-    - [0x7E340, asm, "libultra/io/visetspecial"]
-    - [0x7E4B0, asm, "libultra/io/visetyscale"]
-    - [0x7E500, asm, "libultra/io/viswapbuf"]
-    - [0x7E550, asm, "libultra/io/viswapcontext"]
-    - [0x7E860, asm, "libultra/io/viblack"]
+    - [0x7DED0, c, "libultra/io/vigetcurrframebuf"]
+    - [0x7DF10, c, "libultra/io/vigetnextframebuf"]
+    - [0x7DF50, c, "libultra/io/vimgr"]
+    - [0x7E290, c, "libultra/io/visetevent"]
+    - [0x7E2F0, c, "libultra/io/visetmode"]
+    - [0x7E340, c, "libultra/io/visetspecial"]
+    - [0x7E4B0, c, "libultra/io/visetyscale"]
+    - [0x7E500, c, "libultra/io/viswapbuf"]
+    - [0x7E550, c, "libultra/io/viswapcontext"]
+    - [0x7E860, c, "libultra/io/viblack"]
     - [0x7E8C0, hasm, "libultra/gu/mtxidenf"]
     - [0x7E920, hasm, "libultra/gu/mtxf2l"]
     - [0x7E9A0, hasm, "libultra/gu/mtxl2f"]
     - [0x7EA20, hasm, "libultra/gu/mtxcatf"]
     - [0x7EB20, hasm, "libultra/gu/scale"]
     - [0x7EBE0, hasm, "libultra/gu/translatef"]
-    - [0x7EC40, asm, "libultra/gu/mtxcatl"]
-    - [0x7ECC0, asm, "libultra/gu/rotate"]
-    - [0x7EFA0, asm, "libultra/io/motor"]
-    - [0x7F330, asm, "libultra/io/pfsselectbank"]
-    - [0x7F3A0, asm, "libultra/io/contramread"]
-    - [0x7F590, asm, "libultra/io/contramwrite"]
-    - [0x7F800, asm, "libultra/os/afterprenmi"]
-    - [0x7F820, asm, "libultra/os/getmemsize"]
-    - [0x7F8C0, asm, "libultra/os/initialize"]
-    - [0x7FCD0, asm, "libultra/os/initialize_kmc"]
-    - [0x800A0, asm, "libultra/os/initialize_msp"]
-    - [0x80460, asm, "libultra/os/initialize_emu"]
-    - [0x804E0, asm, "libultra/io/conteepread"]
+    - [0x7EC40, c, "libultra/gu/mtxcatl"]
+    - [0x7ECC0, c, "libultra/gu/rotate"]
+    - [0x7EFA0, c, "libultra/io/motor"]
+    - [0x7F330, c, "libultra/io/pfsselectbank"]
+    - [0x7F3A0, c, "libultra/io/contramread"]
+    - [0x7F590, c, "libultra/io/contramwrite"]
+    - [0x7F800, c, "libultra/os/afterprenmi"]
+    - [0x7F820, c, "libultra/os/getmemsize"]
+    - [0x7F8C0, c, "libultra/os/initialize"]
+    - [0x7FCD0, c, "libultra/os/initialize_kmc"]
+    - [0x800A0, c, "libultra/os/initialize_msp"]
+    - [0x80460, c, "libultra/os/initialize_emu"]
+    - [0x804E0, c, "libultra/io/conteepread"]
     - [0x80710, hasm, "libultra/os/exceptasm"]
-    - [0x815D0, asm, "libultra/os/setglobalintmask"]
-    - [0x81610, asm, "libultra/os/resetglobalintmask"]
-    - [0x81660, asm, "libultra/io/pirawdma"]
-    - [0x81730, asm, "libultra/io/pigetcmdq"]
-    - [0x81750, asm, "libultra/io/epirawread"] # double check
-    - [0x818C0, asm, "libultra/io/epirawwrite"]
-    - [0x81A30, asm, "libultra/io/piwrite"]
-    - [0x81A80, asm, "libultra/io/piread"]
-    - [0x81AD0, asm, "libultra/io/ai"]
-    - [0x81AF0, asm, "libultra/debug/kdebugserver"]
-    - [0x81DB0, asm, "libultra/debug/threadprofile"]
+    - [0x815D0, c, "libultra/os/setglobalintmask"]
+    - [0x81610, c, "libultra/os/resetglobalintmask"]
+    - [0x81660, c, "libultra/io/pirawdma"]
+    - [0x81730, c, "libultra/io/pigetcmdq"]
+    - [0x81750, c, "libultra/io/epirawread"] # double check
+    - [0x818C0, c, "libultra/io/epirawwrite"]
+    - [0x81A30, c, "libultra/io/piwrite"]
+    - [0x81A80, c, "libultra/io/piread"]
+    - [0x81AD0, c, "libultra/io/ai"]
+    - [0x81AF0, c, "libultra/debug/kdebugserver"]
+    - [0x81DB0, c, "libultra/debug/threadprofile"]
     - [0x81E40, hasm, "libultra/gu/sqrtf"]
-    - [0x81E50, asm, "libultra/debug/readhost"]
-    - [0x81F20, asm, "libultra/os/initialize_isv"]
+    - [0x81E50, c, "libultra/debug/readhost"]
+    - [0x81F20, c, "libultra/os/initialize_isv"]
     - [0x824C0, hasm, "libultra/monutil"]
-    - [0x82640, asm, "libultra/libc/xprintf"]
+    - [0x82640, c, "libultra/libc/xprintf"]
     - [0x83090, hasm, "libultra/os/getcause"]
     - [0x830A0, hasm, "libultra/os/getcount"]
     - [0x830B0, hasm, "libultra/os/getsr"]
     - [0x830C0, hasm, "libultra/os/setfpccsr"]
     - [0x830D0, hasm, "libultra/os/setwatchlo"]
-    - [0x830E0, asm, "libultra/rmon/rmonsio"]
-    - [0x83290, asm, "libultra/io/sp"]
-    - [0x832B0, asm, "libultra/io/spgetstat"]
-    - [0x832C0, asm, "libultra/io/spsetstat"]
-    - [0x832D0, asm, "libultra/io/spsetpc"]
-    - [0x83300, asm, "libultra/io/sprawdma"]
-    - [0x83390, asm, "libultra/io/sirawread"]
-    - [0x833E0, asm, "libultra/io/sirawwrite"]
-    - [0x83430, asm, "libultra/io/crc"]
+    - [0x830E0, c, "libultra/rmon/rmonsio"]
+    - [0x83290, c, "libultra/io/sp"]
+    - [0x832B0, c, "libultra/io/spgetstat"]
+    - [0x832C0, c, "libultra/io/spsetstat"]
+    - [0x832D0, c, "libultra/io/spsetpc"]
+    - [0x83300, c, "libultra/io/sprawdma"]
+    - [0x83390, c, "libultra/io/sirawread"]
+    - [0x833E0, c, "libultra/io/sirawwrite"]
+    - [0x83430, c, "libultra/io/crc"]
     - [0x83520, hasm, "libultra/os/maptlbrdb"]
     - [0x83580, hasm, "libultra/os/unmaptlball"]
-    - [0x835D0, asm, "libultra/io/vi"]
-    - [0x836E0, asm, "libultra/io/vigetcurrcontext"]
+    - [0x835D0, c, "libultra/io/vi"]
+    - [0x836E0, c, "libultra/io/vigetcurrcontext"]
     - [0x836F0, bin] # empty
     - [0x83700, hasm, "libultra/gu/normalize"]
-    - [0x83760, asm, "libultra/io/pfsisplug"]
-    - [0x83A40, asm, "libultra/io/pfsgetstatus"]
-    - [0x83C50, asm, "libultra/io/contpfs"]
-    - [0x846E0, asm, "libultra/io/pirawread"]
-    - [0x84730, asm, "libultra/io/pirawwrite"]
-    - [0x84780, asm, "libultra/io/epiwrite"]
-    - [0x847E0, asm, "libultra/io/epiread"]
+    - [0x83760, c, "libultra/io/pfsisplug"]
+    - [0x83A40, c, "libultra/io/pfsgetstatus"]
+    - [0x83C50, c, "libultra/io/contpfs"]
+    - [0x846E0, c, "libultra/io/pirawread"]
+    - [0x84730, c, "libultra/io/pirawwrite"]
+    - [0x84780, c, "libultra/io/epiwrite"]
+    - [0x847E0, c, "libultra/io/epiread"]
     - [0x84840, hasm, "libultra/libc/bcmp"]
-    - [0x84950, asm, "libultra/libc/xlitob"]
-    - [0x84BA0, asm, "libultra/libc/xldtob"]
-    - [0x85630, asm, "libultra/rmon/rmoncmds"]
-    - [0x856C0, asm, "libultra/rmon/rmonmem"]
-    - [0x85E30, asm, "libultra/rmon/rmonmisc"]
-    - [0x85F80, asm, "libultra/rmon/rmonregs"]
-    - [0x86A40, asm, "libultra/rmon/rmontask"]
-    - [0x87310, asm, "libultra/rmon/rmonmain"]
-    - [0x876B0, asm, "libultra/io/sprawread"]
-    - [0x87700, asm, "libultra/io/sprawwrite"]
-    - [0x87750, asm, "libultra/io/si"]
+    - [0x84950, c, "libultra/libc/xlitob"]
+    - [0x84BA0, c, "libultra/libc/xldtob"]
+    - [0x85630, c, "libultra/rmon/rmoncmds"]
+    - [0x856C0, c, "libultra/rmon/rmonmem"]
+    - [0x85E30, c, "libultra/rmon/rmonmisc"]
+    - [0x85F80, c, "libultra/rmon/rmonregs"]
+    - [0x86A40, c, "libultra/rmon/rmontask"]
+    - [0x87310, c, "libultra/rmon/rmonmain"]
+    - [0x876B0, c, "libultra/io/sprawread"]
+    - [0x87700, c, "libultra/io/sprawwrite"]
+    - [0x87750, c, "libultra/io/si"]
     - [0x87770, hasm, "libultra/os/stopthread"]
-    - [0x87830, asm]
-    - [0x87840, asm, "libultra/libc/ldiv"]
+    - [0x87830, c, unknown/87830]
+    - [0x87840, c, "libultra/libc/ldiv"]
     - [0x87A00, hasm, "libultra/rmon/rmonrcp"]
-    - [0x87AA0, asm, "libultra/rmon/rmonbrk"]
-    - [0x88440, asm]
-    - [0x88460, asm]
-    - [0x88710, asm]
-    - [0x88830, asm] # last libultra scope
+    - [0x87AA0, c, "libultra/rmon/rmonbrk"]
+    - [0x88440, c, unknown/88440]
+    - [0x88460, c, unknown/88460]
+    - [0x88710, c, unknown/88710]
+    - [0x88830, c, unknown/88830] # last libultra scope
     - [0x88CE0, c, libhmath/sqrtf]
     - [0x88CF0, c, libhmath/vecmag]
     - [0x88D50, c, libhmath/vecnorm]
     - [0x88DE0, c, libhmath/vecdot]
-    - [0x88E10, asm]
-    - [0x890B0, asm]
-    - [0x89120, asm]
-    - [0x89510, asm]
-    - [0x89FB0, asm]
-    - [0x8A350, asm]
-    - [0x8A3D0, asm]
-    - [0x8A420, asm]
-    - [0x8A460, asm]
-    - [0x8A4A0, asm]
-    - [0x8A4D0, asm]
-    - [0x8A580, asm]
+    - [0x88E10, c, unknown/88E10]
+    - [0x890B0, c, unknown/890B0]
+    - [0x89120, c, unknown/89120]
+    - [0x89510, c, unknown/89510]
+    - [0x89FB0, c, unknown/89FB0]
+    - [0x8A350, c, unknown/8A350]
+    - [0x8A3D0, c, unknown/8A3D0]
+    - [0x8A420, c, unknown/8A420]
+    - [0x8A460, c, unknown/8A460]
+    - [0x8A4A0, c, unknown/8A4A0]
+    - [0x8A4D0, c, unknown/8A4D0]
+    - [0x8A580, c, unknown/8A580]
     - [0x8A610, c, libhmath/veccopy]
     - [0x8A640, c, libhmath/vecneg]
     - [0x8A670, c, libhmath/vecadd]
@@ -342,36 +342,36 @@ segments:
     - [0x8A9B0, c, libhmath/vecdot3f]
     - [0x8A9E0, c, libhmath/veccross]
     - [0x8AA30, c, libhmath/veceq]
-    - [0x8AA90, asm]
-    - [0x8AC30, asm]
-    - [0x8AC70, asm]
-    - [0x8ACD0, asm]
-    - [0x8AD20, asm]
-    - [0x8ADB0, asm]
-    - [0x8AEA0, asm]
-    - [0x8AF30, asm]
-    - [0x8B030, asm]
-    - [0x8B0C0, asm]
-    - [0x8B1C0, asm]
-    - [0x8B3F0, asm]
-    - [0x8B560, asm]
-    - [0x8B960, asm]
-    - [0x8D730, asm]
-    - [0x8D790, asm]
-    - [0x8D7F0, asm]
-    - [0x8D860, asm]
-    - [0x8D8C0, asm]
-    - [0x8E050, asm]
-    - [0x8E4A0, asm]
-    - [0x8E6B0, asm]
-    - [0x8EA10, asm]
-    - [0x8EFF0, asm]
-    - [0x8F320, asm]
-    - [0x8F480, asm]
-    - [0x8F620, asm]
-    - [0x8F760, asm]
-    - [0x8F7D0, asm]
-    - [0x8F830, asm]
+    - [0x8AA90, c, unknown/8AA90]
+    - [0x8AC30, c, unknown/8AC30]
+    - [0x8AC70, c, unknown/8AC70]
+    - [0x8ACD0, c, unknown/8ACD0]
+    - [0x8AD20, c, unknown/8AD20]
+    - [0x8ADB0, c, unknown/8ADB0]
+    - [0x8AEA0, c, unknown/8AEA0]
+    - [0x8AF30, c, unknown/8AF30]
+    - [0x8B030, c, unknown/8B030]
+    - [0x8B0C0, c, unknown/8B0C0]
+    - [0x8B1C0, c, unknown/8B1C0]
+    - [0x8B3F0, c, unknown/8B3F0]
+    - [0x8B560, c, unknown/8B560]
+    - [0x8B960, c, unknown/8B960]
+    - [0x8D730, c, unknown/8D730]
+    - [0x8D790, c, unknown/8D790]
+    - [0x8D7F0, c, unknown/8D7F0]
+    - [0x8D860, c, unknown/8D860]
+    - [0x8D8C0, c, unknown/8D8C0]
+    - [0x8E050, c, unknown/8E050]
+    - [0x8E4A0, c, unknown/8E4A0]
+    - [0x8E6B0, c, unknown/8E6B0]
+    - [0x8EA10, c, unknown/8EA10]
+    - [0x8EFF0, c, unknown/8EFF0]
+    - [0x8F320, c, unknown/8F320]
+    - [0x8F480, c, unknown/8F480]
+    - [0x8F620, c, unknown/8F620]
+    - [0x8F760, c, unknown/8F760]
+    - [0x8F7D0, c, unknown/8F7D0]
+    - [0x8F830, c, unknown/8F830]
     - [0x8FB20, c, libhmath/sin]
     - [0x8FCF0, bin]
     - [0x96EF0, data, BCA0]
@@ -389,16 +389,16 @@ segments:
     start: 0xA96F0
     vram: 0x800D6B70
     subsegments:
-      - [0xA96F0, asm]
-      - [0xAB1C0, asm]
-      - [0xB3CE0, asm]
-      - [0xB63A0, asm]
-      - [0xB7600, asm]
-      - [0xB88C0, asm]
-      - [0xB8A20, asm]
-      - [0xBA4B0, asm]
-      - [0xBC7A0, asm]
-      - [0xBD210, asm]
+      - [0xA96F0, c]
+      - [0xAB1C0, c]
+      - [0xB3CE0, c]
+      - [0xB63A0, c]
+      - [0xB7600, c]
+      - [0xB88C0, c]
+      - [0xB8A20, c]
+      - [0xBA4B0, c]
+      - [0xBC7A0, c]
+      - [0xBD210, c]
       - [0xBE2A0, bin] # data
 
   - dir: overlays/shared_overlay129
@@ -408,30 +408,30 @@ segments:
     start: 0xBE940
     vram: 0x800D6B70
     subsegments:
-      - [0xBE940, asm]
-      - [0xBF4A0, asm]
-      - [0xBFB40, asm]
-      - [0xC1580, asm]
-      - [0xC1BA0, asm]
-      - [0xC1D60, asm]
-      - [0xC4430, asm]
-      - [0xC45D0, asm]
-      - [0xC5770, asm]
-      - [0xC9330, asm]
-      - [0xC9690, asm]
-      - [0xCA640, asm]
-      - [0xCCD20, asm]
-      - [0xD1190, asm]
-      - [0xD28F0, asm]
-      - [0xD3450, asm]
-      - [0xD5B20, asm]
-      - [0xDBE50, asm]
-      - [0xDC0D0, asm]
-      - [0xDC4E0, asm]
-      - [0xDFD60, asm]
-      - [0xE3CD0, asm]
-      - [0xE78B0, asm]
-      - [0xE7AE0, asm]
+      - [0xBE940, c]
+      - [0xBF4A0, c]
+      - [0xBFB40, c]
+      - [0xC1580, c]
+      - [0xC1BA0, c]
+      - [0xC1D60, c]
+      - [0xC4430, c]
+      - [0xC45D0, c]
+      - [0xC5770, c]
+      - [0xC9330, c]
+      - [0xC9690, c]
+      - [0xCA640, c]
+      - [0xCCD20, c]
+      - [0xD1190, c]
+      - [0xD28F0, c]
+      - [0xD3450, c]
+      - [0xD5B20, c]
+      - [0xDBE50, c]
+      - [0xDC0D0, c]
+      - [0xDC4E0, c]
+      - [0xDFD60, c]
+      - [0xE3CD0, c]
+      - [0xE78B0, c]
+      - [0xE7AE0, c]
       - [0xE8BE0, bin] # data
 
   # Board play overlay
@@ -442,27 +442,27 @@ segments:
     start: 0xEA790
     vram: 0x800D6B70
     subsegments:
-      - [0xEA790, asm]
-      - [0xEB2F0, asm]
-      - [0xEC3B0, asm]
-      - [0xECA50, asm]
-      - [0xEE3B0, asm]
-      - [0xEE660, asm]
-      - [0xF2910, asm]
-      - [0xF5070, asm]
-      - [0xF5B90, asm]
-      # - [0xFE110, asm] suspected based on mp1 spaces.c
-      - [0xFFB10, asm]
-      - [0x1006F0, asm]
-      - [0x101840, asm]
-      - [0x105D50, asm]
-      - [0x1063F0, asm]
-      - [0x106640, asm]
-      - [0x106A50, asm]
-      - [0x10AD50, asm]
-      - [0x10C230, asm]
-      - [0x113520, asm]
-      - [0x113750, asm]
+      - [0xEA790, c]
+      - [0xEB2F0, c]
+      - [0xEC3B0, c]
+      - [0xECA50, c]
+      - [0xEE3B0, c]
+      - [0xEE660, c]
+      - [0xF2910, c]
+      - [0xF5070, c]
+      - [0xF5B90, c]
+      # - [0xFE110, c] suspected based on mp1 spaces.c
+      - [0xFFB10, c]
+      - [0x1006F0, c]
+      - [0x101840, c]
+      - [0x105D50, c]
+      - [0x1063F0, c]
+      - [0x106640, c]
+      - [0x106A50, c]
+      - [0x10AD50, c]
+      - [0x10C230, c]
+      - [0x113520, c]
+      - [0x113750, c]
       - [0x1143C0, bin] # data
 
   - dir: overlays/test_menu1
@@ -472,7 +472,7 @@ segments:
     start: 0x116320
     vram: 0x801059A0
     subsegments:
-      - [0x116320, asm]
+      - [0x116320, c]
       - [0x119560, bin] # data
 
   - dir: overlays/minigames/hand_line_sinker
@@ -482,8 +482,8 @@ segments:
     start: 0x11A480
     vram: 0x801059A0
     subsegments:
-      - [0x11A480, asm]
-      - [0x120090, asm]
+      - [0x11A480, c]
+      - [0x120090, c]
       - [0x1209E0, bin] # data
 
   - dir: overlays/minigames/coconut_conk
@@ -493,7 +493,7 @@ segments:
     start: 0x120BC0
     vram: 0x801059A0
     subsegments:
-      - [0x120BC0, asm]
+      - [0x120BC0, c]
       - [0x126180, bin] # data
 
   - dir: overlays/minigames/spotlight_swim
@@ -503,7 +503,7 @@ segments:
     start: 0x1263E0
     vram: 0x801059A0
     subsegments:
-      - [0x1263E0, asm]
+      - [0x1263E0, c]
       - [0x12D700, bin] # data
 
   - dir: overlays/minigames/boulder_ball
@@ -513,7 +513,7 @@ segments:
     start: 0x12DD30
     vram: 0x801059A0
     subsegments:
-      - [0x12DD30, asm]
+      - [0x12DD30, c]
       - [0x131A90, bin] # data
 
   - dir: overlays/minigames/crazy_cogs
@@ -523,7 +523,7 @@ segments:
     start: 0x131C10
     vram: 0x801059A0
     subsegments:
-      - [0x131C10, asm]
+      - [0x131C10, c]
       - [0x137A80, bin] # data
 
   - dir: overlays/minigames/hide_and_sneak
@@ -533,7 +533,7 @@ segments:
     start: 0x137C00
     vram: 0x801059A0
     subsegments:
-      - [0x137C00, asm]
+      - [0x137C00, c]
       - [0x13E5D0, bin] # data
 
   - dir: overlays/minigames/ridiculous_relay
@@ -543,7 +543,7 @@ segments:
     start: 0x13E9C0
     vram: 0x801059A0
     subsegments:
-      - [0x13E9C0, asm]
+      - [0x13E9C0, c]
       - [0x149CD0, bin] # data
 
   - dir: overlays/minigames/thwomp_pull
@@ -553,7 +553,7 @@ segments:
     start: 0x14A810
     vram: 0x801059A0
     subsegments:
-      - [0x14A810, asm]
+      - [0x14A810, c]
       - [0x153BD0, bin] # data
 
   - dir: overlays/minigames/river_raiders
@@ -563,7 +563,7 @@ segments:
     start: 0x1542E0
     vram: 0x801059A0
     subsegments:
-      - [0x1542E0, asm]
+      - [0x1542E0, c]
       - [0x15BCF0, bin] # data
 
   - dir: overlays/minigames/tidal_toss
@@ -573,7 +573,7 @@ segments:
     start: 0x15C310
     vram: 0x801059A0
     subsegments:
-      - [0x15C310, asm]
+      - [0x15C310, c]
       - [0x1613E0, bin] # data
 
   - dir: overlays/minigames/eatsa_pizza
@@ -583,7 +583,7 @@ segments:
     start: 0x161750
     vram: 0x801059A0
     subsegments:
-      - [0x161750, asm]
+      - [0x161750, c]
       - [0x164EB0, bin] # data
 
   - dir: overlays/minigames/baby_bowser_broadside
@@ -593,8 +593,8 @@ segments:
     start: 0x165010
     vram: 0x801059A0
     subsegments:
-      - [0x165010, asm]
-      - [0x169540, asm]
+      - [0x165010, c]
+      - [0x169540, c]
       - [0x16F3D0, bin] # data
 
   - dir: overlays/minigames/pump_pump_away
@@ -604,7 +604,7 @@ segments:
     start: 0x16F670
     vram: 0x801059A0
     subsegments:
-      - [0x16F670, asm]
+      - [0x16F670, c]
       - [0x17AB40, bin] # data
 
   - dir: overlays/minigames/hyper_hydrants
@@ -614,7 +614,7 @@ segments:
     start: 0x17B3B0
     vram: 0x801059A0
     subsegments:
-      - [0x17B3B0, asm]
+      - [0x17B3B0, c]
       - [0x1817F0, bin] # data
 
   - dir: overlays/minigames/picking_panic
@@ -624,7 +624,7 @@ segments:
     start: 0x181950
     vram: 0x801059A0
     subsegments:
-      - [0x181950, asm]
+      - [0x181950, c]
       - [0x18A560, bin] # data
 
   # Toadstool Titan
@@ -635,8 +635,8 @@ segments:
     start: 0x18ABD0
     vram: 0x801059A0
     subsegments:
-      - [0x18ABD0, asm]
-      - [0x18EB30, asm]
+      - [0x18ABD0, c]
+      - [0x18EB30, c]
       - [0x190D60, bin] # data
 
   - dir: overlays/minigames/puddle_paddle
@@ -646,7 +646,7 @@ segments:
     start: 0x191240
     vram: 0x801059A0
     subsegments:
-      - [0x191240, asm]
+      - [0x191240, c]
       - [0x19CAC0, bin] # data
 
   - dir: overlays/minigames/etch_n_catch
@@ -656,7 +656,7 @@ segments:
     start: 0x19CEF0
     vram: 0x801059A0
     subsegments:
-      - [0x19CEF0, asm]
+      - [0x19CEF0, c]
       - [0x1A3BF0, bin] # data
 
   - dir: overlays/minigames/log_jam
@@ -666,7 +666,7 @@ segments:
     start: 0x1A3D80
     vram: 0x801059A0
     subsegments:
-      - [0x1A3D80, asm]
+      - [0x1A3D80, c]
       - [0x1AC270, bin] # data
 
   - dir: overlays/minigames/slot_synch
@@ -676,7 +676,7 @@ segments:
     start: 0x1AC970
     vram: 0x801059A0
     subsegments:
-      - [0x1AC970, asm]
+      - [0x1AC970, c]
       - [0x1B47C0, bin] # data
 
   - dir: overlays/minigames/treadmill_grill
@@ -686,7 +686,7 @@ segments:
     start: 0x1B4F10
     vram: 0x801059A0
     subsegments:
-      - [0x1B4F10, asm]
+      - [0x1B4F10, c]
       - [0x1BA4F0, bin] # data
 
   - dir: overlays/minigames/toadstool_titan
@@ -696,7 +696,7 @@ segments:
     start: 0x1BA850
     vram: 0x801059A0
     subsegments:
-      - [0x1BA850, asm]
+      - [0x1BA850, c]
       - [0x1C3C50, bin] # data
 
   - dir: overlays/minigames/aces_high
@@ -706,8 +706,8 @@ segments:
     start: 0x1C4280
     vram: 0x801059A0
     subsegments:
-      - [0x1C4280, asm]
-      - [0x1CC400, asm]
+      - [0x1C4280, c]
+      - [0x1CC400, c]
       - [0x1CC420, bin] # data
 
   - dir: overlays/minigames/bounce_n_trounce
@@ -717,8 +717,8 @@ segments:
     start: 0x1CC730
     vram: 0x801059A0
     subsegments:
-      - [0x1CC730, asm]
-      - [0x1D1920, asm]
+      - [0x1CC730, c]
+      - [0x1D1920, c]
       - [0x1D1940, bin] # data
 
   - dir: overlays/minigames/ice_rink_risk
@@ -728,7 +728,7 @@ segments:
     start: 0x1D1C40
     vram: 0x801059A0
     subsegments:
-      - [0x1D1C40, asm]
+      - [0x1D1C40, c]
       - [0x1D47F0, bin] # data
 
   - dir: overlays/minigames/locked_out
@@ -738,7 +738,7 @@ segments:
     start: 0x1D4970
     vram: 0x801059A0
     subsegments:
-      - [0x1D4970, asm]
+      - [0x1D4970, c]
       - [0x1D90E0, bin] # data
 
   - dir: overlays/minigames/chip_shot_challenge
@@ -748,7 +748,7 @@ segments:
     start: 0x1D9550
     vram: 0x801059A0
     subsegments:
-      - [0x1D9550, asm]
+      - [0x1D9550, c]
       - [0x1DE3D0, bin] # data
 
   # Snowball Summit
@@ -759,7 +759,7 @@ segments:
     start: 0x1DE610
     vram: 0x801059A0
     subsegments:
-      - [0x1DE610, asm]
+      - [0x1DE610, c]
       - [0x1E3510, bin] # data
 
   - dir: overlays/minigames/messy_memory
@@ -769,7 +769,7 @@ segments:
     start: 0x1E37C0
     vram: 0x801059A0
     subsegments:
-      - [0x1E37C0, asm]
+      - [0x1E37C0, c]
       - [0x1EEDE0, bin] # data
 
   - dir: overlays/minigames/picture_imperfect
@@ -779,7 +779,7 @@ segments:
     start: 0x1EF420
     vram: 0x801059A0
     subsegments:
-      - [0x1EF420, asm]
+      - [0x1EF420, c]
       - [0x1F3A60, bin] # data
 
   - dir: overlays/minigames/marios_puzzle_party
@@ -789,8 +789,8 @@ segments:
     start: 0x1F3B90
     vram: 0x801059A0
     subsegments:
-      - [0x1F3B90, asm]
-      - [0x1FD760, asm]
+      - [0x1F3B90, c]
+      - [0x1FD760, c]
       - [0x1FE270, bin] # data
 
   - dir: overlays/minigames/the_beat_goes_on
@@ -800,7 +800,7 @@ segments:
     start: 0x1FE4D0
     vram: 0x801059A0
     subsegments:
-      - [0x1FE4D0, asm]
+      - [0x1FE4D0, c]
       - [0x204DB0, bin] # data
 
   - dir: overlays/minigames/mpiq
@@ -810,7 +810,7 @@ segments:
     start: 0x204F90
     vram: 0x801059A0
     subsegments:
-      - [0x204F90, asm]
+      - [0x204F90, c]
       - [0x20BC70, bin] # data
 
   - dir: overlays/minigames/curtain_call
@@ -820,7 +820,7 @@ segments:
     start: 0x20BFA0
     vram: 0x801059A0
     subsegments:
-      - [0x20BFA0, asm]
+      - [0x20BFA0, c]
       - [0x2116C0, bin] # data
 
   - dir: overlays/minigames/water_whirled
@@ -830,7 +830,7 @@ segments:
     start: 0x211AB0
     vram: 0x801059A0
     subsegments:
-      - [0x211AB0, asm]
+      - [0x211AB0, c]
       - [0x216270, bin] # data
 
   - dir: overlays/minigames/fridged_bridges
@@ -840,8 +840,8 @@ segments:
     start: 0x216670
     vram: 0x801059A0
     subsegments:
-      - [0x216670, asm]
-      - [0x21CAC0, asm]
+      - [0x216670, c]
+      - [0x21CAC0, c]
       - [0x21DBF0, bin] # data
 
   - dir: overlays/minigames/awful_tower
@@ -851,7 +851,7 @@ segments:
     start: 0x21E010
     vram: 0x801059A0
     subsegments:
-      - [0x21E010, asm]
+      - [0x21E010, c]
       - [0x2251D0, bin] # data
 
   - dir: overlays/minigames/cheep_cheep_chase
@@ -861,7 +861,7 @@ segments:
     start: 0x225740
     vram: 0x801059A0
     subsegments:
-      - [0x225740, asm]
+      - [0x225740, c]
       - [0x22DDB0, bin] # data
 
   - dir: overlays/minigames/pipe_cleaners
@@ -871,7 +871,7 @@ segments:
     start: 0x22E100
     vram: 0x801059A0
     subsegments:
-      - [0x22E100, asm]
+      - [0x22E100, c]
       - [0x232620, bin] # data
 
   - dir: overlays/minigames/snowball_summit
@@ -881,7 +881,7 @@ segments:
     start: 0x232A10
     vram: 0x801059A0
     subsegments:
-      - [0x232A10, asm]
+      - [0x232A10, c]
       - [0x23C5C0, bin] # data
 
   - dir: overlays/minigames/all_fired_up
@@ -891,7 +891,7 @@ segments:
     start: 0x23C8F0
     vram: 0x801059A0
     subsegments:
-      - [0x23C8F0, asm]
+      - [0x23C8F0, c]
       - [0x240880, bin] # data
 
   - dir: overlays/minigames/stacked_deck
@@ -901,7 +901,7 @@ segments:
     start: 0x240A10
     vram: 0x801059A0
     subsegments:
-      - [0x240A10, asm]
+      - [0x240A10, c]
       - [0x24A300, bin] # data
 
   - dir: overlays/minigames/three_door_monty
@@ -911,7 +911,7 @@ segments:
     start: 0x24A760
     vram: 0x801059A0
     subsegments:
-      - [0x24A760, asm]
+      - [0x24A760, c]
       - [0x251AD0, bin] # data
 
   - dir: overlays/minigames/rockin_raceway
@@ -921,7 +921,7 @@ segments:
     start: 0x251FF0
     vram: 0x801059A0
     subsegments:
-      - [0x251FF0, asm]
+      - [0x251FF0, c]
       - [0x25D530, bin] # data
 
   - dir: overlays/minigames/merry_go_chomp
@@ -931,7 +931,7 @@ segments:
     start: 0x25E110
     vram: 0x801059A0
     subsegments:
-      - [0x25E110, asm]
+      - [0x25E110, c]
       - [0x2648B0, bin] # data
 
   - dir: overlays/minigames/slapdown
@@ -941,7 +941,7 @@ segments:
     start: 0x264B80
     vram: 0x801059A0
     subsegments:
-      - [0x264B80, asm]
+      - [0x264B80, c]
       - [0x269880, bin] # data
 
   - dir: overlays/minigames/storm_chasers
@@ -951,7 +951,7 @@ segments:
     start: 0x269BF0
     vram: 0x801059A0
     subsegments:
-      - [0x269BF0, asm]
+      - [0x269BF0, c]
       - [0x270B00, bin] # data
 
   - dir: overlays/minigames/eye_sore
@@ -961,7 +961,7 @@ segments:
     start: 0x270EF0
     vram: 0x801059A0
     subsegments:
-      - [0x270EF0, asm]
+      - [0x270EF0, c]
       - [0x276160, bin] # data
 
   - dir: overlays/minigames/vine_with_me
@@ -971,7 +971,7 @@ segments:
     start: 0x276470
     vram: 0x801059A0
     subsegments:
-      - [0x276470, asm]
+      - [0x276470, c]
       - [0x282620, bin] # data
 
   - dir: overlays/minigames/popgun_pickoff
@@ -981,7 +981,7 @@ segments:
     start: 0x283060
     vram: 0x801059A0
     subsegments:
-      - [0x283060, asm]
+      - [0x283060, c]
       - [0x289C50, bin] # data
 
   - dir: overlays/minigames/end_of_the_line
@@ -991,8 +991,8 @@ segments:
     start: 0x28A290
     vram: 0x801059A0
     subsegments:
-      - [0x28A290, asm]
-      - [0x290E70, asm]
+      - [0x28A290, c]
+      - [0x290E70, c]
       - [0x290E90, bin] # data
 
   - dir: overlays/minigames/bowser_toss
@@ -1002,7 +1002,7 @@ segments:
     start: 0x291020
     vram: 0x801059A0
     subsegments:
-      - [0x291020, asm]
+      - [0x291020, c]
       - [0x29A7D0, bin] # data
 
   - dir: overlays/minigames/baby_bowser_bonkers
@@ -1012,7 +1012,7 @@ segments:
     start: 0x29B1D0
     vram: 0x801059A0
     subsegments:
-      - [0x29B1D0, asm]
+      - [0x29B1D0, c]
       - [0x2A0C30, bin] # data
 
   - dir: overlays/minigames/motor_rooter
@@ -1022,8 +1022,8 @@ segments:
     start: 0x2A1430
     vram: 0x801059A0
     subsegments:
-      - [0x2A1430, asm]
-      - [0x2A9850, asm]
+      - [0x2A1430, c]
+      - [0x2A9850, c]
       - [0x2ACFE0, bin] # data
 
   - dir: overlays/minigames/silly_screws
@@ -1033,8 +1033,8 @@ segments:
     start: 0x2AF250
     vram: 0x801059A0
     subsegments:
-      - [0x2AF250, asm]
-      - [0x2B4B20, asm]
+      - [0x2AF250, c]
+      - [0x2B4B20, c]
       - [0x2B56D0, bin] # data
 
   - dir: overlays/minigames/crowd_cover
@@ -1044,7 +1044,7 @@ segments:
     start: 0x2B5830
     vram: 0x801059A0
     subsegments:
-      - [0x2B5830, asm]
+      - [0x2B5830, c]
       - [0x2BC550, bin] # data
 
   - dir: overlays/minigames/tick_tock_hop
@@ -1054,8 +1054,8 @@ segments:
     start: 0x2BCE10
     vram: 0x801059A0
     subsegments:
-      - [0x2BCE10, asm]
-      - [0x2C0E70, asm]
+      - [0x2BCE10, c]
+      - [0x2C0E70, c]
       - [0x2C5910, bin] # data
 
   - dir: overlays/minigames/fowl_play
@@ -1065,7 +1065,7 @@ segments:
     start: 0x2C5B50
     vram: 0x801059A0
     subsegments:
-      - [0x2C5B50, asm]
+      - [0x2C5B50, c]
       - [0x2CE950, bin] # data
 
   - dir: overlays/minigames/winners_wheel
@@ -1075,7 +1075,7 @@ segments:
     start: 0x2CF3B0
     vram: 0x801059A0
     subsegments:
-      - [0x2CF3B0, asm]
+      - [0x2CF3B0, c]
       - [0x2D3C70, bin] # data
 
   - dir: overlays/minigames/hey_batter_batter
@@ -1085,7 +1085,7 @@ segments:
     start: 0x2D3E70
     vram: 0x801059A0
     subsegments:
-      - [0x2D3E70, asm]
+      - [0x2D3E70, c]
       - [0x2D8030, bin] # data
 
   - dir: overlays/minigames/bobbing_bow_loons
@@ -1095,7 +1095,7 @@ segments:
     start: 0x2D8370
     vram: 0x801059A0
     subsegments:
-      - [0x2D8370, asm]
+      - [0x2D8370, c]
       - [0x2DC0F0, bin] # data
 
   - dir: overlays/minigames/dorrie_dip
@@ -1105,7 +1105,7 @@ segments:
     start: 0x2DC4D0
     vram: 0x801059A0
     subsegments:
-      - [0x2DC4D0, asm]
+      - [0x2DC4D0, c]
       - [0x2E0B70, bin] # data
 
   # Swinging With Sharks
@@ -1116,7 +1116,7 @@ segments:
     start: 0x2E0D20
     vram: 0x801059A0
     subsegments:
-      - [0x2E0D20, asm,"swinging_with_sharks"]
+      - [0x2E0D20, c,"swinging_with_sharks"]
       - [0x2E6060, bin] # data
 
   - dir: overlays/minigames/swing_n_swipe
@@ -1126,7 +1126,7 @@ segments:
     start: 0x2E6BE0
     vram: 0x801059A0
     subsegments:
-      - [0x2E6BE0, asm]
+      - [0x2E6BE0, c]
       - [0x2ECF70, bin] # data
 
   - dir: overlays/minigames/stardust_battle
@@ -1136,7 +1136,7 @@ segments:
     start: 0x2ED2D0
     vram: 0x801059A0
     subsegments:
-      - [0x2ED2D0, asm]
+      - [0x2ED2D0, c]
       - [0x2FB5E0, bin] # data
 
   - dir: overlays/minigames/game_guys_roulette
@@ -1146,8 +1146,8 @@ segments:
     start: 0x2FC270
     vram: 0x801059A0
     subsegments:
-      - [0x2FC270, asm]
-      - [0x2FF5F0, asm]
+      - [0x2FC270, c]
+      - [0x2FF5F0, c]
       - [0x300F10, bin] # data
 
   - dir: overlays/minigames/game_guys_lucky_7
@@ -1157,8 +1157,8 @@ segments:
     start: 0x3010E0
     vram: 0x801059A0
     subsegments:
-      - [0x3010E0, asm]
-      - [0x306F70, asm]
+      - [0x3010E0, c]
+      - [0x306F70, c]
       - [0x308890, bin] # data
 
   - dir: overlays/minigames/game_guys_magic_boxes
@@ -1168,8 +1168,8 @@ segments:
     start: 0x308D10
     vram: 0x801059A0
     subsegments:
-      - [0x308D10, asm]
-      - [0x30DC30, asm]
+      - [0x308D10, c]
+      - [0x30DC30, c]
       - [0x30F550, bin] # data
 
   - dir: overlays/minigames/game_guys_sweet_surprise
@@ -1179,8 +1179,8 @@ segments:
     start: 0x30F940
     vram: 0x801059A0
     subsegments:
-      - [0x30F940, asm]
-      - [0x3151F0, asm]
+      - [0x30F940, c]
+      - [0x3151F0, c]
       - [0x316B10, bin] # data
 
   - dir: overlays/minigames/dizzy_dinghies
@@ -1190,7 +1190,7 @@ segments:
     start: 0x316DF0
     vram: 0x801059A0
     subsegments:
-      - [0x316DF0, asm]
+      - [0x316DF0, c]
       - [0x31AB90, bin] # data
 
   - dir: overlays/wrapper1
@@ -1200,8 +1200,8 @@ segments:
     start: 0x31B3B0
     vram: 0x801059A0
     subsegments:
-      - [0x31B3B0, asm,"overlay71_main"]
-      - [0x31B3E0, asm,"overlay71"]
+      - [0x31B3B0, c,"overlay71_main"]
+      - [0x31B3E0, c,"overlay71"]
       - [0x31B4F0, data, "overlay71_main"]
 
   # Chilly Waters
@@ -1212,9 +1212,9 @@ segments:
     start: 0x31B510
     vram: 0x801059A0
     subsegments:
-      - [0x31B510, asm,"chillywaters_main"]
-      - [0x31B540, asm,"chillywaters"]
-      - [0x31B9F0, asm,"chillywaters2"]
+      - [0x31B510, c,"chillywaters_main"]
+      - [0x31B540, c,"chillywaters"]
+      - [0x31B9F0, c,"chillywaters2"]
       - [0x332DC0, data, "chillywaters_main"]
       - [0x332DF0, data, "chillywaters2"]
       - [0x335440, rodata, "chillywaters2"]
@@ -1227,8 +1227,8 @@ segments:
     start: 0x3355E0
     vram: 0x801059A0
     subsegments:
-      - [0x3355E0, asm]
-      - [0x335610, asm]
+      - [0x3355E0, c]
+      - [0x335610, c]
       - [0x34C270, bin] # data
 
   # Spiny Desert
@@ -1239,8 +1239,8 @@ segments:
     start: 0x34E810
     vram: 0x801059A0
     subsegments:
-      - [0x34E810, asm,"spinydesert_main"]
-      - [0x34E840, asm,"spinydesert"]
+      - [0x34E810, c,"spinydesert_main"]
+      - [0x34E840, c,"spinydesert"]
       # Possible split at 0x34EB90 if similar to Chilly Waters.
       - [0x364F50, data, "spinydesert_main"]
       - [0x364F80, bin] # data
@@ -1253,8 +1253,8 @@ segments:
     start: 0x367930
     vram: 0x801059A0
     subsegments:
-      - [0x367930, asm]
-      - [0x367960, asm]
+      - [0x367930, c]
+      - [0x367960, c]
       - [0x37D6A0, bin] # data
 
   # Creepy Cavern
@@ -1265,8 +1265,8 @@ segments:
     start: 0x37FF80
     vram: 0x801059A0
     subsegments:
-      - [0x37FF80, asm]
-      - [0x37FFB0, asm]
+      - [0x37FF80, c]
+      - [0x37FFB0, c]
       - [0x3975F0, bin] # data
 
   # Waluigi's Island
@@ -1277,8 +1277,8 @@ segments:
     start: 0x39AD20
     vram: 0x801059A0
     subsegments:
-      - [0x39AD20, asm]
-      - [0x39AD50, asm]
+      - [0x39AD20, c]
+      - [0x39AD50, c]
       - [0x3B08D0, bin] # data
 
   - dir: overlays/board_rulesmap
@@ -1288,8 +1288,8 @@ segments:
     start: 0x3B35F0
     vram: 0x801059A0
     subsegments:
-      - [0x3B35F0, asm]
-      - [0x3B3620, asm]
+      - [0x3B35F0, c]
+      - [0x3B3620, c]
       - [0x3B9420, bin] # data
 
   - dir: overlays/results_cutscene
@@ -1299,8 +1299,8 @@ segments:
     start: 0x3B9670
     vram: 0x801059A0
     subsegments:
-      - [0x3B9670, asm]
-      - [0x3BFA00, asm]
+      - [0x3B9670, c]
+      - [0x3BFA00, c]
       - [0x3C20B0, bin] # data
 
   - dir: overlays/bowser_event
@@ -1310,7 +1310,7 @@ segments:
     start: 0x3C27C0
     vram: 0x801059A0
     subsegments:
-      - [0x3C27C0, asm]
+      - [0x3C27C0, c]
       - [0x3C6170, bin] # data
 
   - dir: overlays/last_5_turns
@@ -1320,7 +1320,7 @@ segments:
     start: 0x3C6310
     vram: 0x801059A0
     subsegments:
-      - [0x3C6310, asm]
+      - [0x3C6310, c]
       - [0x3C7DF0, bin] # data
 
   - dir: overlays/mushroom_genie
@@ -1330,7 +1330,7 @@ segments:
     start: 0x3C7EC0
     vram: 0x801059A0
     subsegments:
-      - [0x3C7EC0, asm]
+      - [0x3C7EC0, c]
       - [0x3CA5F0, bin] # data
 
   - dir: overlays/chilly_waters_intro
@@ -1340,7 +1340,7 @@ segments:
     start: 0x3CA800
     vram: 0x801059A0
     subsegments:
-      - [0x3CA800, asm]
+      - [0x3CA800, c]
       - [0x3CDBD0, bin] # data
 
   - dir: overlays/rule_map_intro
@@ -1350,7 +1350,7 @@ segments:
     start: 0x3CDEC0
     vram: 0x801059A0
     subsegments:
-      - [0x3CDEC0, asm]
+      - [0x3CDEC0, c]
       - [0x3CFAE0, bin] # data
 
   - dir: overlays/detailed_results_main
@@ -1360,7 +1360,7 @@ segments:
     start: 0x3CFC80
     vram: 0x801059A0
     subsegments:
-      - [0x3CFC80, asm]
+      - [0x3CFC80, c]
       - [0x3D3A90, bin] # data
 
   # Character Animation Test
@@ -1381,7 +1381,7 @@ segments:
     start: 0x3D5C30
     vram: 0x801059A0
     subsegments:
-      - [0x3D5C30, asm]
+      - [0x3D5C30, c]
       - [0x3D7040, bin] # data
 
   # Intro Screens
@@ -1392,8 +1392,8 @@ segments:
     start: 0x3D7150
     vram: 0x801059A0
     subsegments:
-      - [0x3D7150, asm,"intro_main"]
-      - [0x3D7180, asm,"intro"]
+      - [0x3D7150, c,"intro_main"]
+      - [0x3D7180, c,"intro"]
       - [0x3D7690, data, "intro_main"]
       - [0x3D76B0, bin, "intro"]
       #- [auto, all_bss]
@@ -1405,7 +1405,7 @@ segments:
     start: 0x3D76C0
     vram: 0x801059A0
     subsegments:
-      - [0x3D76C0, asm]
+      - [0x3D76C0, c]
       - [0x3D8680, bin] # data
 
   - dir: overlays/gate_guy_intro1
@@ -1416,7 +1416,7 @@ segments:
     vram: 0x801059A0
     subsegments:
       - [0x3D8930, c]
-      - [0x3D8960, asm]
+      - [0x3D8960, c]
       - [0x3D8A70, bin] # data
 
   - dir: overlays/board_gate_guy
@@ -1437,8 +1437,8 @@ segments:
     start: 0x3EC560
     vram: 0x801059A0
     subsegments:
-      - [0x3EC560, asm]
-      - [0x3EC590, asm]
+      - [0x3EC560, c]
+      - [0x3EC590, c]
       - [0x3FD130, bin] # data
 
   - dir: overlays/board_pipesqueak_intro
@@ -1448,8 +1448,8 @@ segments:
     start: 0x3FE1C0
     vram: 0x801059A0
     subsegments:
-      - [0x3FE1C0, asm]
-      - [0x3FE1F0, asm]
+      - [0x3FE1C0, c]
+      - [0x3FE1F0, c]
       - [0x40FC20, bin] # data
 
   - dir: overlays/board_blowhard_intro
@@ -1459,8 +1459,8 @@ segments:
     start: 0x4108E0
     vram: 0x801059A0
     subsegments:
-      - [0x4108E0, asm]
-      - [0x410910, asm]
+      - [0x4108E0, c]
+      - [0x410910, c]
       - [0x424BB0, bin] # data
 
   - dir: overlays/board_mr_mover_intro
@@ -1470,8 +1470,8 @@ segments:
     start: 0x426420
     vram: 0x801059A0
     subsegments:
-      - [0x426420, asm]
-      - [0x426450, asm]
+      - [0x426420, c]
+      - [0x426450, c]
       - [0x436100, bin] # data
 
   - dir: overlays/board_backtrack_intro
@@ -1481,8 +1481,8 @@ segments:
     start: 0x436E20
     vram: 0x801059A0
     subsegments:
-      - [0x436E20, asm]
-      - [0x436E50, asm]
+      - [0x436E20, c]
+      - [0x436E50, c]
       - [0x445900, bin] # data
 
   - dir: overlays/battle_rules_map_intro
@@ -1492,8 +1492,8 @@ segments:
     start: 0x4461B0
     vram: 0x801059A0
     subsegments:
-      - [0x4461B0, asm]
-      - [0x4461E0, asm]
+      - [0x4461B0, c]
+      - [0x4461E0, c]
       - [0x4551C0, bin] # data
 
   - dir: overlays/results
@@ -1503,8 +1503,8 @@ segments:
     start: 0x4554C0
     vram: 0x801059A0
     subsegments:
-      - [0x4554C0, asm]
-      - [0x45A700, asm]
+      - [0x4554C0, c]
+      - [0x45A700, c]
       - [0x45CDB0, bin] # data
 
   - dir: overlays/detailed_results_battle
@@ -1514,7 +1514,7 @@ segments:
     start: 0x45D380
     vram: 0x801059A0
     subsegments:
-      - [0x45D380, asm]
+      - [0x45D380, c]
       - [0x460610, bin] # data
 
   - dir: overlays/gate_guy_intro2
@@ -1524,7 +1524,7 @@ segments:
     start: 0x460790
     vram: 0x801059A0
     subsegments:
-      - [0x460790, asm]
+      - [0x460790, c]
       - [0x463FF0, bin] # data
 
   - dir: overlays/rules_map_intro
@@ -1534,7 +1534,7 @@ segments:
     start: 0x464360
     vram: 0x801059A0
     subsegments:
-      - [0x464360, asm]
+      - [0x464360, c]
       - [0x4672F0, bin] # data
 
   - dir: overlays/test_save2
@@ -1544,8 +1544,8 @@ segments:
     start: 0x4675D0
     vram: 0x801059A0
     subsegments:
-      - [0x4675D0, asm]
-      - [0x467600, asm]
+      - [0x4675D0, c]
+      - [0x467600, c]
       - [0x468310, bin] # data
 
   - dir: overlays/overlay103
@@ -1555,8 +1555,8 @@ segments:
     start: 0x4684F0
     vram: 0x801059A0
     subsegments:
-      - [0x4684F0, asm]
-      - [0x468520, asm]
+      - [0x4684F0, c]
+      - [0x468520, c]
       - [0x468A70, bin] # data
 
   - dir: overlays/overlay104
@@ -1566,9 +1566,9 @@ segments:
     start: 0x468A90
     vram: 0x801059A0
     subsegments:
-      - [0x468A90, asm]
-      - [0x468AC0, asm]
-      - [0x46BB50, asm]
+      - [0x468A90, c]
+      - [0x468AC0, c]
+      - [0x46BB50, c]
       - [0x46CB70, bin] # data
 
   - dir: overlays/battle_room
@@ -1578,11 +1578,11 @@ segments:
     start: 0x46CC10
     vram: 0x801059A0
     subsegments:
-      - [0x46CC10, asm]
-      - [0x473130, asm]
-      - [0x479470, asm]
-      - [0x47D880, asm]
-      - [0x47DD90, asm]
+      - [0x46CC10, c]
+      - [0x473130, c]
+      - [0x479470, c]
+      - [0x47D880, c]
+      - [0x47DD90, c]
       - [0x480120, bin] # data
 
   - dir: overlays/chance_time
@@ -1592,10 +1592,10 @@ segments:
     start: 0x481970
     vram: 0x801059A0
     subsegments:
-      - [0x481970, asm]
-      - [0x4822F0, asm]
-      - [0x4832D0, asm]
-      - [0x487F50, asm]
+      - [0x481970, c]
+      - [0x4822F0, c]
+      - [0x4832D0, c]
+      - [0x487F50, c]
       - [0x48BAB0, bin] # data
 
   - dir: overlays/story_results_strength
@@ -1605,10 +1605,10 @@ segments:
     start: 0x48BE30
     vram: 0x801059A0
     subsegments:
-      - [0x48BE30, asm]
-      - [0x48D950, asm]
-      - [0x492250, asm]
-      - [0x496990, asm]
+      - [0x48BE30, c]
+      - [0x48D950, c]
+      - [0x492250, c]
+      - [0x496990, c]
       - [0x49AF10, bin] # data
 
   - dir: overlays/story_results_peach
@@ -1618,11 +1618,11 @@ segments:
     start: 0x49BD40
     vram: 0x801059A0
     subsegments:
-      - [0x49BD40, asm]
-      - [0x49DF30, asm]
-      - [0x4A7540, asm]
-      - [0x4AC200, asm]
-      - [0x4B0E80, asm]
+      - [0x49BD40, c]
+      - [0x49DF30, c]
+      - [0x4A7540, c]
+      - [0x4AC200, c]
+      - [0x4B0E80, c]
       - [0x4B1CC0, bin] # data
 
   - dir: overlays/story_results_luigi
@@ -1632,9 +1632,9 @@ segments:
     start: 0x4B29E0
     vram: 0x801059A0
     subsegments:
-      - [0x4B29E0, asm]
-      - [0x4B4DC0, asm]
-      - [0x4B9A30, asm]
+      - [0x4B29E0, c]
+      - [0x4B4DC0, c]
+      - [0x4B9A30, c]
       - [0x4C22A0, bin] # data
 
   - dir: overlays/story_results_110
@@ -1644,9 +1644,9 @@ segments:
     start: 0x4C2BD0
     vram: 0x801059A0
     subsegments:
-      - [0x4C2BD0, asm]
-      - [0x4C47E0, asm]
-      - [0x4C8050, asm]
+      - [0x4C2BD0, c]
+      - [0x4C47E0, c]
+      - [0x4C8050, c]
       - [0x4CECF0, bin] # data
 
   - dir: overlays/story_results_111
@@ -1656,8 +1656,8 @@ segments:
     start: 0x4CF350
     vram: 0x801059A0
     subsegments:
-      - [0x4CF350, asm]
-      - [0x4D8E80, asm]
+      - [0x4CF350, c]
+      - [0x4D8E80, c]
       - [0x4DE0E0, bin] # data
 
   # Mini-Game Instructions Screen
@@ -1668,14 +1668,14 @@ segments:
     start: 0x4DEB60
     vram: 0x801059A0
     subsegments:
-      - [0x4DEB60, asm]
-      - [0x4E0630, asm]
-      - [0x4E1510, asm]
-      - [0x4E1CB0, asm]
-      - [0x4E2670, asm]
-      - [0x4E2C50, asm]
-      - [0x4E3390, asm]
-      - [0x4E4B50, asm]
+      - [0x4DEB60, c]
+      - [0x4E0630, c]
+      - [0x4E1510, c]
+      - [0x4E1CB0, c]
+      - [0x4E2670, c]
+      - [0x4E2C50, c]
+      - [0x4E3390, c]
+      - [0x4E4B50, c]
       - [0x4E65C0, bin] # data
 
   # Mini-Game Results Screen
@@ -1686,11 +1686,11 @@ segments:
     start: 0x4E6DC0
     vram: 0x801059A0
     subsegments:
-      - [0x4E6DC0, asm]
-      - [0x4E8F60, asm]
-      - [0x4E9120, asm]
-      - [0x4EB420, asm]
-      - [0x4EBD50, asm]
+      - [0x4E6DC0, c]
+      - [0x4E8F60, c]
+      - [0x4E9120, c]
+      - [0x4EB420, c]
+      - [0x4EBD50, c]
       - [0x4EBF10, bin] # data
 
   - dir: overlays/game_guy_results
@@ -1700,9 +1700,9 @@ segments:
     start: 0x4EC1B0
     vram: 0x801059A0
     subsegments:
-      - [0x4EC1B0, asm]
-      - [0x4ECDE0, asm]
-      - [0x4EDCB0, asm]
+      - [0x4EC1B0, c]
+      - [0x4ECDE0, c]
+      - [0x4EDCB0, c]
       - [0x4F00D0, bin] # data
 
   - dir: overlays/battle_minigame_results
@@ -1712,8 +1712,8 @@ segments:
     start: 0x4F01F0
     vram: 0x801059A0
     subsegments:
-      - [0x4F01F0, asm]
-      - [0x4F1180, asm]
+      - [0x4F01F0, c]
+      - [0x4F1180, c]
       - [0x4F36C0, bin] # data
 
   - dir: overlays/battle_results
@@ -1723,9 +1723,9 @@ segments:
     start: 0x4F3780
     vram: 0x801059A0
     subsegments:
-      - [0x4F3780, asm]
-      - [0x4F4980, asm]
-      - [0x4F5AF0, asm]
+      - [0x4F3780, c]
+      - [0x4F4980, c]
+      - [0x4F5AF0, c]
       - [0x4F66B0, bin] # data
 
   - dir: overlays/wrapper2
@@ -1735,7 +1735,7 @@ segments:
     start: 0x4F6810
     vram: 0x801059A0
     subsegments:
-      - [0x4F6810, asm]
+      - [0x4F6810, c]
       - [0x4F69B0, bin] # data
 
   # Message Check
@@ -1746,7 +1746,7 @@ segments:
     start: 0x4F69F0
     vram: 0x801059A0
     subsegments:
-      - [0x4F69F0, asm]
+      - [0x4F69F0, c]
       - [0x4F7550, bin] # data
 
   # Castle Grounds
@@ -1757,9 +1757,9 @@ segments:
     start: 0x4F7E90
     vram: 0x801059A0
     subsegments:
-      - [0x4F7E90, asm]
-      - [0x4F7EC0, asm]
-      - [0x4F8140, asm]
+      - [0x4F7E90, c]
+      - [0x4F7EC0, c]
+      - [0x4F8140, c]
       - [0x501760, bin] # data
 
   # Configuring gameplay ("warp pipe" in MP1 terminology)
@@ -1770,12 +1770,12 @@ segments:
     start: 0x501C00
     vram: 0x801059A0
     subsegments:
-      - [0x501C00, asm]
-      - [0x506F20, asm]
-      - [0x508D50, asm]
-      - [0x5092C0, asm]
-      - [0x50B740, asm]
-      - [0x513B70, asm]
+      - [0x501C00, c]
+      - [0x506F20, c]
+      - [0x508D50, c]
+      - [0x5092C0, c]
+      - [0x50B740, c]
+      - [0x513B70, c]
       - [0x515670, bin] # data
 
   # Select save game screen
@@ -1786,9 +1786,9 @@ segments:
     start: 0x516AE0
     vram: 0x801059A0
     subsegments:
-      - [0x516AE0, asm]
-      - [0x516B10, asm]
-      - [0x516D30, asm]
+      - [0x516AE0, c]
+      - [0x516B10, c]
+      - [0x516D30, c]
       - [0x5238E0, bin] # data
 
   # Start Screen
@@ -1799,10 +1799,10 @@ segments:
     start: 0x523FD0
     vram: 0x801059A0
     subsegments:
-      - [0x523FD0, asm]
-      - [0x524000, asm]
-      - [0x5242B0, asm]
-      - [0x524820, asm]
+      - [0x523FD0, c]
+      - [0x524000, c]
+      - [0x5242B0, c]
+      - [0x524820, c]
       - [0x533180, bin] # data
 
   - dir: overlays/inside_castle
@@ -1812,10 +1812,10 @@ segments:
     start: 0x5334D0
     vram: 0x801059A0
     subsegments:
-      - [0x5334D0, asm]
-      - [0x533500, asm]
-      - [0x535A80, asm]
-      - [0x53DCA0, asm]
+      - [0x5334D0, c]
+      - [0x533500, c]
+      - [0x535A80, c]
+      - [0x53DCA0, c]
       - [0x540FE0, bin] # data
 
   - dir: overlays/credits
@@ -1825,11 +1825,11 @@ segments:
     start: 0x542220
     vram: 0x801059A0
     subsegments:
-      - [0x542220, asm]
-      - [0x5436A0, asm]
-      - [0x543FC0, asm]
-      - [0x544E70, asm]
-      - [0x5486A0, asm]
+      - [0x542220, c]
+      - [0x5436A0, c]
+      - [0x543FC0, c]
+      - [0x544E70, c]
+      - [0x5486A0, c]
       - [0x54CDB0, bin] # data
 
   - dir: overlays/stamps
@@ -1839,8 +1839,8 @@ segments:
     start: 0x54DD10
     vram: 0x801059A0
     subsegments:
-      - [0x54DD10, asm]
-      - [0x54F360, asm]
+      - [0x54DD10, c]
+      - [0x54F360, c]
       - [0x552C80, bin] # data
 
   # - dir: overlays/overlay126
@@ -1849,7 +1849,7 @@ segments:
   #   start: 0x552F50
   #   vram: 0x801059A0
   #   subsegments:
-  #     - [0x552F50, asm]
+  #     - [0x552F50, c]
   #     - [0x552F50, bin] # data
 
   - dir: overlays/test_menu2
@@ -1859,7 +1859,7 @@ segments:
     start: 0x552F50
     vram: 0x801059A0
     subsegments:
-      - [0x552F50, asm]
+      - [0x552F50, c]
       - [0x556240, bin] # data
 
   - [0x00557620, bin, "bin_557620"]
