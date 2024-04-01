@@ -22,6 +22,8 @@ extern u16 D_800CC0CA[];
 
 extern s32 D_800B1A30;
 
+s32 func_80035EB0_36AB0(s32 arg0);
+
 void func_80035A50_36650(void)
 {
     u8 * ptr = (u8 *)&D_800CC0C8;
@@ -121,7 +123,34 @@ INCLUDE_ASM(s32, "save", func_80035EF4_36AF4);
 
 INCLUDE_ASM(s32, "save", func_80035F44_36B44);
 
-INCLUDE_ASM(s32, "save", func_80035F98_36B98);
+extern u8 D_800CD0B6[];
+
+s32 IsFlagSet(s32 input) {
+    s32 byteValue;
+    s32 adjustedIndex;
+    s32 byteIndex;
+    s32 bitIndex;
+    s32 mask;
+
+    byteValue = D_800CD0B6[input / 8];
+
+    if (input >= 0) {
+        adjustedIndex = input;
+    } else {
+        adjustedIndex = input + 7;
+    }
+
+    // Calculate the byte index (divide by 8)
+    byteIndex = adjustedIndex >> 3;
+
+    // Calculate the bit index
+    bitIndex = input - (byteIndex << 3);
+
+    mask = (1 << bitIndex);
+
+    return byteValue & mask;
+}
+
 
 INCLUDE_ASM(s32, "save", func_80035FDC_36BDC);
 

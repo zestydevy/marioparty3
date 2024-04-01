@@ -44,7 +44,24 @@ INCLUDE_ASM(s32, "overlays/shared_board/101840", func_800EE94C_10256C);
 
 INCLUDE_ASM(s32, "overlays/shared_board/101840", func_800EE97C_10259C);
 
-INCLUDE_ASM(s32, "overlays/shared_board/101840", func_800EE9C0_1025E0);
+s32 func_800EECB0_1028D0(s32);                      /* extern */
+
+s32 BoardPlayerRankCalc(s32 player) {
+    s32 rank;
+    s32 i;
+    s32 score[4];
+
+    for (i = 0; i < 4; i++) {
+        score[i] = func_800EECB0_1028D0(i);
+    }
+
+    for (rank = 0, i = 0; i < 4; i++) {
+        if ((i != player) && (score[player] < score[i])) {
+            rank++;
+        }
+    }
+    return rank;
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/101840", func_800EEA58_102678);
 

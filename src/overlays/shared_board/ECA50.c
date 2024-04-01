@@ -58,7 +58,7 @@ INCLUDE_ASM(s32, "overlays/shared_board/ECA50", func_800D9F5C_EDB7C);
 
 INCLUDE_ASM(s32, "overlays/shared_board/ECA50", func_800DA09C_EDCBC);
 
-INCLUDE_ASM(s32, "overlays/shared_board/ECA50", func_800DA190_EDDB0);
+INCLUDE_ASM(s32, "overlays/shared_board/ECA50", RunDecisionTree);
 
 INCLUDE_ASM(s32, "overlays/shared_board/ECA50", func_800DA748_EE368);
 

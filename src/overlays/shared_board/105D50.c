@@ -1,8 +1,18 @@
 #include "common.h"
+#include "common_structs.h"
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F2130_105D50);
+Player* GetPlayerStruct(s32 playerIndex);
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F213C_105D5C);
+s16 GetCurrentPlayerIndex(void) {
+    return gCurrentPlayerIndex;
+}
+
+Player* GetPlayerStruct(s32 playerIndex) {
+    if (playerIndex < 0) {
+        playerIndex = GetCurrentPlayerIndex();
+    }
+    return &gPlayers[playerIndex];
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F217C_105D9C);
 
@@ -10,7 +20,9 @@ INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F2198_105DB8);
 
 INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F21C0_105DE0);
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F2230_105E50);
+s32 PlayerHasCoins(s32 playerIndex, s32 arg1) {
+    return (GetPlayerStruct(playerIndex)->coins < arg1) ^ 1;
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F2260_105E80);
 

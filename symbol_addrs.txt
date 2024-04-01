@@ -480,3 +480,15 @@ HuVecDistance = 0x80089D60;
 HuVecDot3F = 0x80089DB0;
 HuVecCross = 0x80089DE0;
 HuVecIsEqual = 0x80089E30;
+IsFlagSet = 0x80035F98;
+GetPlayerStruct = 0x800F213C; //rom:0x105D5C
+PlayerHasCoins = 0x800F2230; //rom:0x105E50
+GetCurrentPlayerIndex = 0x800F2130; //rom:0x105D50
+BoardPlayerRankCalc = 0x800EE9C0; //rom:0x1025E0
+GetTurnsElapsed = 0x800ECEE4; //rom:0x100B04
+PlayerHasItem = 0x800E4978; //rom:0xF8598
+RNGPercentChance = 0x800ECE9C; //rom:0x100ABC
+RunDecisionTree = 0x800DA190; //rom:0xEDDB0
+
+TotalTurns = 0x800CD05A;
+CurrentTurn = 0x800CD05B;
