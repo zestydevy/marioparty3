@@ -482,6 +482,7 @@ HuVecCross = 0x80089DE0;
 HuVecIsEqual = 0x80089E30;
 IsFlagSet = 0x80035F98;
 GetPlayerStruct = 0x800F213C; //rom:0x105D5C
+AdjustPlayerCoins = 0x800F21C0; //rom:0x105DE0
 PlayerHasCoins = 0x800F2230; //rom:0x105E50
 GetCurrentPlayerIndex = 0x800F2130; //rom:0x105D50
 BoardPlayerRankCalc = 0x800EE9C0; //rom:0x1025E0

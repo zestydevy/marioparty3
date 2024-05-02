@@ -14,11 +14,29 @@ Player* GetPlayerStruct(s32 playerIndex) {
     return &gPlayers[playerIndex];
 }
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F217C_105D9C);
+s32 func_800F217C_105D9C(s16 arg0) {
+    return arg0 == gCurrentPlayerIndex;
+}
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F2198_105DB8);
+s32 func_800F2198_105DB8(s16 arg0) {
+    return GetPlayerStruct(arg0)->flags & 1;
+}
 
-INCLUDE_ASM(s32, "overlays/shared_board/105D50", func_800F21C0_105DE0);
+void AdjustPlayerCoins(s32 playerIndex, s32 coinsToAdd) {
+    Player* player;
+
+    player = GetPlayerStruct(playerIndex);
+    player->coins += coinsToAdd;
+    if (player->coins >= 1000) {
+        player->coins = 999;
+    }
+    if (player->coins < 0) {
+        player->coins = 0;
+    }
+    if (player->maxCoins <= player->coins) {
+        player->maxCoins = player->coins;
+    }
+}
 
 s32 PlayerHasCoins(s32 playerIndex, s32 arg1) {
     return (GetPlayerStruct(playerIndex)->coins < arg1) ^ 1;
