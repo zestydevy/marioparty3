@@ -98,7 +98,25 @@ INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E48F4_F8514);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E4954_F8574);
 
-INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E4978_F8598);
+s32 PlayerHasItem(s32 arg0, s32 arg1) {
+    s32 i;
+
+    if (arg0 == -1) {
+        arg0 = gCurrentPlayerIndex;
+    }
+
+    for (i = 0; i < 3; i++) {
+        if (gPlayers[arg0].items[i] == arg1) {
+            break;
+        }
+    }
+
+    if (i == 3) {
+        return -1;
+    } else {
+        return i;
+    }
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E49DC_F85FC);
 

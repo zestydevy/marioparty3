@@ -3,5 +3,6 @@
 
 #include "libultra.h"
 #include "include_asm.h"
+#include "variables.h"
 
 #endif

@@ -1217,7 +1217,7 @@ segments:
       - [0x31B9F0, c,"chillywaters2"]
       - [0x332DC0, data, "chillywaters_main"]
       - [0x332DF0, data, "chillywaters2"]
-      - [0x335440, rodata, "chillywaters2"]
+      # - [0x335440, rodata, "chillywaters2"]
 
   # Deep Bloober Sea
   - dir: overlays/board_deepbloobersea

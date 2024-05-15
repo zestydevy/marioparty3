@@ -1,4 +1,48 @@
 #include "common.h"
+#include "obj.h"
+
+typedef struct CharPortraitRelated {
+    s8 unk_00;
+    s8 unk_01;
+    char unk_02[2];
+    char unk_04;
+    u8 unk_05;
+    s8 unk_06;
+    s8 unk_07;
+    s16 unk_08;
+    char unk_09[0x26];
+    s32 unk_30;
+    char unk_34[0x32];
+    u16 unk_66;
+    s16 unk_68;
+    char unk_6A[2];
+} CharPortraitRelated; //sizeof 0x6C
+
+void func_800F2E30_106A50(s32);                        /* extern */
+void func_800F39C0_1075E0(s32);                        /* extern */
+void func_800F3A80_1076A0(s32);                        /* extern */
+void func_800F3BD0_1077F0(s32);                        /* extern */
+void func_800F3D70_107990(s32);                        /* extern */
+void func_800F3E34_107A54(s32);                        /* extern */
+void func_800F3F0C_107B2C(s32);                        /* extern */
+void func_800F3FF4_107C14(s32);                        /* extern */
+void func_800F4798_1083B8(s32, s32);                     /* extern */
+void func_800F4874_108494(s32, s16, s16);              /* extern */
+void func_80047B80_48780(struct process*, s32);                      /* extern */
+void func_800F4190_107DB0(void);                           /* extern */
+void func_800F43FC_10801C(s32);                        /* extern */
+void func_800F3400_107020(void);
+extern s16 D_80101794_1153B4[2][2];
+extern s32 D_801055E8[];
+extern CharPortraitRelated D_801057E0[4];
+extern s32 D_80101780_1153A0;
+extern s32 D_80101784_1153A4;
+extern struct process* D_80105580;
+extern s16 D_801055C2;
+extern s16 D_801055C4;
+extern s16 D_801055FC[4];
+extern s16 D_80105608[4][3];
+
 
 INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F2E30_106A50);
 
@@ -24,9 +68,55 @@ INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F4190_107DB0);
 
 INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F4348_107F68);
 
-INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F43FC_10801C);
+void func_800F43FC_10801C(s32 arg0) {
+    s32 i;
+    CharPortraitRelated* temp_s2;
 
-INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F453C_10815C);
+    temp_s2 = &D_801057E0[arg0];
+
+    for (i = 0; i < 2; i++) {
+        temp_s2->unk_02[i] = 0;
+    }
+    temp_s2->unk_66 = gPlayers[arg0].coins;
+    temp_s2->unk_68 = gPlayers[arg0].stars;
+    temp_s2->unk_05 = 0;
+    temp_s2->unk_01 = -1;
+    temp_s2->unk_07 = temp_s2->unk_06 = temp_s2->unk_08 = -1;
+    temp_s2->unk_00 = 0;
+    func_800F3D70_107990(arg0);
+    func_800F4798_1083B8(arg0, 0);
+    func_800F4874_108494(arg0, D_80101794_1153B4[arg0][0], D_80101794_1153B4[arg0][1]);
+    func_800F39C0_1075E0(arg0);
+    func_800F3A80_1076A0(arg0);
+    func_800F3BD0_1077F0(arg0);
+    func_800F3E34_107A54(arg0);
+    func_800F3F0C_107B2C(arg0);
+    func_800F3FF4_107C14(arg0);
+    func_800F2E30_106A50(arg0);
+    D_801055E8[arg0] = 0;
+    temp_s2->unk_30 = 0;
+}
+
+void func_800F453C_10815C(void) {
+    s32 i, j;
+
+    func_800F4190_107DB0();
+    for (i = 0; i < 4; i++) {
+        func_800F43FC_10801C(i);
+    }
+    D_80105580 = HuObjPrcCreate(&func_800F3400_107020, 0, 0x2000, 0);
+    func_80047B80_48780(D_80105580, 0x80);
+    D_801055C4 = -1;
+    D_801055C2 = -1;
+    D_80101780_1153A0 = -1;
+    D_80101784_1153A4 = -1;
+    for (i = 0; i < 4; i++) {
+        D_801055FC[i] = -1;
+        for (j = 0; j < 3; j++) {
+            D_80105608[i][j] = -1;
+        }
+    }
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/106A50", func_800F462C_10824C);
 

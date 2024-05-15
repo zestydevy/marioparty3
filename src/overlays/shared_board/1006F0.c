@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern s8 TotalTurns;
+extern s8 CurrentTurn;
+s32 HuGetRandomByte(void);
+
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECAD0_1006F0);
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECB14_100734);
@@ -22,9 +26,16 @@ INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECDD4_1009F4);
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECE4C_100A6C);
 
-INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECE9C_100ABC);
+s16 RNGPercentChance(s8 arg0) {
+    u8 randByte = HuGetRandomByte();
+    s32 chance = arg0;
+    
+    return (randByte * 99 >> 8) < chance;
+}
 
-INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECEE4_100B04);
+s16 GetTurnsElapsed(void) {
+    return (TotalTurns - CurrentTurn) + 1;
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECF18_100B38);
 
