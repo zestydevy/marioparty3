@@ -6,6 +6,7 @@
 #include "math.h"
 
 #define MAX_PLAYERS 4
+#define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define    OS_K0_TO_PHYSICAL(x)    (u32)(((char *)(x)-0x80000000))
 #define    OS_PHYSICAL_TO_K0(x)    (void *)(((u32)(x)+0x80000000))
@@ -126,7 +127,7 @@ typedef struct {
 
     s8 unks1E1F[2]; // 20 - 31
 
-    /* 32 (0x20) 800D1128 */ struct process *process;
+    /* 32 (0x20) 800D1128 */ Process*process;
     /* 36 (0x24) 800D112C */ struct objectt *obj;
     /* 40 (0x28) 800D1130 */ s16 minigameStar;
     /* 42 (0x2A) 800D1132 */ s16 maxCoins;

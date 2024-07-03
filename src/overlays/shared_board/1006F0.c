@@ -2,7 +2,7 @@
 
 extern s8 TotalTurns;
 extern s8 CurrentTurn;
-s32 HuGetRandomByte(void);
+s32 rand8(void);
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECAD0_1006F0);
 
@@ -27,7 +27,7 @@ INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECDD4_1009F4);
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECE4C_100A6C);
 
 s16 RNGPercentChance(s8 arg0) {
-    u8 randByte = HuGetRandomByte();
+    u8 randByte = rand8();
     s32 chance = arg0;
     
     return (randByte * 99 >> 8) < chance;

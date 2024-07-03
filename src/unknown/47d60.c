@@ -292,10 +292,10 @@ INCLUDE_ASM(s32, "unknown/47d60", func_80047E5C_48A5C);
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80047E90_48A90);
 
-struct process * HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extDataSize)
+Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extDataSize)
 {
     s16 prevIdx;
-    struct process * newPrc;
+    Process* newPrc;
     HuObjUnk0 * temp_s0;
 
     if (D_800A1776_A2376 == D_800A1774_A2374) {
@@ -326,10 +326,10 @@ INCLUDE_ASM(s32, "unknown/47d60", func_80048008_48C08);
 void func_80048054_48C54(void)
 {
     process_func func;
-    struct process * currPrc;
+    Process* currPrc;
     HuObjUnk0 * temp_s0;
 
-    currPrc = HuPrcGetCurrent();
+    currPrc = HuPrcCurrentGet();
     temp_s0 = &D_800A177C_A237C[currPrc->dtor_idx];
     func = temp_s0->unk8;
     if (func != NULL) {
@@ -343,17 +343,17 @@ void func_80048054_48C54(void)
 
 INCLUDE_ASM(s32, "unknown/47d60", func_800480E4_48CE4);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80048128_48D28);
+INCLUDE_ASM(s32, "unknown/47d60", omOvlCallEx);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_8004819C_48D9C);
+INCLUDE_ASM(s32, "unknown/47d60", omOvlReturnEx);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80048228_48E28);
+INCLUDE_ASM(s32, "unknown/47d60", omOvlGotoEx);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80048460_49060);
+INCLUDE_ASM(s32, "unknown/47d60", omOvlHisChg);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_8004849C_4909C);
+INCLUDE_ASM(s32, "unknown/47d60", omOvlKill);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80048504_49104);
+INCLUDE_ASM(s32, "unknown/47d60", omMain);
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80048E88_49A88);
 

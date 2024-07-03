@@ -1,5 +1,28 @@
 #include "common.h"
 
+s32 omOvlGotoEx(s32, s16, u16);
+extern s16 omovlhisidx;
+
+typedef struct omOvlHisData { //Object Manager History Data
+/* 0x00 */ s32 overlayID;
+/* 0x04 */ s16 event;
+/* 0x06 */ u16 stat;
+} omOvlHisData; //sizeof 0x08
+
+extern omOvlHisData omovlhis[12];
+
+typedef struct OverlayInfo {
+    u8 *rom_start;
+    u8 *rom_end;
+    u8 *ram_start;
+    u8 *code_start;
+    u8 *code_end;
+    u8 *data_start;
+    u8 *data_end;
+    u8 *bss_start;
+    u8 *bss_end;
+} OverlayInfo; // sizeof 0x24
+
 INCLUDE_ASM(s32, "unknown/47D60", HuObjInit);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_80047420_48020);
@@ -56,17 +79,52 @@ INCLUDE_ASM(s32, "unknown/47D60", func_80048054_48C54);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_800480E4_48CE4);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048128_48D28);
+s32 omOvlCallEx(s32 arg0, s16 arg1, u16 arg2) {
+    omOvlHisData* history;
+    s32 ret;
 
-INCLUDE_ASM(s32, "unknown/47D60", func_8004819C_48D9C);
+    if (omovlhisidx < ARRAY_COUNT(omovlhis)) {
+        history = &omovlhis[++omovlhisidx];
+        history->overlayID = arg0;
+        history->event = arg1;
+        history->stat = arg2;
+        omOvlGotoEx(arg0, arg1, arg2);
+        ret = 1;
+    } else {
+        ret = 0;
+    }
+    return ret;
+}
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048228_48E28);
+s32 omOvlReturnEx(s16 level) {
+    omovlhisidx -= level;
+    
+    if (omovlhisidx < 0) {
+        omovlhisidx = 0;
+        omOvlGotoEx(omovlhis[0].overlayID, omovlhis[0].event, omovlhis[0].stat);
+        return 0;
+    }
+    omOvlGotoEx(omovlhis[omovlhisidx].overlayID, omovlhis[omovlhisidx].event, omovlhis[omovlhisidx].stat);
+    return 1;
+}
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048460_49060);
+INCLUDE_ASM(s32, "unknown/47D60", omOvlGotoEx);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_8004849C_4909C);
+void omOvlHisChg(s16 arg0, s32 overlay, s16 event, s16 stat) {
+    s32 ovlhisIndex = omovlhisidx - arg0;
+    omOvlHisData* history;
+    
+    if (ovlhisIndex >= 0) {
+        history = &omovlhis[ovlhisIndex];
+        history->overlayID = overlay;
+        history->event = event;
+        history->stat = stat;
+    }
+}
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048504_49104);
+INCLUDE_ASM(s32, "unknown/47D60", omOvlKill);
+
+INCLUDE_ASM(s32, "unknown/47D60", omMain);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_80048E88_49A88);
 

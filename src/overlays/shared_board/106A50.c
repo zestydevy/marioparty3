@@ -28,7 +28,7 @@ void func_800F3F0C_107B2C(s32);                        /* extern */
 void func_800F3FF4_107C14(s32);                        /* extern */
 void func_800F4798_1083B8(s32, s32);                     /* extern */
 void func_800F4874_108494(s32, s16, s16);              /* extern */
-void func_80047B80_48780(struct process*, s32);                      /* extern */
+void func_80047B80_48780(Process**, s32);                      /* extern */
 void func_800F4190_107DB0(void);                           /* extern */
 void func_800F43FC_10801C(s32);                        /* extern */
 void func_800F3400_107020(void);
@@ -37,7 +37,7 @@ extern s32 D_801055E8[];
 extern CharPortraitRelated D_801057E0[4];
 extern s32 D_80101780_1153A0;
 extern s32 D_80101784_1153A4;
-extern struct process* D_80105580;
+extern Process** D_80105580;
 extern s16 D_801055C2;
 extern s16 D_801055C4;
 extern s16 D_801055FC[4];

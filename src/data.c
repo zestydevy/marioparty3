@@ -57,7 +57,7 @@ void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info)
  * Reads a file from the main filesystem and decodes it.
  * File is in the permanent heap.
  */
-void * HuReadFilePerm(s32 dirAndFile)
+void * ReadMainFS(s32 dirAndFile)
 {
     u32 dir;
     u32 file;

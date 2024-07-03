@@ -63,7 +63,7 @@ HuRomDmaCodeRead = 0x8004DB14;
 
 HuInitArchive = 0x80009AC0;
 HuInitFileInfo = 0x80009B64;
-HuReadFilePerm = 0x80009C10;
+ReadMainFS = 0x80009C10;
 HuReadFileTemp = 0x80009C74;
 HuReadFileTag = 0x80009CD8;
 HuDecodeFilePerm = 0x80009D4C;
@@ -80,7 +80,7 @@ HuDecodeFslide = 0x8000A9E8;
 HuDecodeRLE = 0x8000AE64;
 HuDecode = 0x8000B000;
 
-HuGetRandomByte = 0x8000B16C;
+rand8 = 0x8000B16C;
 
 HuPadInit = 0x80008DD0;
 
@@ -92,7 +92,7 @@ HuPrcChildLink = 0x8004ED30;
 HuPrcChildUnlink = 0x8004ED84;
 HuPrcCreateChild = 0x8004EDD4;
 HuPrcChildWait = 0x8004EE18;
-HuPrcGetCurrent = 0x8004EE68;
+HuPrcCurrentGet = 0x8004EE68;
 HuPrcChildGet = 0x8004EE74;
 HuPrcStatKill = 0x8004EE94;
 HuPrcKill = 0x8004EED8;
@@ -490,6 +490,18 @@ GetTurnsElapsed = 0x800ECEE4; //rom:0x100B04
 PlayerHasItem = 0x800E4978; //rom:0xF8598
 RNGPercentChance = 0x800ECE9C; //rom:0x100ABC
 RunDecisionTree = 0x800DA190; //rom:0xEDDB0
-
+LoadFormBinary = 0x8001A150; //rom:0x1AD50
 TotalTurns = 0x800CD05A;
 CurrentTurn = 0x800CD05B;
+
+omOvlCallEx = 0x80048128; //rom:0x48D28
+omOvlGotoEx = 0x80048228; //rom:0x48E28
+omOvlReturnEx = 0x8004819C; //rom:0x48D9C
+omOvlHisChg = 0x80048460; //rom:0x49060
+omovlhis = 0x800D2010; //size:0x60
+omOvlKill = 0x8004849C; //rom:0x4909C
+omMain = 0x80048504; //rom:0x49104
+omovlhisidx = 0x800A1768; //rom:0xA2368 size:0x02 type:s16
+overlay_table = 0x800962F4; //rom:0x96EF4 size:0x126C
+LoadOverlay = 0x8000B2C4; //rom:0xBEC4
+rnd_seed = 0x80097650; //rom:0x98250 type:u32

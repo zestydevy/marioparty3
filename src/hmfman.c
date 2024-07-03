@@ -2,7 +2,7 @@
 
 INCLUDE_ASM(s32, "hmfman", func_8001A070_1AC70);
 
-INCLUDE_ASM(s32, "hmfman", func_8001A150_1AD50);
+INCLUDE_ASM(s32, "hmfman", LoadFormBinary);
 
 INCLUDE_ASM(s32, "hmfman", func_8001A61C_1B21C);
 

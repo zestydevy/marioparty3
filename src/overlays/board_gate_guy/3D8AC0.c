@@ -5,9 +5,9 @@
 void func_801059D0_3D8AC0(void) {
     D_800CDD58 = 1;
     D_800D037C = 0;
-    func_80047B80_48780(HuPrcGetCurrent(), 0x80);
+    func_80047B80_48780(HuPrcCurrentGet(), 0x80);
     func_80100CEC(gPlayers[gCurrentPlayerIndex].controller);
-    func_80047BAC_487AC(HuPrcGetCurrent(), 0x80);
+    func_80047BAC_487AC(HuPrcCurrentGet(), 0x80);
     D_800CDD58 = 0;
     D_800D037C = 1;
 }
@@ -38,7 +38,7 @@ void func_80105B10_3D8C00(void) {
 void func_80105B64_3D8C54(void) {
     D_800CD059 = 0;
     HuObjInit(0xA, 0);
-    func_80048228_48E28(0x5A, 0, 0x4190);
+    omOvlGotoEx(0x5A, 0, 0x4190);
 }
 
 void func_80105B9C_3D8C8C(void) {
@@ -61,7 +61,7 @@ void func_80105B9C_3D8C8C(void) {
     D_800CD0B0.unk_04 = 5;
     D_800CD0B0.unk_02 = 0;
     func_800EA760();
-    func_8004819C_48D9C(1);
+    omOvlReturnEx(1);
 }
 
 void func_80105C64_3D8D54(s32 arg0, s32 arg1, unkStruct01* arg2) {

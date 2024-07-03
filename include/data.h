@@ -67,7 +67,7 @@ extern HuArchive gArchive;
 
 void HuInitArchive(u32 fsRomPtr);
 void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info);
-void * HuReadFilePerm(s32 dirAndFile);
+void * LoadFormBinary(s32 dirAndFile);
 void * HuDecodeFilePerm(EArchiveType type, s32 index);
 void * HuDecodeFileTemp(EArchiveType type, s32 index);
 void * HuDecodeFileTag(EArchiveType type, s32 index, s32 tag);
