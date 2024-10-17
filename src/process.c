@@ -4,12 +4,12 @@
 #include "malloc.h"
 
 extern jmp_buf process_jmp_buf;
-extern struct process *top_process;
-extern struct process *current_process;
+extern Process* top_process;
+extern Process* current_process;
 extern s16 process_count;
 
 // pointer to where HuPrcVSleep was called
-extern s32 * sPrcSleepLoc;
+extern u32 sPrcSleepLoc;
 
 void HuPrcSysInit()
 {
@@ -17,9 +17,9 @@ void HuPrcSysInit()
     top_process = NULL;
 }
 
-void HuPrcLink(struct process **root, struct process *process)
+void HuPrcLink(Process** root, Process* process)
 {
-    struct process *src_process = *root;
+    Process* src_process = *root;
     if (src_process != NULL && (src_process->priority >= process->priority))
     {
         while (src_process->next != NULL)
@@ -51,7 +51,7 @@ void HuPrcLink(struct process **root, struct process *process)
     }
 }
 
-void HuPrcUnlink(struct process **root, struct process *process)
+void HuPrcUnlink(Process** root, Process* process)
 {
     if (process->next)
     {
@@ -67,17 +67,17 @@ void HuPrcUnlink(struct process **root, struct process *process)
     }
 }
 
-struct process * HuPrcCreate(process_func func, u16 priority, s32 stack_size, s32 extra_data_size)
+Process* HuPrcCreate(process_func func, u16 priority, s32 stack_size, s32 extra_data_size)
 {
     struct heap_node *process_heap;
-    struct process *process;
+    Process* process;
     s32 alloc_size;
 
     if (stack_size == 0) {
         stack_size = 2048;
     }
 
-    alloc_size = HuMemMemoryAllocSizeGet(sizeof(struct process))
+    alloc_size = HuMemMemoryAllocSizeGet(sizeof(Process))
         + HuMemMemoryAllocSizeGet(stack_size)
         + HuMemMemoryAllocSizeGet(extra_data_size);
 
@@ -87,7 +87,7 @@ struct process * HuPrcCreate(process_func func, u16 priority, s32 stack_size, s3
     }
     HuMemHeapInit(process_heap, alloc_size);
 
-    process = (struct process *)HuMemMemoryAlloc(process_heap, sizeof(struct process));
+    process = (Process*)HuMemMemoryAlloc(process_heap, sizeof(Process));
     process->heap = process_heap;
     process->exec_mode = EXEC_PROCESS_DEFAULT;
     process->stat = 0;
@@ -106,7 +106,7 @@ struct process * HuPrcCreate(process_func func, u16 priority, s32 stack_size, s3
     return process;
 }
 
-void HuPrcChildLink(struct process *process, struct process *child)
+void HuPrcChildLink(Process* process, Process* child)
 {
     HuPrcChildUnlink(child);
     if (process->oldest_child)
@@ -119,7 +119,7 @@ void HuPrcChildLink(struct process *process, struct process *child)
     child->relative = process;
 }
 
-void HuPrcChildUnlink(struct process *process)
+void HuPrcChildUnlink(Process* process)
 {
     if (process->relative)
     {
@@ -139,16 +139,16 @@ void HuPrcChildUnlink(struct process *process)
     }
 }
 
-struct process * HuPrcCreateChild(process_func func, u16 priority, s32 stack_size, s32 extra_data_size, struct process * parent)
+Process* HuPrcCreateChild(process_func func, u16 priority, s32 stack_size, s32 extra_data_size, Process* parent)
 {
-    struct process * child = HuPrcCreate(func, priority, stack_size, extra_data_size);
+    Process* child = HuPrcCreate(func, priority, stack_size, extra_data_size);
     HuPrcChildLink(parent, child);
     return child;
 }
 
 void HuPrcChildWait()
 {
-    struct process *process = HuPrcGetCurrent();
+    Process* process = HuPrcCurrentGet();
     if (process->oldest_child)
     {
         process->exec_mode = EXEC_PROCESS_WATCH;
@@ -159,15 +159,15 @@ void HuPrcChildWait()
     }
 }
 
-struct process * HuPrcGetCurrent()
+Process* HuPrcCurrentGet()
 {
     return current_process;
 }
 
-s32 HuPrcChildGet(struct process *process)
+s32 HuPrcChildGet(Process* process)
 {
     s32 i;
-    struct process *curr_child = process->oldest_child;
+    Process* curr_child = process->oldest_child;
     i = 0;
     while (curr_child)
     {
@@ -177,7 +177,7 @@ s32 HuPrcChildGet(struct process *process)
     return i;
 }
 
-s32 HuPrcStatKill(struct process *process)
+s32 HuPrcStatKill(Process* process)
 {
     if (process->exec_mode != EXEC_PROCESS_DEAD)
     {
@@ -191,16 +191,16 @@ s32 HuPrcStatKill(struct process *process)
     }
 }
 
-void HuPrcKill(struct process *process)
+void HuPrcKill(Process* process)
 {
     HuPrcChildKill(process);
     HuPrcChildUnlink(process);
     HuPrcStatKill(process);
 }
 
-void HuPrcChildKill(struct process *process)
+void HuPrcChildKill(Process* process)
 {
-    struct process *curr_child = process->oldest_child;
+    Process* curr_child = process->oldest_child;
     while (curr_child != NULL)
     {
         if (curr_child->oldest_child != NULL) {
@@ -212,7 +212,7 @@ void HuPrcChildKill(struct process *process)
     process->oldest_child = NULL;
 }
 
-void HuPrcTerminate(struct process *process)
+void HuPrcTerminate(Process* process)
 {
     if (process->destructor)
     {
@@ -225,7 +225,7 @@ void HuPrcTerminate(struct process *process)
 
 void HuPrcExit()
 {
-    struct process *process = HuPrcGetCurrent();
+    Process* process = HuPrcCurrentGet();
     HuPrcChildKill(process);
     HuPrcChildUnlink(process);
     HuPrcTerminate(process);
@@ -233,7 +233,7 @@ void HuPrcExit()
 
 void HuPrcSleep(s32 time)
 {
-    struct process *process = HuPrcGetCurrent();
+    Process* process = HuPrcCurrentGet();
     if (time != 0 && process->exec_mode != EXEC_PROCESS_DEAD)
     {
         process->exec_mode = EXEC_PROCESS_SLEEPING;
@@ -250,25 +250,25 @@ void HuPrcVSleep()
     HuPrcSleep(0);
 }
 
-void HuPrcAwake(struct process *process)
+void HuPrcAwake(Process* process)
 {
     process->sleep_time = 0;
 }
 
-void HuPrcDtor(struct process *process, process_func destructor)
+void HuPrcDtor(Process* process, process_func destructor)
 {
     process->destructor = destructor;
 }
 
 void HuPrcCurrentDtor(process_func destructor)
 {
-    struct process *process = HuPrcGetCurrent();
+    Process* process = HuPrcCurrentGet();
     HuPrcDtor(process, destructor);
 }
 
 void HuPrcCall(s32 time)
  {
-    struct process *cur_proc_local;
+    Process* cur_proc_local;
     s32 ret;
 
     current_process = top_process;
@@ -338,7 +338,7 @@ void HuPrcCall(s32 time)
 
 void * HuPrcAllocMem(s32 size)
 {
-    struct process *process = HuPrcGetCurrent();
+    Process* process = HuPrcCurrentGet();
     return (void *)HuMemMemoryAlloc((struct heap_node *)process->heap, size);
 }
 

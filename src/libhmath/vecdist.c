@@ -3,7 +3,7 @@
 
 // this matches, but the entire file needs to have inlined assembly for the mulmul fix to work
 #ifdef NONMATCHING
-f32 _HuVecDistanceSqr(HuVec3F * a, HuVec3F * b)
+f32 _HuVecDistanceSqr(Vec * a, Vec * b)
 {
     f32 x;
     f32 y;
@@ -16,13 +16,13 @@ f32 _HuVecDistanceSqr(HuVec3F * a, HuVec3F * b)
     return (x * x) + (y * y) + (z * z);
 }
 #else
-INCLUDE_ASM(f32, "libhmath/vecdist", HuVecDistanceSqr, HuVec3F * a, HuVec3F * b);
+INCLUDE_ASM(f32, "libhmath/vecdist", HuVecDistanceSqr, Vec * a, Vec * b);
 #endif
 
 // https://decomp.me/scratch/02P6S
 // // the original output has the function prologue near the end rather than the start
 #ifdef NONMATCHING
-f32 _HuVecDistance(HuVec3F * arg0, HuVec3F * arg1) {
+f32 _HuVecDistance(Vec * arg0, Vec * arg1) {
     f32 temp_f0;
     f32 temp_f12;
     f32 temp_f2;
@@ -33,5 +33,5 @@ f32 _HuVecDistance(HuVec3F * arg0, HuVec3F * arg1) {
     return HuSqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2) + (temp_f12 * temp_f12));
 }
 #else
-INCLUDE_ASM(f32, "libhmath/vecdist", HuVecDistance, HuVec3F * a, HuVec3F * b);
+INCLUDE_ASM(f32, "libhmath/vecdist", HuVecDistance, Vec * a, Vec * b);
 #endif

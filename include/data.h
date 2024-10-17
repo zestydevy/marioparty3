@@ -38,7 +38,7 @@ typedef struct {
 } HuArchive;
 
 typedef struct {
-    u8 * bytes;
+    u8* bytes;
     s32 size;
     EDecodeType compType;
 } HuFileInfo;
@@ -48,29 +48,29 @@ typedef struct
 {
     s16 compType;
     u32 size;
-    u8 * block;
+    u8* block;
     s16 unkC;
     s16 unkE;
-    void * bytes;
-    void * bytesCopy;
+    void* bytes;
+    void* bytesCopy;
 } HuFileInfoD;
 
-extern u32 gArchiveRomAddr; // FS ROM location
+extern u8* gArchiveRomAddr; // FS ROM location
 extern u32 gArchiveDirCount; // Directory count
-extern s32 * gArchiveTblAddr; // Directory offset table pointer.
+extern s32* gArchiveTblAddr; // Directory offset table pointer.
 
-extern u32 gArchiveRomAddrCopy; // FS ROM location (copy)
+extern u8* gArchiveRomAddrCopy; // FS ROM location (copy)
 extern u32 gArchiveDirCountCopy; // Directory count (copy)
-extern s32 * gArchiveTblAddrCopy; // Directory offset table pointer (copy)
+extern s32* gArchiveTblAddrCopy; // Directory offset table pointer (copy)
 
 extern HuArchive gArchive;
 
-void HuInitArchive(u32 fsRomPtr);
-void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info);
-void * HuReadFilePerm(s32 dirAndFile);
-void * HuDecodeFilePerm(EArchiveType type, s32 index);
-void * HuDecodeFileTemp(EArchiveType type, s32 index);
-void * HuDecodeFileTag(EArchiveType type, s32 index, s32 tag);
+void HuInitArchive(u8* fsRomPtr);
+void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo* info);
+void* Hu3DModelCreate(s32 dirAndFile);
+void* HuDecodeFilePerm(EArchiveType type, s32 index);
+void* HuDecodeFileTemp(EArchiveType type, s32 index);
+void* HuDecodeFileTag(EArchiveType type, s32 index, s32 tag);
 void HuInitDirectory(EArchiveType type, s32 dir);
 
 #endif

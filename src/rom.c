@@ -1,9 +1,8 @@
 #include "common.h"
 #include "rom.h"
 
-extern OSPiHandle * osCartRomInit(void);
-
-extern OSPiHandle * D_800CDD50;
+OSPiHandle* osCartRomInit(void);
+extern OSPiHandle* D_800CDD50;
 extern OSMesgQueue D_800B29F0;
 extern void* D_800B2A08;
 extern void* D_800CCFA8;
@@ -15,32 +14,32 @@ void func_8004D9A0_4E5A0(void) {
     osCreateMesgQueue(&D_800B29F0, &D_800B2A08, 0xA);
 }
 
-s32 HuStartDma(OSIoMesg * msg, u8 pri, s32 direction, u32 src, void * dest, u32 size, OSMesgQueue * retQueue) {
+s32 HuStartDma(OSIoMesg * msg, u8 pri, s32 direction, u8* src, u8* dest, u32 size, OSMesgQueue * retQueue) {
     msg->hdr.pri = pri;
     msg->hdr.retQueue = retQueue;
     msg->dramAddr = dest;
-    msg->devAddr = src;
+    msg->devAddr = (u32)src;
     msg->size = size;
     return osEPiStartDma(D_800CDD50, msg, direction);
 }
 
-s32 HuRomDmaRead(void * src, void * dest, s32 size)
+s32 HuRomDmaRead(u8* src, u8* dest, s32 size)
 {
     OSIoMesg msg;
-    s32 var_s1;
-    u32 var_v1;
+    s32 curBlockOffset;
+    u32 curBlockSize;
     s32 err;
 
     osInvalDCache(dest, OS_DCACHE_ROUNDUP_SIZE(size));
 
-    var_s1 = 0;
+    curBlockOffset = 0;
     while (size > 0)
     {
-        var_v1 = size;
-        if (size >= 0x4001) {
-            var_v1 = 0x4000;
+        curBlockSize = size;
+        if (size > 0x4000) {
+            curBlockSize = 0x4000;
         }
-        err = HuStartDma(&msg, 0, 0, src + var_s1, dest + var_s1, var_v1, &D_800B29F0);
+        err = HuStartDma(&msg, 0, 0, &src[curBlockOffset], &dest[curBlockOffset], curBlockSize, &D_800B29F0);
 
         if (err != 0) {
             return err;
@@ -48,30 +47,30 @@ s32 HuRomDmaRead(void * src, void * dest, s32 size)
             
         osRecvMesg(&D_800B29F0, 0, 1);
         size -= 0x4000;   
-        var_s1 += 0x4000;
+        curBlockOffset += 0x4000;
         
     }
     return err;
 }
 
-s32 HuRomDmaCodeRead(void * src, void * dest, s32 size)
+s32 HuRomDmaCodeRead(u8* src, u8* dest, s32 size)
 {
     OSIoMesg msg;
-    s32 var_s1;
+    s32 curBlockOffset;
     u32 var_v1;
     s32 err;
 
     osInvalICache(dest, OS_DCACHE_ROUNDUP_SIZE(size));
     osInvalDCache(dest, OS_DCACHE_ROUNDUP_SIZE(size));
 
-    var_s1 = 0;
+    curBlockOffset = 0;
     while (size > 0)
     {
         var_v1 = size;
         if (size >= 0x4001) {
             var_v1 = 0x4000;
         }
-        err = HuStartDma(&msg, 0, 0, src + var_s1, dest + var_s1, var_v1, &D_800B29F0);
+        err = HuStartDma(&msg, 0, 0, &src[curBlockOffset], &dest[curBlockOffset], var_v1, &D_800B29F0);
 
         if (err != 0) {
             return err;
@@ -79,7 +78,7 @@ s32 HuRomDmaCodeRead(void * src, void * dest, s32 size)
             
         osRecvMesg(&D_800B29F0, 0, 1);
         size -= 0x4000;   
-        var_s1 += 0x4000;
+        curBlockOffset += 0x4000;
         
     }
     return err;

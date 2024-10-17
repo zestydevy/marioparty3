@@ -6,6 +6,7 @@
 #include "math.h"
 
 #define MAX_PLAYERS 4
+#define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define    OS_K0_TO_PHYSICAL(x)    (u32)(((char *)(x)-0x80000000))
 #define    OS_PHYSICAL_TO_K0(x)    (void *)(((u32)(x)+0x80000000))
@@ -17,9 +18,9 @@ typedef struct objectt {
     /*0x09*/ s8 unk9;
     /*0x0A*/ u16 unkA;
 
-    /*0x0C*/ HuVec3F coords;
+    /*0x0C*/ Vec coords;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
+    // Three Vec groups (Scale?, Rotation?, Position?)
     f32 unk18; // Rotation?
     f32 unk1C;
     f32 unk20;
@@ -51,7 +52,7 @@ struct objectIndirectt {
 
     void *unk14;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
+    // Three Vec groups (Scale?, Rotation?, Position?)
     f32 unk18;
     f32 unk1C;
     f32 unk20;
@@ -81,7 +82,7 @@ typedef struct objectIndirect3t {
     f32 unk4;
 } objectIndirect3;
 
-typedef struct {
+typedef struct PlayerData {
     /*  0 (0x00) 800D1108 */ s8 id;
     /*  1 (0x01) 800D1109 */ s8 cpuDifficulty;
     /*  2 (0x02) 800D110A */ u8 controller;
@@ -126,7 +127,7 @@ typedef struct {
 
     s8 unks1E1F[2]; // 20 - 31
 
-    /* 32 (0x20) 800D1128 */ struct process *process;
+    /* 32 (0x20) 800D1128 */ Process*process;
     /* 36 (0x24) 800D112C */ struct objectt *obj;
     /* 40 (0x28) 800D1130 */ s16 minigameStar;
     /* 42 (0x2A) 800D1132 */ s16 maxCoins;
@@ -142,6 +143,16 @@ typedef struct {
     s8 unk35;
 
     // s8 pad2[3];
-} Player; // sizeof 0x38 | 56 
+} PlayerData __attribute__((aligned(4))); //sizeof 0x38
+
+typedef struct SpaceData {
+/* 0x00 */ s8 unk_00;
+/* 0x01 */ u8 space_type; // enum board_space_type
+/* 0x02 */ s16 unk_02;
+/* 0x04 */ s32 unk_04;
+/* 0x08 */ Vec coords;
+/* 0x14 */ Vec rot;
+/* 0x20 */ void* event_list;
+} SpaceData;
 
 #endif

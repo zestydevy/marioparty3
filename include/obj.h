@@ -22,10 +22,10 @@ typedef struct HuObjInfo
 
     HuObjFunc func;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
-    HuVec3F unk18;
-    HuVec3F unk24;
-    HuVec3F unk30;
+    // Three Vec groups (Scale?, Rotation?, Position?)
+    Vec unk18;
+    Vec unk24;
+    Vec unk30;
 
     u16 unk3C; // count of unk40
     s16 *unk40;
@@ -43,7 +43,7 @@ typedef struct
 {
     u16 unk0;                   // 0000
     u16 unk2;                   // 0002
-    struct process * prc;       // 0004
+    Process* prc;       // 0004
     process_func unk8;          // 0008
 } HuObjUnk0;
 
@@ -60,7 +60,7 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs);
 HuObjInfo * HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func);
 void HuObjRegister(HuObjInfo * obj);
 void func_80047CDC_488DC(u16 arg0, HuObjInfo * obj);
-struct process * HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extDataSize);
+Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extDataSize);
 void func_80048054_48C54(void);
 
 #endif

@@ -2,7 +2,7 @@
 #include "siman.h"
 #include "pad.h"
 
-s32 HuPadInit(u16 * channel)
+s32 HuPadInit(u16* channel)
 {
     OSContStatus contStat[MAXCONTROLLERS];    // sp10
     u8 pattern;                               // sp20
@@ -69,7 +69,7 @@ s32 func_80008FD4_9BD4(s32 arg0)
         osSendMesg(&D_800ABFA0, 0, 1);
         osContStartReadData(&D_800CE1A0);
         osRecvMesg(&D_800CE1A0, 0, 1);
-        osContGetReadData(&D_800ABE40[D_800ABF84 * 4]);
+        osContGetReadData(&D_800ABE40[D_800ABF84* 4]);
         osRecvMesg(&D_800ABFA0, 0, 1);
         
         ++D_800ABF80;
@@ -95,7 +95,7 @@ s16 func_80009160_9D60(void)
     s16 i;
     s16 temp_s0;
     u16 temp_v0_3;
-    OSContPad * pads;
+    OSContPad* pads;
 
     osRecvMesg(&D_800ABFA0, 0, 1);
     temp_s0 = D_800ABF80;
@@ -104,7 +104,7 @@ s16 func_80009160_9D60(void)
     {
         --D_800ABF80;
     
-        pads = &D_800ABE40[D_800ABF82 * 4];
+        pads = &D_800ABE40[D_800ABF82* 4];
         ++D_800ABF82;
         if (D_800ABF82 >= 8) {
             D_800ABF82 = 0;

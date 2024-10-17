@@ -1,13 +1,14 @@
 #include "GateGuy.h"
 #include "math.h"
 #include "process.h"
+#include "obj.h"
 
 void func_801059D0_3D8AC0(void) {
     D_800CDD58 = 1;
     D_800D037C = 0;
-    func_80047B80_48780(HuPrcGetCurrent(), 0x80);
+    func_80047B80_48780(HuPrcCurrentGet(), 0x80);
     func_80100CEC(gPlayers[gCurrentPlayerIndex].controller);
-    func_80047BAC_487AC(HuPrcGetCurrent(), 0x80);
+    func_80047BAC_487AC(HuPrcCurrentGet(), 0x80);
     D_800CDD58 = 0;
     D_800D037C = 1;
 }
@@ -38,7 +39,7 @@ void func_80105B10_3D8C00(void) {
 void func_80105B64_3D8C54(void) {
     D_800CD059 = 0;
     HuObjInit(0xA, 0);
-    func_80048228_48E28(0x5A, 0, 0x4190);
+    omOvlGotoEx(0x5A, 0, 0x4190);
 }
 
 void func_80105B9C_3D8C8C(void) {
@@ -61,7 +62,7 @@ void func_80105B9C_3D8C8C(void) {
     D_800CD0B0.unk_04 = 5;
     D_800CD0B0.unk_02 = 0;
     func_800EA760();
-    func_8004819C_48D9C(1);
+    omOvlReturnEx(1);
 }
 
 void func_80105C64_3D8D54(s32 arg0, s32 arg1, unkStruct01* arg2) {
@@ -76,16 +77,16 @@ void func_80105C64_3D8D54(s32 arg0, s32 arg1, unkStruct01* arg2) {
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_80105CC0_3D8DB0);
 
 void* func_80105EB0_3D8FA0(unkStruct04* arg0) {
-    unkStruct03* temp_v0;
+    Process* process;
     unkStruct02* temp_v0_2;
 
-    temp_v0 = HuObjPrcCreate(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
-    temp_v0_2 = HuMemMemoryAlloc(temp_v0->unk_18, sizeof(unkStruct02));
-    temp_v0->unk_8C = temp_v0_2;
+    process = HuObjPrcCreate(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
+    temp_v0_2 = HuMemMemoryAlloc(process->heap, sizeof(unkStruct02));
+    process->user_data = temp_v0_2;
     temp_v0_2->unk_00.x = arg0->unk_0C.x;
     temp_v0_2->unk_00.y = arg0->unk_0C.y;
     temp_v0_2->unk_00.z = arg0->unk_0C.z;
-    return temp_v0;
+    return process;
 }
 
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_80105F20_3D9010);
@@ -117,16 +118,16 @@ void func_801062C0_3D93B0(s32 arg0, unkStruct05* arg1, s32 arg2, f32 arg3) {
 
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_80106308_3D93F8);
 
-unkStruct03* func_8010645C_3D954C(s32 arg0, s32 arg1) {
-    unkStruct03* temp_v0;
+Process* func_8010645C_3D954C(s32 arg0, s32 arg1) {
+    Process* process;
     unkStruct06* temp_v0_2;
 
-    temp_v0 = HuObjPrcCreate(&func_80106308_3D93F8, 0xA, 0, 0x40);
-    temp_v0_2 = HuMemMemoryAlloc(temp_v0->unk_18, sizeof(unkStruct06));
-    temp_v0->unk_8C = temp_v0_2;
+    process = HuObjPrcCreate(&func_80106308_3D93F8, 0xA, 0, 0x40);
+    temp_v0_2 = HuMemMemoryAlloc(process->heap, sizeof(unkStruct06));
+    process->user_data = temp_v0_2;
     temp_v0_2->unk_00 = arg0;
     temp_v0_2->unk_04 = arg1;
-    return temp_v0;
+    return process;
 }
 
 INCLUDE_ASM(s32, "overlays/board_gate_guy/3D8AC0", func_801064C8_3D95B8);
@@ -144,7 +145,7 @@ void* func_80106740_3D9830(s32 arg0) {
     return temp_v0;
 }
 
-void func_801067D4_3D98C4(object* arg0, HuVec3F * arg1) {
+void func_801067D4_3D98C4(object* arg0, Vec * arg1) {
     func_800D8E88();
     func_8001C814_1D414(*arg0->unk3C->unk40, 3, 0);
     HuVecCopy3F(&arg0->coords, arg1);

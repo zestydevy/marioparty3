@@ -63,7 +63,7 @@ HuRomDmaCodeRead = 0x8004DB14;
 
 HuInitArchive = 0x80009AC0;
 HuInitFileInfo = 0x80009B64;
-HuReadFilePerm = 0x80009C10;
+ReadMainFS = 0x80009C10;
 HuReadFileTemp = 0x80009C74;
 HuReadFileTag = 0x80009CD8;
 HuDecodeFilePerm = 0x80009D4C;
@@ -80,7 +80,7 @@ HuDecodeFslide = 0x8000A9E8;
 HuDecodeRLE = 0x8000AE64;
 HuDecode = 0x8000B000;
 
-HuGetRandomByte = 0x8000B16C;
+rand8 = 0x8000B16C;
 
 HuPadInit = 0x80008DD0;
 
@@ -92,7 +92,7 @@ HuPrcChildLink = 0x8004ED30;
 HuPrcChildUnlink = 0x8004ED84;
 HuPrcCreateChild = 0x8004EDD4;
 HuPrcChildWait = 0x8004EE18;
-HuPrcGetCurrent = 0x8004EE68;
+HuPrcCurrentGet = 0x8004EE68;
 HuPrcChildGet = 0x8004EE74;
 HuPrcStatKill = 0x8004EE94;
 HuPrcKill = 0x8004EED8;
@@ -480,7 +480,9 @@ HuVecDistance = 0x80089D60;
 HuVecDot3F = 0x80089DB0;
 HuVecCross = 0x80089DE0;
 HuVecIsEqual = 0x80089E30;
-IsFlagSet = 0x80035F98;
+_CheckFlag = 0x80035F98;
+_SetFlag = 0x80035FDC;
+_ClearFlag = 0x8003602C;
 GetPlayerStruct = 0x800F213C; //rom:0x105D5C
 AdjustPlayerCoins = 0x800F21C0; //rom:0x105DE0
 PlayerHasCoins = 0x800F2230; //rom:0x105E50
@@ -490,6 +492,33 @@ GetTurnsElapsed = 0x800ECEE4; //rom:0x100B04
 PlayerHasItem = 0x800E4978; //rom:0xF8598
 RNGPercentChance = 0x800ECE9C; //rom:0x100ABC
 RunDecisionTree = 0x800DA190; //rom:0xEDDB0
+Hu3DModelCreate = 0x8001A150; //rom:0x1AD50
+gTotalTurns = 0x800CD05A;
+gCurrentTurn = 0x800CD05B;
 
-TotalTurns = 0x800CD05A;
-CurrentTurn = 0x800CD05B;
+omOvlCallEx = 0x80048128; //rom:0x48D28
+omOvlGotoEx = 0x80048228; //rom:0x48E28
+omOvlReturnEx = 0x8004819C; //rom:0x48D9C
+omOvlHisChg = 0x80048460; //rom:0x49060
+omovlhis = 0x800D2010; //size:0x60
+omOvlKill = 0x8004849C; //rom:0x4909C
+omMain = 0x80048504; //rom:0x49104
+omovlhisidx = 0x800A1768; //rom:0xA2368 size:0x02 type:s16
+overlay_table = 0x800962F4; //rom:0x96EF4 size:0x126C
+LoadOverlay = 0x8000B2C4; //rom:0xBEC4
+rnd_seed = 0x80097650; //rom:0x98250 type:u32
+
+SavePlayerStruct = 0x8004F544; //rom:0x50144
+GetSpaceData = 0x800EB160; //rom:0xFED80
+SaveFileEncode = 0x8004F5A4; //rom:0x501A4
+
+gCoinBlockSpaceIndex = 0x800CE1C4; // type:s16
+gStarBlockSpaceIndex = 0x800D124E; // type:s16
+gItemBlockSpaceIndex = 0x800CC4E4; // type:s16
+
+gPrevCoinBlockIndexes = 0x800CE1E8; //type:s16 size:0x14
+gPrevStarBlockIndexes = 0x800D59E0; //type:s16 size:0x14
+gPrevItemBlockIndexes = 0x800CC378; //type:s16 size:0x14
+
+GetSaveFileChecksum = 0x8000CAEC; //rom:0xD6EC
+GetEepType = 0x8000C210; //rom:0xCE10

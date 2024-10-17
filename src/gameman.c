@@ -33,7 +33,7 @@ struct str800D5298 {
 extern struct str800D5298 D_800D5298;
 
 
-extern Player gPlayers[4];
+extern PlayerData gPlayers[4];
 
 extern void *D_800CCF38;
 extern u8 D_800CCF78[];
@@ -42,20 +42,20 @@ extern u16 D_800CD2F4;
 extern s32 D_800CDD50;
 extern f32 D_800CE1C8;
 
-extern struct process *D_800D0448;
+extern Process* D_800D0448;
 extern u8 D_800D09A8;
-extern HuVec3F D_800D138C;
+extern Vec D_800D138C;
 
-extern struct process *D_800D170C;
+extern Process* D_800D170C;
 extern u8 D_800D1710;
 extern s16 D_800D1F36;
 
 extern u16 D_800D4082;
-extern HuVec3F D_800D54F8[];
+extern Vec D_800D54F8[];
 
 extern u16 D_800D6A56;
-extern HuVec3F D_800D6ABC;
-extern HuVec3F D_800D6AE0[];
+extern Vec D_800D6ABC;
+extern Vec D_800D6AE0[];
 
 extern u16 D_800A190C_A250C;
 extern u16 D_800A190E_A250E;
@@ -64,7 +64,7 @@ extern u16 D_800A190E_A250E;
 extern void func_800007FC_13FC(struct str800D5298 *arg0);
 extern void func_80000EA8_1AA8(struct str800D5298 *arg0);
 extern void func_80000F30_1B30(u32 arg0);
-extern u8   HuGetRandomByte(); //ovlman.h
+extern u8   rand8(); //ovlman.h
 extern void func_8000BA30_C630(); // esprite.h
 extern void func_800143F0_14FF0();
 extern void func_80014A3C_1563C(u32 arg0);
@@ -75,8 +75,8 @@ extern void func_800224BC_230BC();
 extern void func_80035A50_36650(); // save.h
 extern void func_80035C20_36820(s16 arg0, s16 arg1); // save.h
 extern void func_80036380_36F80(void **arg0);
-extern void func_80048128_48D28(u32 argo0, u32 arg1, u32 arg2);
-extern void func_80048504_49104();
+extern s32 omOvlCallEx(s32 arg0, s16 arg1, u16 arg2);
+extern void omMain();
 extern void func_8004DC00_4E800();
 extern void func_8004DC98_4E898();
 extern void func_8004F290_4FE90();
@@ -84,7 +84,7 @@ extern s32  func_8004FDC0_509C0();
 extern void func_80050800_51400();
 extern void func_80050E78_51A78(u32 arg0);
 extern void func_80061B50_62750();
-extern void func_80087A40_88640(Player *arg0, u32 arg1, u32 arg2);
+extern void func_80087A40_88640(PlayerData *arg0, u32 arg1, u32 arg2);
 
 extern void Hu3DCamInit(u32 arg0);
 
@@ -154,10 +154,10 @@ void func_8000E3C0_EFC0() {
         func_80050E78_51A78(0);
         func_80050800_51400();
         if (temp_s0 != 0) {
-            func_80048128_48D28(0x67, 0, 0x82);
+            omOvlCallEx(0x67, 0, 0x82);
         }
         else {
-            func_80048128_48D28(0x58, 0, 0x84);
+            omOvlCallEx(0x58, 0, 0x84);
         }
     }
 
@@ -185,7 +185,7 @@ void func_8000E3C0_EFC0() {
         func_80000F30_1B30(0);
     }
 
-    HuPrcKill(HuPrcGetCurrent());
+    HuPrcKill(HuPrcCurrentGet());
 
     while (TRUE) {
         HuPrcVSleep();
@@ -205,7 +205,7 @@ void func_8000E740_F340() {
 void func_8000E78C_F38C() {
     while (TRUE) {
         HuPrcVSleep();
-        func_80048504_49104();
+        omMain();
     }
 }
 
@@ -213,7 +213,7 @@ void func_8000E78C_F38C() {
 void func_8000E7B8_F3B8() {
     while (TRUE) {
         HuPrcVSleep();
-        HuGetRandomByte();
+        rand8();
         func_8000BA30_C630(); // esprite
         func_80014A3C_1563C(2);
         func_8001B0B4_1BCB4(&D_800CCF38, 2); // hmfman
@@ -225,7 +225,7 @@ void func_8000E804_F404() {
     s32 i;
 
     for (i = 0; i < MAX_PLAYERS; i++) {
-        func_80087A40_88640(&gPlayers[i], 0, sizeof(Player));
+        func_80087A40_88640(&gPlayers[i], 0, sizeof(PlayerData));
         if (HuGetPadInserted(i) != PAD_NOT_INSERTED) {
             D_800CCF78[i] = 0;
             gPlayers[i].flags &= 0xFE;

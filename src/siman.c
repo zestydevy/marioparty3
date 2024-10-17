@@ -16,7 +16,7 @@ void func_80051750_52350(void) {
 }
 
 
-functionListEntry ** func_800517F4_523F4(functionListEntry * entry) {
+functionListEntry ** func_800517F4_523F4(functionListEntry* entry) {
     switch (entry->type) {
     case 0:
         return &D_800BD7B0;
@@ -50,7 +50,7 @@ s32 func_8005182C_5242C(functionListEntry* node) {
 }
 
 
-void func_8005188C_5248C(functionListEntry * entry, s16 type, void * func) {
+void func_8005188C_5248C(functionListEntry* entry, s16 type, void* func) {
     OSMesg msgBuffer;
     OSMesgQueue mq;
     unkMesg msgOut;
@@ -134,7 +134,7 @@ void func_800519D0_525D0(s16 type) {
 
 
 /* Wait for message to do all functions in a global function list
- * or to run custom functions?
+* or to run custom functions?
  */
 void func_80051A44_52644(void* arg0) {
     unkMesgWrapper msgWrapper;
@@ -164,7 +164,7 @@ void func_80051A44_52644(void* arg0) {
 }
 
 
-s32 func_80051B0C_5270C(unkMesg * siMessg, HuSiFunc func, void * arg, s32 type) 
+s32 func_80051B0C_5270C(unkMesg* siMessg, HuSiFunc func, void* arg, s32 type) 
 {
     OSMesgQueue msgQueue;
     OSMesg tmpMsg;

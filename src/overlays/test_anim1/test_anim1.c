@@ -17,10 +17,11 @@ void func_80106D7C_3D505C();                           /* extern */
 extern u16 D_800A1760_A2360;
 extern s16 D_800A1786_A2386;
 extern s8 D_800CD280;
-extern void func_8004B340_4BF40;
-extern void func_80105B38_3D3E18;
-extern void func_80106898_3D4B78;
-extern void func_80106DF8_3D50D8;
+//these probably take omObjData* as args
+void func_8004B340_4BF40(void*);
+void func_80105B38_3D3E18(void*);
+void func_80106898_3D4B78(void*);
+void func_80106DF8_3D50D8(void*);
 
 void func_801059A0_3D3C80(void)
 {

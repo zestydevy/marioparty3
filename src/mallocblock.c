@@ -3,7 +3,7 @@
 
 void HuMemInit(HuAllocFunc malloc, HuFreeFunc free)
 {
-    HuMallocHeader * newBlock;
+    HuMallocHeader* newBlock;
 
     gMallocFunc = malloc;
     gFreeFunc = free;
@@ -28,12 +28,12 @@ void HuMemAlloc(s32 size) {
     HuMemAllocTag(size, 0);
 }
 
-void * HuMemAllocTag(s32 size, s16 tag)
+void* HuMemAllocTag(s32 size, s16 tag)
 {
     s32 alignedSize;
-    void * data;
-    HuMallocHeader * firstBlk;
-    HuMallocHeader * newBlk;
+    void* data;
+    HuMallocHeader* firstBlk;
+    HuMallocHeader* newBlk;
 
     alignedSize = (size + 7) & ~7;
     data = gMallocFunc(alignedSize + sizeof(HuMallocHeader));
@@ -54,9 +54,9 @@ void * HuMemAllocTag(s32 size, s16 tag)
     return newBlk->data;
 }
 
-void HuMemFree(void * data)
+void HuMemFree(void* data)
 {
-    HuMallocHeader * block = gFirstMallocBlock->next;
+    HuMallocHeader* block = gFirstMallocBlock->next;
     while (data != block->data)
     {
         block = block->next;
@@ -67,7 +67,7 @@ void HuMemFree(void * data)
     HuMemBlockFree(block);
 }
 
-void HuMemBlockFree(HuMallocHeader * block)
+void HuMemBlockFree(HuMallocHeader* block)
 {
     gLastFreedBlock = block;
 
@@ -79,8 +79,8 @@ void HuMemBlockFree(HuMallocHeader * block)
 
 void HuMemFreeAllWithTag(s16 tag)
 {
-    HuMallocHeader * prevBlk;
-    HuMallocHeader * block;
+    HuMallocHeader* prevBlk;
+    HuMallocHeader* block;
 
     for (block = gFirstMallocBlock->next; block != gLastMallocBlock; block = block->next)
     {
@@ -106,9 +106,9 @@ void HuMemFreeAllWithTag(s16 tag)
     }
 }
 
-void func_80019C00_1A800(void * data)
+void func_80019C00_1A800(void* data)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
 
     block = gFirstMallocBlock->next;
     while (data != block->data) {
@@ -126,7 +126,7 @@ void func_80019C00_1A800(void * data)
 
 void func_80019C68_1A868(s16 arg0)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
 
     block = gFirstMallocBlock->next;
     while (block != gLastMallocBlock) 
@@ -146,8 +146,8 @@ void HuMemSetDirty(void) {
 
 void HuMemFreeAll(void)
 {
-    HuMallocHeader * prevBlk;
-    HuMallocHeader * block;
+    HuMallocHeader* prevBlk;
+    HuMallocHeader* block;
 
     block = gFirstMallocBlock->next;
     while (block != gLastMallocBlock)
@@ -175,7 +175,7 @@ void HuMemCleanUp(void)
 
 s32 HuMemGetSizeTag(s16 tag)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
     s32 size;
 
     block = gFirstMallocBlock->next;
@@ -191,7 +191,7 @@ s32 HuMemGetSizeTag(s16 tag)
 
 s32 HuMemGetSize(void)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
     s32 size;
 
     block = gFirstMallocBlock->next;
@@ -203,9 +203,9 @@ s32 HuMemGetSize(void)
     return size;
 }
 
-void HuMemSetTag(void * data, s16 tag)
+void HuMemSetTag(void* data, s16 tag)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
 
     block = gFirstMallocBlock->next;
     while (data != block->data) {
@@ -219,7 +219,7 @@ void HuMemSetTag(void * data, s16 tag)
 
 s32 HuMemDebugCheck(void)
 {
-    HuMallocHeader * block;
+    HuMallocHeader* block;
     s16 i;
     s16 count;
     s16 var_v1;

@@ -1,13 +1,13 @@
 #include "common.h"
 #include "common_structs.h"
 
-Player* GetPlayerStruct(s32 playerIndex);
+PlayerData* GetPlayerStruct(s32 playerIndex);
 
 s16 GetCurrentPlayerIndex(void) {
     return gCurrentPlayerIndex;
 }
 
-Player* GetPlayerStruct(s32 playerIndex) {
+PlayerData* GetPlayerStruct(s32 playerIndex) {
     if (playerIndex < 0) {
         playerIndex = GetCurrentPlayerIndex();
     }
@@ -23,7 +23,7 @@ s32 func_800F2198_105DB8(s16 arg0) {
 }
 
 void AdjustPlayerCoins(s32 playerIndex, s32 coinsToAdd) {
-    Player* player;
+    PlayerData* player;
 
     player = GetPlayerStruct(playerIndex);
     player->coins += coinsToAdd;
