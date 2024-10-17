@@ -1,8 +1,8 @@
 #include "common.h"
 
-extern s8 TotalTurns;
-extern s8 CurrentTurn;
-s32 rand8(void);
+extern s8 gTotalTurns;
+extern s8 gCurrentTurn;
+u8 rand8(void);
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECAD0_1006F0);
 
@@ -34,7 +34,7 @@ s16 RNGPercentChance(s8 arg0) {
 }
 
 s16 GetTurnsElapsed(void) {
-    return (TotalTurns - CurrentTurn) + 1;
+    return (gTotalTurns - gCurrentTurn) + 1;
 }
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECF18_100B38);

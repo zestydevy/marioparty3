@@ -7,7 +7,7 @@
 
 // -----------------------------------------------------------------
 
-void HuInitArchive(u32 fsRomPtr)
+void HuInitArchive(u8* fsRomPtr)
 {
     s32 dirTblSize;
     HuArchive * archiveHeader;
@@ -15,13 +15,13 @@ void HuInitArchive(u32 fsRomPtr)
     gArchiveRomAddr = fsRomPtr;
     archiveHeader = &gArchive;
 
-    HuRomDmaRead(fsRomPtr, archiveHeader, 16);
+    HuRomDmaRead(fsRomPtr, (u8*)archiveHeader, 16);
 
     gArchiveDirCount = archiveHeader->count;
     dirTblSize = archiveHeader->count * 4;
     gArchiveTblAddr = (s32 *)HuMemMemoryAllocPerm(dirTblSize);
 
-    HuRomDmaRead(fsRomPtr + 4, gArchiveTblAddr, dirTblSize);
+    HuRomDmaRead((u8*)fsRomPtr + 4, (u8*)gArchiveTblAddr, dirTblSize);
 
     gArchiveRomAddrCopy = gArchiveRomAddr;
     gArchiveDirCountCopy = gArchiveDirCount;
@@ -30,9 +30,9 @@ void HuInitArchive(u32 fsRomPtr)
 
 // -----------------------------------------------------------------
 
-void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info)
+void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo* info)
 {
-    HuArchive * archiveHeader;
+    HuArchive* archiveHeader;
     archiveHeader = &gArchive;
 
     switch (type) {
@@ -44,7 +44,7 @@ void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info)
             break;
     }
 
-    HuRomDmaRead(info->bytes, archiveHeader, 16);
+    HuRomDmaRead(info->bytes, (u8*)archiveHeader, 16);
 
     info->bytes += 8;
     info->size = archiveHeader->count;
@@ -57,7 +57,7 @@ void HuInitFileInfo(EArchiveType type, s32 index, HuFileInfo * info)
  * Reads a file from the main filesystem and decodes it.
  * File is in the permanent heap.
  */
-void * ReadMainFS(s32 dirAndFile)
+void* ReadMainFS(s32 dirAndFile)
 {
     u32 dir;
     u32 file;
@@ -78,7 +78,7 @@ void * ReadMainFS(s32 dirAndFile)
 
 // -----------------------------------------------------------------
 
-void * HuReadFileTemp(s32 dirAndFile)
+void* HuReadFileTemp(s32 dirAndFile)
 {
     u32 dir;
     u32 file;
@@ -99,9 +99,9 @@ void * HuReadFileTemp(s32 dirAndFile)
 
 // -----------------------------------------------------------------
 
-void * HuReadFileTag(s32 dirAndFile, s32 tag)
+void* HuReadFileTag(s32 dirAndFile, s32 tag)
 {
-    s32 dir;
+    u32 dir;
     u32 file;
 
     dir = dirAndFile >> 16;
@@ -191,7 +191,7 @@ void HuFreeFileTemp(void * data)
 
 typedef struct
 {
-    s32 tablePtr;
+    u8* tablePtr;
     s32 unk0004;    // not used
     s32 unk0008;    // not used
     s32 unk000C;    // not used
@@ -203,7 +203,7 @@ void HuInitDirectory(EArchiveType type, s32 dir)
     HuArchive * fsHeader;
     HuDataInfo info;
 
-    info.tablePtr = gArchiveRomAddr + gArchiveTblAddr[dir];
+    info.tablePtr = &gArchiveRomAddr[gArchiveTblAddr[dir]];
     
     if (gArchiveRomAddrCopy != info.tablePtr) {
         if (gArchiveRomAddrCopy != gArchiveRomAddr) {
@@ -213,13 +213,13 @@ void HuInitDirectory(EArchiveType type, s32 dir)
         gArchiveRomAddrCopy = info.tablePtr;
         
         fsHeader = &gArchive;
-        HuRomDmaRead(gArchiveRomAddrCopy, fsHeader, 16);
+        HuRomDmaRead(gArchiveRomAddrCopy, (u8*)fsHeader, 16);
         
         gArchiveDirCountCopy = gArchive.count;
         dirCount = gArchiveDirCountCopy * 4;
         gArchiveTblAddrCopy = HuMemMemoryAllocPerm(dirCount);
 
-        HuRomDmaRead((u32)(info.tablePtr + 4), gArchiveTblAddrCopy, dirCount);
+        HuRomDmaRead((info.tablePtr + 4), (u8*)gArchiveTblAddrCopy, dirCount);
     }
 }
 
@@ -285,7 +285,7 @@ s32 func_8000A028_AC28(HuFileInfoD * info)
 s32 func_8000A0D4_ACD4(s8 * arg0, s32 arg1, s32 arg2, HuFileInfoD * arg3)
 {
     s32 temp_v0;
-    s8 * var_s1;
+    s8* var_s1;
 
     s32 i = 0;
     s32 b = arg1 * arg2;
@@ -293,7 +293,7 @@ s32 func_8000A0D4_ACD4(s8 * arg0, s32 arg1, s32 arg2, HuFileInfoD * arg3)
     
     while (TRUE)
     {
-        s32 temp_v0 = func_8000A028_AC28(arg3);
+        temp_v0 = func_8000A028_AC28(arg3);
 
         if (temp_v0 == -1) {
             break;

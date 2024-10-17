@@ -1,5 +1,14 @@
 #include "common.h"
 
+extern s16 D_801054B6;
+extern s16 D_801052B8[];
+extern u8 D_80101468_115088[];
+extern u16 D_80105210;
+extern s16 D_801054B8[];
+extern s16 D_801054F8; //total blue spaces hidden blocks cannot spawn on (8 unless waluigi's island, then it's 23)
+SpaceData* GetSpaceData(s16 spaceIndex);
+s32 func_800EEF80_102BA0(f32 arg0);
+
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E1F70_F5B90);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800E2074_F5C94);
@@ -370,7 +379,7 @@ INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EAE10_FEA30);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB09C_FECBC);
 
-INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB160_FED80);
+INCLUDE_ASM(s32, "overlays/shared_board/F5B90", GetSpaceData);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB184_FEDA4);
 
@@ -386,7 +395,62 @@ INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB3C0_FEFE0);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB4F0_FF110);
 
-INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB5DC_FF1FC);
+s16 func_800EB5DC_FF1FC(u16 arg0, u8 arg1) {
+    u8 var_s1;
+    SpaceData* temp_a1;
+    s32 i, j;
+    var_s1 = 0;
+
+    for (i = 0; i < D_80105210; i++) {
+        temp_a1 = GetSpaceData(i);
+        if (D_80101468_115088[temp_a1->space_type & 0xF] & arg0){
+            var_s1++;
+        }
+    }
+
+    var_s1 -= D_801054F8;
+    if (arg1 < 5) {
+        var_s1 -= D_801054B6;
+    }
+
+    var_s1 = func_800EEF80_102BA0(var_s1);
+
+    for (i = 0;; i = (++i < D_80105210) ? i : 0) {
+        temp_a1 = GetSpaceData(i);
+        for (j = 0; j < D_801054F8; j++) {
+            if (D_801054B8[j] == i) {
+                break;
+            }
+        }
+
+        if (j == D_801054F8) {
+            if (arg1 < 5) {
+                for (j = 0; j < D_801054B6; j++) {
+                    if (D_801052B8[j] == i) {
+                        break;
+                    }
+                }
+            
+                if (j == D_801054B6) {
+                    if (D_80101468_115088[temp_a1->space_type & 0xF] & arg0) {
+                if (var_s1 == 0) {
+                    break;
+                }
+                var_s1--;
+                    }
+                }           
+            } else {
+                if (D_80101468_115088[temp_a1->space_type & 0xF] & arg0) {
+                    if (var_s1 == 0) {
+                        break;
+                    }
+                    var_s1--;
+                }
+            }
+        }
+    }
+    return i;
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EB7F0_FF410);
 
@@ -408,7 +472,9 @@ INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EBCBC_FF8DC);
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EBCC8_FF8E8);
 
-INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EBCD4_FF8F4);
+s16 func_800EBCD4_FF8F4(u8 arg0) {
+    return func_800EB5DC_FF1FC(2, arg0);
+}
 
 INCLUDE_ASM(s32, "overlays/shared_board/F5B90", func_800EBCFC_FF91C);
 

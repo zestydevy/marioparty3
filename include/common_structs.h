@@ -143,6 +143,16 @@ typedef struct {
     s8 unk35;
 
     // s8 pad2[3];
-} Player; // sizeof 0x38 | 56 
+} Player; // sizeof 0x38 | 56
+
+typedef struct SpaceData {
+/* 0x00 */ s8 unk_00;
+/* 0x01 */ u8 space_type; // enum board_space_type
+/* 0x02 */ s16 unk_02;
+/* 0x04 */ s32 unk_04;
+/* 0x08 */ HuVec3F coords;
+/* 0x14 */ HuVec3F rot;
+/* 0x20 */ void* event_list;
+} SpaceData;
 
 #endif

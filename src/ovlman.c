@@ -16,7 +16,7 @@ extern u8 D_800962F0_96EF0;
 extern u32 rnd_seed;
 extern OverlayInfo overlay_table[];
 
-s32 LoadFormBinary(u8* arg0, u32 arg1);
+s32 Hu3DModelCreate(u8* arg0, u32 arg1);
 void* ReadMainFS(s32);
 
 INCLUDE_ASM(s32, "ovlman", func_8000B0A0_BCA0);
@@ -26,7 +26,7 @@ INCLUDE_ASM(s32, "ovlman", func_8000B0D4_BCD4);
 INCLUDE_ASM(s32, "ovlman", func_8000B108_BD08);
 
 s16 func_8000B13C_BD3C(s32 arg0) {
-    return LoadFormBinary(ReadMainFS(arg0), 0x1D);
+    return Hu3DModelCreate(ReadMainFS(arg0), 0x1D);
 }
 
 u8 rand8(void) {

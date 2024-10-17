@@ -26,8 +26,7 @@ extern s32 D_800B1A30;
 
 s32 func_80035EB0_36AB0(s32 arg0);
 
-void func_80035A50_36650(void)
-{
+void func_80035A50_36650(void) {
     u8 * ptr = (u8 *)&D_800CC0C8;
     
     bzero(&D_800CC0C8, 0xA4);
@@ -38,8 +37,7 @@ void func_80035A50_36650(void)
     D_800CD059.unkF = 0;
 }
 
-void func_80035AA8_366A8(s8 arg0)
-{
+void func_80035AA8_366A8(s8 arg0) {
     D_800CD068 = arg0;
 }
 
@@ -98,8 +96,7 @@ u16 func_80035C6C_3686C(s16 arg0) {
     return D_800CC0CA[arg0];
 }
 
-void func_80035C84_36884(s8 arg0)
-{
+void func_80035C84_36884(s8 arg0) {
     D_800CD059.unk0 = arg0;
 }
 
