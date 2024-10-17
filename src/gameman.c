@@ -44,18 +44,18 @@ extern f32 D_800CE1C8;
 
 extern Process* D_800D0448;
 extern u8 D_800D09A8;
-extern HuVec3F D_800D138C;
+extern Vec D_800D138C;
 
 extern Process* D_800D170C;
 extern u8 D_800D1710;
 extern s16 D_800D1F36;
 
 extern u16 D_800D4082;
-extern HuVec3F D_800D54F8[];
+extern Vec D_800D54F8[];
 
 extern u16 D_800D6A56;
-extern HuVec3F D_800D6ABC;
-extern HuVec3F D_800D6AE0[];
+extern Vec D_800D6ABC;
+extern Vec D_800D6AE0[];
 
 extern u16 D_800A190C_A250C;
 extern u16 D_800A190E_A250E;

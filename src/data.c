@@ -328,10 +328,10 @@ void func_8000A150_AD50(HuFileInfoD * info, s32 arg1, s32 arg2)
         default:
             return;
     }
-    arg2 = (arg2 < (u32)info->bytes) ? (u32)info->bytes : arg2;
-    arg2 = (arg2 >= (u32)(info->bytes + info->size)) ? (u32)(info->bytes + info->size - 1) : arg2;
+    arg2 = ((u32)arg2 < (u32)info->bytes) ? (u32)info->bytes : (u32)arg2;
+    arg2 = ((u32)arg2 >= (u32)(info->bytes + info->size)) ? (u32)(info->bytes + info->size - 1) : (u32)arg2;
 
-    if ((arg2 < (u32)info->bytesCopy) || (arg2 >= (u32)(info->bytesCopy + 0x400))) {
+    if (((u32)arg2 < (u32)info->bytesCopy) || ((u32)arg2 >= (u32)(info->bytesCopy + 0x400))) {
         info->unkC = 1;
         info->unkE = arg2 & 1;
         info->bytesCopy = (u8*)(arg2 - info->unkE);

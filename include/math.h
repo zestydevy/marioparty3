@@ -9,7 +9,7 @@ typedef struct {
     f32 x;
     f32 y;
     f32 z;
-} HuVec3F;
+} Vec;
 
 typedef struct {
     s32 x;
@@ -26,9 +26,9 @@ float cosf(float);
 float sqrtf(float);
 float HuSqrtf(float x);
 
-void HuVecCopyXYZ(HuVec3F * out, f32 x, f32 y, f32 z);
-void HuVecCopy3F(HuVec3F * out, HuVec3F * a);
-f32 HuVecGetLengthSqr3F(HuVec3F * vec);
-f32 HuVecGetLength3F(HuVec3F * vec);
+void HuVecCopyXYZ(Vec * out, f32 x, f32 y, f32 z);
+void HuVecCopy3F(Vec * out, Vec * a);
+f32 HuVecGetLengthSqr3F(Vec * vec);
+f32 HuVecGetLength3F(Vec * vec);
 
 #endif

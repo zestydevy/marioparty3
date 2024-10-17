@@ -15,11 +15,11 @@ void func_8004D9A0_4E5A0(void) {
     osCreateMesgQueue(&D_800B29F0, &D_800B2A08, 0xA);
 }
 
-s32 HuStartDma(OSIoMesg * msg, u8 pri, s32 direction, u32 src, void * dest, u32 size, OSMesgQueue * retQueue) {
+s32 HuStartDma(OSIoMesg * msg, u8 pri, s32 direction, u8* src, u8* dest, u32 size, OSMesgQueue * retQueue) {
     msg->hdr.pri = pri;
     msg->hdr.retQueue = retQueue;
     msg->dramAddr = dest;
-    msg->devAddr = src;
+    msg->devAddr = (u32)src;
     msg->size = size;
     return osEPiStartDma(D_800CDD50, msg, direction);
 }

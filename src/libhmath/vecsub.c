@@ -1,7 +1,7 @@
 #include "common.h"
 #include "math.h"
 
-void HuVecSubtract(HuVec3F * dest, HuVec3F * a, HuVec3F * b) {
+void HuVecSubtract(Vec * dest, Vec * a, Vec * b) {
 
 
     float x = a->x - b->x;

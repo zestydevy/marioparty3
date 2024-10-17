@@ -18,9 +18,9 @@ typedef struct objectt {
     /*0x09*/ s8 unk9;
     /*0x0A*/ u16 unkA;
 
-    /*0x0C*/ HuVec3F coords;
+    /*0x0C*/ Vec coords;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
+    // Three Vec groups (Scale?, Rotation?, Position?)
     f32 unk18; // Rotation?
     f32 unk1C;
     f32 unk20;
@@ -52,7 +52,7 @@ struct objectIndirectt {
 
     void *unk14;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
+    // Three Vec groups (Scale?, Rotation?, Position?)
     f32 unk18;
     f32 unk1C;
     f32 unk20;
@@ -150,8 +150,8 @@ typedef struct SpaceData {
 /* 0x01 */ u8 space_type; // enum board_space_type
 /* 0x02 */ s16 unk_02;
 /* 0x04 */ s32 unk_04;
-/* 0x08 */ HuVec3F coords;
-/* 0x14 */ HuVec3F rot;
+/* 0x08 */ Vec coords;
+/* 0x14 */ Vec rot;
 /* 0x20 */ void* event_list;
 } SpaceData;
 

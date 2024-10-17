@@ -33,11 +33,11 @@ typedef struct {
     /* 0x004 */ f32 unk4;
     /* 0x008 */ f32 unk8;
     /* 0x00C */ f32 unkC;
-    /* 0x010 */ HuVec3F pos;
-    /* 0x01C */ HuVec3F at;
-    /* 0x028 */ HuVec3F up;
-    /* 0x034 */ HuVec3F screenScale;
-    /* 0x040 */ HuVec3F screenPos;
+    /* 0x010 */ Vec pos;
+    /* 0x01C */ Vec at;
+    /* 0x028 */ Vec up;
+    /* 0x034 */ Vec screenScale;
+    /* 0x040 */ Vec screenPos;
     /* 0x04C */ s32 unk4C;
     /* 0x050 */ f32 fov;
     /* 0x054 */ f32 near;
@@ -74,7 +74,7 @@ void func_800123F4_12FF4(void)
 }
 
 
-void Hu3DCamSetPositionOrientation(s16 camIndex, HuVec3F * pos, HuVec3F * at, HuVec3F * up)
+void Hu3DCamSetPositionOrientation(s16 camIndex, Vec * pos, Vec * at, Vec * up)
 {
     HuCamera * camera = &gCameraList[camIndex];
     camera->pos = *pos;
@@ -100,7 +100,7 @@ void func_800124BC_130BC(s16 camIndex, HuVec4F * arg1)
     camera->screenBottom = arg1->w;
 }
 
-void func_80012508_13108(s16 camIndex, HuVec3F * arg1, HuVec3F * arg2)
+void func_80012508_13108(s16 camIndex, Vec * arg1, Vec * arg2)
 {
     HuCamera * camera = &gCameraList[camIndex];
     camera->screenScale = *arg1;
@@ -163,7 +163,7 @@ void func_800128EC_134EC(s16 camIndex, s32 arg1)
 }
 
 
-void Hu3DCam3DToScreen(s16 camIndex, HuVec3F * worldPos, HuVec3F * outPos) 
+void Hu3DCam3DToScreen(s16 camIndex, Vec * worldPos, Vec * outPos) 
 {
     f32 x;
     f32 y;
@@ -203,7 +203,7 @@ void Hu3DCam3DToScreen(s16 camIndex, HuVec3F * worldPos, HuVec3F * outPos)
     outPos->y = ((projectedY * (SCREEN_HEIGHT_CENTER / y)) + SCREEN_HEIGHT_CENTER);
 }
 
-void func_80012B14_13714(s16 camIndex, HuVec3F * worldPos, HuVec3F * outPos) 
+void func_80012B14_13714(s16 camIndex, Vec * worldPos, Vec * outPos) 
 {
     f32 x;
     f32 y;

@@ -22,10 +22,10 @@ typedef struct HuObjInfo
 
     HuObjFunc func;
 
-    // Three HuVec3F groups (Scale?, Rotation?, Position?)
-    HuVec3F unk18;
-    HuVec3F unk24;
-    HuVec3F unk30;
+    // Three Vec groups (Scale?, Rotation?, Position?)
+    Vec unk18;
+    Vec unk24;
+    Vec unk30;
 
     u16 unk3C; // count of unk40
     s16 *unk40;

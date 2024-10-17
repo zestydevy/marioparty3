@@ -33,7 +33,7 @@ void func_800098FC_A4FC(void)
         temp_v0_2 = D_800CBB6E[i];
         temp_v0_3 = ((temp_v0_2 >> 7) | 1);
         
-        if (((temp_v0_2 * temp_v0_3) - 0x1E) > 0) {
+        if (((temp_v0_2* temp_v0_3) - 0x1E) > 0) {
             if (temp_v0_3 > 0) {
                 var_a2 = (var_a2 & 0xFDFF) | 0x100;
             } else {
@@ -44,7 +44,7 @@ void func_800098FC_A4FC(void)
         temp_v0_4 = D_800D20A1[i];
         temp_v0_5 = ((temp_v0_4 >> 7) | 1);
         
-        if (((temp_v0_4 * temp_v0_5) - 0x1E) > 0) {
+        if (((temp_v0_4* temp_v0_5) - 0x1E) > 0) {
             if (temp_v0_5 > 0) {
                 var_a2 = (var_a2 & 0xFBFF) | 0x800;
             } else {

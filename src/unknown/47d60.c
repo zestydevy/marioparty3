@@ -21,18 +21,18 @@ extern s8 D_800D6A90;
 extern s16 D_800D6B40;
 
 void func_80048054_48C54();                         /* extern */
-extern HuObjInfo * D_800A1770_A2370;
+extern HuObjInfo* D_800A1770_A2370;
 extern s16 D_800A1774_A2374;        // process count
 extern s16 D_800A1776_A2376;
 extern s16 D_800A1778_A2378;        // dtor index?
-extern HuObjUnk0 * D_800A177C_A237C;
+extern HuObjUnk0* D_800A177C_A237C;
 
 void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
 {
     s16 prcCount;
     s32 i;
-    HuObjInfo * obj;
-    HuObjUnk0 * prcInfo;
+    HuObjInfo* obj;
+    HuObjUnk0* prcInfo;
 
     D_800CCF50 = numOfObjs + 1;
     D_800CCF8C = 0;
@@ -47,7 +47,7 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
         HuMemMemoryFreeTemp((void *)D_800A1770_A2370);
     }
     
-    D_800A1770_A2370 = (HuObjInfo *)HuMemMemoryAllocTemp(D_800CCF50 * sizeof(HuObjInfo));
+    D_800A1770_A2370 = (HuObjInfo *)HuMemMemoryAllocTemp(D_800CCF50* sizeof(HuObjInfo));
     
     for (i = 0; i < D_800CCF50; ++i)
     {
@@ -88,7 +88,7 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
     D_800A1774_A2374 = prcCount;
     D_800A1776_A2376 = 0;
     D_800A1778_A2378 = 0;
-    D_800A177C_A237C = (HuObjUnk0 *)HuMemMemoryAllocTemp(prcCount * sizeof(HuObjUnk0));
+    D_800A177C_A237C = (HuObjUnk0 *)HuMemMemoryAllocTemp(prcCount* sizeof(HuObjUnk0));
     
     for (i = 0; i < D_800A1774_A2374; ++i)
     {
@@ -115,9 +115,9 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
 // clean up?
 INCLUDE_ASM(s32, "unknown/47d60", func_80047420_48020);
 
-HuObjInfo * HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func)
+HuObjInfo* HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func)
 {
-    HuObjInfo * temp_s0;
+    HuObjInfo* temp_s0;
     s16* temp_v1;
     s32 temp_s1;
     s32 var_a0;
@@ -134,7 +134,7 @@ HuObjInfo * HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc fu
     HuObjRegister(temp_s0);
     
     if (arg1 != 0) {
-        temp_s0->unk40 = HuMemMemoryAllocTemp(arg1 * sizeof(u16));
+        temp_s0->unk40 = HuMemMemoryAllocTemp(arg1* sizeof(u16));
         temp_s0->unk3C = arg1;
         for (var_a0 = 0; var_a0 < arg1; ++var_a0) {
             temp_s0->unk40[var_a0] = -1;
@@ -145,7 +145,7 @@ HuObjInfo * HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc fu
     }
 
     if (arg2 != 0) {
-        temp_s0->unk48 = HuMemMemoryAllocTemp(arg2 * sizeof(u16));
+        temp_s0->unk48 = HuMemMemoryAllocTemp(arg2* sizeof(u16));
         temp_s0->unk44 = arg2;
     } else {
         temp_s0->unk48 = NULL;
@@ -172,7 +172,7 @@ HuObjInfo * HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc fu
     return temp_s0;
 }
 
-void func_800477A4_483A4(HuObjInfo * arg0, s16 arg1)
+void func_800477A4_483A4(HuObjInfo* arg0, s16 arg1)
 {
     s16 temp_a0;
 
@@ -197,13 +197,13 @@ void func_800477A4_483A4(HuObjInfo * arg0, s16 arg1)
 }
 
 // register object into linked list, sort based on priority
-void HuObjRegister(HuObjInfo * obj)
+void HuObjRegister(HuObjInfo* obj)
 {
     s16 temp_a0;
     s16 temp_t0;
     s16 temp_t1;
     s16 var_a2;
-    HuObjInfo * temp_a3;
+    HuObjInfo* temp_a3;
     s16 temp_t4;
 
     temp_t0 = obj->unk2;
@@ -265,9 +265,9 @@ INCLUDE_ASM(s32, "unknown/47d60", func_80047BFC_487FC);
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80047C0C_4880C);
 
-void func_80047CDC_488DC(u16 arg0, HuObjInfo * obj)
+void func_80047CDC_488DC(u16 arg0, HuObjInfo* obj)
 {
-    HuObjUnk1 * temp_a2;
+    HuObjUnk1* temp_a2;
 
     temp_a2 = &D_800CD1E0[arg0];
     if (temp_a2->unk4 != temp_a2->unk2)
@@ -296,7 +296,7 @@ Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extD
 {
     s16 prevIdx;
     Process* newPrc;
-    HuObjUnk0 * temp_s0;
+    HuObjUnk0* temp_s0;
 
     if (D_800A1776_A2376 == D_800A1774_A2374) {
         return NULL;
@@ -327,7 +327,7 @@ void func_80048054_48C54(void)
 {
     process_func func;
     Process* currPrc;
-    HuObjUnk0 * temp_s0;
+    HuObjUnk0* temp_s0;
 
     currPrc = HuPrcCurrentGet();
     temp_s0 = &D_800A177C_A237C[currPrc->dtor_idx];

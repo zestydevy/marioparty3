@@ -30,7 +30,7 @@ s16 func_8000B13C_BD3C(s32 arg0) {
 }
 
 u8 rand8(void) {
-    rnd_seed = rnd_seed * 0x41C64E6D + 0x3039;
+    rnd_seed = rnd_seed* 0x41C64E6D + 0x3039;
     return (rnd_seed + 1) >> 16;
 }
 

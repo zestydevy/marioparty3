@@ -1,7 +1,7 @@
 #include "common.h"
 #include "math.h"
 
-void HuVecAdd(HuVec3F * out, HuVec3F * a, HuVec3F * b)
+void HuVecAdd(Vec * out, Vec * a, Vec * b)
 {
     float x = a->x + b->x;
     float y = a->y + b->y;

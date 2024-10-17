@@ -1,7 +1,7 @@
 #include "common.h"
 #include "math.h"
 
-void HuVecAddScaled(HuVec3F * out, HuVec3F * a, f32 scalar, HuVec3F * b)
+void HuVecAddScaled(Vec * out, Vec * a, f32 scalar, Vec * b)
 {
     float x = a->x + (scalar * b->x);
     float y = a->y + (scalar * b->y);

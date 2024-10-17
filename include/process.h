@@ -5,7 +5,7 @@
 
 typedef struct jump_buf
 {
-    u32 * sp;
+    u32* sp;
     void *func;
     u32 regs[21];
 } jmp_buf;
@@ -59,7 +59,7 @@ void HuPrcVSleep();
 void HuPrcAwake(Process*process);
 void HuPrcDtor(Process*process, process_func destructor);
 void HuPrcCurrentDtor(process_func destructor);
-void * HuPrcAllocMem(s32 size);
+void* HuPrcAllocMem(s32 size);
 void HuPrcFreeMem(void *ptr);
 
 #endif

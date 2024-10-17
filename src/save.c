@@ -27,7 +27,7 @@ extern s32 D_800B1A30;
 s32 func_80035EB0_36AB0(s32 arg0);
 
 void func_80035A50_36650(void) {
-    u8 * ptr = (u8 *)&D_800CC0C8;
+    u8* ptr = (u8 *)&D_800CC0C8;
     
     bzero(&D_800CC0C8, 0xA4);
     bzero(&D_800D0308, 0x74);
@@ -42,7 +42,7 @@ void func_80035AA8_366A8(s8 arg0) {
 }
 
 // bit position to byte + bit position
-void func_80035AB4_366B4(s16 bitPos, s16 * byteIdx, s16 * bitIdx) {
+void func_80035AB4_366B4(s16 bitPos, s16* byteIdx, s16* bitIdx) {
     s16 pos;
 
     if (bitPos < 0 && D_800CD068 > 0) {

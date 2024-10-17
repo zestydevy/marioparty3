@@ -9,11 +9,11 @@
 extern s32 D_800A0530_A1130;
 
 /*
- * Creates an empty heap of a given size.
+* Creates an empty heap of a given size.
  */
-void * HuMemHeapInit(void * ptr, u32 size)
+void* HuMemHeapInit(void* ptr, u32 size)
 {
-    struct heap_node * heap = (struct heap_node *)ptr;
+    struct heap_node* heap = (struct heap_node *)ptr;
     heap->size = size;
     heap->heap_constant = HEAP_CONSTANT;
     heap->used = 0;
@@ -23,12 +23,12 @@ void * HuMemHeapInit(void * ptr, u32 size)
 }
 
 /*
- * Allocates the requested size of memory in the given heap.
+* Allocates the requested size of memory in the given heap.
  */
-void * HuMemMemoryAlloc(struct heap_node * heap, s32 size)
+void* HuMemMemoryAlloc(struct heap_node* heap, s32 size)
 {
-    struct heap_node * cur_heap;
-    struct heap_node * new_heap_temp;
+    struct heap_node* cur_heap;
+    struct heap_node* new_heap_temp;
 
     size = size + 0x1F;
     size = size & -16;
@@ -68,7 +68,7 @@ void * HuMemMemoryAlloc(struct heap_node * heap, s32 size)
 }
 
 /*
- * Frees the given heap memory pointer.
+* Frees the given heap memory pointer.
  */
 void HuMemMemoryFree(void *ptr)
 {
@@ -113,9 +113,9 @@ void HuMemMemoryFree(void *ptr)
 }
 
 /*
- * Resizes a previously allocated buffer in a heap.
+* Resizes a previously allocated buffer in a heap.
  */
-void * HuMemMemoryRealloc(struct heap_node *heap, void *mem, u32 new_size)
+void* HuMemMemoryRealloc(struct heap_node *heap, void *mem, u32 new_size)
 {
     void *ret;
     struct heap_node *given_heap;
@@ -159,9 +159,9 @@ void * HuMemMemoryRealloc(struct heap_node *heap, void *mem, u32 new_size)
 }
 
 /*
- * Returns the total size of allocated buffers in a heap.
+* Returns the total size of allocated buffers in a heap.
  */
-u32 HuMemHeapAllocSizeGet(struct heap_node * heap)
+u32 HuMemHeapAllocSizeGet(struct heap_node* heap)
 {
     struct heap_node *cur_heap;
     u32 total_size;
@@ -182,7 +182,7 @@ u32 HuMemHeapAllocSizeGet(struct heap_node * heap)
 }
 
 /*
- * Counts the number of used nodes in the heap's doubly linked list.
+* Counts the number of used nodes in the heap's doubly linked list.
  */
 u32 HuMemUsedMemoryBlockGet(struct heap_node *heap)
 {
@@ -202,7 +202,7 @@ u32 HuMemUsedMemoryBlockGet(struct heap_node *heap)
 }
 
 /*
- * Rounds a value up to align by 16.
+* Rounds a value up to align by 16.
  */
 s32 HuMemMemoryAllocSizeGet(s32 value)
 {

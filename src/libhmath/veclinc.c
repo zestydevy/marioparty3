@@ -1,7 +1,7 @@
 #include "common.h"
 #include "math.h"
 
-void HuVecLinearComb(HuVec3F * out, f32 scale, HuVec3F * a, f32 arg3, HuVec3F * b)
+void HuVecLinearComb(Vec * out, f32 scale, Vec * a, f32 arg3, Vec * b)
 {
     float x = (scale * a->x) + (arg3 * b->x);
     float y = (scale * a->y) + (arg3 * b->y);
@@ -12,7 +12,7 @@ void HuVecLinearComb(HuVec3F * out, f32 scale, HuVec3F * a, f32 arg3, HuVec3F * 
     out->z = z;
 }
 
-void HuVecLinearComb2D(HuVec3F * out, HuVec3F * scale, HuVec3F * a, HuVec3F * b)
+void HuVecLinearComb2D(Vec * out, Vec * scale, Vec * a, Vec * b)
 {
     f32 scaleX;
     f32 scaleY;

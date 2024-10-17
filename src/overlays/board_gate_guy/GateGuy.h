@@ -14,18 +14,18 @@ typedef struct unkStruct01 {
 } unkStruct01;
 
 typedef struct unkStruct02 {
-HuVec3F unk_00;
+Vec unk_00;
 char unk_0C[4];
 } unkStruct02;
 
-struct heap_node
-{
-    s32 size;                   // 0000
-    u8 heap_constant;           // 0004
-    u8 used; // bool            // 0005
-    struct heap_node *prev;     // 0008
-    struct heap_node *next;     // 000C
-};
+// struct heap_node
+// {
+//     s32 size;                   // 0000
+//     u8 heap_constant;           // 0004
+//     u8 used; // bool            // 0005
+//     struct heap_node *prev;     // 0008
+//     struct heap_node *next;     // 000C
+// };
 
 typedef struct unkStruct03 {
 char unk_00[0x18];
@@ -36,7 +36,7 @@ unkStruct02* unk_8C;
 
 typedef struct unkStruct04 {
 char unk_00[0x0C];
-HuVec3F unk_0C;
+Vec unk_0C;
 } unkStruct04;
 
 typedef struct unkStruct05 {
@@ -61,8 +61,8 @@ extern s16 D_800A1764_A2364;
 
 extern s8 gCurrentPlayerIndex;
 extern Player gPlayers[4];
-void func_80047B80_48780(Process**, s32);
-void func_80047BAC_487AC(Process**, s32);
+void func_80047B80_48780(Process*, s32);
+void func_80047BAC_487AC(Process*, s32);
 void func_80100CEC(u8);
 extern s16 D_800CDD58;
 extern s16 D_800D037C;
@@ -111,7 +111,7 @@ void func_8001C8E4_1D4E4(s16, s32);
 void* func_800D8010(s32, s32);
 void func_800D8944(void*);
 void func_800D8F0C(void*);
-void func_80089A20_8A620(HuVec3F*, s32);
+void func_80089A20_8A620(Vec*, s32);
 void func_800D8E88(void);
 s16 func_800F3750(void);
 void* func_800F375C(s32);

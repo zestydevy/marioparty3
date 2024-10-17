@@ -16,16 +16,16 @@ typedef enum
 struct decode_struct {
     u16 chunkLen;
     s16 pad;
-    u8 * src;
-    u8 * dest;
+    u8* src;
+    u8* dest;
     u32 len;
 };
 
-void HuDecodeNone(struct decode_struct * decode);
-void HuDecodeLZ(struct decode_struct * decode);
-void HuDecodeSlide(struct decode_struct * decode);
-void HuDecodeFslide(struct decode_struct * decode);
-void HuDecodeRLE(struct decode_struct * decode);
-void HuDecode(void * src, void * dest, s32 len, EDecodeType decodeType);
+void HuDecodeNone(struct decode_struct* decode);
+void HuDecodeLZ(struct decode_struct* decode);
+void HuDecodeSlide(struct decode_struct* decode);
+void HuDecodeFslide(struct decode_struct* decode);
+void HuDecodeRLE(struct decode_struct* decode);
+void HuDecode(void* src, void* dest, s32 len, EDecodeType decodeType);
 
 #endif

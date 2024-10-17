@@ -2,29 +2,29 @@
 #include "malloc.h"
 
 /*
- * Temporary heap. Reset occasionally during gameplay.
+* Temporary heap. Reset occasionally during gameplay.
  */
 
-extern struct heap_node * temp_heap_addr;
+extern struct heap_node* temp_heap_addr;
 
 /*
- * Creates the temporary heap.
+* Creates the temporary heap.
  */
-struct heap_node * HuMemHeapInitTemp(void *ptr, u32 size)
+struct heap_node* HuMemHeapInitTemp(void *ptr, u32 size)
 {
     temp_heap_addr = (struct heap_node *)HuMemHeapInit(ptr, size);
 }
 
 /*
- * Allocates memory in the Tempanent heap.
+* Allocates memory in the Tempanent heap.
  */
-void * HuMemMemoryAllocTemp(u32 size)
+void* HuMemMemoryAllocTemp(u32 size)
 {
     HuMemMemoryAlloc(temp_heap_addr, size);
 }
 
 /*
- * Frees a memory pointer in the Tempanent heap.
+* Frees a memory pointer in the Tempanent heap.
  */
 void HuMemMemoryFreeTemp(void *ptr)
 {
@@ -32,15 +32,15 @@ void HuMemMemoryFreeTemp(void *ptr)
 }
 
 /*
- * Resizes a previously allocated Tempanent heap buffer.
+* Resizes a previously allocated Tempanent heap buffer.
  */
-void * HuMemMemoryReallocTemp(void *mem, u32 new_size)
+void* HuMemMemoryReallocTemp(void *mem, u32 new_size)
 {
     return (void *)HuMemMemoryRealloc(temp_heap_addr, mem, new_size);
 }
 
 /*
- * Returns the total size of allocated buffers in the Tempanent heap.
+* Returns the total size of allocated buffers in the Tempanent heap.
  */
 u32 HuMemHeapAllocTempSizeGet(void)
 {

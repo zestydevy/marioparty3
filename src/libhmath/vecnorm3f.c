@@ -4,7 +4,7 @@
 // https://decomp.me/scratch/6UMIQ
 // the original output has the function prologue near the end rather than the start
 #ifdef NONMATCHING
-void _HuVecNormalize3F(HuVec3F * vec)
+void _HuVecNormalize3F(Vec * vec)
 {
     f32 x;
     f32 y;
@@ -21,5 +21,5 @@ void _HuVecNormalize3F(HuVec3F * vec)
     vec->z = invMag * z;
 }
 #else
-INCLUDE_ASM(void, "libhmath/vecnorm3f", HuVecNormalize3F, HuVec3F * vec);
+INCLUDE_ASM(void, "libhmath/vecnorm3f", HuVecNormalize3F, Vec * vec);
 #endif

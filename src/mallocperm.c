@@ -2,29 +2,29 @@
 #include "malloc.h"
 
 /*
- * Primary heap. Never reset during gameplay.
+* Primary heap. Never reset during gameplay.
  */
-extern struct heap_node * perm_heap_addr;
+extern struct heap_node* perm_heap_addr;
 
 /*
- * Creates the "permanent" heap that is never reset.
- * Called once during startup.
+* Creates the "permanent" heap that is never reset.
+* Called once during startup.
  */
-struct heap_node * HuMemHeapInitPerm(void *ptr, u32 size)
+struct heap_node* HuMemHeapInitPerm(void *ptr, u32 size)
 {
     perm_heap_addr = (struct heap_node *)HuMemHeapInit(ptr, size);
 }
 
 /*
- * Allocates memory in the permanent heap.
+* Allocates memory in the permanent heap.
  */
-void * HuMemMemoryAllocPerm(u32 size)
+void* HuMemMemoryAllocPerm(u32 size)
 {
     HuMemMemoryAlloc(perm_heap_addr, size);
 }
 
 /*
- * Frees a memory pointer in the permanent heap.
+* Frees a memory pointer in the permanent heap.
  */
 void HuMemMemoryFreePerm(void *ptr)
 {
@@ -32,15 +32,15 @@ void HuMemMemoryFreePerm(void *ptr)
 }
 
 /*
- * Resizes a previously allocated permanent heap buffer.
+* Resizes a previously allocated permanent heap buffer.
  */
-void * HuMemMemoryReallocPerm(void *mem, u32 new_size)
+void* HuMemMemoryReallocPerm(void *mem, u32 new_size)
 {
     return (void *)HuMemMemoryRealloc(perm_heap_addr, mem, new_size);
 }
 
 /*
- * Returns the total size of allocated buffers in the permanent heap.
+* Returns the total size of allocated buffers in the permanent heap.
  */
 u32 HuMemHeapAllocPermSizeGet(void)
 {

@@ -78,7 +78,7 @@ s32 func_800EEF80_102BA0(f32 arg0) {
     s32 shiftedByte1 = (randomByte1 << 8);
 
     // Normalize the 16-bit number to the range [0, 1), then multiply by arg0
-    s32 scaledRandom = ((randomByte2 | shiftedByte1) / 65536.0f) * arg0;
+    s32 scaledRandom = ((randomByte2 | shiftedByte1) / 65536.0f)* arg0;
     
     return scaledRandom;
 }

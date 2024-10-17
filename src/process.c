@@ -9,7 +9,7 @@ extern Process* current_process;
 extern s16 process_count;
 
 // pointer to where HuPrcVSleep was called
-extern s32 * sPrcSleepLoc;
+extern u32 sPrcSleepLoc;
 
 void HuPrcSysInit()
 {

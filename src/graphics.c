@@ -151,8 +151,8 @@ void func_8000EBEC_F7EC(void* arg0) {
                 pTask->t.output_buff = gThreadOutStack;
                 pTask->t.output_buff_size = gThreadOutStackSize;
                 pTask->t.yield_data_ptr = gThreadYieldStack;
-                pTask->t.ucode =      (u64 *) *(   (recvdMesg->unk04 * 2)      + gUCodeAddresses); // offset     (data pairs?)
-                pTask->t.ucode_data = (u64 *) *( ( (recvdMesg->unk04 * 2) | 1) + gUCodeAddresses); // offset + 1
+                pTask->t.ucode =      (u64 *) *(   (recvdMesg->unk04* 2)      + gUCodeAddresses); // offset     (data pairs?)
+                pTask->t.ucode_data = (u64 *) *( ( (recvdMesg->unk04* 2) | 1) + gUCodeAddresses); // offset + 1
     
                 osSendMesg(&D_800CC3C0, (OSMesg) pSwapChain, 1);
                 osRecvMesg(&gMesgQueue, NULL, 1);

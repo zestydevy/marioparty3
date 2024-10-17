@@ -30,7 +30,7 @@ s16 RNGPercentChance(s8 arg0) {
     u8 randByte = rand8();
     s32 chance = arg0;
     
-    return (randByte * 99 >> 8) < chance;
+    return (randByte* 99 >> 8) < chance;
 }
 
 s16 GetTurnsElapsed(void) {
