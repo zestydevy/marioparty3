@@ -33,7 +33,7 @@ struct str800D5298 {
 extern struct str800D5298 D_800D5298;
 
 
-extern Player gPlayers[4];
+extern PlayerData gPlayers[4];
 
 extern void *D_800CCF38;
 extern u8 D_800CCF78[];
@@ -84,7 +84,7 @@ extern s32  func_8004FDC0_509C0();
 extern void func_80050800_51400();
 extern void func_80050E78_51A78(u32 arg0);
 extern void func_80061B50_62750();
-extern void func_80087A40_88640(Player *arg0, u32 arg1, u32 arg2);
+extern void func_80087A40_88640(PlayerData *arg0, u32 arg1, u32 arg2);
 
 extern void Hu3DCamInit(u32 arg0);
 
@@ -225,7 +225,7 @@ void func_8000E804_F404() {
     s32 i;
 
     for (i = 0; i < MAX_PLAYERS; i++) {
-        func_80087A40_88640(&gPlayers[i], 0, sizeof(Player));
+        func_80087A40_88640(&gPlayers[i], 0, sizeof(PlayerData));
         if (HuGetPadInserted(i) != PAD_NOT_INSERTED) {
             D_800CCF78[i] = 0;
             gPlayers[i].flags &= 0xFE;

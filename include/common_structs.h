@@ -82,7 +82,7 @@ typedef struct objectIndirect3t {
     f32 unk4;
 } objectIndirect3;
 
-typedef struct {
+typedef struct PlayerData {
     /*  0 (0x00) 800D1108 */ s8 id;
     /*  1 (0x01) 800D1109 */ s8 cpuDifficulty;
     /*  2 (0x02) 800D110A */ u8 controller;
@@ -143,7 +143,7 @@ typedef struct {
     s8 unk35;
 
     // s8 pad2[3];
-} Player; // sizeof 0x38 | 56
+} PlayerData __attribute__((aligned(4))); //sizeof 0x38
 
 typedef struct SpaceData {
 /* 0x00 */ s8 unk_00;

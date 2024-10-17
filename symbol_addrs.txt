@@ -519,3 +519,6 @@ gItemBlockSpaceIndex = 0x800CC4E4; // type:s16
 gPrevCoinBlockIndexes = 0x800CE1E8; //type:s16 size:0x14
 gPrevStarBlockIndexes = 0x800D59E0; //type:s16 size:0x14
 gPrevItemBlockIndexes = 0x800CC378; //type:s16 size:0x14
+
+GetSaveFileChecksum = 0x8000CAEC; //rom:0xD6EC
+GetEepType = 0x8000C210; //rom:0xCE10

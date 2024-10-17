@@ -1,9 +1,8 @@
 #include "common.h"
 #include "rom.h"
 
-extern OSPiHandle * osCartRomInit(void);
-
-extern OSPiHandle * D_800CDD50;
+OSPiHandle* osCartRomInit(void);
+extern OSPiHandle* D_800CDD50;
 extern OSMesgQueue D_800B29F0;
 extern void* D_800B2A08;
 extern void* D_800CCFA8;
@@ -28,7 +27,7 @@ s32 HuRomDmaRead(u8* src, u8* dest, s32 size)
 {
     OSIoMesg msg;
     s32 curBlockOffset;
-    u32 var_v1;
+    u32 curBlockSize;
     s32 err;
 
     osInvalDCache(dest, OS_DCACHE_ROUNDUP_SIZE(size));
@@ -36,11 +35,11 @@ s32 HuRomDmaRead(u8* src, u8* dest, s32 size)
     curBlockOffset = 0;
     while (size > 0)
     {
-        var_v1 = size;
-        if (size >= 0x4001) {
-            var_v1 = 0x4000;
+        curBlockSize = size;
+        if (size > 0x4000) {
+            curBlockSize = 0x4000;
         }
-        err = HuStartDma(&msg, 0, 0, &src[curBlockOffset], &dest[curBlockOffset], var_v1, &D_800B29F0);
+        err = HuStartDma(&msg, 0, 0, &src[curBlockOffset], &dest[curBlockOffset], curBlockSize, &D_800B29F0);
 
         if (err != 0) {
             return err;

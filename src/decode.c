@@ -5,7 +5,7 @@
 u8 __attribute__((aligned(16))) D_800ABFF0[1024]; // src copy
 u8 __attribute__((aligned(16))) D_800AC3F0[1024]; // window
 
-void HuDecodeNone(struct decode_struct * decode)
+void HuDecodeNone(DecodeStruct* decode)
 {
     s32 copyLen;
 
@@ -25,8 +25,8 @@ void HuDecodeNone(struct decode_struct * decode)
     }
 }
 
- void HuDecodeLZ(struct decode_struct * decode)
- {
+void HuDecodeLZ(DecodeStruct* decode)
+{
     u16 flag = 0;
     u16 windowPos = 958;
     s32 winTemp;
@@ -60,8 +60,7 @@ void HuDecodeNone(struct decode_struct * decode)
             D_800AC3F0[windowPos++] = *(decode->dest++) = read_val;
             windowPos &= 0x3FF;
             decode->len--;
-        }
-        else {
+        } else {
             if (decode->chunkLen >= 1024) {
                 HuRomDmaRead(decode->src, D_800ABFF0, sizeof(D_800ABFF0));
                 decode->src += 1024;
@@ -92,7 +91,7 @@ void HuDecodeNone(struct decode_struct * decode)
     }
 }
 
-void HuDecodeSlide(struct decode_struct * decode)
+void HuDecodeSlide(DecodeStruct* decode)
 {
     s32 codeWordBitsRemaining;
     s32 curCodeWord;
@@ -182,8 +181,7 @@ void HuDecodeSlide(struct decode_struct * decode)
                 *(decode->dest++) = nextByte;
                 decode->len--;
             }
-        }
-        else {
+        } else {
             {
                 u32 back, back2, count;
                 u16 back3;
@@ -218,8 +216,7 @@ void HuDecodeSlide(struct decode_struct * decode)
 
                     count = 0x12;
                     count += D_800ABFF0[decode->chunkLen++];
-                }
-                else {
+                } else {
                     count += 2;
                 }
                 decode->len -= count;
@@ -227,8 +224,7 @@ void HuDecodeSlide(struct decode_struct * decode)
                 while (count != 0) {
                     if (ptr - 1 < destOrig) {
                         *(decode->dest++) = 0;
-                    }
-                    else {
+                    } else {
                         *(decode->dest++) = *(ptr - 1);
                     }
                     count--;
@@ -242,7 +238,7 @@ void HuDecodeSlide(struct decode_struct * decode)
     }
 }
 
-void HuDecodeFslide(struct decode_struct *decode)
+void HuDecodeFslide(DecodeStruct *decode)
 {
     s32 codeWordBitsRemaining;
     s32 curCodeWord;
@@ -330,8 +326,7 @@ void HuDecodeFslide(struct decode_struct *decode)
                 *(decode->dest++) = nextByte;
                 decode->len--;
             }
-        }
-        else {
+        } else {
             {
                 u32 back, back2, count;
                 u16 back3;
@@ -366,8 +361,7 @@ void HuDecodeFslide(struct decode_struct *decode)
 
                     count = 0x12;
                     count += D_800ABFF0[decode->chunkLen++];
-                }
-                else {
+                } else {
                     count += 2;
                 }
                 decode->len -= count;
@@ -385,7 +379,7 @@ void HuDecodeFslide(struct decode_struct *decode)
     }
 }
 
-void HuDecodeRLE(struct decode_struct * decode)
+void HuDecodeRLE(DecodeStruct* decode)
 {
     s32 curCodeByte;
     s32 i;
@@ -412,8 +406,7 @@ void HuDecodeRLE(struct decode_struct * decode)
             for (i = 0; i < curCodeByte; i++) {
                 *(decode->dest++) = byteValue;
             }
-        }
-        else {
+        } else {
             // Having the sign bit means we read the next n bytes from the input.
             curCodeByte = curCodeByte - 0x80;
 
@@ -435,8 +428,8 @@ void HuDecodeRLE(struct decode_struct * decode)
 
 void HuDecode(void * src, void * dest, s32 len, EDecodeType decodeType)
 {
-    struct decode_struct decodeStruct;
-    struct decode_struct * decodePtr = &decodeStruct;
+    DecodeStruct decodeStruct;
+    DecodeStruct * decodePtr = &decodeStruct;
     decodeStruct.src = (u8 *)src;
     decodeStruct.dest = (u8 *)dest;
     decodeStruct.len = len;

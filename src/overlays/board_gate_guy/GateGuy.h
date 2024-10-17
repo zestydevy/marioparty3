@@ -60,7 +60,7 @@ void func_800359E0_365E0(void*, s16);
 extern s16 D_800A1764_A2364;
 
 extern s8 gCurrentPlayerIndex;
-extern Player gPlayers[4];
+extern PlayerData gPlayers[4];
 void func_80047B80_48780(Process*, s32);
 void func_80047BAC_487AC(Process*, s32);
 void func_80100CEC(u8);

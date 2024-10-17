@@ -13,19 +13,19 @@ typedef enum
     DECODE_RLE              // custom rle variant
 } EDecodeType;
 
-struct decode_struct {
-    u16 chunkLen;
-    s16 pad;
-    u8* src;
-    u8* dest;
-    u32 len;
-};
+typedef struct DecodeStruct {
+/* 0x00 */ u16 chunkLen;
+/* 0x00 */ s16 pad;
+/* 0x00 */ u8* src;
+/* 0x00 */ u8* dest;
+/* 0x00 */ u32 len;
+} DecodeStruct;
 
-void HuDecodeNone(struct decode_struct* decode);
-void HuDecodeLZ(struct decode_struct* decode);
-void HuDecodeSlide(struct decode_struct* decode);
-void HuDecodeFslide(struct decode_struct* decode);
-void HuDecodeRLE(struct decode_struct* decode);
-void HuDecode(void* src, void* dest, s32 len, EDecodeType decodeType);
+void HuDecodeNone(DecodeStruct* decode);
+void HuDecodeLZ(DecodeStruct* decode);
+void HuDecodeSlide(DecodeStruct* decode);
+void HuDecodeFslide(DecodeStruct* decode);
+void HuDecodeRLE(DecodeStruct* decode);
+void HuDecode(void * src, void * dest, s32 len, EDecodeType decodeType);
 
 #endif
