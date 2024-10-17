@@ -1,5 +1,29 @@
 #include "common.h"
 
+typedef struct UnkEepStruct {
+    char unk_00[0x10];
+} UnkEepStruct;
+
+typedef struct unkfunc_8001AFD8 {
+    s16 unk0;
+    struct unkfunc_8001AFD8* unk4; //is this correct?
+    s16 unk8;
+} unkfunc_8001AFD8;
+
+typedef struct unkfunc_8007EE0C {
+    void* GetEepTypeFunc; //func pointer
+    unkfunc_8001AFD8* unk4; //is this correct?
+    s32 unk8;
+    OSMesgQueue* mesgQueue;
+} unkfunc_8007EE0C;
+
+typedef struct UnkEep {
+    u16 unk0;
+    char unk2[2];
+    u8* unk4;
+    u16 unk8;
+} UnkEep;
+
 extern u8 D_80097710_98310[];
 extern u8 D_800D0450[];
 extern OSMesgQueue D_800CE1A0;
@@ -10,9 +34,7 @@ extern u8 D_800D0E50[];
 void func_8000CA64_D664(void);
 //some kind of osEepromLongWrite wrapper?
 s32 func_8000CB30_D730(OSMesgQueue* arg0, u8 arg1, u8* arg2, s32 arg3);
-typedef struct UnkEepStruct {
-    char unk_00[0x10];
-} UnkEepStruct;
+s32 func_80051B0C_5270C(unkfunc_8007EE0C* arg0, void* GetEepType, UnkEep** arg2, s32 arg3);
 
 s32 GetEepType(s8** arg0) {
     s16 eepromProbeResult;
@@ -82,28 +104,6 @@ s32 GetEepType(s8** arg0) {
     **arg0 = var_s1;
     return 0;
 }
-
-typedef struct unkfunc_8001AFD8 {
-    s16 unk0;
-    struct unkfunc_8001AFD8* unk4; //is this correct?
-    s16 unk8;
-} unkfunc_8001AFD8;
-
-typedef struct unkfunc_8007EE0C {
-    void* GetEepTypeFunc; //func pointer
-    unkfunc_8001AFD8* unk4; //is this correct?
-    s32 unk8;
-    OSMesgQueue* mesgQueue;
-} unkfunc_8007EE0C;
-
-typedef struct UnkEep {
-    u16 unk0;
-    char unk2[2];
-    u8* unk4;
-    u16 unk8;
-} UnkEep;
-
-s32 func_80051B0C_5270C(unkfunc_8007EE0C* arg0, void* GetEepType, UnkEep** arg2, s32 arg3);
 
 s32 func_8000C4AC_D0AC(unkfunc_8001AFD8* arg0) {
     unkfunc_8007EE0C sp10;
