@@ -1,14 +1,17 @@
 #include "common.h"
 
+void func_8000BA00_C600(void);                             /* extern */
+void func_800166D0_172D0(void);                            /* extern */
+void func_8001AFE4_1BBE4(void);                            /* extern */
+void func_80021AF4_226F4(void);                            /* extern */
+void func_80037190_37D90(void);                            /* extern */
+void omDestroyObjMan(void);                                /* extern */
+extern s8 D_800A1762_A2362;
+extern u16 D_800B23C0;
+extern u16 D_800CD050;
+extern s8 D_800CD280;
 s32 omOvlGotoEx(s32, s16, u16);
 extern s16 omovlhisidx;
-
-typedef struct omOvlHisData { //Object Manager History Data
-/* 0x00 */ s32 overlayID;
-/* 0x04 */ s16 event;
-/* 0x06 */ u16 stat;
-} omOvlHisData; //sizeof 0x08
-
 extern omOvlHisData omovlhis[12];
 
 typedef struct OverlayInfo {
@@ -23,35 +26,35 @@ typedef struct OverlayInfo {
     u8 *bss_end;
 } OverlayInfo; // sizeof 0x24
 
-INCLUDE_ASM(s32, "unknown/47D60", HuObjInit);
+INCLUDE_ASM(s32, "unknown/47D60", omInitObjMan);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047420_48020);
+INCLUDE_ASM(s32, "unknown/47D60", omDestroyObjMan);
 
-INCLUDE_ASM(s32, "unknown/47D60", HuObjCreate);
+INCLUDE_ASM(s32, "unknown/47D60", omAddObj);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_800477A4_483A4);
+INCLUDE_ASM(s32, "unknown/47D60", omSetObjPrio);
 
-INCLUDE_ASM(s32, "unknown/47D60", HuObjRegister);
+INCLUDE_ASM(s32, "unknown/47D60", omInsertObj);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_800479AC_485AC);
+INCLUDE_ASM(s32, "unknown/47D60", omDelObj);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047B30_48730);
+INCLUDE_ASM(s32, "unknown/47D60", omSetStat);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047B38_48738);
+INCLUDE_ASM(s32, "unknown/47D60", omSetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047B48_48748);
+INCLUDE_ASM(s32, "unknown/47D60", omResetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047B5C_4875C);
+INCLUDE_ASM(s32, "unknown/47D60", omPrcSetStat);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047B80_48780);
+INCLUDE_ASM(s32, "unknown/47D60", omPrcSetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047BAC_487AC);
+INCLUDE_ASM(s32, "unknown/47D60", omPrcResetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047BDC_487DC);
+INCLUDE_ASM(s32, "unknown/47D60", omSetTra);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047BEC_487EC);
+INCLUDE_ASM(s32, "unknown/47D60", omSetRot);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80047BFC_487FC);
+INCLUDE_ASM(s32, "unknown/47D60", omSetSca);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_80047C0C_4880C);
 
@@ -69,15 +72,15 @@ INCLUDE_ASM(s32, "unknown/47D60", func_80047E5C_48A5C);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_80047E90_48A90);
 
-INCLUDE_ASM(s32, "unknown/47D60", HuObjPrcCreate);
+INCLUDE_ASM(s32, "unknown/47D60", omAddPrcObj);
 
 INCLUDE_ASM(s32, "unknown/47D60", func_80047F50_48B50);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048008_48C08);
+INCLUDE_ASM(s32, "unknown/47D60", omDelPrcObj);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_80048054_48C54);
+INCLUDE_ASM(s32, "unknown/47D60", omDestroyPrcObj);
 
-INCLUDE_ASM(s32, "unknown/47D60", func_800480E4_48CE4);
+INCLUDE_ASM(s32, "unknown/47D60", omPrcSetDestructor);
 
 s32 omOvlCallEx(s32 arg0, s16 arg1, u16 arg2) {
     omOvlHisData* history;
@@ -122,7 +125,17 @@ void omOvlHisChg(s16 arg0, s32 overlay, s16 event, s16 stat) {
     }
 }
 
-INCLUDE_ASM(s32, "unknown/47D60", omOvlKill);
+void omOvlKill(void) {
+    D_800A1762_A2362 = 4;
+    D_800B23C0 = D_800CD050;
+    func_80037190_37D90();
+    func_8001AFE4_1BBE4();
+    func_80021AF4_226F4();
+    omDestroyObjMan();
+    func_8000BA00_C600();
+    func_800166D0_172D0();
+    D_800CD280 = 1;
+}
 
 INCLUDE_ASM(s32, "unknown/47D60", omMain);
 

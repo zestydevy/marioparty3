@@ -4,6 +4,7 @@
 #include "malloc.h"
 #include "pad.h"
 #include "process.h"
+#include "obj.h"
 
 /* Hardcoded symbols */
 extern void *D_1209850; // bin_strings_jp_ROM_START
@@ -75,8 +76,7 @@ extern void func_800224BC_230BC();
 extern void func_80035A50_36650(); // save.h
 extern void func_80035C20_36820(s16 arg0, s16 arg1); // save.h
 extern void func_80036380_36F80(void **arg0);
-extern s32 omOvlCallEx(s32 arg0, s16 arg1, u16 arg2);
-extern void omMain();
+
 extern void func_8004DC00_4E800();
 extern void func_8004DC98_4E898();
 extern void func_8004F290_4FE90();

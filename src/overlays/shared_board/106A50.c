@@ -28,7 +28,7 @@ void func_800F3F0C_107B2C(s32);
 void func_800F3FF4_107C14(s32);
 void func_800F4798_1083B8(s32, s32);
 void func_800F4874_108494(s32, s16, s16);
-void func_80047B80_48780(Process*, s32);
+void omPrcSetStatBit(Process*, s32);
 void func_800F4190_107DB0(void);
 void func_800F43FC_10801C(s32);
 void func_800F3400_107020(void);
@@ -104,8 +104,8 @@ void func_800F453C_10815C(void) {
     for (i = 0; i < 4; i++) {
         func_800F43FC_10801C(i);
     }
-    D_80105580 = HuObjPrcCreate(&func_800F3400_107020, 0, 0x2000, 0);
-    func_80047B80_48780(D_80105580, 0x80);
+    D_80105580 = omAddPrcObj(&func_800F3400_107020, 0, 0x2000, 0);
+    omPrcSetStatBit(D_80105580, 0x80);
     D_801055C4 = -1;
     D_801055C2 = -1;
     D_80101780_1153A0 = -1;

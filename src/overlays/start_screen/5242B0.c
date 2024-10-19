@@ -1,8 +1,18 @@
 #include "common.h"
 
-INCLUDE_ASM(s32, "overlays/start_screen/5242B0", func_80105C80_5242B0);
+Process* omAddPrcObj(process_func func, u16 priority, s32 stackSize, s32 extDataSize);
+extern Process* D_80114EA0;
+void func_80105FC0_5245F0(void*);
+void func_801061C0_5247F0(void);
 
-INCLUDE_ASM(s32, "overlays/start_screen/5242B0", func_80105C9C_5242CC);
+void func_80105C80_5242B0(void) {
+    func_801061C0_5247F0();
+}
+
+void func_80105C9C_5242CC(void) {
+    func_80105C80_5242B0();
+    D_80114EA0 = omAddPrcObj(&func_80105FC0_5245F0, 0x5000, 0x800, 0);
+}
 
 INCLUDE_ASM(s32, "overlays/start_screen/5242B0", func_80105CD8_524308);
 

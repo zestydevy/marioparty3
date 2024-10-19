@@ -1,5 +1,10 @@
 #include "common.h"
 
+void func_800035E8_41E8(s16);
+extern s16 D_800A1904_A2504;
+extern u16 D_800A1906_A2506;
+extern s16 D_800CDBC8;
+
 INCLUDE_ASM(s32, "unknown/4B120", HuAudSeqPlay);
 
 INCLUDE_ASM(s32, "unknown/4B120", func_8004A5C4_4B1C4);
@@ -16,7 +21,11 @@ INCLUDE_ASM(s32, "unknown/4B120", func_8004A880_4B480);
 
 INCLUDE_ASM(s32, "unknown/4B120", func_8004A918_4B518);
 
-INCLUDE_ASM(s32, "unknown/4B120", func_8004A950_4B550);
+void func_8004A950_4B550(void) {
+    D_800A1904_A2504 = -1;
+    func_800035E8_41E8(D_800CDBC8);
+    D_800A1906_A2506 = (D_800A1906_A2506 & ~(0x08 | 0x2)) | 1;
+}
 
 INCLUDE_ASM(s32, "unknown/4B120", func_8004A994_4B594);
 

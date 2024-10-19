@@ -155,4 +155,31 @@ typedef struct SpaceData {
 /* 0x20 */ void* event_list;
 } SpaceData;
 
+typedef struct omOvlHisData { //Object Manager History Data
+/* 0x00 */ s32 overlayID;
+/* 0x04 */ s16 event;
+/* 0x06 */ u16 stat;
+} omOvlHisData; //sizeof 0x08
+
+typedef struct GameStatus { //from partyplanner
+    /* 0x00 - 800CD058 */ s8 unk0;
+    /* 0x01 - 800CD059 */ s8 current_board_index;
+    /* 0x02 - 800CD05A */ s8 total_turns;
+    /* 0x03 - 800CD05B */ s8 current_turn;
+    /* 0x04 - 800CD05C */ s8 current_game_length; // 00=Lite Play,01=Standard Play,02=Full Play,03=Custom Play
+    /* 0x05 - 800CD05D */ s8 current_star_spawn; // Index of star space (index into star_spawn_indices)
+    /* 0x06 - 800CD05E */ s8 star_spawn_indices[7];
+    /* 0x0D - 800CD065 */ s8 unkD;
+    /* 0x0E - 800CD066 */ s8 unkE;
+    /* 0x0F - 800CD067 */ s8 current_player_index;
+    /* 0x10 - 800CD068 */ s8 unk10;
+    /* 0x11 - 800CD069 */ s8 current_space_index;
+    /* 0x12 - 800CD06A */ s8 unk12;
+    /* 0x13 - 800CD06B */ s8 unk13;
+    /* 0x14 - 800CD06C */ s8 unk14;
+    /* 0x15 - 800CD06D */ s8 unk15;
+    /* 0x16 - 800CD06E */ s8 unk16;
+    // 800cd09c flag for re-roll
+} GameStatus;
+
 #endif
