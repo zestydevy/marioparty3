@@ -2,39 +2,25 @@
 #include "pad.h"
 
 extern u8 D_800CD0B6[];
-
-typedef struct
-{
-    u8 unk0;
-    s32 unk4;
-    s32 unk8;
-    s8 unkC;
-    s8 unkD;
-    s8 unkE;
-    s8 unkF;
-} HuSave00;
-
-extern u8 D_800CC0C8[];
-extern HuSave00 D_800CD059;
-extern s32 D_800D0308;
+extern u8 D_800CC0C8[0xA4];
+extern u8 D_800D0308[0x74];
 extern s8 D_800CD068;
 extern u8 D_800CC0DE[];
 extern u8 D_800CC153[];
 extern u16 D_800CC0CA[];
-
 extern s32 D_800B1A30;
 
 s32 func_80035EB0_36AB0(s32 arg0);
 
 void func_80035A50_36650(void) {
-    u8* ptr = (u8 *)&D_800CC0C8;
+    u8* ptr = D_800CC0C8;
     
-    bzero(&D_800CC0C8, 0xA4);
-    bzero(&D_800D0308, 0x74);
+    bzero(&D_800CC0C8, sizeof(D_800CC0C8));
+    bzero(&D_800D0308, sizeof(D_800D0308));
     
     ptr[0] = 0x91;
-    D_800CD059.unk0 = 0;
-    D_800CD059.unkF = 0;
+    D_800CD058.current_board_index = 0;
+    D_800CD058.unk10 = 0;
 }
 
 void func_80035AA8_366A8(s8 arg0) {
@@ -96,8 +82,8 @@ u16 func_80035C6C_3686C(s16 arg0) {
     return D_800CC0CA[arg0];
 }
 
-void func_80035C84_36884(s8 arg0) {
-    D_800CD059.unk0 = arg0;
+void SetCurrentBoardIndex(s8 boardIndex) {
+    D_800CD058.current_board_index = boardIndex;
 }
 
 INCLUDE_ASM(s32, "save", func_80035C90_36890);

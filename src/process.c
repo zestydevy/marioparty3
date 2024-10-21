@@ -69,7 +69,7 @@ void HuPrcUnlink(Process** root, Process* process)
 
 Process* HuPrcCreate(process_func func, u16 priority, s32 stack_size, s32 extra_data_size)
 {
-    struct heap_node *process_heap;
+    HeapNode *process_heap;
     Process* process;
     s32 alloc_size;
 
@@ -81,7 +81,7 @@ Process* HuPrcCreate(process_func func, u16 priority, s32 stack_size, s32 extra_
         + HuMemMemoryAllocSizeGet(stack_size)
         + HuMemMemoryAllocSizeGet(extra_data_size);
 
-    process_heap = (struct heap_node *)HuMemMemoryAllocPerm(alloc_size);
+    process_heap = (HeapNode *)HuMemMemoryAllocPerm(alloc_size);
     if (process_heap == NULL) {
         return NULL;
     }
@@ -339,7 +339,7 @@ void HuPrcCall(s32 time)
 void * HuPrcAllocMem(s32 size)
 {
     Process* process = HuPrcCurrentGet();
-    return (void *)HuMemMemoryAlloc((struct heap_node *)process->heap, size);
+    return (void *)HuMemMemoryAlloc((HeapNode *)process->heap, size);
 }
 
 void HuPrcFreeMem(void *ptr)

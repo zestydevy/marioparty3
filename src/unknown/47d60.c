@@ -20,18 +20,18 @@ extern s32 D_800D6A40;
 extern s8 D_800D6A90;
 extern s16 D_800D6B40;
 
-void func_80048054_48C54();                         /* extern */
-extern HuObjInfo* D_800A1770_A2370;
+void omDestroyPrcObj();                         /* extern */
+extern omObjData* D_800A1770_A2370;
 extern s16 D_800A1774_A2374;        // process count
 extern s16 D_800A1776_A2376;
 extern s16 D_800A1778_A2378;        // dtor index?
 extern HuObjUnk0* D_800A177C_A237C;
 
-void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
+void omInitObjMan(s32 numOfObjs, s32 numOfPrcs)
 {
     s16 prcCount;
     s32 i;
-    HuObjInfo* obj;
+    omObjData* obj;
     HuObjUnk0* prcInfo;
 
     D_800CCF50 = numOfObjs + 1;
@@ -47,7 +47,7 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
         HuMemMemoryFreeTemp((void *)D_800A1770_A2370);
     }
     
-    D_800A1770_A2370 = (HuObjInfo *)HuMemMemoryAllocTemp(D_800CCF50* sizeof(HuObjInfo));
+    D_800A1770_A2370 = (omObjData *)HuMemMemoryAllocTemp(D_800CCF50* sizeof(omObjData));
     
     for (i = 0; i < D_800CCF50; ++i)
     {
@@ -113,11 +113,11 @@ void HuObjInit(s32 numOfObjs, s32 numOfPrcs)
 }
 
 // clean up?
-INCLUDE_ASM(s32, "unknown/47d60", func_80047420_48020);
+INCLUDE_ASM(s32, "unknown/47d60", omDestroyObjMan);
 
-HuObjInfo* HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func)
+omObjData* omAddObj(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func)
 {
-    HuObjInfo* temp_s0;
+    omObjData* temp_s0;
     s16* temp_v1;
     s32 temp_s1;
     s32 var_a0;
@@ -131,7 +131,7 @@ HuObjInfo* HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc fun
     temp_s0->unk2 = D_800D6B40;
     temp_s0->unk4 = priority;
     
-    HuObjRegister(temp_s0);
+    omInsertObj(temp_s0);
     
     if (arg1 != 0) {
         temp_s0->unk40 = HuMemMemoryAllocTemp(arg1* sizeof(u16));
@@ -172,7 +172,7 @@ HuObjInfo* HuObjCreate(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc fun
     return temp_s0;
 }
 
-void func_800477A4_483A4(HuObjInfo* arg0, s16 arg1)
+void omSetObjPrio(omObjData* arg0, s16 arg1)
 {
     s16 temp_a0;
 
@@ -192,18 +192,18 @@ void func_800477A4_483A4(HuObjInfo* arg0, s16 arg1)
             D_800CC430 = D_800A1770_A2370[arg0->unk6].unk2;
         }
         
-        HuObjRegister(arg0);
+        omInsertObj(arg0);
     }
 }
 
 // register object into linked list, sort based on priority
-void HuObjRegister(HuObjInfo* obj)
+void omInsertObj(omObjData* obj)
 {
     s16 temp_a0;
     s16 temp_t0;
     s16 temp_t1;
     s16 var_a2;
-    HuObjInfo* temp_a3;
+    omObjData* temp_a3;
     s16 temp_t4;
 
     temp_t0 = obj->unk2;
@@ -243,29 +243,29 @@ void HuObjRegister(HuObjInfo* obj)
     }
 }
 
-INCLUDE_ASM(s32, "unknown/47d60", func_800479AC_485AC);
+INCLUDE_ASM(s32, "unknown/47d60", omDelObj);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047B30_48730);
+INCLUDE_ASM(s32, "unknown/47d60", omSetStat);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047B38_48738);
+INCLUDE_ASM(s32, "unknown/47d60", omSetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047B48_48748);
+INCLUDE_ASM(s32, "unknown/47d60", omResetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047B5C_4875C);
+INCLUDE_ASM(s32, "unknown/47d60", omPrcSetStat);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047B80_48780);
+INCLUDE_ASM(s32, "unknown/47d60", omPrcSetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047BAC_487AC);
+INCLUDE_ASM(s32, "unknown/47d60", omPrcResetStatBit);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047BDC_487DC);
+INCLUDE_ASM(s32, "unknown/47d60", omSetTra);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047BEC_487EC);
+INCLUDE_ASM(s32, "unknown/47d60", omSetRot);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80047BFC_487FC);
+INCLUDE_ASM(s32, "unknown/47d60", omSetSca);
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80047C0C_4880C);
 
-void func_80047CDC_488DC(u16 arg0, HuObjInfo* obj)
+void func_80047CDC_488DC(u16 arg0, omObjData* obj)
 {
     HuObjUnk1* temp_a2;
 
@@ -292,7 +292,7 @@ INCLUDE_ASM(s32, "unknown/47d60", func_80047E5C_48A5C);
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80047E90_48A90);
 
-Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extDataSize)
+Process* omAddPrcObj(process_func func, u16 priority, s32 stackSize, s32 extDataSize)
 {
     s16 prevIdx;
     Process* newPrc;
@@ -311,7 +311,7 @@ Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extD
     
     temp_s0->prc        = newPrc;
     newPrc->dtor_idx    = prevIdx;
-    HuPrcDtor(temp_s0->prc, func_80048054_48C54);
+    HuPrcDtor(temp_s0->prc, omDestroyPrcObj);
 
     temp_s0->unk8 = NULL;
     ++D_800A1776_A2376;
@@ -321,9 +321,9 @@ Process* HuObjPrcCreate(process_func func, u16 priority, s32 stackSize, s32 extD
 
 INCLUDE_ASM(s32, "unknown/47d60", func_80047F50_48B50);
 
-INCLUDE_ASM(s32, "unknown/47d60", func_80048008_48C08);
+INCLUDE_ASM(s32, "unknown/47d60", omDelPrcObj);
 
-void func_80048054_48C54(void)
+void omDestroyPrcObj(void)
 {
     process_func func;
     Process* currPrc;
@@ -341,7 +341,7 @@ void func_80048054_48C54(void)
     --D_800A1776_A2376;
 }
 
-INCLUDE_ASM(s32, "unknown/47d60", func_800480E4_48CE4);
+INCLUDE_ASM(s32, "unknown/47d60", omPrcSetDestructor);
 
 INCLUDE_ASM(s32, "unknown/47d60", omOvlCallEx);
 

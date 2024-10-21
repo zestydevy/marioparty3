@@ -1,10 +1,65 @@
 #include "common.h"
+#include "obj.h"
+
+void func_80035EF4_36AF4(s32);
+void func_80035F44_36B44(s32);
+s32 _CheckFlag(s32);
+void func_80035F44_36B44(s32);
+void func_800ECF9C_100BBC(s8);
+void func_800F8610_10C230(s32, s32, s32);
+void func_800F8D84_10C9A4();
+extern s16 D_800CD2A2;
+extern s16 D_800D6A48;
+extern s16 D_800D6B60;
+extern s16 D_800CD2A2;
+extern s16 D_800D4196;
+extern s16 D_800D6A48;
+extern s16 D_800D6B60;
+extern omOvlHisData D_800D20F0[12];
+extern s32 D_80101B40_115760[];
 
 INCLUDE_ASM(s32, "overlays/shared_board/10C230", func_800F8610_10C230);
 
-INCLUDE_ASM(s32, "overlays/shared_board/10C230", func_800F86B4_10C2D4);
+void func_800F86B4_10C2D4(void) {
+    D_800CD2A2 = 1;
+    D_800D6B60 = 0;
+    if (_CheckFlag(1) == 0) {
+        if ((D_800CD058.current_board_index != 6) && (func_800F8610_10C230(-2, 4, 0x192), (D_800CD058.current_board_index != 6))) {
+            func_800F8610_10C230(0x53, 0, 0x192);
+        } else {
+            func_800F8610_10C230(0x54, 0, 0x192);
+        }
+        
+        func_800F8610_10C230(-2, 1, 0x192);
+    }
+    func_800F8D84_10C9A4();
+    func_800ECF9C_100BBC(D_800CD058.unk14);
+    func_80035F44_36B44(0xC);
+    D_800D6A48 = 0;
+}
 
-INCLUDE_ASM(s32, "overlays/shared_board/10C230", func_800F8774_10C394);
+void func_800F8774_10C394(void) {
+    omOvlHisData* ovlHisData;
+
+    D_800D4196 = 1;
+    if (D_800D6B60 != 0) {
+        ovlHisData = &D_800D20F0[--D_800D6B60];
+        omOvlCallEx(ovlHisData->overlayID, ovlHisData->event, ovlHisData->stat);
+        return;
+    }
+    if (D_800CD2A2 != 0) {
+        D_800D4196 = 0;
+        omOvlCallEx(D_80101B40_115760[D_800CD058.current_board_index], 2, 0x192U);
+        return;
+    }
+    if (D_800D6A48 != 0) {
+        func_80035EF4_36AF4(0xC);
+    } else {
+        func_80035F44_36B44(0xC);
+    }
+    omOvlReturnEx(1);
+}
+
 
 INCLUDE_ASM(s32, "overlays/shared_board/10C230", func_800F884C_10C46C);
 

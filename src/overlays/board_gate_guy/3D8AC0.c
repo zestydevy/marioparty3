@@ -6,9 +6,9 @@
 void func_801059D0_3D8AC0(void) {
     D_800CDD58 = 1;
     D_800D037C = 0;
-    func_80047B80_48780(HuPrcCurrentGet(), 0x80);
+    omPrcSetStatBit(HuPrcCurrentGet(), 0x80);
     func_80100CEC(gPlayers[gCurrentPlayerIndex].controller);
-    func_80047BAC_487AC(HuPrcCurrentGet(), 0x80);
+    omPrcResetStatBit(HuPrcCurrentGet(), 0x80);
     D_800CDD58 = 0;
     D_800D037C = 1;
 }
@@ -37,8 +37,8 @@ void func_80105B10_3D8C00(void) {
 }
 
 void func_80105B64_3D8C54(void) {
-    D_800CD059 = 0;
-    HuObjInit(0xA, 0);
+    D_800CD058.current_board_index = 0;
+    omInitObjMan(0xA, 0);
     omOvlGotoEx(0x5A, 0, 0x4190);
 }
 
@@ -46,7 +46,7 @@ void func_80105B9C_3D8C8C(void) {
     s8 sp10;
     s8 sp11;
 
-    HuObjInit(0xA, 0);
+    omInitObjMan(0xA, 0);
     func_800E94D0();
     func_800E9B10(0x13, 0x241);
     func_800E9F4C(0x1C, &sp10, &sp11);
@@ -80,7 +80,7 @@ void* func_80105EB0_3D8FA0(unkStruct04* arg0) {
     Process* process;
     unkStruct02* temp_v0_2;
 
-    process = HuObjPrcCreate(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
+    process = omAddPrcObj(&func_80105CC0_3D8DB0, 0xA, 0, 0x40);
     temp_v0_2 = HuMemMemoryAlloc(process->heap, sizeof(unkStruct02));
     process->user_data = temp_v0_2;
     temp_v0_2->unk_00.x = arg0->unk_0C.x;
@@ -122,7 +122,7 @@ Process* func_8010645C_3D954C(s32 arg0, s32 arg1) {
     Process* process;
     unkStruct06* temp_v0_2;
 
-    process = HuObjPrcCreate(&func_80106308_3D93F8, 0xA, 0, 0x40);
+    process = omAddPrcObj(&func_80106308_3D93F8, 0xA, 0, 0x40);
     temp_v0_2 = HuMemMemoryAlloc(process->heap, sizeof(unkStruct06));
     process->user_data = temp_v0_2;
     temp_v0_2->unk_00 = arg0;

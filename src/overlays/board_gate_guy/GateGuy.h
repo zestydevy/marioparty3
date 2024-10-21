@@ -1,68 +1,58 @@
 #include "common.h"
 #include "process.h"
 #include "common_structs.h"
+#include "malloc.h"
 
 typedef struct unkStruct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
+/* 0x00 */ s16 unk_00;
+/* 0x02 */ s16 unk_02;
+/* 0x04 */ s16 unk_04;
 } unkStruct;
 typedef struct unkStruct01 {
-    f32 unk_00;
-    char unk_04[4];
-    f32 unk_08;
+/* 0x00 */ f32 unk_00;
+/* 0x04 */ char unk_04[4];
+/* 0x08 */ f32 unk_08;
 } unkStruct01;
 
 typedef struct unkStruct02 {
-Vec unk_00;
-char unk_0C[4];
+/* 0x00 */ Vec unk_00;
+/* 0x0C */ char unk_0C[4];
 } unkStruct02;
 
-// struct heap_node
-// {
-//     s32 size;                   // 0000
-//     u8 heap_constant;           // 0004
-//     u8 used; // bool            // 0005
-//     struct heap_node *prev;     // 0008
-//     struct heap_node *next;     // 000C
-// };
-
 typedef struct unkStruct03 {
-char unk_00[0x18];
-struct heap_node* unk_18;
-char unk_1C[0x70];
-unkStruct02* unk_8C;
+/* 0x00 */ char unk_00[0x18];
+/* 0x18 */ HeapNode* unk_18;
+/* 0x1C */ char unk_1C[0x70];
+/* 0x8C */ unkStruct02* unk_8C;
 } unkStruct03;
 
 typedef struct unkStruct04 {
-char unk_00[0x0C];
-Vec unk_0C;
+/* 0x00 */ char unk_00[0x0C];
+/* 0x0C */ Vec unk_0C;
 } unkStruct04;
 
 typedef struct unkStruct05 {
-char unk_00[0x24];
-s32 unk_24;
+/* 0x00 */ char unk_00[0x24];
+/* 0x24 */ s32 unk_24;
 } unkStruct05;
 
 typedef struct unkStruct06 {
-    s32 unk_00;
-    s32 unk_04;
-    f32 unk_08;
-    char unk_0C[4];
+/* 0x00 */ s32 unk_00;
+/* 0x04 */ s32 unk_04;
+/* 0x08 */ f32 unk_08;
+/* 0x0C */ char unk_0C[4];
 } unkStruct06;
 
 typedef struct unkStruct07 {
-    char unk_00[0x17];
-    u8 unk_17;
+/* 0x00 */ char unk_00[0x17];
+/* 0x17 */ u8 unk_17;
 } unkStruct07;
 
 void func_800359E0_365E0(void*, s16);
 extern s16 D_800A1764_A2364;
 
 extern s8 gCurrentPlayerIndex;
-extern PlayerData gPlayers[4];
-void func_80047B80_48780(Process*, s32);
-void func_80047BAC_487AC(Process*, s32);
+
 void func_80100CEC(u8);
 extern s16 D_800CDD58;
 extern s16 D_800D037C;
@@ -79,10 +69,6 @@ extern s32 D_80119470;
 extern s32 D_80119474;
 extern s32 D_80119478;
 extern s32 D_8011947C;
-void HuObjInit(s32, s32);
-void omOvlGotoEx(s32, s16, u16);
-extern s8 D_800CD059;
-s32 omOvlReturnEx(s16 level);
 void func_800E94D0(void);
 void func_800E9564(void);
 void func_800E9B10(s32, s32);
@@ -94,7 +80,7 @@ f32 HuMathCos(f32);
 f32 HuMathSin(f32);
 f32 func_800D76D0(void*);
 void func_800EB708(s32, s32, unkStruct01*);
-void * HuMemMemoryAlloc(struct heap_node * heap, s32 size);
+void * HuMemMemoryAlloc(HeapNode * heap, s32 size);
 unkStruct03* func_80047EA0_48AA0(void*, s32, s32, s32);
 void func_80105CC0_3D8DB0(void); //probably takes object as arg
 void func_800FC8C4(void*);

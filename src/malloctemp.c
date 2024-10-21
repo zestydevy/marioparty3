@@ -5,14 +5,14 @@
 * Temporary heap. Reset occasionally during gameplay.
  */
 
-extern struct heap_node* temp_heap_addr;
+extern HeapNode* temp_heap_addr;
 
 /*
 * Creates the temporary heap.
  */
-struct heap_node* HuMemHeapInitTemp(void *ptr, u32 size)
+HeapNode* HuMemHeapInitTemp(void *ptr, u32 size)
 {
-    temp_heap_addr = (struct heap_node *)HuMemHeapInit(ptr, size);
+    temp_heap_addr = (HeapNode *)HuMemHeapInit(ptr, size);
 }
 
 /*
@@ -44,7 +44,7 @@ void* HuMemMemoryReallocTemp(void *mem, u32 new_size)
  */
 u32 HuMemHeapAllocTempSizeGet(void)
 {
-    return HuMemHeapAllocSizeGet(temp_heap_addr);
+    return HuMemUsedMemorySizeGet(temp_heap_addr);
 }
 
 u32 HuMemUsedMemoryBlockGetTemp(void)

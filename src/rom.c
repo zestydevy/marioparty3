@@ -67,7 +67,7 @@ s32 HuRomDmaCodeRead(u8* src, u8* dest, s32 size)
     while (size > 0)
     {
         var_v1 = size;
-        if (size >= 0x4001) {
+        if (size > 0x4000) {
             var_v1 = 0x4000;
         }
         err = HuStartDma(&msg, 0, 0, &src[curBlockOffset], &dest[curBlockOffset], var_v1, &D_800B29F0);

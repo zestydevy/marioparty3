@@ -4,15 +4,15 @@
 /*
 * Primary heap. Never reset during gameplay.
  */
-extern struct heap_node* perm_heap_addr;
+extern HeapNode* perm_heap_addr;
 
 /*
 * Creates the "permanent" heap that is never reset.
 * Called once during startup.
  */
-struct heap_node* HuMemHeapInitPerm(void *ptr, u32 size)
+HeapNode* HuMemHeapInitPerm(void *ptr, u32 size)
 {
-    perm_heap_addr = (struct heap_node *)HuMemHeapInit(ptr, size);
+    perm_heap_addr = (HeapNode *)HuMemHeapInit(ptr, size);
 }
 
 /*
@@ -44,7 +44,7 @@ void* HuMemMemoryReallocPerm(void *mem, u32 new_size)
  */
 u32 HuMemHeapAllocPermSizeGet(void)
 {
-    return HuMemHeapAllocSizeGet(perm_heap_addr);
+    return HuMemUsedMemorySizeGet(perm_heap_addr);
 }
 
 u32 HuMemUsedMemoryBlockGetPerm(void)

@@ -27,10 +27,29 @@ Hu3DCamSetPerspective = 0x8001247C;
 Hu3DCamUpdateMtx = 0x80012564;
 Hu3DCam3DToScreen = 0x8001291C;
 Hu3DAnimInit = 0x8001FE20;
-HuObjInit = 0x80047160;
-HuObjCreate = 0x80047620;
-HuObjRegister = 0x80047898;
-HuObjPrcCreate = 0x80047EA0;
+omInitObjMan = 0x80047160;
+omDestroyObjMan = 0x80047420; //rom:0x48020
+omAddObj = 0x80047620;
+omSetObjPrio = 0x800477A4; //rom:0x483A4
+
+omDelObj = 0x800479AC; //rom:0x485AC
+omSetStat = 0x80047B30; //rom:0x48730
+omSetStatBit = 0x80047B38; //rom:0x48738
+omResetStatBit = 0x80047B48; //rom:0x48748
+omPrcSetStat = 0x80047B5C; //rom:0x4875C
+omPrcSetStatBit = 0x80047B80; //rom:0x48780
+omPrcResetStatBit = 0x80047BAC; //rom:0x487AC
+omSetTra = 0x80047BDC; //rom:0x487DC
+omSetRot = 0x80047BEC; //rom:0x487EC
+omSetSca = 0x80047BFC; //rom:0x487FC
+omAddPrcObj = 0x80047EA0;
+omDelPrcObj = 0x80048008; //rom:0x48C08
+omDestroyPrcObj = 0x80048054; //rom:0x48C54
+omPrcSetDestructor = 0x800480E4; //rom:0x48CE4
+omInsertObj = 0x80047898;
+
+SetCurrentBoardIndex = 0x80035C84; //rom:0x36884
+
 
 HuSaveSetPadIsInserted = 0x80036080;
 
@@ -38,7 +57,7 @@ HuMemHeapInit = 0x800360D0;
 HuMemMemoryAlloc = 0x800360F0;
 HuMemMemoryFree = 0x80036188;
 HuMemMemoryRealloc = 0x80036248;
-HuMemHeapAllocSizeGet = 0x80036310;
+HuMemUsedMemorySizeGet = 0x80036310;
 HuMemUsedMemoryBlockGet = 0x80036344;
 HuMemMemoryAllocSizeGet = 0x8003636C;
 
@@ -493,8 +512,10 @@ PlayerHasItem = 0x800E4978; //rom:0xF8598
 RNGPercentChance = 0x800ECE9C; //rom:0x100ABC
 RunDecisionTree = 0x800DA190; //rom:0xEDDB0
 Hu3DModelCreate = 0x8001A150; //rom:0x1AD50
-gTotalTurns = 0x800CD05A;
-gCurrentTurn = 0x800CD05B;
+CameraScissorSet = 0x800124BC; //rom:0x130BC
+CameraViewportSet = 0x80012508; //rom:0x13108
+ScissorSet = 0x8000B364; //rom:0xBF64
+ViewportSet = 0x8000B3C8; //rom:0xBFC8
 
 omOvlCallEx = 0x80048128; //rom:0x48D28
 omOvlGotoEx = 0x80048228; //rom:0x48E28
@@ -504,8 +525,9 @@ omovlhis = 0x800D2010; //size:0x60
 omOvlKill = 0x8004849C; //rom:0x4909C
 omMain = 0x80048504; //rom:0x49104
 omovlhisidx = 0x800A1768; //rom:0xA2368 size:0x02 type:s16
-overlay_table = 0x800962F4; //rom:0x96EF4 size:0x126C
-LoadOverlay = 0x8000B2C4; //rom:0xBEC4
+_ovltbl = 0x800962F4; //rom:0x96EF4 size:0x1200
+_modeovltbl = 0x800974F4; //rom:0x980F4 size:0x6C
+OvlLoad = 0x8000B2C4; //rom:0xBEC4
 rnd_seed = 0x80097650; //rom:0x98250 type:u32
 
 SavePlayerStruct = 0x8004F544; //rom:0x50144
@@ -522,3 +544,6 @@ gPrevItemBlockIndexes = 0x800CC378; //type:s16 size:0x14
 
 GetSaveFileChecksum = 0x8000CAEC; //rom:0xD6EC
 GetEepType = 0x8000C210; //rom:0xCE10
+
+gTotalTurns = 0x800CD05A;
+gCurrentTurn = 0x800CD05B;
