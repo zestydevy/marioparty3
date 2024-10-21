@@ -65,7 +65,7 @@ extern u16 D_800A190E_A250E;
 extern void func_800007FC_13FC(struct str800D5298 *arg0);
 extern void func_80000EA8_1AA8(struct str800D5298 *arg0);
 extern void func_80000F30_1B30(u32 arg0);
-extern s32 rand8(); //ovlman.h
+u8 rand8(); //ovlman.h
 extern void func_8000BA30_C630(); // esprite.h
 extern void func_800143F0_14FF0();
 extern void func_80014A3C_1563C(u32 arg0);

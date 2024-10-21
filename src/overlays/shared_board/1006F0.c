@@ -2,7 +2,7 @@
 
 extern s8 gTotalTurns;
 extern s8 gCurrentTurn;
-s32 rand8(void);
+u8 rand8(void);
 
 INCLUDE_ASM(s32, "overlays/shared_board/1006F0", func_800ECAD0_1006F0);
 
