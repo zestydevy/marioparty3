@@ -4,6 +4,6 @@
 #include <PR/ultratypes.h>
 
 //global function definitions
-s32 rand8(void);
+u8 rand8(void);
 
 #endif

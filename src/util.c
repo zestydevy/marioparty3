@@ -57,9 +57,9 @@ s16 func_8000B13C_BD3C(s32 arg0) {
     return Hu3DModelCreate(ReadMainFS(arg0), 0x1D);
 }
 
-s32 rand8(void) {
+u8 rand8(void) {
     rnd_seed = rnd_seed* 0x41C64E6D + 0x3039;
-    return ((rnd_seed + 1) >> 16) & 0xFF;
+    return ((rnd_seed + 1) >> 16);
 }
 
 //checks if the overlay has a text, data, and bss section and dmas/clears the region if so
