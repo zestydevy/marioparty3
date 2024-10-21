@@ -182,4 +182,11 @@ typedef struct GameStatus { //from partyplanner
     // 800cd09c flag for re-roll
 } GameStatus;
 
+typedef struct RectF {
+/* 0x00 */ f32 x1;
+/* 0x04 */ f32 y1;
+/* 0x08 */ f32 x2;
+/* 0x0C */ f32 y2;
+} RectF; //sizeof 0x10
+
 #endif

@@ -38,7 +38,7 @@ segments:
     - [0xA480, c, input]
     - [0xA6C0, c, data]
     - [0xAE30, c, "decode"]
-    - [0xBCA0, c, ovlman]
+    - [0xBCA0, c, util]
     - [0xC1F0, c, unknown/C1F0]
     - [0xC3A0, c, esprite]
     - [0xCE10, c, eeprom]

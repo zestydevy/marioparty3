@@ -13,13 +13,6 @@ void guLookAt(Mtx *m,
    float xAt,  float yAt,  float zAt,
    float xUp,  float yUp,  float zUp );
 
-typedef struct
-{
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 w;
-} HuVec4F;
 
 typedef struct
 {
@@ -91,16 +84,16 @@ void Hu3DCamSetPerspective(s16 camIndex, f32 fov, f32 near, f32 far)
     camera->perspNorm = 1;
 }
 
-void func_800124BC_130BC(s16 camIndex, HuVec4F * arg1)
+void CameraScissorSet(s16 camIndex, RectF* arg1)
 {
     HuCamera * camera = &gCameraList[camIndex];
-    camera->screenLeft = arg1->x;
-    camera->screenTop = arg1->y;
-    camera->screenRight = arg1->z;
-    camera->screenBottom = arg1->w;
+    camera->screenLeft = arg1->x1;
+    camera->screenTop = arg1->y1;
+    camera->screenRight = arg1->x2;
+    camera->screenBottom = arg1->y2;
 }
 
-void func_80012508_13108(s16 camIndex, Vec * arg1, Vec * arg2)
+void CameraViewportSet(s16 camIndex, Vec* arg1, Vec* arg2)
 {
     HuCamera * camera = &gCameraList[camIndex];
     camera->screenScale = *arg1;

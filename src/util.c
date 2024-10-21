@@ -16,33 +16,26 @@ typedef struct OverlayTable {
 /* 0x20 */ u8* bssVramEnd;
 } OverlayTable; //sizeof 0x24
 
-typedef struct UnkStruct {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    f32 unk_0C;
-} UnkStruct;
-
-typedef struct UnkOvlMan {
+typedef struct UnkUtil {
     char unk_00[0x48];
     s16* unk_48;
-} UnkOvlMan;
+} UnkUtil;
 
-extern OverlayTable overlay_table[];
-extern OverlayTable overlay_table2[];
+extern OverlayTable _ovltbl[];
+extern OverlayTable _modeovltbl[];
 extern u8 D_800962F0_96EF0;
 extern u32 rnd_seed;
-extern UnkStruct D_800975F0_981F0[];
+extern RectF D_800975F0_981F0[];
 extern Vec D_80097560_98160[];
 extern Vec D_800975A8_981A8[];
 extern s16 gNumOfControllers;
 
+s16 func_8000B13C_BD3C(s32);
 s16 Hu3DModelCreate(void*, s32);
 void* HuReadFileTag(s32 dirAndFile, s32 tag);
-s16 func_8000B13C_BD3C(s32);
-void func_800124BC_130BC(u8, UnkStruct*);
+void CameraScissorSet(s16 camIndex, RectF* arg1);
 void* ReadMainFS(s32);
-void func_80012508_13108(u8, Vec*, Vec*);
+void CameraViewportSet(s16 camIndex, Vec* arg1, Vec* arg2);
 void HuMemMemoryFreePerm(void *ptr);
 void* ReadMainFS(s32 dirAndFile);
 s32 func_8001443C_1503C(void*, s32, u8);
@@ -82,14 +75,14 @@ void func_8000B1A0_BDA0(s32 arg0, u8 sectionFlags) {
     u8* textStart;
     u8* tmp;
 
-    romStart = overlay_table2[arg0].romStart;
-    textVramStart = overlay_table2[arg0].textVramStart;
-    textVramEnd = overlay_table2[arg0].textVramEnd;
-    dataVramStart = overlay_table2[arg0].dataVramStart;
-    dataVramEnd = overlay_table2[arg0].dataVramEnd;
-    bss_start = overlay_table2[arg0].bssVramStart;
-    bss_end = overlay_table2[arg0].bssVramEnd;
-    textStart = overlay_table2[arg0].vramStart;
+    romStart = _modeovltbl[arg0].romStart;
+    textVramStart = _modeovltbl[arg0].textVramStart;
+    textVramEnd = _modeovltbl[arg0].textVramEnd;
+    dataVramStart = _modeovltbl[arg0].dataVramStart;
+    dataVramEnd = _modeovltbl[arg0].dataVramEnd;
+    bss_start = _modeovltbl[arg0].bssVramStart;
+    bss_end = _modeovltbl[arg0].bssVramEnd;
+    textStart = _modeovltbl[arg0].vramStart;
     if (sectionFlags & HAS_TEXT_SECTION) {
         HuRomDmaCodeRead(romStart, textStart, textVramEnd - textVramStart);
     }
@@ -106,19 +99,19 @@ void func_8000B1A0_BDA0(s32 arg0, u8 sectionFlags) {
 }
 
 // copies in an overlay and clears bss region.
-void LoadOverlay(s32 overlayIndex) {
+void OvlLoad(s32 overlayIndex) {
     u8* rom_start;
     u8* rom_end;
     u8* bss_start;
     u8* bss_end;
     u8* curBssAddr;
 
-    rom_start = overlay_table[overlayIndex].romStart;
-    rom_end = overlay_table[overlayIndex].romEnd;
-    bss_start = overlay_table[overlayIndex].bssVramStart;
-    bss_end = overlay_table[overlayIndex].bssVramEnd;
+    rom_start = _ovltbl[overlayIndex].romStart;
+    rom_end = _ovltbl[overlayIndex].romEnd;
+    bss_start = _ovltbl[overlayIndex].bssVramStart;
+    bss_end = _ovltbl[overlayIndex].bssVramEnd;
 
-    HuRomDmaCodeRead(rom_start, overlay_table[overlayIndex].vramStart, rom_end - rom_start);
+    HuRomDmaCodeRead(rom_start, _ovltbl[overlayIndex].vramStart, rom_end - rom_start);
 
     curBssAddr = bss_start;
     while (bss_start < bss_end) {
@@ -129,30 +122,27 @@ void LoadOverlay(s32 overlayIndex) {
     D_800962F0_96EF0 = 0;
 }
 
-void func_8000B364_BF64(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4) {
-    u8 temp = arg0;
-    D_800975F0_981F0[temp].unk_00 = arg1;
-    D_800975F0_981F0[temp].unk_04 = arg2;
-    D_800975F0_981F0[temp].unk_08 = arg3;
-    D_800975F0_981F0[temp].unk_0C = arg4;
-    func_800124BC_130BC(arg0, &D_800975F0_981F0[temp]);
+void ScissorSet(u8 camIndex, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    D_800975F0_981F0[camIndex].x1 = arg1;
+    D_800975F0_981F0[camIndex].y1 = arg2;
+    D_800975F0_981F0[camIndex].x2 = arg3;
+    D_800975F0_981F0[camIndex].y2 = arg4;
+    CameraScissorSet(camIndex, &D_800975F0_981F0[camIndex]);
 }
 
-void func_8000B3C8_BFC8(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
-    u8 temp = arg0;
+void ViewportSet(u8 camIndex, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+    D_80097560_98160[camIndex].x = arg1;
+    D_80097560_98160[camIndex].y = arg2;
+    D_80097560_98160[camIndex].z = arg3;
 
-    D_80097560_98160[temp].x = arg1;
-    D_80097560_98160[temp].y = arg2;
-    D_80097560_98160[temp].z = arg3;
+    D_800975A8_981A8[camIndex].x = arg4;
+    D_800975A8_981A8[camIndex].y = arg5;
+    D_800975A8_981A8[camIndex].z = arg6;
 
-    D_800975A8_981A8[temp].x = arg4;
-    D_800975A8_981A8[temp].y = arg5;
-    D_800975A8_981A8[temp].z = arg6;
-
-    func_80012508_13108(arg0, &D_80097560_98160[temp], &D_800975A8_981A8[temp]);
+    CameraViewportSet(camIndex, &D_80097560_98160[camIndex], &D_800975A8_981A8[camIndex]);
 }
 
-void func_8000B460_C060(UnkOvlMan* arg0, u16 arg1, s32 arg2) {
+void func_8000B460_C060(UnkUtil* arg0, u16 arg1, s32 arg2) {
     s16 temp_v0;
 
     temp_v0 = func_8000B13C_BD3C(arg2);
