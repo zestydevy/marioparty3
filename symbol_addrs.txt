@@ -523,7 +523,8 @@ omovlhis = 0x800D2010; //size:0x60
 omOvlKill = 0x8004849C; //rom:0x4909C
 omMain = 0x80048504; //rom:0x49104
 omovlhisidx = 0x800A1768; //rom:0xA2368 size:0x02 type:s16
-overlay_table = 0x800962F4; //rom:0x96EF4 size:0x126C
+overlay_table = 0x800962F4; //rom:0x96EF4 size:0x1200
+overlay_table2 = 0x800974F4; //rom:0x980F4 size:0x6C
 LoadOverlay = 0x8000B2C4; //rom:0xBEC4
 rnd_seed = 0x80097650; //rom:0x98250 type:u32
 
