@@ -1,16 +1,16 @@
 #include "common.h"
+#include "obj.h"
 
-void func_8000BA00_C600(void);                             /* extern */
-void func_800166D0_172D0(void);                            /* extern */
-void func_8001AFE4_1BBE4(void);                            /* extern */
-void func_80021AF4_226F4(void);                            /* extern */
-void func_80037190_37D90(void);                            /* extern */
-void omDestroyObjMan(void);                                /* extern */
+void func_8000BA00_C600(void);
+void func_800166D0_172D0(void);
+void func_8001AFE4_1BBE4(void);
+void func_80021AF4_226F4(void);
+void func_80037190_37D90(void);
+
 extern s8 D_800A1762_A2362;
 extern u16 D_800B23C0;
 extern u16 D_800CD050;
 extern s8 D_800CD280;
-s32 omOvlGotoEx(s32, s16, u16);
 extern s16 omovlhisidx;
 extern omOvlHisData omovlhis[12];
 

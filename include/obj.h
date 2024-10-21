@@ -6,7 +6,7 @@
 #include "malloc.h"
 #include "process.h"
 
-typedef void (*HuObjFunc)(void * func);
+typedef void (*HuObjFunc)(void* func);
 
 typedef struct omObjData {
 /* 0x00 */ u16 stat;
@@ -51,7 +51,7 @@ typedef struct
 
 void omPrcSetStatBit(Process*, s32);
 void omPrcResetStatBit(Process*, s32);
-void omOvlGotoEx(s32, s16, u16);
+s32 omOvlGotoEx(s32, s16, u16);
 s32 omOvlReturnEx(s16 level);
 void omInitObjMan(s32 numOfObjs, s32 numOfPrcs);
 void omInsertObj(omObjData * obj);
@@ -61,5 +61,6 @@ void omDestroyPrcObj(void);
 omObjData* omAddObj(s16 priority, u16 arg1, u16 arg2, s16 arg3, HuObjFunc func);
 s32 omOvlCallEx(s32 arg0, s16 arg1, u16 arg2);
 void omMain(void);
+void omDestroyObjMan(void);
 
 #endif
